@@ -1,0 +1,40 @@
+.set noat      /* allow manual use of $at */
+.set noreorder /* don't insert nops after branches */
+
+nonmatching func_level_41_800821E0, 0x8
+
+glabel func_level_41_800821E0
+    /* 2BCD77C 800821E0 0800E003 */  jr         $ra
+    /* 2BCD780 800821E4 00000000 */   nop
+endlabel func_level_41_800821E0
+    /* 2BCD784 800821E8 00000000 */  nop
+    /* 2BCD788 800821EC 00000000 */  nop
+    /* 2BCD78C 800821F0 00000000 */  nop
+    /* 2BCD790 800821F4 00000000 */  nop
+    /* 2BCD794 800821F8 00000000 */  nop
+    /* 2BCD798 800821FC 00000000 */  nop
+    /* 2BCD79C 80082200 00000000 */  nop
+    /* 2BCD7A0 80082204 00000000 */  nop
+    /* 2BCD7A4 80082208 00000000 */  nop
+    /* 2BCD7A8 8008220C 00000000 */  nop
+    /* 2BCD7AC 80082210 00000000 */  nop
+    /* 2BCD7B0 80082214 00000000 */  nop
+    /* 2BCD7B4 80082218 00000000 */  nop
+    /* 2BCD7B8 8008221C 00000000 */  nop
+    /* 2BCD7BC 80082220 00000000 */  nop
+    /* 2BCD7C0 80082224 00000000 */  nop
+    /* 2BCD7C4 80082228 00000000 */  nop
+    /* 2BCD7C8 8008222C 00000000 */  nop
+    /* 2BCD7CC 80082230 00000000 */  nop
+    /* 2BCD7D0 80082234 00000000 */  nop
+    /* 2BCD7D4 80082238 00000000 */  nop
+    /* 2BCD7D8 8008223C 00000000 */  nop
+    /* 2BCD7DC 80082240 00000000 */  nop
+    /* 2BCD7E0 80082244 00000000 */  nop
+    /* 2BCD7E4 80082248 00000000 */  nop
+    /* 2BCD7E8 8008224C 00000000 */  nop
+    /* 2BCD7EC 80082250 00000000 */  nop
+    /* 2BCD7F0 80082254 00000000 */  nop
+    /* 2BCD7F4 80082258 00000000 */  nop
+    /* 2BCD7F8 8008225C 00000000 */  nop
+    /* 2BCD7FC 80082260 00000000 */  nop

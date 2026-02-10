@@ -1,0 +1,22 @@
+.section .rodata
+
+nonmatching jtbl_800106F0
+
+dlabel jtbl_800106F0
+    /* EF0 800106F0 98300180 */ .word .L80013098
+enddlabel jtbl_800106F0
+
+nonmatching D_800106F4
+
+dlabel D_800106F4
+    /* EF4 800106F4 A4310180 */ .word 0x800131A4
+    /* EF8 800106F8 F0310180 */ .word 0x800131F0
+    /* EFC 800106FC 20320180 */ .word 0x80013220
+    /* F00 80010700 50320180 */ .word 0x80013250
+    /* F04 80010704 7C320180 */ .word 0x8001327C
+    /* F08 80010708 F8320180 */ .word 0x800132F8
+    /* F0C 8001070C 70330180 */ .word 0x80013370
+    /* F10 80010710 2C340180 */ .word 0x8001342C
+    /* F14 80010714 64300180 */ .word 0x80013064
+enddlabel D_800106F4
+

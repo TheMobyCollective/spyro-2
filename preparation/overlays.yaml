@@ -1,0 +1,1001 @@
+name: WAD.WAD
+sha1: b4ff28fcff1fcdd13deaea176e0b6bc6090b8318
+options:
+  basename: wad.wad
+  target_path: WAD.WAD
+  base_path: .
+  platform: psx
+  compiler: GCC
+
+  # asm_path: asm
+  # src_path: src
+  # build_path: build
+  # create_asm_dependencies: True
+
+  ld_script_path: overlays.ld
+
+  find_file_boundaries: False
+  gp_value: 0x80066ffc
+
+  o_as_suffix: True
+  use_legacy_include_asm: False
+
+  asm_function_macro: glabel
+  asm_jtbl_label_macro: jlabel
+  asm_data_macro: dlabel
+
+  section_order: [".rodata", ".text", ".data", ".sdata", ".sbss", ".bss"]
+  # auto_link_sections: [".data", ".rodata", ".bss"]
+
+  symbol_addrs_path:
+    - symbol_addrs.txt
+  reloc_addrs_path:
+    - reloc_addrs.txt
+
+  # undefined_funcs_auto_path: undefined_funcs_auto.txt
+  # undefined_syms_auto_path: undefined_syms_auto.txt
+
+  extensions_path: tools/splat_ext
+
+  ld_bss_is_noload: True
+  auto_decompile_empty_functions: False
+
+  subalign: 2
+
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+
+segments:
+  - name: titlescreen_and_loading
+    type: code
+    symbol_name_format: titlescreen_and_loading_$VRAM
+    symbol_name_format_no_rom: titlescreen_and_loading_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x23000
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x23004, .rodata, overlays/titlescreen_and_loading/overlay_pointers] #Start: 8006d268 Func: SetupLevelPointers:8006da30 Or should it start at 8006d264 aka 0x23000
+      - [0x230E8, .rodata, overlays/titlescreen_and_loading/leveldata] #Start: 8006d34c Func: LoadLevelData::80070498
+      - [0x2345C, rodata, overlays/titlescreen_and_loading/lib] #Start: 8006d6c0 Func: OVRTitleScreenAndLoading::8007d0e8 - Has some overlay pointer rodata as well apparently?
+
+      # text
+      - [0x236FC, c, overlays/titlescreen_and_loading/overlay_pointers] #8006d960
+      - [0x26234, c, overlays/titlescreen_and_loading/leveldata] #80070498
+      - [0x32E84, asm, overlays/titlescreen_and_loading/lib] #8007d0e8
+
+      # data
+      - [0x34DC8, data, overlays/titlescreen_and_loading/lib] #8007F02C
+      - [0x35658, data, overlays/titlescreen_and_loading/overlay_pointers] #8007f8bc
+  - [0x357FF]
+
+  - name: credits
+    type: code
+    symbol_name_format: credits_$VRAM
+    symbol_name_format_no_rom: credits_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x2ED800
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x2ED804, .rodata, overlays/credits/credits]
+
+      # text
+      - [0x2ED834, c, overlays/credits/credits]
+
+      # data
+      - [0x2EF5B4, data, overlays/credits/credits]
+  - [0x2EF7FF]
+
+  - name: guidebook
+    type: code
+    symbol_name_format: guidebook_$VRAM
+    symbol_name_format_no_rom: guidebook_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x484800
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x484804, .rodata, overlays/guidebook/guidebook]
+
+      # text
+      - [0x484B50, c, overlays/guidebook/guidebook] # 8006d5b4
+
+      # data
+      - [0x485D44, data, overlays/guidebook/guidebook] # 8006e7a8
+  - [0x485FFF]
+
+#Summer Forest
+  - name: level_10
+    type: code
+    symbol_name_format: level_10_$VRAM
+    symbol_name_format_no_rom: level_10_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0xD36000
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0xD36004, .rodata, overlays/level_10/spyro]
+      - [0xD362D4, .rodata, overlays/level_10/moby_update]
+      - [0xD3638C, .rodata, overlays/level_10/parts_update]
+      - [0xD364DC, .rodata, overlays/level_10/parts_spawn]
+
+      # text
+      - [0xD3664C, c, overlays/level_10/spyro]
+      - [0xD38C7C, c, overlays/level_10/camera]
+      - [0xD391F4, c, overlays/level_10/hud_update]
+      - [0xD391FC, c, overlays/level_10/hud_render]
+      - [0xD3921C, c, overlays/level_10/moby_update]
+      - [0xD44A54, c, overlays/level_10/moby_spawn]
+      - [0xD45854, c, overlays/level_10/parts_update]
+      - [0xD46E9C, c, overlays/level_10/parts_spawn]
+
+  - [0xD48803]
+
+#Glimmer
+  - name: level_11
+    type: code
+    symbol_name_format: level_11_$VRAM
+    symbol_name_format_no_rom: level_11_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0xF28800
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0xF28804, .rodata, overlays/level_11/spyro]
+      - [0xF28AFC, .rodata, overlays/level_11/moby_update]
+      - [0xF28E64, .rodata, overlays/level_11/parts_update]
+      - [0xF28FB4, .rodata, overlays/level_11/parts_spawn]
+
+      # text
+      - [0xF29124, c, overlays/level_11/spyro]
+      - [0xF2B0AC, c, overlays/level_11/camera]
+      - [0xF2B614, c, overlays/level_11/hud_update]
+      - [0xF2B844, c, overlays/level_11/hud_render]
+      - [0xF2B944, c, overlays/level_11/moby_update]
+      - [0xF39794, c, overlays/level_11/moby_spawn]
+      - [0xF3A574, c, overlays/level_11/parts_update]
+      - [0xF3B82C, c, overlays/level_11/parts_spawn]
+
+  - [0xF3CE58]
+
+#Idol Springs
+  - name: level_12
+    type: code
+    symbol_name_format: level_12_$VRAM
+    symbol_name_format_no_rom: level_12_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x1112800
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x1112804, .rodata, overlays/level_12/spyro]
+      - [0x1112B74, .rodata, overlays/level_12/moby_update]
+      - [0x1112FA4, .rodata, overlays/level_12/parts_update]
+      - [0x11130E4, .rodata, overlays/level_12/parts_spawn]
+
+      # text
+      - [0x1113244, c, overlays/level_12/spyro]
+      - [0x1115AE4, c, overlays/level_12/camera]
+      - [0x1116414, c, overlays/level_12/hud_update]
+      - [0x1116540, c, overlays/level_12/hud_render]
+      - [0x111661C, c, overlays/level_12/moby_update]
+      - [0x1128CFC, c, overlays/level_12/moby_spawn]
+      - [0x1129AF4, c, overlays/level_12/parts_update]
+      - [0x112B694, c, overlays/level_12/parts_spawn]
+  - [0x112D658]
+
+#Colossus
+  - name: level_13
+    type: code
+    symbol_name_format: level_13_$VRAM
+    symbol_name_format_no_rom: level_13_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x1339800
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x1339804, .rodata, overlays/level_13/spyro]
+      - [0x1339B9C, .rodata, overlays/level_13/moby_update]
+      - [0x133A2F4, .rodata, overlays/level_13/parts_update]
+      - [0x133A444, .rodata, overlays/level_13/parts_spawn]
+
+      # text
+      - [0x133A5B4, c, overlays/level_13/spyro]
+      - [0x133C03C, c, overlays/level_13/camera]
+      - [0x133C534, c, overlays/level_13/hud_update]
+      - [0x133C6B4, c, overlays/level_13/hud_render]
+      - [0x133C984, c, overlays/level_13/moby_update]
+      - [0x13501BC, c, overlays/level_13/moby_spawn]
+      - [0x1350D6C, c, overlays/level_13/parts_update]
+      - [0x135214C, c, overlays/level_13/parts_spawn]
+  - [0x1353658]
+
+#Hurricos
+  - name: level_21
+    type: code
+    symbol_name_format: level_21_$VRAM
+    symbol_name_format_no_rom: level_21_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x1565000
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x1565004, .rodata, overlays/level_21/spyro]
+      - [0x1565374, .rodata, overlays/level_21/moby_update]
+      - [0x1565584, .rodata, overlays/level_21/parts_update]
+      - [0x15656D4, .rodata, overlays/level_21/parts_spawn]
+
+      # text
+      - [0x1565844, c, overlays/level_21/spyro]
+      - [0x15670D4, c, overlays/level_21/camera]
+      - [0x15673BC, c, overlays/level_21/hud_update]
+      - [0x15674AC, c, overlays/level_21/hud_render]
+      - [0x1567544, c, overlays/level_21/moby_update]
+      - [0x1577874, c, overlays/level_21/moby_spawn]
+      - [0x15787FC, c, overlays/level_21/parts_update]
+      - [0x1579BAC, c, overlays/level_21/parts_spawn]
+  - [0x157B658]
+
+#Aquaria Towers
+  - name: level_22
+    type: code
+    symbol_name_format: level_22_$VRAM
+    symbol_name_format_no_rom: level_22_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x178B000
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x178B004, .rodata, overlays/level_22/spyro]
+      - [0x178B3EC, .rodata, overlays/level_22/moby_update]
+      - [0x178B6CC, .rodata, overlays/level_22/parts_update]
+      - [0x178B80C, .rodata, overlays/level_22/parts_spawn]
+
+      # text
+      - [0x178B96C, c, overlays/level_22/spyro]
+      - [0x178DFF4, c, overlays/level_22/camera]
+      - [0x178E52C, c, overlays/level_22/hud_update]
+      - [0x178E534, c, overlays/level_22/hud_render]
+      - [0x178E564, c, overlays/level_22/moby_update]
+      - [0x179E204, c, overlays/level_22/moby_spawn]
+      - [0x179F92C, c, overlays/level_22/parts_update]
+      - [0x17A0F34, c, overlays/level_22/parts_spawn]
+  - [0x17A2658]
+
+#Sunny Beach
+  - name: level_23
+    type: code
+    symbol_name_format: level_23_$VRAM
+    symbol_name_format_no_rom: level_23_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x19AB000
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x19AB004, .rodata, overlays/level_23/spyro]
+      - [0x19AB444, .rodata, overlays/level_23/moby_update]
+      - [0x19AB7AC, .rodata, overlays/level_23/parts_update]
+      - [0x19AB8EC, .rodata, overlays/level_23/parts_spawn]
+
+      # text
+      - [0x19ABA4C, c, overlays/level_23/spyro]
+      - [0x19AE904, c, overlays/level_23/camera]
+      - [0x19AF0B4, c, overlays/level_23/hud_update]
+      - [0x19AF0E8, c, overlays/level_23/hud_render]
+      - [0x19AF1A4, c, overlays/level_23/moby_update]
+      - [0x19BDD7C, c, overlays/level_23/moby_spawn]
+      - [0x19BF1D4, c, overlays/level_23/parts_update]
+      - [0x19C08D4, c, overlays/level_23/parts_spawn]
+  - [0x19C2003]
+
+#Ocean Speedway
+  - name: level_25
+    type: code
+    symbol_name_format: level_25_$VRAM
+    symbol_name_format_no_rom: level_25_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x1BC5800
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x1BC5804, .rodata, overlays/level_25/spyro]
+      - [0x1BC5B74, .rodata, overlays/level_25/speedway]
+      - [0x1BC5BA4, .rodata, overlays/level_25/moby_update]
+      - [0x1BC5C8C, .rodata, overlays/level_25/parts_update]
+      - [0x1BC5DCC, .rodata, overlays/level_25/parts_spawn]
+
+      # text
+      - [0x1BC5F2C, c, overlays/level_25/spyro]
+      - [0x1BC810C, c, overlays/level_25/camera]
+      - [0x1BC84F4, c, overlays/level_25/hud_update]
+      - [0x1BC87E8, c, overlays/level_25/hud_render]
+      - [0x1BC8CCC, c, overlays/level_25/speedway]
+      - [0x1BCAE2C, c, overlays/level_25/moby_update]
+      - [0x1BD22CC, c, overlays/level_25/moby_spawn]
+      - [0x1BD2D9C, c, overlays/level_25/parts_update]
+      - [0x1BD3F3C, c, overlays/level_25/parts_spawn]
+  - [0x1BD7E58]
+
+#Crush's Dungeon
+  - name: level_26
+    type: code
+    symbol_name_format: level_26_$VRAM
+    symbol_name_format_no_rom: level_26_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x1DB0000
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x1DB0004, .rodata, overlays/level_26/spyro]
+      - [0x1DB0414, .rodata, overlays/level_26/moby_update]
+      - [0x1DB051C, .rodata, overlays/level_26/parts_update]
+      - [0x1DB065C, .rodata, overlays/level_26/parts_spawn]
+
+      # text
+      - [0x1DB07BC, c, overlays/level_26/spyro]
+      - [0x1DB2544, c, overlays/level_26/camera]
+      - [0x1DB2B74, c, overlays/level_26/hud_update]
+      - [0x1DB2C1C, c, overlays/level_26/hud_render]
+      - [0x1DB2E3C, c, overlays/level_26/moby_update]
+      - [0x1DBA144, c, overlays/level_26/moby_spawn]
+      - [0x1DBACBC, c, overlays/level_26/parts_update]
+      - [0x1DBBBA4, c, overlays/level_26/parts_spawn]
+  - [0x1DC2658]
+
+#Autumn Plains
+  - name: level_30
+    type: code
+    symbol_name_format: level_30_$VRAM
+    symbol_name_format_no_rom: level_30_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x1F2B000
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x1F2B004, .rodata, overlays/level_30/spyro]
+      - [0x1F2B2D4, .rodata, overlays/level_30/moby_update]
+      - [0x1F2B374, .rodata, overlays/level_30/parts_update]
+      - [0x1F2B4C4, .rodata, overlays/level_30/parts_spawn]
+
+      # text
+      - [0x1F2B634, c, overlays/level_30/spyro]
+      - [0x1F2D974, c, overlays/level_30/camera]
+      - [0x1F2E25C, c, overlays/level_30/hud_update]
+      - [0x1F2E264, c, overlays/level_30/hud_render]
+      - [0x1F2E284, c, overlays/level_30/moby_update]
+      - [0x1F38DC4, c, overlays/level_30/moby_spawn]
+      - [0x1F39FD4, c, overlays/level_30/parts_update]
+      - [0x1F3B61C, c, overlays/level_30/parts_spawn]
+  - [0x1F3D658]
+
+#Skelos Badlands
+  - name: level_31
+    type: code
+    symbol_name_format: level_31_$VRAM
+    symbol_name_format_no_rom: level_31_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x2135800
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x2135804, .rodata, overlays/level_31/spyro]
+      - [0x2135B24, .rodata, overlays/level_31/moby_update]
+      - [0x21360DC, .rodata, overlays/level_31/parts_update]
+      - [0x213621C, .rodata, overlays/level_31/parts_spawn]
+
+      # text
+      - [0x213637C, c, overlays/level_31/spyro]
+      - [0x21373B4, c, overlays/level_31/camera]
+      - [0x21373F4, c, overlays/level_31/hud_update]
+      - [0x21374D0, c, overlays/level_31/hud_render]
+      - [0x21375DC, c, overlays/level_31/moby_update]
+      - [0x214B25C, c, overlays/level_31/moby_spawn]
+      - [0x214C134, c, overlays/level_31/parts_update]
+      - [0x214D764, c, overlays/level_31/parts_spawn]
+  - [0x214EE58]
+
+#Crystal Glacier
+  - name: level_32
+    type: code
+    symbol_name_format: level_32_$VRAM
+    symbol_name_format_no_rom: level_32_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x235F000
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x235F004, .rodata, overlays/level_32/spyro]
+      - [0x235F1BC, .rodata, overlays/level_32/moby_update]
+      - [0x235F684, .rodata, overlays/level_32/parts_update]
+      - [0x235F7D4, .rodata, overlays/level_32/parts_spawn]
+
+      # text
+      - [0x235F944, c, overlays/level_32/spyro]
+      - [0x2361414, c, overlays/level_32/camera]
+      - [0x2361B3C, c, overlays/level_32/hud_update]
+      - [0x2361B94, c, overlays/level_32/hud_render]
+      - [0x2361C34, c, overlays/level_32/moby_update]
+      - [0x237233C, c, overlays/level_32/moby_spawn]
+      - [0x2373164, c, overlays/level_32/parts_update]
+      - [0x2374B34, c, overlays/level_32/parts_spawn]
+  - [0x2376658]
+
+#Breeze Harbor
+  - name: level_33
+    type: code
+    symbol_name_format: level_33_$VRAM
+    symbol_name_format_no_rom: level_33_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x2585000
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x2585004, .rodata, overlays/level_33/spyro]
+      - [0x258534C, .rodata, overlays/level_33/moby_update]
+      - [0x258559C, .rodata, overlays/level_33/parts_update]
+      - [0x25856EC, .rodata, overlays/level_33/parts_spawn]
+
+      # text
+      - [0x258585C, c, overlays/level_33/spyro]
+      - [0x2588854, c, overlays/level_33/camera]
+      - [0x2588F6C, c, overlays/level_33/hud_update]
+      - [0x2589024, c, overlays/level_33/hud_render]
+      - [0x258913C, c, overlays/level_33/moby_update]
+      - [0x2599E7C, c, overlays/level_33/moby_spawn]
+      - [0x259B774, c, overlays/level_33/parts_update]
+      - [0x259CEFC, c, overlays/level_33/parts_spawn]
+  - [0x259E803]
+
+#Zephyr
+  - name: level_34
+    type: code
+    symbol_name_format: level_34_$VRAM
+    symbol_name_format_no_rom: level_34_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x27AA000
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x27AA004, .rodata, overlays/level_34/spyro]
+      - [0x27AA34C, .rodata, overlays/level_34/moby_update]
+      - [0x27AA61C, .rodata, overlays/level_34/parts_update]
+      - [0x27AA76C, .rodata, overlays/level_34/parts_spawn]
+
+      # text
+      - [0x27AA8DC, c, overlays/level_34/spyro]
+      - [0x27AC0E4, c, overlays/level_34/camera]
+      - [0x27AC574, c, overlays/level_34/hud_update]
+      - [0x27AC5A4, c, overlays/level_34/hud_render]
+      - [0x27AC67C, c, overlays/level_34/moby_update]
+      - [0x27BD8BC, c, overlays/level_34/moby_spawn]
+      - [0x27BF2A4, c, overlays/level_34/parts_update]
+      - [0x27C05B4, c, overlays/level_34/parts_spawn]
+  - [0x27C1803]
+
+#Metro Speedway
+  - name: level_35
+    type: code
+    symbol_name_format: level_35_$VRAM
+    symbol_name_format_no_rom: level_35_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x29D2800
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x29D2804, .rodata, overlays/level_35/spyro]
+      - [0x29D2B74, .rodata, overlays/level_35/speedway]
+      - [0x29D2BA4, .rodata, overlays/level_35/moby_update]
+      - [0x29D2C64, .rodata, overlays/level_35/parts_update]
+      - [0x29D2DA4, .rodata, overlays/level_35/parts_spawn]
+
+      # text
+      - [0x29D2F04, c, overlays/level_35/spyro]
+      - [0x29D50E4, c, overlays/level_35/camera]
+      - [0x29D54CC, c, overlays/level_35/hud_update]
+      - [0x29D57C0, c, overlays/level_35/hud_render]
+      - [0x29D5D6C, c, overlays/level_35/speedway]
+      - [0x29D7ECC, c, overlays/level_35/moby_update]
+      - [0x29DE99C, c, overlays/level_35/moby_spawn]
+      - [0x29DF594, c, overlays/level_35/parts_update]
+      - [0x29E0734, c, overlays/level_35/parts_spawn]
+  - [0x29E4E58]
+
+#Scorch
+  - name: level_41
+    type: code
+    symbol_name_format: level_41_$VRAM
+    symbol_name_format_no_rom: level_41_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x2BB8800
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x2BB8804, .rodata, overlays/level_41/spyro]
+      - [0x2BB8AFC, .rodata, overlays/level_41/moby_update]
+      - [0x2BB8F94, .rodata, overlays/level_41/parts_update]
+      - [0x2BB90E4, .rodata, overlays/level_41/parts_spawn]
+
+      # text
+      - [0x2BB9254, c, overlays/level_41/spyro]
+      - [0x2BBA3D4, c, overlays/level_41/camera]
+      - [0x2BBA9F4, c, overlays/level_41/hud_update]
+      - [0x2BBAB08, c, overlays/level_41/hud_render]
+      - [0x2BBABDC, c, overlays/level_41/moby_update]
+      - [0x2BC9F34, c, overlays/level_41/moby_spawn]
+      - [0x2BCAF6C, c, overlays/level_41/parts_update]
+      - [0x2BCC43C, c, overlays/level_41/parts_spawn]
+  - [0x2BCD803]
+
+#Shady Oasis
+  - name: level_42
+    type: code
+    symbol_name_format: level_42_$VRAM
+    symbol_name_format_no_rom: level_42_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x2DCE800
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x2DCE804, .rodata, overlays/level_42/spyro]
+      - [0x2DCEAFC, .rodata, overlays/level_42/moby_update]
+      - [0x2DCF584, .rodata, overlays/level_42/parts_update]
+      - [0x2DCF6D4, .rodata, overlays/level_42/parts_spawn]
+
+      # text
+      - [0x2DCF844, c, overlays/level_42/spyro]
+      - [0x2DD06A4, c, overlays/level_42/camera]
+      - [0x2DD0D9C, c, overlays/level_42/hud_update]
+      - [0x2DD0E0C, c, overlays/level_42/hud_render]
+      - [0x2DD0F44, c, overlays/level_42/moby_update]
+      - [0x2DE444C, c, overlays/level_42/moby_spawn]
+      - [0x2DE5274, c, overlays/level_42/parts_update]
+      - [0x2DE6744, c, overlays/level_42/parts_spawn]
+  - [0x2DE7E58]
+
+#Magma Cone
+  - name: level_43
+    type: code
+    symbol_name_format: level_43_$VRAM
+    symbol_name_format_no_rom: level_43_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x2FC4800
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x2FC4804, .rodata, overlays/level_43/spyro]
+      - [0x2FC4BBC, .rodata, overlays/level_43/moby_update]
+      - [0x2FC4EA4, .rodata, overlays/level_43/parts_update]
+      - [0x2FC4FF4, .rodata, overlays/level_43/parts_spawn]
+
+      # text
+      - [0x2FC5164, c, overlays/level_43/spyro]
+      - [0x2FC7904, c, overlays/level_43/camera]
+      - [0x2FC823C, c, overlays/level_43/hud_update]
+      - [0x2FC834C, c, overlays/level_43/hud_render]
+      - [0x2FC8624, c, overlays/level_43/moby_update]
+      - [0x2FD747C, c, overlays/level_43/moby_spawn]
+      - [0x2FD8414, c, overlays/level_43/parts_update]
+      - [0x2FD9C6C, c, overlays/level_43/parts_spawn]
+  - [0x2FDB658]
+
+#Fracture Hills
+  - name: level_44
+    type: code
+    symbol_name_format: level_44_$VRAM
+    symbol_name_format_no_rom: level_44_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x31D4800
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x31D4804, .rodata, overlays/level_44/spyro]
+      - [0x31D4B74, .rodata, overlays/level_44/moby_update]
+      - [0x31D4F24, .rodata, overlays/level_44/parts_update]
+      - [0x31D5074, .rodata, overlays/level_44/parts_spawn]
+
+      # text
+      - [0x31D51E4, c, overlays/level_44/spyro]
+      - [0x31D705C, c, overlays/level_44/camera]
+      - [0x31D7874, c, overlays/level_44/hud_update]
+      - [0x31D78A8, c, overlays/level_44/hud_render]
+      - [0x31D794C, c, overlays/level_44/moby_update]
+      - [0x31E7A1C, c, overlays/level_44/moby_spawn]
+      - [0x31E9204, c, overlays/level_44/parts_update]
+      - [0x31EA9DC, c, overlays/level_44/parts_spawn]
+  - [0x31EBE58]
+
+#Icy Speedway
+  - name: level_45
+    type: code
+    symbol_name_format: level_45_$VRAM
+    symbol_name_format_no_rom: level_45_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x33F7800
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x33F7804, .rodata, overlays/level_45/spyro]
+      - [0x33F7B74, .rodata, overlays/level_45/speedway]
+      - [0x33F7BA4, .rodata, overlays/level_45/moby_update]
+      - [0x33F7C2C, .rodata, overlays/level_45/parts_update]
+      - [0x33F7D6C, .rodata, overlays/level_45/parts_spawn]
+
+      # text
+      - [0x33F7EBC, c, overlays/level_45/spyro]
+      - [0x33FA32C, c, overlays/level_45/camera]
+      - [0x33FA7E4, c, overlays/level_45/hud_update]
+      - [0x33FAAD8, c, overlays/level_45/hud_render]
+      - [0x33FB054, c, overlays/level_45/speedway]
+      - [0x33FD1B4, c, overlays/level_45/moby_update]
+      - [0x3403DFC, c, overlays/level_45/moby_spawn]
+      - [0x3404BB4, c, overlays/level_45/parts_update]
+      - [0x3405D54, c, overlays/level_45/parts_spawn]
+  - [0x3409E58]
+
+#Gulp's Overlook
+  - name: level_46
+    type: code
+    symbol_name_format: level_46_$VRAM
+    symbol_name_format_no_rom: level_46_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x3581000
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x3581004, .rodata, overlays/level_46/spyro]
+      - [0x3581324, .rodata, overlays/level_46/moby_update]
+      - [0x35815E4, .rodata, overlays/level_46/parts_update]
+      - [0x3581724, .rodata, overlays/level_46/parts_spawn]
+
+      # text
+      - [0x3581884, c, overlays/level_46/spyro]
+      - [0x358285C, c, overlays/level_46/camera]
+      - [0x3582E8C, c, overlays/level_46/hud_update]
+      - [0x3582F34, c, overlays/level_46/hud_render]
+      - [0x358314C, c, overlays/level_46/moby_update]
+      - [0x358E73C, c, overlays/level_46/moby_spawn]
+      - [0x358F8C4, c, overlays/level_46/parts_update]
+      - [0x35907C4, c, overlays/level_46/parts_spawn]
+  - [0x3593658]
+
+#Winter Tundra
+  - name: level_50
+    type: code
+    symbol_name_format: level_50_$VRAM
+    symbol_name_format_no_rom: level_50_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x370D800
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x370D804, .rodata, overlays/level_50/spyro]
+      - [0x370DAD4, .rodata, overlays/level_50/moby_update]
+      - [0x370DB74, .rodata, overlays/level_50/parts_update]
+      - [0x370DCC4, .rodata, overlays/level_50/parts_spawn]
+
+      # text
+      - [0x370DE34, c, overlays/level_50/spyro]
+      - [0x37103B4, c, overlays/level_50/camera]
+      - [0x3710B3C, c, overlays/level_50/hud_update]
+      - [0x3710B44, c, overlays/level_50/hud_render]
+      - [0x3710B64, c, overlays/level_50/moby_update]
+      - [0x371A304, c, overlays/level_50/moby_spawn]
+      - [0x371B46C, c, overlays/level_50/parts_update]
+      - [0x371C984, c, overlays/level_50/parts_spawn]
+  - [0x371FE58]
+
+#Mystic Marsh
+  - name: level_51
+    type: code
+    symbol_name_format: level_51_$VRAM
+    symbol_name_format_no_rom: level_51_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x38D2800
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x38D2804, .rodata, overlays/level_51/spyro]
+      - [0x38D2B24, .rodata, overlays/level_51/moby_update]
+      - [0x38D2D24, .rodata, overlays/level_51/parts_update]
+      - [0x38D2E74, .rodata, overlays/level_51/parts_spawn]
+
+      # text
+      - [0x38D2FE4, c, overlays/level_51/spyro]
+      - [0x38D5DD4, c, overlays/level_51/camera]
+      - [0x38D66C4, c, overlays/level_51/hud_update]
+      - [0x38D6730, c, overlays/level_51/hud_render]
+      - [0x38D67D4, c, overlays/level_51/moby_update]
+      - [0x38E7244, c, overlays/level_51/moby_spawn]
+      - [0x38E835C, c, overlays/level_51/parts_update]
+      - [0x38E9D8C, c, overlays/level_51/parts_spawn]
+  - [0x38EB803]
+
+#Cloud Temples Might need Fixing?
+  - name: level_52
+    type: code
+    symbol_name_format: level_52_$VRAM
+    symbol_name_format_no_rom: level_52_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x3B00000
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      #- [0x38D2804, .rodata, overlays/level_52/spyro]
+      - [0x3B00004, .rodata, overlays/level_52/moby_update]
+      - [0x3B0026C, .rodata, overlays/level_52/parts_update]
+      - [0x3B003BC, .rodata, overlays/level_52/parts_spawn]
+
+      # text
+      - [0x3B00528, c, overlays/level_52/spyro]
+      - [0x3B00E94, c, overlays/level_52/camera]
+      - [0x3B0156C, c, overlays/level_52/hud_update]
+      - [0x3B0159C, c, overlays/level_52/hud_render]
+      - [0x3B01644, c, overlays/level_52/moby_update]
+      - [0x3B1192C, c, overlays/level_52/moby_spawn]
+      - [0x3B12A1C, c, overlays/level_52/parts_update]
+      - [0x3B13FF4, c, overlays/level_52/parts_spawn]
+  - [0x3B15658]
+
+#Canyon Speedway
+  - name: level_55
+    type: code
+    symbol_name_format: level_55_$VRAM
+    symbol_name_format_no_rom: level_55_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x3D1D800
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x3D1D804, .rodata, overlays/level_55/spyro]
+      - [0x3D1DB74, .rodata, overlays/level_55/speedway]
+      - [0x3D1DBA4, .rodata, overlays/level_55/moby_update]
+      - [0x3D1DC44, .rodata, overlays/level_55/parts_update]
+      - [0x3D1DD84, .rodata, overlays/level_55/parts_spawn]
+
+      # text
+      - [0x3D1DEDC, c, overlays/level_55/spyro]
+      - [0x3D207CC, c, overlays/level_55/camera]
+      - [0x3D20D94, c, overlays/level_55/hud_update]
+      - [0x3D21088, c, overlays/level_55/hud_render]
+      - [0x3D21614, c, overlays/level_55/speedway]
+      - [0x3D23774, c, overlays/level_55/moby_update]
+      - [0x3D2A41C, c, overlays/level_55/moby_spawn]
+      - [0x3D2B0F4, c, overlays/level_55/parts_update]
+      - [0x3D2BF8C, c, overlays/level_55/parts_spawn]
+  - [0x3D2FE58]
+
+#Robotica Farms
+  - name: level_61
+    type: code
+    symbol_name_format: level_61_$VRAM
+    symbol_name_format_no_rom: level_61_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x3EB8000
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x3EB8004, .rodata, overlays/level_61/spyro]
+      - [0x3EB843C, .rodata, overlays/level_61/moby_update]
+      - [0x3EB884C, .rodata, overlays/level_61/parts_update]
+      - [0x3EB899C, .rodata, overlays/level_61/parts_spawn]
+
+      # text
+      - [0x3EB8B0C, c, overlays/level_61/spyro]
+      - [0x3EBAA64, c, overlays/level_61/camera]
+      - [0x3EBAD4C, c, overlays/level_61/hud_update]
+      - [0x3EBADA8, c, overlays/level_61/hud_render]
+      - [0x3EBAE4C, c, overlays/level_61/moby_update]
+      - [0x3EC8A34, c, overlays/level_61/moby_spawn]
+      - [0x3EC9984, c, overlays/level_61/parts_update]
+      - [0x3ECAD1C, c, overlays/level_61/parts_spawn]
+  - [0x3ECC003]
+
+#Metropolis
+  - name: level_62
+    type: code
+    symbol_name_format: level_62_$VRAM
+    symbol_name_format_no_rom: level_62_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x40B1000
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x40B1004, .rodata, overlays/level_62/spyro]
+      - [0x40B14DC, .rodata, overlays/level_62/moby_update]
+      - [0x40B1ACC, .rodata, overlays/level_62/parts_update]
+      - [0x40B1C0C, .rodata, overlays/level_62/parts_spawn]
+
+      # text
+      - [0x40B1D6C, c, overlays/level_62/spyro]
+      - [0x40B4914, c, overlays/level_62/camera]
+      - [0x40B5554, c, overlays/level_62/hud_update]
+      - [0x40B55D4, c, overlays/level_62/hud_render]
+      - [0x40B57FC, c, overlays/level_62/moby_update]
+      - [0x40C52E4, c, overlays/level_62/moby_spawn]
+      - [0x40C5FEC, c, overlays/level_62/parts_update]
+      - [0x40C730C, c, overlays/level_62/parts_spawn]
+  - [0x40C8658]
+
+#Dragon Shores
+  - name: level_65
+    type: code
+    symbol_name_format: level_65_$VRAM
+    symbol_name_format_no_rom: level_65_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x42C0800
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x42C0804, .rodata, overlays/level_65/spyro]
+      - [0x42C0BAC, .rodata, overlays/level_65/moby_update]
+      - [0x42C0DCC, .rodata, overlays/level_65/parts_update]
+      - [0x42C0F0C, .rodata, overlays/level_65/parts_spawn]
+
+      # text
+      - [0x42C10B0, c, overlays/level_65/spyro]
+      - [0x42C3544, c, overlays/level_65/camera]
+      - [0x42C4220, c, overlays/level_65/hud_update]
+      - [0x42C42CC, c, overlays/level_65/hud_render]
+      - [0x42C458C, c, overlays/level_65/moby_update]
+      - [0x42D2F70, c, overlays/level_65/moby_spawn]
+      - [0x42D3D2C, c, overlays/level_65/parts_update]
+      - [0x42D50BC, c, overlays/level_65/parts_spawn]
+  - [0x42D6658]
+
+#Ripto's Arena
+  - name: level_66
+    type: code
+    symbol_name_format: level_66_$VRAM
+    symbol_name_format_no_rom: level_66_$VRAM
+    exclusive_ram_id: overlay_space
+    start: 0x44B8000
+    vram: 0x8006d264
+    bss_size: 0
+    subsegments:
+      # header
+      # size 0x1C0, skipped
+
+      # rdata
+      - [0x44B8004, .rodata, overlays/level_66/spyro]
+      - [0x44B843C, .rodata, overlays/level_66/moby_update]
+      - [0x44B8A54, .rodata, overlays/level_66/parts_update]
+      - [0x44B8B94, .rodata, overlays/level_66/parts_spawn]
+
+      # text
+      - [0x44B8CF4, c, overlays/level_66/spyro]
+      - [0x44BB204, c, overlays/level_66/camera]
+      - [0x44BB894, c, overlays/level_66/hud_update]
+      - [0x44BB8CC, c, overlays/level_66/hud_render]
+      - [0x44BBFF4, c, overlays/level_66/moby_update]
+      - [0x44D2F4C, c, overlays/level_66/moby_spawn]
+      - [0x44D446C, c, overlays/level_66/parts_update]
+      - [0x44D58DC, c, overlays/level_66/parts_spawn]
+  - [0x44D6E58]
+
