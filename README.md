@@ -1,7 +1,7 @@
 # Spyro 2: Ripto's Rage! Decompilation
 A decompilation project for the second game in the *Spyro the Dragon* series, **Spyro 2: Ripto's Rage!**.
 
-This project aims to produce code that will build to an executable which byte-for-byte matches the one used in the final game. The earliest final version was selected for this project, but additional work to support changes made in the later versions may be supported in the future.
+This project aims to produce code that will build to an executable which byte-for-byte matches the one used in the final game.
 
 ## Version Info
 The final NTSC build of the game is used in this project:
