@@ -185,7 +185,7 @@ SECTIONS
     main_ROM_END = __romPos;
     main_VRAM_END = .;
 
-    #include "ovlheader.ld"
+    ovlEnd = ovlHeader + 4;
     #include "overlays.ld"
     /DISCARD/ :
     {
