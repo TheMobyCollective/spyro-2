@@ -10,11 +10,11 @@ NON_MATCHING_FLAG  = $(if ${NON_MATCHING},-DNON_MATCHING,)
 NEW_PSYQ_FLAG = $(if ${NEW_PSYQ},-DNEW_PSYQ,)
 PSYQ_LIB = $(if ${NEW_PSYQ},-Lpsyq/lib --start-group -lapi -lc -lc2 -lcard -lcd -lcomb -lds -letc -lgpu -lgs -lgte -lgun -lhmd -lmath -lmcrd -lpad -lsio -lspu --end-group,)
 
-CC       = $(if ${MODERN_COMPILER}, "/usr/libexec/gcc-cross/mips-linux-gnu/14/cc1", "./tools/gcc2.7.2/cc1")
-GCC      = mips-linux-gnu-cpp
-AS       = mips-linux-gnu-as
-LD       = mips-linux-gnu-ld
-OBJCOPY  = mips-linux-gnu-objcopy
+CC       = $(if ${MODERN_COMPILER}, "/usr/libexec/gcc-cross/mipsel-linux-gnu/14/cc1", "./tools/gcc2.7.2/cc1")
+GCC      = mipsel-linux-gnu-cpp
+AS       = mipsel-linux-gnu-as
+LD       = mipsel-linux-gnu-ld
+OBJCOPY  = mipsel-linux-gnu-objcopy
 PYTHON   = python3
 
 MASPSX          = "./tools/maspsx/maspsx.py"
