@@ -10,11 +10,18 @@ NON_MATCHING_FLAG  = $(if ${NON_MATCHING},-DNON_MATCHING,)
 NEW_PSYQ_FLAG = $(if ${NEW_PSYQ},-DNEW_PSYQ,)
 PSYQ_LIB = $(if ${NEW_PSYQ},-Lpsyq/lib --start-group -lapi -lc -lc2 -lcard -lcd -lcomb -lds -letc -lgpu -lgs -lgte -lgun -lhmd -lmath -lmcrd -lpad -lsio -lspu --end-group,)
 
+# Commented out lines are for Fedora compilation using their mips compilers
+# The Docker image is much prefered and far easier though, this is just a personal modification and thought I'd add it
 CC       = $(if ${MODERN_COMPILER}, "/usr/libexec/gcc-cross/mipsel-linux-gnu/14/cc1", "./tools/gcc2.7.2/cc1")
+# CC       = $(if ${MODERN_COMPILER}, "/usr/libexec/gcc/mips64-linux-gnu/16/cc1", "./tools/gcc2.7.2/cc1")
 GCC      = mipsel-linux-gnu-cpp
+# GCC      = mips64-linux-gnu-cpp
 AS       = mipsel-linux-gnu-as
+# AS       = mips64-linux-gnu-as
 LD       = mipsel-linux-gnu-ld
+# LD       = mips64-linux-gnu-ld
 OBJCOPY  = mipsel-linux-gnu-objcopy
+# OBJCOPY  = mips64-linux-gnu-objcopy
 PYTHON   = python3
 
 MASPSX          = "./tools/maspsx/maspsx.py"
@@ -26,10 +33,12 @@ FIX_STR_ALIGN   = "./tools/fix_str_align.py"
 # Compilation Flags
 # -------------------------------
 LD_FLAGS  = -EL -T /tmp/psx.ld -g -Map build/psx.map --no-check-sections -nostdlib $(PSYQ_LIB)
+# LD_FLAGS  = -EL -m elf32ltsmip -T /tmp/psx.ld -g -Map build/psx.map --no-check-sections -nostdlib $(PSYQ_LIB)
 C_CLASSIC_FLAGS = -O2 -G0 -fverbose-asm -mips1 -mcpu=3000 -fgnu-linker -mno-abicalls -mgpopt -msoft-float -gcoff -funsigned-char -quiet
 C_MODERN_FLAGS = -Os -G 0 -g3 -fverbose-asm -mips1 -march=r3000 -mabi=32 -mno-llsc -mno-abicalls -mgpopt -msoft-float -fno-builtin -fno-builtin-function -fno-strict-aliasing -fno-exceptions -fschedule-insns -fno-pic -fno-stack-protector -ffreestanding -Wno-error=int-conversion -o-
 C_FLAGS   = $(if ${MODERN_COMPILER},$(C_MODERN_FLAGS),$(C_CLASSIC_FLAGS))
 AS_FLAGS  = -EL -Iinclude -march=r3000 -mtune=r3000 -G0 -no-pad-sections
+#AS_FLAGS  = -EL -Iinclude -march=r3000 -mtune=r3000 -mabi=32 -G0 -no-pad-sections
 
 # -------------------------------
 # Targets & Sources
