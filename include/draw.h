@@ -20,3 +20,30 @@ extern void func_credits_8006EE18();                                  /* extern 
 extern void func_titlescreen_and_loading_8007BFC4();                                  /* extern */
 
 extern void func_800155A0(int);                                 /* extern */
+
+
+typedef struct {
+    int unk0;
+    int unk4;
+    int unk8;
+    int unkC;
+    int unk10;
+} Unk_80069F30; // D_80070260 is an array of these, there's so many 0x14 structs though
+
+void func_80029170();                                  /* extern */
+void func_80048128();                                  /* extern */
+void func_8004A8D4();                                  /* extern */
+void func_8004AC78();                                  /* extern */
+void func_8004B194();                                  /* extern */
+void func_8004B72C();                                  /* extern */
+void func_8004BAA4(Unk_80069F30*);                                /* extern */
+void func_8004C4FC();                                  /* extern */
+void func_8004C534();                                  /* extern */
+void func_8004C66C();                                  /* extern */
+void func_8004D604();                                  /* extern */
+void func_8004D748(int, int, int, int);                  /* extern */
+void func_80053E78();                                  /* extern */
+void func_800540B0();                                  /* extern */
+extern int D_80066F68;
+extern int D_80067150;
+extern Unk_80069F30 D_80069F30[];
