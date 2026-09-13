@@ -144,7 +144,7 @@
 - [ ] func_8001C5EC
 - [ ] func_8001C68C
 - [ ] func_8001C734
-- [ ] func_8001D5FC
+- [x] func_8001D5FC
 - [ ] func_8001D658
 - [ ] func_8001D7E8
 
@@ -330,7 +330,7 @@
 - [ ] func_800502FC
 - [x] func_800504A0
 - [ ] func_800504A8
-- [ ] func_800505B8
+- [x] func_800505B8
 - [x] func_80050640
 
 <!-- update.c -->

@@ -1,6 +1,7 @@
 #include "common.h"
 #include "draw.h"
 
+// https://decomp.me/scratch/d8s9G
 INCLUDE_ASM("asm/nonmatchings/draw", func_80013A14);
 
 INCLUDE_ASM("asm/nonmatchings/draw", func_80013BC4);

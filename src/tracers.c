@@ -14,7 +14,23 @@ void func_800504A0(int* arg0) {
 INCLUDE_ASM("asm/nonmatchings/tracers", func_800504A8);
 
 // https://decomp.me/scratch/RZB5m
-INCLUDE_ASM("asm/nonmatchings/tracers", func_800505B8);
+//INCLUDE_ASM("asm/nonmatchings/tracers", func_800505B8);
+
+Unknown* func_800505B8(int arg0, int arg1, int arg2, int arg3, int arg4) {
+    int i;
+
+    for (i = 0; i < 8; i++) {
+        if (D_80069F30[i].unk0 == 0) {
+            D_80069F30[i].unk0 = arg0;
+            D_80069F30[i].unk4 = arg1;
+            D_80069F30[i].unk8 = arg2;
+            D_80069F30[i].unkC = arg3;
+            D_80069F30[i].unk10 = arg4;
+            return &D_80069F30[i];
+        }
+    }
+    return 0;
+}
 
 // https://decomp.me/scratch/IMDX9
 //INCLUDE_ASM("asm/nonmatchings/tracers", func_80050640);
