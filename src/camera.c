@@ -9,6 +9,7 @@ void func_8001D87C(void) {
     func_80021DC0();
 }
 
+// https://decomp.me/scratch/zigZT
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001D8A4);
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001DB58);
@@ -43,6 +44,7 @@ void func_8001ECCC(CameraPosition* arg0, CameraPosition* arg1, int arg2) {
     arg0->pitch = (int) arg1->pitch;
 }
 
+// https://decomp.me/scratch/9Fp5c
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001ED20);
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001EE18);

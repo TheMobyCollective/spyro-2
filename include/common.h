@@ -6,7 +6,7 @@ typedef struct {
 } Vector3D;
 
 typedef struct {
-    u_char x, y, z;
+    unsigned char x, y, z;
 } Vector3D8;
 
 typedef struct {
@@ -17,4 +17,10 @@ typedef struct {
     int azimuth, elevation, radius;
 } SphericalCoordinates;
 
+typedef struct {
+    unsigned char r, g, b, s;
+} Color;
 
+typedef struct {
+    int r, g, b;
+} ColorInt;

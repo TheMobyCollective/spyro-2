@@ -91,7 +91,7 @@ void func_80011D78(void) {
 
 INCLUDE_ASM("asm/nonmatchings/init", func_80011DD4);
 
-// https://decomp.me/scratch/lMU4A
+// https://decomp.me/scratch/1STBX Probably need to get the WadHeader properly set up first for a match. Supposed to be 0x628 in size
 INCLUDE_ASM("asm/nonmatchings/init", func_80011E9C);
 
 // https://decomp.me/scratch/ByQF3
