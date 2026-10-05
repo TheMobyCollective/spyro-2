@@ -18,7 +18,7 @@ typedef struct {
     unsigned char spyroSkid;
     unsigned char spyroLand;
     unsigned char spyroStop;
-    unsigned char unk19;
+    unsigned char unk13;
     unsigned char headbash;
     unsigned char spyroHurt;
     unsigned char pauseEnter;
@@ -27,12 +27,12 @@ typedef struct {
     unsigned char underwaterHit;
     unsigned char changeVolume;
     unsigned char supercharge;
-    unsigned char unk28;
+    unsigned char unk1C;
     unsigned char eggHatching;
     unsigned char timerRunOut;
     unsigned char extraLife;
-    unsigned char unk32;
-    unsigned char unk33;
+    unsigned char unk20;
+    unsigned char unk21;
     unsigned char jump;
     unsigned char skillPoint;
     unsigned char guidebookPageTurn;

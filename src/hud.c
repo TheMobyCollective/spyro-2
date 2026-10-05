@@ -1,5 +1,6 @@
 #include "common.h"
 #include "hud.h"
+#include "loaders.h"
 
 INCLUDE_ASM("asm/nonmatchings/hud", func_8005199C);
 
@@ -60,4 +61,14 @@ INCLUDE_ASM("asm/nonmatchings/hud", func_80054280);
 
 INCLUDE_ASM("asm/nonmatchings/hud", func_800542D8);
 
-INCLUDE_ASM("asm/nonmatchings/hud", func_80054318);
+// https://decomp.me/scratch/DQDpd
+//INCLUDE_ASM("asm/nonmatchings/hud", func_80054318);
+void func_80054318(void) {
+    int temp_v0;
+
+    temp_v0 = func_80050720(D_80067020->guidebookPageTurn, 0, 0);
+    if (temp_v0 >= 0) {
+        func_80050CF4(temp_v0, 0xC00);
+        func_80050C64(temp_v0, 0x1200 - ((func_80059D2C() % 5) << 7));
+    }
+}
