@@ -61,8 +61,3 @@ INCLUDE_ASM("asm/nonmatchings/hud", func_80054280);
 INCLUDE_ASM("asm/nonmatchings/hud", func_800542D8);
 
 INCLUDE_ASM("asm/nonmatchings/hud", func_80054318);
-
-// https://decomp.me/scratch/H28Rq
-INCLUDE_ASM("asm/nonmatchings/hud", func_800543A8);
-
-INCLUDE_ASM("asm/nonmatchings/hud", func_800543DC);
