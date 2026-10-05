@@ -1,8 +1,30 @@
 #include "common.h"
 #include "str.h"
 
-// https://decomp.me/scratch/9CeXG
-INCLUDE_ASM("asm/nonmatchings/str", func_80012B84);
+// https://decomp.me/scratch/5AfK2
+//INCLUDE_ASM("asm/nonmatchings/str", func_80012B84);
+
+void func_80012B84(void) {
+    streamingData.dat_00 = 0;
+    streamingData.musicEnabled = 1;
+    streamingData.dat_04 = 0;
+    streamingData.dat_08 = 0;
+    streamingData.dat_0C = 0;
+    
+    streamingData.musicVolume = 0x3FFF;
+    streamingData.speechVolume = 0x7FFF;
+    streamingData.dat_28 = 0;
+    
+    streamingData.activeAudio.unk0 = 0;
+    streamingData.queuedMusic.unk0 = 0;
+    streamingData.currentSpeech.unk0 = 0;
+    streamingData.queuedSpeech.unk0 = 0;
+    
+    streamingData.activeAudio.volumePtr = &streamingData.musicVolume;
+    streamingData.queuedMusic.volumePtr = &streamingData.musicVolume;
+    streamingData.currentSpeech.volumePtr = &streamingData.speechVolume;
+    streamingData.queuedSpeech.volumePtr = &streamingData.speechVolume;
+}
 
 // https://decomp.me/scratch/ve60n
 //INCLUDE_ASM("asm/nonmatchings/str", func_80012C1C);
