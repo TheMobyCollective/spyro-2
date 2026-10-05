@@ -5,7 +5,7 @@
 INCLUDE_ASM("asm/nonmatchings/savepoint", func_8004C0C8);
 
 // https://decomp.me/scratch/wppGF
-//INCLUDE_ASM("asm/nonmatchings/savepoint", func_8004C1AC);
+//INCLUDE_ASM("asm/nonmatchings/savepoint", func_8004C1AC); ResetToSavepoint()
 
 void func_8004C1AC(Savepoint* arg0) {
     if (arg0->updated != 0) {

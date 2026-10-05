@@ -11,7 +11,7 @@ void func_800504A0(int* arg0) {
 }
 
 // https://decomp.me/scratch/QVVse Something is different between Spyro 2 and Spyro 3 unless I missed something
-INCLUDE_ASM("asm/nonmatchings/tracers", func_800504A8);
+INCLUDE_ASM("asm/nonmatchings/tracers", func_800504A8); // UpdateTracers()
 
 // https://decomp.me/scratch/RZB5m
 //INCLUDE_ASM("asm/nonmatchings/tracers", func_800505B8);

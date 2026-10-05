@@ -39,7 +39,7 @@ INCLUDE_ASM("asm/nonmatchings/mobyutil", func_8003853C);
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80038594);
 
 // https://decomp.me/scratch/z60iU
-//INCLUDE_ASM("asm/nonmatchings/mobyutil", func_800385D8);
+//INCLUDE_ASM("asm/nonmatchings/mobyutil", func_800385D8); //SubAngle8()
 
 int func_800385D8(int arg0, int arg1) {
     int var_a0;

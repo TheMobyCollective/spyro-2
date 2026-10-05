@@ -28,7 +28,7 @@ INCLUDE_ASM("asm/nonmatchings/camera", func_8001E454);
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001E808);
 
 // https://decomp.me/scratch/zNKgH
-//INCLUDE_ASM("asm/nonmatchings/camera", func_8001ECCC);
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001ECCC); SetCameraPosition()
 
 void func_8001ECCC(CameraPosition* arg0, CameraPosition* arg1, int arg2) {
     int temp_v1;
@@ -53,7 +53,7 @@ INCLUDE_ASM("asm/nonmatchings/camera", func_8001EE18);
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001EFA8);
 
 // https://decomp.me/scratch/GBd7i
-//INCLUDE_ASM("asm/nonmatchings/camera", func_8001F008);
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001F008); ResetCameraPosition()
 
 void func_8001F008(CameraPosition* arg0) {
     arg0->pos.azimuth = 0;
