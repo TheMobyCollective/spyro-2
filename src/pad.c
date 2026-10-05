@@ -1,7 +1,7 @@
 #include "common.h"
 #include "pad.h"
 
-// https://decomp.me/scratch/ycbIU
+// https://decomp.me/scratch/wFrtz
 INCLUDE_ASM("asm/nonmatchings/pad", func_80011F50);
 
 // https://decomp.me/scratch/KZPjp
@@ -9,9 +9,10 @@ INCLUDE_ASM("asm/nonmatchings/pad", func_8001200C);
 
 INCLUDE_ASM("asm/nonmatchings/pad", func_800121B0);
 
+// https://decomp.me/scratch/YjKA2 - 100%
 INCLUDE_ASM("asm/nonmatchings/pad", func_80012488);
 
-// https://decomp.me/scratch/fSmuO
+// https://decomp.me/scratch/fSmuO - 100%
 INCLUDE_ASM("asm/nonmatchings/pad", func_800125C8);
 
 INCLUDE_ASM("asm/nonmatchings/pad", func_8001271C);

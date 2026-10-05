@@ -16,7 +16,7 @@ INCLUDE_ASM("asm/nonmatchings/camera", func_8001DB58);
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001DC6C);
 
-// https://decomp.me/scratch/dg0nn
+// https://decomp.me/scratch/dg0nn - 100%
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001E204);
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001E270);
@@ -49,7 +49,7 @@ INCLUDE_ASM("asm/nonmatchings/camera", func_8001ED20);
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001EE18);
 
-// https://decomp.me/scratch/FuNiS
+// https://decomp.me/scratch/FuNiS - 100%
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001EFA8);
 
 // https://decomp.me/scratch/GBd7i
@@ -63,9 +63,10 @@ void func_8001F008(CameraPosition* arg0) {
     arg0->pitch = 0;
 }
 
-
+// https://decomp.me/scratch/ZWw25 - 100%
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001F020);
 
+// https://decomp.me/scratch/1inpk
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001F0BC);
 
 // https://decomp.me/scratch/mW3JY
@@ -76,16 +77,18 @@ void func_8001F1E4(int arg0, int arg1) {
     D_80067FF0 = arg0;
 }
 
-// https://decomp.me/scratch/CRD8v
+// https://decomp.me/scratch/CRD8v - 100%
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001F1FC);
 
+// https://decomp.me/scratch/smjIy
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001F24C);
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001F2E4);
 
-// https://decomp.me/scratch/KXnuG
+// https://decomp.me/scratch/KXnuG - 100%
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001F4A4);
 
+// https://decomp.me/scratch/AssXr
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001F524);
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001F618);

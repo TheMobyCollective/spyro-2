@@ -1,6 +1,7 @@
 #include "common.h"
 #include "savepoint.h"
 
+// https://decomp.me/scratch/aZKLq
 INCLUDE_ASM("asm/nonmatchings/savepoint", func_8004C0C8);
 
 // https://decomp.me/scratch/wppGF
@@ -16,10 +17,11 @@ void func_8004C1AC(Savepoint* arg0) {
     D_80067EC4 = 0;
 }
 
-
+// Similar to func_8003B7B4 in Spyro 3
 INCLUDE_ASM("asm/nonmatchings/savepoint", func_8004C214);
 
 // Seems to break Decomp.me at the moment?
 INCLUDE_ASM("asm/nonmatchings/savepoint", func_8004C31C);
 
+// Similar to func_8003BA00 in Spyro 3
 INCLUDE_ASM("asm/nonmatchings/savepoint", func_8004C3D4);
