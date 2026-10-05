@@ -1241,6 +1241,7 @@ dlabel D_800682B8
 
 nonmatching D_800682D8, 0x4
 
+dlabel cdState
 dlabel D_800682D8
     /* 800682D8 */ .space 0x04
 
@@ -1276,6 +1277,7 @@ dlabel D_800682F0
 
 nonmatching D_800682F4, 0x4
 
+dlabel streamingData
 dlabel D_800682F4
     /* 800682F4 */ .space 0x04
 
