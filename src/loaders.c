@@ -1,5 +1,5 @@
 #include "common.h"
-#include "loaders.h"
+#include "spu.h"
 
 INCLUDE_ASM("asm/nonmatchings/loaders", func_8001C454);
 
@@ -24,7 +24,7 @@ void func_8001D5FC(char* pData, int pPatchAddressesInTable) {
     soundCount = *(int*)pData;
     pData += sizeof(int);
 
-    D_80067068 = (SoundDefinitions*)pData; // spu data
+    D_80067068 = (SoundDefinition*)pData; // spu data
 
     if (pPatchAddressesInTable) {
         while (--soundCount >= 0) {

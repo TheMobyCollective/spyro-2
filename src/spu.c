@@ -8,7 +8,17 @@ INCLUDE_ASM("asm/nonmatchings/spu", func_800506AC);
 INCLUDE_ASM("asm/nonmatchings/spu", func_80050720);
 
 // https://decomp.me/scratch/BLB0l
-INCLUDE_ASM("asm/nonmatchings/spu", func_80050A40);
+//INCLUDE_ASM("asm/nonmatchings/spu", func_80050A40);
+void func_80050A40(int arg0) {
+    if (g_ActiveSounds[arg0].unk0 == 1) {
+        g_ActiveSounds[arg0].unk0 = 5;
+    }
+    else if (g_ActiveSounds[arg0].unk0 == 2) {
+        g_ActiveSounds[arg0].unk0 = 3;
+        g_ActiveSounds[arg0].unk4 = 0;
+    }
+}
+
 
 // https://decomp.me/scratch/SH5Jm
 INCLUDE_ASM("asm/nonmatchings/spu", func_80050AAC);
