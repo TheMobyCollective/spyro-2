@@ -95,8 +95,8 @@ glabel func_level_12_8006DCA8
     /* 11132C4 8006DD28 21200002 */   addu      $a0, $s0, $zero
     /* 11132C8 8006DD2C 686F000C */  jal        func_8001BDA0
     /* 11132CC 8006DD30 0C000426 */   addiu     $a0, $s0, 0xC
-    /* 11132D0 8006DD34 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 11132D4 8006DD38 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 11132D0 8006DD34 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 11132D4 8006DD38 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 11132D8 8006DD3C 07000224 */  addiu      $v0, $zero, 0x7
     /* 11132DC 8006DD40 1E046210 */  beq        $v1, $v0, .Llevel_12_8006EDBC
     /* 11132E0 8006DD44 00000000 */   nop
@@ -492,8 +492,8 @@ glabel func_level_12_8006DCA8
     /* 111389C 8006E300 3CB90108 */  j          .Llevel_12_8006E4F0
     /* 11138A0 8006E304 3800A2AF */   sw        $v0, 0x38($sp)
   .Llevel_12_8006E308:
-    /* 11138A4 8006E308 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 11138A8 8006E30C D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 11138A4 8006E308 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 11138A8 8006E30C D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 11138AC 8006E310 07000224 */  addiu      $v0, $zero, 0x7
     /* 11138B0 8006E314 5E006210 */  beq        $v1, $v0, .Llevel_12_8006E490
     /* 11138B4 8006E318 3000A427 */   addiu     $a0, $sp, 0x30
@@ -819,8 +819,8 @@ glabel func_level_12_8006DCA8
     /* 1113D6C 8006E7D0 6FBB0108 */  j          .Llevel_12_8006EDBC
     /* 1113D70 8006E7D4 00000000 */   nop
   .Llevel_12_8006E7D8:
-    /* 1113D74 8006E7D8 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 1113D78 8006E7DC D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 1113D74 8006E7D8 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 1113D78 8006E7DC D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 1113D7C 8006E7E0 00000000 */  nop
     /* 1113D80 8006E7E4 05006214 */  bne        $v1, $v0, .Llevel_12_8006E7FC
     /* 1113D84 8006E7E8 00000000 */   nop

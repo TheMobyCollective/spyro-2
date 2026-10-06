@@ -1132,8 +1132,8 @@ endlabel func_8001BFC0
 nonmatching func_8001C040, 0xB4
 
 glabel func_8001C040
-    /* C840 8001C040 0680073C */  lui        $a3, %hi(D_80067E84)
-    /* C844 8001C044 847EE724 */  addiu      $a3, $a3, %lo(D_80067E84)
+    /* C840 8001C040 0680073C */  lui        $a3, %hi(g_Camera)
+    /* C844 8001C044 847EE724 */  addiu      $a3, $a3, %lo(g_Camera)
     /* C848 8001C048 0000E18C */  lw         $at, 0x0($a3)
     /* C84C 8001C04C 0400E28C */  lw         $v0, 0x4($a3)
     /* C850 8001C050 0800E38C */  lw         $v1, 0x8($a3)

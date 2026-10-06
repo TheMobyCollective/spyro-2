@@ -146,8 +146,8 @@ glabel func_level_22_8006F9A0
     /* 178D864 8006FAC8 DB014014 */  bnez       $v0, .Llevel_22_80070238
     /* 178D868 8006FACC 01000424 */   addiu     $a0, $zero, 0x1
   .Llevel_22_8006FAD0:
-    /* 178D86C 8006FAD0 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 178D870 8006FAD4 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 178D86C 8006FAD0 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 178D870 8006FAD4 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 178D874 8006FAD8 07000224 */  addiu      $v0, $zero, 0x7
     /* 178D878 8006FADC 06006210 */  beq        $v1, $v0, .Llevel_22_8006FAF8
     /* 178D87C 8006FAE0 00000000 */   nop
@@ -442,8 +442,8 @@ glabel func_level_22_8006F9A0
     /* 178DCB4 8006FF18 8EC00108 */  j          .Llevel_22_80070238
     /* 178DCB8 8006FF1C 2A000424 */   addiu     $a0, $zero, 0x2A
   .Llevel_22_8006FF20:
-    /* 178DCBC 8006FF20 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 178DCC0 8006FF24 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 178DCBC 8006FF20 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 178DCC0 8006FF24 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 178DCC4 8006FF28 00000000 */  nop
     /* 178DCC8 8006FF2C C4006210 */  beq        $v1, $v0, .Llevel_22_80070240
     /* 178DCCC 8006FF30 40008230 */   andi      $v0, $a0, 0x40
@@ -620,8 +620,8 @@ glabel func_level_22_8006F9A0
     /* 178DF48 800701AC 22004010 */  beqz       $v0, .Llevel_22_80070238
     /* 178DF4C 800701B0 28000424 */   addiu     $a0, $zero, 0x28
   .Llevel_22_800701B4:
-    /* 178DF50 800701B4 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 178DF54 800701B8 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 178DF50 800701B4 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 178DF54 800701B8 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 178DF58 800701BC 07000224 */  addiu      $v0, $zero, 0x7
     /* 178DF5C 800701C0 1F006210 */  beq        $v1, $v0, .Llevel_22_80070240
     /* 178DF60 800701C4 00000000 */   nop

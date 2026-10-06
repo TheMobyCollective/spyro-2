@@ -40,8 +40,8 @@ glabel func_guidebook_8006DB50
     /* 48511C 8006DB80 00000000 */   nop
     /* 485120 8006DB84 74006324 */  addiu      $v1, $v1, 0x74
   .Lguidebook_8006DB88:
-    /* 485124 8006DB88 0680043C */  lui        $a0, %hi(D_80067EC8)
-    /* 485128 8006DB8C C87E8424 */  addiu      $a0, $a0, %lo(D_80067EC8)
+    /* 485124 8006DB88 0680043C */  lui        $a0, %hi((g_Camera + 0x44))
+    /* 485128 8006DB8C C87E8424 */  addiu      $a0, $a0, %lo((g_Camera + 0x44))
     /* 48512C 8006DB90 D0FF8524 */  addiu      $a1, $a0, -0x30
     /* 485130 8006DB94 0680023C */  lui        $v0, %hi(D_80066FFC)
     /* 485134 8006DB98 FC6F428C */  lw         $v0, %lo(D_80066FFC)($v0)

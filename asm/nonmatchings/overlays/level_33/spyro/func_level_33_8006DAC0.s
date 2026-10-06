@@ -93,8 +93,8 @@ glabel func_level_33_8006DAC0
     /* 25858DC 8006DB40 21200002 */   addu      $a0, $s0, $zero
     /* 25858E0 8006DB44 686F000C */  jal        func_8001BDA0
     /* 25858E4 8006DB48 0C000426 */   addiu     $a0, $s0, 0xC
-    /* 25858E8 8006DB4C 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 25858EC 8006DB50 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 25858E8 8006DB4C 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 25858EC 8006DB50 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 25858F0 8006DB54 07000224 */  addiu      $v0, $zero, 0x7
     /* 25858F4 8006DB58 3A056210 */  beq        $v1, $v0, .Llevel_33_8006F044
     /* 25858F8 8006DB5C 00000000 */   nop
@@ -970,8 +970,8 @@ glabel func_level_33_8006DAC0
     /* 25865D0 8006E834 89BA0108 */  j          .Llevel_33_8006EA24
     /* 25865D4 8006E838 8000A2AF */   sw        $v0, 0x80($sp)
   .Llevel_33_8006E83C:
-    /* 25865D8 8006E83C 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 25865DC 8006E840 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 25865D8 8006E83C 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 25865DC 8006E840 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 25865E0 8006E844 07000224 */  addiu      $v0, $zero, 0x7
     /* 25865E4 8006E848 5E006210 */  beq        $v1, $v0, .Llevel_33_8006E9C4
     /* 25865E8 8006E84C 7800A427 */   addiu     $a0, $sp, 0x78
@@ -1297,8 +1297,8 @@ glabel func_level_33_8006DAC0
     /* 2586AA0 8006ED04 11BC0108 */  j          .Llevel_33_8006F044
     /* 2586AA4 8006ED08 00000000 */   nop
   .Llevel_33_8006ED0C:
-    /* 2586AA8 8006ED0C 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 2586AAC 8006ED10 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 2586AA8 8006ED0C 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 2586AAC 8006ED10 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 2586AB0 8006ED14 00000000 */  nop
     /* 2586AB4 8006ED18 05006214 */  bne        $v1, $v0, .Llevel_33_8006ED30
     /* 2586AB8 8006ED1C 00000000 */   nop

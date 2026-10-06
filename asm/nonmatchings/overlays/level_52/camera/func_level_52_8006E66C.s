@@ -4,8 +4,8 @@
 nonmatching func_level_52_8006E66C, 0x160
 
 glabel func_level_52_8006E66C
-    /* 3B01408 8006E66C 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 3B0140C 8006E670 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 3B01408 8006E66C 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 3B0140C 8006E670 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 3B01410 8006E674 E8FFBD27 */  addiu      $sp, $sp, -0x18
     /* 3B01414 8006E678 0C006228 */  slti       $v0, $v1, 0xC
     /* 3B01418 8006E67C 4F004014 */  bnez       $v0, .Llevel_52_8006E7BC
@@ -50,8 +50,8 @@ glabel func_level_52_8006E66C
     /* 3B014AC 8006E710 28004010 */  beqz       $v0, .Llevel_52_8006E7B4
     /* 3B014B0 8006E714 08000424 */   addiu     $a0, $zero, 0x8
   .Llevel_52_8006E718:
-    /* 3B014B4 8006E718 0680043C */  lui        $a0, %hi(D_80067FEC)
-    /* 3B014B8 8006E71C EC7F848C */  lw         $a0, %lo(D_80067FEC)($a0)
+    /* 3B014B4 8006E718 0680043C */  lui        $a0, %hi((g_Camera + 0x168))
+    /* 3B014B8 8006E71C EC7F848C */  lw         $a0, %lo((g_Camera + 0x168))($a0)
     /* 3B014BC 8006E720 00000000 */  nop
     /* 3B014C0 8006E724 0A008014 */  bnez       $a0, .Llevel_52_8006E750
     /* 3B014C4 8006E728 00000000 */   nop
@@ -65,16 +65,16 @@ glabel func_level_52_8006E66C
     /* 3B014E4 8006E748 EDB90108 */  j          .Llevel_52_8006E7B4
     /* 3B014E8 8006E74C 00000000 */   nop
   .Llevel_52_8006E750:
-    /* 3B014EC 8006E750 0680023C */  lui        $v0, %hi(D_80067ED0)
-    /* 3B014F0 8006E754 D07E428C */  lw         $v0, %lo(D_80067ED0)($v0)
+    /* 3B014EC 8006E750 0680023C */  lui        $v0, %hi((g_Camera + 0x4C))
+    /* 3B014F0 8006E754 D07E428C */  lw         $v0, %lo((g_Camera + 0x4C))($v0)
     /* 3B014F4 8006E758 00000000 */  nop
     /* 3B014F8 8006E75C 17008210 */  beq        $a0, $v0, .Llevel_52_8006E7BC
     /* 3B014FC 8006E760 00000000 */   nop
     /* 3B01500 8006E764 EDB90108 */  j          .Llevel_52_8006E7B4
     /* 3B01504 8006E768 00000000 */   nop
   .Llevel_52_8006E76C:
-    /* 3B01508 8006E76C 0680043C */  lui        $a0, %hi(D_80067FEC)
-    /* 3B0150C 8006E770 EC7F848C */  lw         $a0, %lo(D_80067FEC)($a0)
+    /* 3B01508 8006E76C 0680043C */  lui        $a0, %hi((g_Camera + 0x168))
+    /* 3B0150C 8006E770 EC7F848C */  lw         $a0, %lo((g_Camera + 0x168))($a0)
     /* 3B01510 8006E774 00000000 */  nop
     /* 3B01514 8006E778 0E008014 */  bnez       $a0, .Llevel_52_8006E7B4
     /* 3B01518 8006E77C 00000000 */   nop

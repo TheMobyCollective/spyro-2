@@ -485,8 +485,8 @@ glabel func_level_30_8006D898
     /* 1F2BC90 8006DEF4 39B80108 */  j          .Llevel_30_8006E0E4
     /* 1F2BC94 8006DEF8 3000A2AF */   sw        $v0, 0x30($sp)
   .Llevel_30_8006DEFC:
-    /* 1F2BC98 8006DEFC 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 1F2BC9C 8006DF00 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 1F2BC98 8006DEFC 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 1F2BC9C 8006DF00 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 1F2BCA0 8006DF04 07000224 */  addiu      $v0, $zero, 0x7
     /* 1F2BCA4 8006DF08 5E006210 */  beq        $v1, $v0, .Llevel_30_8006E084
     /* 1F2BCA8 8006DF0C 2800A427 */   addiu     $a0, $sp, 0x28
@@ -805,8 +805,8 @@ glabel func_level_30_8006D898
     /* 1F2C144 8006E3A8 01000224 */  addiu      $v0, $zero, 0x1
     /* 1F2C148 8006E3AC 13016210 */  beq        $v1, $v0, .Llevel_30_8006E7FC
     /* 1F2C14C 8006E3B0 07000224 */   addiu     $v0, $zero, 0x7
-    /* 1F2C150 8006E3B4 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 1F2C154 8006E3B8 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 1F2C150 8006E3B4 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 1F2C154 8006E3B8 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 1F2C158 8006E3BC 00000000 */  nop
     /* 1F2C15C 8006E3C0 05006214 */  bne        $v1, $v0, .Llevel_30_8006E3D8
     /* 1F2C160 8006E3C4 00000000 */   nop
@@ -1026,8 +1026,8 @@ glabel func_level_30_8006D898
     /* 1F2C488 8006E6EC 6CBA0108 */  j          .Llevel_30_8006E9B0
     /* 1F2C48C 8006E6F0 00000000 */   nop
   .Llevel_30_8006E6F4:
-    /* 1F2C490 8006E6F4 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 1F2C494 8006E6F8 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 1F2C490 8006E6F4 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 1F2C494 8006E6F8 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 1F2C498 8006E6FC 07000224 */  addiu      $v0, $zero, 0x7
     /* 1F2C49C 8006E700 3A006210 */  beq        $v1, $v0, .Llevel_30_8006E7EC
     /* 1F2C4A0 8006E704 6800A427 */   addiu     $a0, $sp, 0x68

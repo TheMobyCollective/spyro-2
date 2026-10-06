@@ -5,8 +5,8 @@ nonmatching func_level_65_80070980, 0x50
 
 glabel func_level_65_80070980
     /* 42C3F1C 80070980 E8FFBD27 */  addiu      $sp, $sp, -0x18
-    /* 42C3F20 80070984 0680043C */  lui        $a0, %hi(D_80067ED0)
-    /* 42C3F24 80070988 D07E8424 */  addiu      $a0, $a0, %lo(D_80067ED0)
+    /* 42C3F20 80070984 0680043C */  lui        $a0, %hi((g_Camera + 0x4C))
+    /* 42C3F24 80070988 D07E8424 */  addiu      $a0, $a0, %lo((g_Camera + 0x4C))
     /* 42C3F28 8007098C 1000BFAF */  sw         $ra, 0x10($sp)
     /* 42C3F2C 80070990 0000838C */  lw         $v1, 0x0($a0)
     /* 42C3F30 80070994 1C000224 */  addiu      $v0, $zero, 0x1C

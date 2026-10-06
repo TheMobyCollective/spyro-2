@@ -135,8 +135,8 @@ glabel func_level_11_8006F1D0
     /* F2A898 8006F2FC FC014014 */  bnez       $v0, .Llevel_11_8006FAF0
     /* F2A89C 8006F300 01000424 */   addiu     $a0, $zero, 0x1
   .Llevel_11_8006F304:
-    /* F2A8A0 8006F304 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* F2A8A4 8006F308 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* F2A8A0 8006F304 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* F2A8A4 8006F308 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* F2A8A8 8006F30C 07000224 */  addiu      $v0, $zero, 0x7
     /* F2A8AC 8006F310 06006210 */  beq        $v1, $v0, .Llevel_11_8006F32C
     /* F2A8B0 8006F314 00000000 */   nop

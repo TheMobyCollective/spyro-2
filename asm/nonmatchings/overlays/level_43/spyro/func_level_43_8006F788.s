@@ -143,8 +143,8 @@ glabel func_level_43_8006F788
     /* 2FC6E60 8006F8C4 C3014014 */  bnez       $v0, .Llevel_43_8006FFD4
     /* 2FC6E64 8006F8C8 00000000 */   nop
   .Llevel_43_8006F8CC:
-    /* 2FC6E68 8006F8CC 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 2FC6E6C 8006F8D0 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 2FC6E68 8006F8CC 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 2FC6E6C 8006F8D0 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 2FC6E70 8006F8D4 07000224 */  addiu      $v0, $zero, 0x7
     /* 2FC6E74 8006F8D8 06006210 */  beq        $v1, $v0, .Llevel_43_8006F8F4
     /* 2FC6E78 8006F8DC 00000000 */   nop

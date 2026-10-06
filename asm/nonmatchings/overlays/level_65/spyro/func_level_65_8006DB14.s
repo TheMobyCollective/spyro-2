@@ -84,8 +84,8 @@ glabel func_level_65_8006DB14
     /* 42C1124 8006DB88 21200002 */   addu      $a0, $s0, $zero
     /* 42C1128 8006DB8C 686F000C */  jal        func_8001BDA0
     /* 42C112C 8006DB90 0C000426 */   addiu     $a0, $s0, 0xC
-    /* 42C1130 8006DB94 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 42C1134 8006DB98 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 42C1130 8006DB94 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 42C1134 8006DB98 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 42C1138 8006DB9C 07000224 */  addiu      $v0, $zero, 0x7
     /* 42C113C 8006DBA0 03036210 */  beq        $v1, $v0, .Llevel_65_8006E7B0
     /* 42C1140 8006DBA4 00000000 */   nop
@@ -365,8 +365,8 @@ glabel func_level_65_8006DB14
     /* 42C153C 8006DFA0 64B80108 */  j          .Llevel_65_8006E190
     /* 42C1540 8006DFA4 3000A2AF */   sw        $v0, 0x30($sp)
   .Llevel_65_8006DFA8:
-    /* 42C1544 8006DFA8 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 42C1548 8006DFAC D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 42C1544 8006DFA8 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 42C1548 8006DFAC D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 42C154C 8006DFB0 07000224 */  addiu      $v0, $zero, 0x7
     /* 42C1550 8006DFB4 5E006210 */  beq        $v1, $v0, .Llevel_65_8006E130
     /* 42C1554 8006DFB8 2800A427 */   addiu     $a0, $sp, 0x28
@@ -692,8 +692,8 @@ glabel func_level_65_8006DB14
     /* 42C1A0C 8006E470 ECB90108 */  j          .Llevel_65_8006E7B0
     /* 42C1A10 8006E474 00000000 */   nop
   .Llevel_65_8006E478:
-    /* 42C1A14 8006E478 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 42C1A18 8006E47C D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 42C1A14 8006E478 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 42C1A18 8006E47C D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 42C1A1C 8006E480 00000000 */  nop
     /* 42C1A20 8006E484 05006214 */  bne        $v1, $v0, .Llevel_65_8006E49C
     /* 42C1A24 8006E488 00000000 */   nop

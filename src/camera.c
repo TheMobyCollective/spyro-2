@@ -73,8 +73,8 @@ INCLUDE_ASM("asm/nonmatchings/camera", func_8001F0BC);
 //INCLUDE_ASM("asm/nonmatchings/camera", func_8001F1E4);
 
 void func_8001F1E4(int arg0, int arg1) {
-    D_80067FEC = arg1;
-    D_80067FF0 = arg0;
+    g_Camera.m_0x168 = arg1;
+    g_Camera.m_0x16C = arg0;
 }
 
 // https://decomp.me/scratch/CRD8v - 100%
@@ -100,10 +100,10 @@ INCLUDE_ASM("asm/nonmatchings/camera", func_8001F814);
 
 void func_8001FA24(void) {
     if (D_800698BA != 0) {
-        D_80067EDC = 0;
+        g_Camera.m_0x58 = 0;
         return;
     }
-    D_80067EDC = 7;
+    g_Camera.m_0x58 = 7;
 }
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001FA58);

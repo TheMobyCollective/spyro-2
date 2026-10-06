@@ -249,13 +249,13 @@ glabel func_8001A2FC
     /* AE4C 8001A64C 000002AE */   sw        $v0, 0x0($s0)
     /* AE50 8001A650 1000A427 */  addiu      $a0, $sp, 0x10
     /* AE54 8001A654 F4FD1026 */  addiu      $s0, $s0, -0x20C
-    /* AE58 8001A658 0680063C */  lui        $a2, %hi(D_80067EAC)
-    /* AE5C 8001A65C AC7EC624 */  addiu      $a2, $a2, %lo(D_80067EAC)
+    /* AE58 8001A658 0680063C */  lui        $a2, %hi((g_Camera + 0x28))
+    /* AE5C 8001A65C AC7EC624 */  addiu      $a2, $a2, %lo((g_Camera + 0x28))
     /* AE60 8001A660 806F000C */  jal        func_8001BE00
     /* AE64 8001A664 21280002 */   addu      $a1, $s0, $zero
     /* AE68 8001A668 1000A427 */  addiu      $a0, $sp, 0x10
-    /* AE6C 8001A66C 0680013C */  lui        $at, %hi(D_80067EC8)
-    /* AE70 8001A670 C87E20A4 */  sh         $zero, %lo(D_80067EC8)($at)
+    /* AE6C 8001A66C 0680013C */  lui        $at, %hi((g_Camera + 0x44))
+    /* AE70 8001A670 C87E20A4 */  sh         $zero, %lo((g_Camera + 0x44))($at)
     /* AE74 8001A674 886E000C */  jal        func_8001BA20
     /* AE78 8001A678 21280000 */   addu      $a1, $zero, $zero
     /* AE7C 8001A67C 21204000 */  addu       $a0, $v0, $zero
@@ -265,13 +265,13 @@ glabel func_8001A2FC
     /* AE8C 8001A68C 1000A48F */  lw         $a0, 0x10($sp)
     /* AE90 8001A690 1400A58F */  lw         $a1, 0x14($sp)
     /* AE94 8001A694 23100200 */  negu       $v0, $v0
-    /* AE98 8001A698 0680013C */  lui        $at, %hi(D_80067ECA)
-    /* AE9C 8001A69C CA7E22A4 */  sh         $v0, %lo(D_80067ECA)($at)
+    /* AE98 8001A698 0680013C */  lui        $at, %hi((g_Camera + 0x46))
+    /* AE9C 8001A69C CA7E22A4 */  sh         $v0, %lo((g_Camera + 0x46))($at)
     /* AEA0 8001A6A0 2E6D000C */  jal        func_8001B4B8
     /* AEA4 8001A6A4 01000624 */   addiu     $a2, $zero, 0x1
     /* AEA8 8001A6A8 21200002 */  addu       $a0, $s0, $zero
-    /* AEAC 8001A6AC 0680013C */  lui        $at, %hi(D_80067ECC)
-    /* AEB0 8001A6B0 CC7E22A4 */  sh         $v0, %lo(D_80067ECC)($at)
+    /* AEAC 8001A6AC 0680013C */  lui        $at, %hi((g_Camera + 0x48))
+    /* AEB0 8001A6B0 CC7E22A4 */  sh         $v0, %lo((g_Camera + 0x48))($at)
     /* AEB4 8001A6B4 A1FB000C */  jal        func_8003EE84
     /* AEB8 8001A6B8 00400524 */   addiu     $a1, $zero, 0x4000
     /* AEBC 8001A6BC 0780033C */  lui        $v1, %hi((g_Spyro + 0x8))

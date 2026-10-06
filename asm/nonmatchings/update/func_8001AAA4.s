@@ -50,8 +50,8 @@ glabel func_8001AAA4
     /* B350 8001AB50 21280000 */  addu       $a1, $zero, $zero
     /* B354 8001AB54 F26C000C */  jal        func_8001B3C8
     /* B358 8001AB58 30010624 */   addiu     $a2, $zero, 0x130
-    /* B35C 8001AB5C 0680043C */  lui        $a0, %hi(D_80067E84)
-    /* B360 8001AB60 847E8424 */  addiu      $a0, $a0, %lo(D_80067E84)
+    /* B35C 8001AB5C 0680043C */  lui        $a0, %hi(g_Camera)
+    /* B360 8001AB60 847E8424 */  addiu      $a0, $a0, %lo(g_Camera)
     /* B364 8001AB64 21280000 */  addu       $a1, $zero, $zero
     /* B368 8001AB68 F26C000C */  jal        func_8001B3C8
     /* B36C 8001AB6C F4010624 */   addiu     $a2, $zero, 0x1F4

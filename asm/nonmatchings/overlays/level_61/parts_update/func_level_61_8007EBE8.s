@@ -473,8 +473,8 @@ glabel func_level_61_8007EBE8
     /* 3EC9EEC 8007F150 40008424 */  addiu      $a0, $a0, 0x40
     /* 3EC9EF0 8007F154 170024A6 */  sh         $a0, 0x17($s1)
     /* 3EC9EF4 8007F158 00240400 */  sll        $a0, $a0, 16
-    /* 3EC9EF8 8007F15C 0680023C */  lui        $v0, %hi(D_80067ECC)
-    /* 3EC9EFC 8007F160 CC7E4284 */  lh         $v0, %lo(D_80067ECC)($v0)
+    /* 3EC9EF8 8007F15C 0680023C */  lui        $v0, %hi((g_Camera + 0x48))
+    /* 3EC9EFC 8007F160 CC7E4284 */  lh         $v0, %lo((g_Camera + 0x48))($v0)
     /* 3EC9F00 8007F164 03240400 */  sra        $a0, $a0, 16
     /* 3EC9F04 8007F168 23208200 */  subu       $a0, $a0, $v0
     /* 3EC9F08 8007F16C 996D000C */  jal        func_8001B664

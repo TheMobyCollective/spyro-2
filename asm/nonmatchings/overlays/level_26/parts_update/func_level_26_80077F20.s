@@ -282,8 +282,8 @@ glabel func_level_26_80077F20
     /* 1DBAF78 800781DC 40008424 */  addiu      $a0, $a0, 0x40
     /* 1DBAF7C 800781E0 170004A6 */  sh         $a0, 0x17($s0)
     /* 1DBAF80 800781E4 00240400 */  sll        $a0, $a0, 16
-    /* 1DBAF84 800781E8 0680023C */  lui        $v0, %hi(D_80067ECC)
-    /* 1DBAF88 800781EC CC7E4284 */  lh         $v0, %lo(D_80067ECC)($v0)
+    /* 1DBAF84 800781E8 0680023C */  lui        $v0, %hi((g_Camera + 0x48))
+    /* 1DBAF88 800781EC CC7E4284 */  lh         $v0, %lo((g_Camera + 0x48))($v0)
     /* 1DBAF8C 800781F0 03240400 */  sra        $a0, $a0, 16
     /* 1DBAF90 800781F4 23208200 */  subu       $a0, $a0, $v0
     /* 1DBAF94 800781F8 996D000C */  jal        func_8001B664

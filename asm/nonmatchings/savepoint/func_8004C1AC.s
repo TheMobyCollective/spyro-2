@@ -26,8 +26,8 @@ glabel func_8004C1AC
   .L8004C1F4:
     /* 3C9F4 8004C1F4 595C000C */  jal        func_80017164
     /* 3C9F8 8004C1F8 00000000 */   nop
-    /* 3C9FC 8004C1FC 0680013C */  lui        $at, %hi(D_80067EC4)
-    /* 3CA00 8004C200 C47E20AC */  sw         $zero, %lo(D_80067EC4)($at)
+    /* 3C9FC 8004C1FC 0680013C */  lui        $at, %hi((g_Camera + 0x40))
+    /* 3CA00 8004C200 C47E20AC */  sw         $zero, %lo((g_Camera + 0x40))($at)
     /* 3CA04 8004C204 1000BF8F */  lw         $ra, 0x10($sp)
     /* 3CA08 8004C208 1800BD27 */  addiu      $sp, $sp, 0x18
     /* 3CA0C 8004C20C 0800E003 */  jr         $ra

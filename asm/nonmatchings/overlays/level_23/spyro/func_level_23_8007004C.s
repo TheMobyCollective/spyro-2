@@ -146,8 +146,8 @@ glabel func_level_23_8007004C
     /* 19ADF10 80070174 74024014 */  bnez       $v0, .Llevel_23_80070B48
     /* 19ADF14 80070178 01000424 */   addiu     $a0, $zero, 0x1
   .Llevel_23_8007017C:
-    /* 19ADF18 8007017C 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 19ADF1C 80070180 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 19ADF18 8007017C 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 19ADF1C 80070180 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 19ADF20 80070184 07000224 */  addiu      $v0, $zero, 0x7
     /* 19ADF24 80070188 06006210 */  beq        $v1, $v0, .Llevel_23_800701A4
     /* 19ADF28 8007018C 00000000 */   nop
@@ -494,8 +494,8 @@ glabel func_level_23_8007004C
     /* 19AE420 80070684 D2C20108 */  j          .Llevel_23_80070B48
     /* 19AE424 80070688 2A000424 */   addiu     $a0, $zero, 0x2A
   .Llevel_23_8007068C:
-    /* 19AE428 8007068C 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 19AE42C 80070690 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 19AE428 8007068C 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 19AE42C 80070690 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 19AE430 80070694 00000000 */  nop
     /* 19AE434 80070698 2D016210 */  beq        $v1, $v0, .Llevel_23_80070B50
     /* 19AE438 8007069C 40008230 */   andi      $v0, $a0, 0x40
@@ -667,8 +667,8 @@ glabel func_level_23_8007004C
     /* 19AE6A4 80070908 8F004010 */  beqz       $v0, .Llevel_23_80070B48
     /* 19AE6A8 8007090C 28000424 */   addiu     $a0, $zero, 0x28
   .Llevel_23_80070910:
-    /* 19AE6AC 80070910 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 19AE6B0 80070914 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 19AE6AC 80070910 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 19AE6B0 80070914 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 19AE6B4 80070918 07000224 */  addiu      $v0, $zero, 0x7
     /* 19AE6B8 8007091C 8C006210 */  beq        $v1, $v0, .Llevel_23_80070B50
     /* 19AE6BC 80070920 00000000 */   nop

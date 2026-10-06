@@ -61,21 +61,21 @@ glabel func_titlescreen_and_loading_80073510
     /* 29380 800735E4 F955010C */  jal        func_800557E4
     /* 29384 800735E8 21200000 */   addu      $a0, $zero, $zero
     /* 29388 800735EC 00200224 */  addiu      $v0, $zero, 0x2000
-    /* 2938C 800735F0 0680013C */  lui        $at, %hi(D_80067EAC)
-    /* 29390 800735F4 AC7E22AC */  sw         $v0, %lo(D_80067EAC)($at)
-    /* 29394 800735F8 0680013C */  lui        $at, %hi(D_80067EB0)
-    /* 29398 800735FC B07E22AC */  sw         $v0, %lo(D_80067EB0)($at)
-    /* 2939C 80073600 0680013C */  lui        $at, %hi(D_80067EB4)
-    /* 293A0 80073604 B47E22AC */  sw         $v0, %lo(D_80067EB4)($at)
+    /* 2938C 800735F0 0680013C */  lui        $at, %hi((g_Camera + 0x28))
+    /* 29390 800735F4 AC7E22AC */  sw         $v0, %lo((g_Camera + 0x28))($at)
+    /* 29394 800735F8 0680013C */  lui        $at, %hi((g_Camera + 0x2C))
+    /* 29398 800735FC B07E22AC */  sw         $v0, %lo((g_Camera + 0x2C))($at)
+    /* 2939C 80073600 0680013C */  lui        $at, %hi((g_Camera + 0x30))
+    /* 293A0 80073604 B47E22AC */  sw         $v0, %lo((g_Camera + 0x30))($at)
     /* 293A4 80073608 D0FF0224 */  addiu      $v0, $zero, -0x30
-    /* 293A8 8007360C 0680013C */  lui        $at, %hi(D_80067EC8)
-    /* 293AC 80073610 C87E20A4 */  sh         $zero, %lo(D_80067EC8)($at)
-    /* 293B0 80073614 0680013C */  lui        $at, %hi(D_80067ECA)
-    /* 293B4 80073618 CA7E22A4 */  sh         $v0, %lo(D_80067ECA)($at)
-    /* 293B8 8007361C 0680013C */  lui        $at, %hi(D_80067ECC)
-    /* 293BC 80073620 CC7E20A4 */  sh         $zero, %lo(D_80067ECC)($at)
-    /* 293C0 80073624 0680013C */  lui        $at, %hi(D_80067EC4)
-    /* 293C4 80073628 C47E20AC */  sw         $zero, %lo(D_80067EC4)($at)
+    /* 293A8 8007360C 0680013C */  lui        $at, %hi((g_Camera + 0x44))
+    /* 293AC 80073610 C87E20A4 */  sh         $zero, %lo((g_Camera + 0x44))($at)
+    /* 293B0 80073614 0680013C */  lui        $at, %hi((g_Camera + 0x46))
+    /* 293B4 80073618 CA7E22A4 */  sh         $v0, %lo((g_Camera + 0x46))($at)
+    /* 293B8 8007361C 0680013C */  lui        $at, %hi((g_Camera + 0x48))
+    /* 293BC 80073620 CC7E20A4 */  sh         $zero, %lo((g_Camera + 0x48))($at)
+    /* 293C0 80073624 0680013C */  lui        $at, %hi((g_Camera + 0x40))
+    /* 293C4 80073628 C47E20AC */  sw         $zero, %lo((g_Camera + 0x40))($at)
     /* 293C8 8007362C 9BC2000C */  jal        func_80030A6C
     /* 293CC 80073630 00000000 */   nop
     /* 293D0 80073634 76D4000C */  jal        func_800351D8

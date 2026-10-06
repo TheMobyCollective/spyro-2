@@ -434,8 +434,8 @@ glabel func_level_30_8007C238
     /* 1F3A4B0 8007C714 40008424 */  addiu      $a0, $a0, 0x40
     /* 1F3A4B4 8007C718 170024A6 */  sh         $a0, 0x17($s1)
     /* 1F3A4B8 8007C71C 00240400 */  sll        $a0, $a0, 16
-    /* 1F3A4BC 8007C720 0680023C */  lui        $v0, %hi(D_80067ECC)
-    /* 1F3A4C0 8007C724 CC7E4284 */  lh         $v0, %lo(D_80067ECC)($v0)
+    /* 1F3A4BC 8007C720 0680023C */  lui        $v0, %hi((g_Camera + 0x48))
+    /* 1F3A4C0 8007C724 CC7E4284 */  lh         $v0, %lo((g_Camera + 0x48))($v0)
     /* 1F3A4C4 8007C728 03240400 */  sra        $a0, $a0, 16
     /* 1F3A4C8 8007C72C 23208200 */  subu       $a0, $a0, $v0
     /* 1F3A4CC 8007C730 996D000C */  jal        func_8001B664

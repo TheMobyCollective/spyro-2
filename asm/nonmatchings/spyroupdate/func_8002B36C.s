@@ -82,8 +82,8 @@ glabel func_8002B36C
     /* 1BC78 8002B478 1400A4AF */   sw        $a0, 0x14($sp)
     /* 1BC7C 8002B47C 1000A427 */  addiu      $a0, $sp, 0x10
     /* 1BC80 8002B480 21280000 */  addu       $a1, $zero, $zero
-    /* 1BC84 8002B484 0680063C */  lui        $a2, %hi(D_80067ECC)
-    /* 1BC88 8002B488 CC7EC684 */  lh         $a2, %lo(D_80067ECC)($a2)
+    /* 1BC84 8002B484 0680063C */  lui        $a2, %hi((g_Camera + 0x48))
+    /* 1BC88 8002B488 CC7EC684 */  lh         $a2, %lo((g_Camera + 0x48))($a2)
     /* 1BC8C 8002B48C 0780033C */  lui        $v1, %hi((g_Spyro + 0xAC))
     /* 1BC90 8002B490 9CA06324 */  addiu      $v1, $v1, %lo((g_Spyro + 0xAC))
     /* 1BC94 8002B494 000062AC */  sw         $v0, 0x0($v1)

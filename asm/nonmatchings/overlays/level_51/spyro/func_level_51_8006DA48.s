@@ -91,8 +91,8 @@ glabel func_level_51_8006DA48
     /* 38D3064 8006DAC8 21200002 */   addu      $a0, $s0, $zero
     /* 38D3068 8006DACC 686F000C */  jal        func_8001BDA0
     /* 38D306C 8006DAD0 0C000426 */   addiu     $a0, $s0, 0xC
-    /* 38D3070 8006DAD4 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 38D3074 8006DAD8 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 38D3070 8006DAD4 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 38D3074 8006DAD8 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 38D3078 8006DADC 07000224 */  addiu      $v0, $zero, 0x7
     /* 38D307C 8006DAE0 BF046210 */  beq        $v1, $v0, .Llevel_51_8006EDE0
     /* 38D3080 8006DAE4 00000000 */   nop
@@ -798,8 +798,8 @@ glabel func_level_51_8006DA48
     /* 38D3AD0 8006E534 C9B90108 */  j          .Llevel_51_8006E724
     /* 38D3AD4 8006E538 6000A2AF */   sw        $v0, 0x60($sp)
   .Llevel_51_8006E53C:
-    /* 38D3AD8 8006E53C 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 38D3ADC 8006E540 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 38D3AD8 8006E53C 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 38D3ADC 8006E540 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 38D3AE0 8006E544 07000224 */  addiu      $v0, $zero, 0x7
     /* 38D3AE4 8006E548 5E006210 */  beq        $v1, $v0, .Llevel_51_8006E6C4
     /* 38D3AE8 8006E54C 5800A427 */   addiu     $a0, $sp, 0x58
@@ -1130,8 +1130,8 @@ glabel func_level_51_8006DA48
     /* 38D3FB0 8006EA14 78BB0108 */  j          .Llevel_51_8006EDE0
     /* 38D3FB4 8006EA18 00000000 */   nop
   .Llevel_51_8006EA1C:
-    /* 38D3FB8 8006EA1C 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 38D3FBC 8006EA20 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 38D3FB8 8006EA1C 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 38D3FBC 8006EA20 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 38D3FC0 8006EA24 00000000 */  nop
     /* 38D3FC4 8006EA28 05006214 */  bne        $v1, $v0, .Llevel_51_8006EA40
     /* 38D3FC8 8006EA2C 00000000 */   nop

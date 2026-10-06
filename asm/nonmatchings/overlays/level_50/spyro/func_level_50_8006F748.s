@@ -132,8 +132,8 @@ glabel func_level_50_8006F748
     /* 370FE0C 8006F870 62014014 */  bnez       $v0, .Llevel_50_8006FDFC
     /* 370FE10 8006F874 01000424 */   addiu     $a0, $zero, 0x1
   .Llevel_50_8006F878:
-    /* 370FE14 8006F878 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 370FE18 8006F87C D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 370FE14 8006F878 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 370FE18 8006F87C D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 370FE1C 8006F880 07000224 */  addiu      $v0, $zero, 0x7
     /* 370FE20 8006F884 06006210 */  beq        $v1, $v0, .Llevel_50_8006F8A0
     /* 370FE24 8006F888 00000000 */   nop
@@ -323,8 +323,8 @@ glabel func_level_50_8006F748
     /* 37100D4 8006FB38 7FBF0108 */  j          .Llevel_50_8006FDFC
     /* 37100D8 8006FB3C 2A000424 */   addiu     $a0, $zero, 0x2A
   .Llevel_50_8006FB40:
-    /* 37100DC 8006FB40 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 37100E0 8006FB44 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 37100DC 8006FB40 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 37100E0 8006FB44 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 37100E4 8006FB48 00000000 */  nop
     /* 37100E8 8006FB4C AD006210 */  beq        $v1, $v0, .Llevel_50_8006FE04
     /* 37100EC 8006FB50 40008230 */   andi      $v0, $a0, 0x40
@@ -501,8 +501,8 @@ glabel func_level_50_8006F748
     /* 3710368 8006FDCC 0B004010 */  beqz       $v0, .Llevel_50_8006FDFC
     /* 371036C 8006FDD0 28000424 */   addiu     $a0, $zero, 0x28
   .Llevel_50_8006FDD4:
-    /* 3710370 8006FDD4 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 3710374 8006FDD8 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 3710370 8006FDD4 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 3710374 8006FDD8 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 3710378 8006FDDC 07000224 */  addiu      $v0, $zero, 0x7
     /* 371037C 8006FDE0 08006210 */  beq        $v1, $v0, .Llevel_50_8006FE04
     /* 3710380 8006FDE4 00000000 */   nop

@@ -6,8 +6,8 @@ nonmatching func_8001E204, 0x6C
 glabel func_8001E204
     /* EA04 8001E204 E0FFBD27 */  addiu      $sp, $sp, -0x20
     /* EA08 8001E208 1000B0AF */  sw         $s0, 0x10($sp)
-    /* EA0C 8001E20C 0680103C */  lui        $s0, %hi(D_80067EF4)
-    /* EA10 8001E210 F47E1026 */  addiu      $s0, $s0, %lo(D_80067EF4)
+    /* EA0C 8001E20C 0680103C */  lui        $s0, %hi((g_Camera + 0x70))
+    /* EA10 8001E210 F47E1026 */  addiu      $s0, $s0, %lo((g_Camera + 0x70))
     /* EA14 8001E214 21200002 */  addu       $a0, $s0, $zero
     /* EA18 8001E218 34000526 */  addiu      $a1, $s0, 0x34
     /* EA1C 8001E21C 1400B1AF */  sw         $s1, 0x14($sp)
@@ -21,8 +21,8 @@ glabel func_8001E204
     /* EA3C 8001E23C B8FF0526 */  addiu      $a1, $s0, -0x48
     /* EA40 8001E240 867B000C */  jal        func_8001EE18
     /* EA44 8001E244 21302002 */   addu      $a2, $s1, $zero
-    /* EA48 8001E248 0680013C */  lui        $at, %hi(D_80067FC7)
-    /* EA4C 8001E24C C77F22A0 */  sb         $v0, %lo(D_80067FC7)($at)
+    /* EA48 8001E248 0680013C */  lui        $at, %hi((g_Camera + 0x143))
+    /* EA4C 8001E24C C77F22A0 */  sb         $v0, %lo((g_Camera + 0x143))($at)
     /* EA50 8001E250 027A000C */  jal        func_8001E808
     /* EA54 8001E254 00000000 */   nop
     /* EA58 8001E258 1800BF8F */  lw         $ra, 0x18($sp)

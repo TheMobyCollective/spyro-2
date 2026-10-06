@@ -136,8 +136,8 @@ glabel func_level_51_8006FDD4
     /* 38D5498 8006FEFC 47024014 */  bnez       $v0, .Llevel_51_8007081C
     /* 38D549C 8006FF00 01000424 */   addiu     $a0, $zero, 0x1
   .Llevel_51_8006FF04:
-    /* 38D54A0 8006FF04 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 38D54A4 8006FF08 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 38D54A0 8006FF04 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 38D54A4 8006FF08 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 38D54A8 8006FF0C 07000224 */  addiu      $v0, $zero, 0x7
     /* 38D54AC 8006FF10 06006210 */  beq        $v1, $v0, .Llevel_51_8006FF2C
     /* 38D54B0 8006FF14 00000000 */   nop
@@ -553,8 +553,8 @@ glabel func_level_51_8006FDD4
     /* 38D5AA8 8007050C 07C20108 */  j          .Llevel_51_8007081C
     /* 38D5AAC 80070510 2A000424 */   addiu     $a0, $zero, 0x2A
   .Llevel_51_80070514:
-    /* 38D5AB0 80070514 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 38D5AB4 80070518 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 38D5AB0 80070514 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 38D5AB4 80070518 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 38D5AB8 8007051C 00000000 */  nop
     /* 38D5ABC 80070520 C0006210 */  beq        $v1, $v0, .Llevel_51_80070824
     /* 38D5AC0 80070524 40008230 */   andi      $v0, $a0, 0x40
@@ -726,8 +726,8 @@ glabel func_level_51_8006FDD4
     /* 38D5D2C 80070790 22004010 */  beqz       $v0, .Llevel_51_8007081C
     /* 38D5D30 80070794 28000424 */   addiu     $a0, $zero, 0x28
   .Llevel_51_80070798:
-    /* 38D5D34 80070798 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 38D5D38 8007079C D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 38D5D34 80070798 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 38D5D38 8007079C D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 38D5D3C 800707A0 07000224 */  addiu      $v0, $zero, 0x7
     /* 38D5D40 800707A4 1F006210 */  beq        $v1, $v0, .Llevel_51_80070824
     /* 38D5D44 800707A8 00000000 */   nop

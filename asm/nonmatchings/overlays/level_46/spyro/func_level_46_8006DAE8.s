@@ -89,8 +89,8 @@ glabel func_level_46_8006DAE8
     /* 35818FC 8006DB60 21200002 */   addu      $a0, $s0, $zero
     /* 3581900 8006DB64 686F000C */  jal        func_8001BDA0
     /* 3581904 8006DB68 0C000426 */   addiu     $a0, $s0, 0xC
-    /* 3581908 8006DB6C 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 358190C 8006DB70 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 3581908 8006DB6C 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 358190C 8006DB70 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 3581910 8006DB74 07000224 */  addiu      $v0, $zero, 0x7
     /* 3581914 8006DB78 21016210 */  beq        $v1, $v0, .Llevel_46_8006E000
     /* 3581918 8006DB7C 00000000 */   nop

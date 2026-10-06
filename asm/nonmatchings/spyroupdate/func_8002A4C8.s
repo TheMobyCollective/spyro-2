@@ -166,8 +166,8 @@ glabel func_8002A4C8
     /* 1AF1C 8002A71C 00000000 */  nop
     /* 1AF20 8002A720 15004014 */  bnez       $v0, .L8002A778
     /* 1AF24 8002A724 00000000 */   nop
-    /* 1AF28 8002A728 0680043C */  lui        $a0, %hi(D_80067EAC)
-    /* 1AF2C 8002A72C AC7E8424 */  addiu      $a0, $a0, %lo(D_80067EAC)
+    /* 1AF28 8002A728 0680043C */  lui        $a0, %hi((g_Camera + 0x28))
+    /* 1AF2C 8002A72C AC7E8424 */  addiu      $a0, $a0, %lo((g_Camera + 0x28))
     /* 1AF30 8002A730 A1FB000C */  jal        func_8003EE84
     /* 1AF34 8002A734 00100524 */   addiu     $a1, $zero, 0x1000
     /* 1AF38 8002A738 0F004010 */  beqz       $v0, .L8002A778

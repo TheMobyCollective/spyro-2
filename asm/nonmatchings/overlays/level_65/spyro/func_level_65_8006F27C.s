@@ -132,8 +132,8 @@ glabel func_level_65_8006F27C
     /* 42C2940 8006F3A4 30014014 */  bnez       $v0, .Llevel_65_8006F868
     /* 42C2944 8006F3A8 01000424 */   addiu     $a0, $zero, 0x1
   .Llevel_65_8006F3AC:
-    /* 42C2948 8006F3AC 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 42C294C 8006F3B0 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 42C2948 8006F3AC 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 42C294C 8006F3B0 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 42C2950 8006F3B4 07000224 */  addiu      $v0, $zero, 0x7
     /* 42C2954 8006F3B8 06006210 */  beq        $v1, $v0, .Llevel_65_8006F3D4
     /* 42C2958 8006F3BC 00000000 */   nop
@@ -272,8 +272,8 @@ glabel func_level_65_8006F27C
     /* 42C2B40 8006F5A4 1ABE0108 */  j          .Llevel_65_8006F868
     /* 42C2B44 8006F5A8 2A000424 */   addiu     $a0, $zero, 0x2A
   .Llevel_65_8006F5AC:
-    /* 42C2B48 8006F5AC 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 42C2B4C 8006F5B0 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 42C2B48 8006F5AC 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 42C2B4C 8006F5B0 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 42C2B50 8006F5B4 00000000 */  nop
     /* 42C2B54 8006F5B8 AD006210 */  beq        $v1, $v0, .Llevel_65_8006F870
     /* 42C2B58 8006F5BC 40008230 */   andi      $v0, $a0, 0x40
@@ -450,8 +450,8 @@ glabel func_level_65_8006F27C
     /* 42C2DD4 8006F838 0B004010 */  beqz       $v0, .Llevel_65_8006F868
     /* 42C2DD8 8006F83C 28000424 */   addiu     $a0, $zero, 0x28
   .Llevel_65_8006F840:
-    /* 42C2DDC 8006F840 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 42C2DE0 8006F844 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 42C2DDC 8006F840 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 42C2DE0 8006F844 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 42C2DE4 8006F848 07000224 */  addiu      $v0, $zero, 0x7
     /* 42C2DE8 8006F84C 08006210 */  beq        $v1, $v0, .Llevel_65_8006F870
     /* 42C2DEC 8006F850 00000000 */   nop

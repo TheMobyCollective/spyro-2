@@ -66,8 +66,8 @@ glabel func_8002B4E4
   .L8002B5B8:
     /* 1BDB8 8002B5B8 2900A010 */  beqz       $a1, .L8002B660
     /* 1BDBC 8002B5BC 00000000 */   nop
-    /* 1BDC0 8002B5C0 0680023C */  lui        $v0, %hi(D_80067ECC)
-    /* 1BDC4 8002B5C4 CC7E4284 */  lh         $v0, %lo(D_80067ECC)($v0)
+    /* 1BDC0 8002B5C0 0680023C */  lui        $v0, %hi((g_Camera + 0x48))
+    /* 1BDC4 8002B5C4 CC7E4284 */  lh         $v0, %lo((g_Camera + 0x48))($v0)
     /* 1BDC8 8002B5C8 0780103C */  lui        $s0, %hi((g_Spyro + 0x6C))
     /* 1BDCC 8002B5CC 5CA0108E */  lw         $s0, %lo((g_Spyro + 0x6C))($s0)
     /* 1BDD0 8002B5D0 00000000 */  nop

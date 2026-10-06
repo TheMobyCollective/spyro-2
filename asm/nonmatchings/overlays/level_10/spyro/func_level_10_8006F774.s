@@ -132,8 +132,8 @@ glabel func_level_10_8006F774
     /* D38638 8006F89C 89014014 */  bnez       $v0, .Llevel_10_8006FEC4
     /* D3863C 8006F8A0 01000424 */   addiu     $a0, $zero, 0x1
   .Llevel_10_8006F8A4:
-    /* D38640 8006F8A4 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* D38644 8006F8A8 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* D38640 8006F8A4 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* D38644 8006F8A8 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* D38648 8006F8AC 07000224 */  addiu      $v0, $zero, 0x7
     /* D3864C 8006F8B0 06006210 */  beq        $v1, $v0, .Llevel_10_8006F8CC
     /* D38650 8006F8B4 00000000 */   nop
@@ -248,8 +248,8 @@ glabel func_level_10_8006F774
     /* D387E8 8006FA4C B1BF0108 */  j          .Llevel_10_8006FEC4
     /* D387EC 8006FA50 2A000424 */   addiu     $a0, $zero, 0x2A
   .Llevel_10_8006FA54:
-    /* D387F0 8006FA54 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* D387F4 8006FA58 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* D387F0 8006FA54 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* D387F4 8006FA58 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* D387F8 8006FA5C 00000000 */  nop
     /* D387FC 8006FA60 1A016210 */  beq        $v1, $v0, .Llevel_10_8006FECC
     /* D38800 8006FA64 40008230 */   andi      $v0, $a0, 0x40
@@ -426,8 +426,8 @@ glabel func_level_10_8006F774
     /* D38A7C 8006FCE0 78004010 */  beqz       $v0, .Llevel_10_8006FEC4
     /* D38A80 8006FCE4 28000424 */   addiu     $a0, $zero, 0x28
   .Llevel_10_8006FCE8:
-    /* D38A84 8006FCE8 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* D38A88 8006FCEC D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* D38A84 8006FCE8 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* D38A88 8006FCEC D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* D38A8C 8006FCF0 07000224 */  addiu      $v0, $zero, 0x7
     /* D38A90 8006FCF4 75006210 */  beq        $v1, $v0, .Llevel_10_8006FECC
     /* D38A94 8006FCF8 00000000 */   nop

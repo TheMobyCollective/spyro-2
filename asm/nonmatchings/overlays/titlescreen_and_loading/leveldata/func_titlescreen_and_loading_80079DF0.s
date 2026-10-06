@@ -132,8 +132,8 @@ glabel .Ltitlescreen_and_loading_80079E80
     /* 2FCD4 80079F38 00000000 */   nop
     /* 2FCD8 80079F3C 20000524 */  addiu      $a1, $zero, 0x20
   .Ltitlescreen_and_loading_80079F40:
-    /* 2FCDC 80079F40 0680043C */  lui        $a0, %hi(D_80067ECA)
-    /* 2FCE0 80079F44 CA7E8424 */  addiu      $a0, $a0, %lo(D_80067ECA)
+    /* 2FCDC 80079F40 0680043C */  lui        $a0, %hi((g_Camera + 0x46))
+    /* 2FCE0 80079F44 CA7E8424 */  addiu      $a0, $a0, %lo((g_Camera + 0x46))
     /* 2FCE4 80079F48 40100500 */  sll        $v0, $a1, 1
     /* 2FCE8 80079F4C 21104500 */  addu       $v0, $v0, $a1
     /* 2FCEC 80079F50 00110200 */  sll        $v0, $v0, 4
@@ -144,12 +144,12 @@ glabel .Ltitlescreen_and_loading_80079E80
     /* 2FD00 80079F64 21104500 */  addu       $v0, $v0, $a1
     /* 2FD04 80079F68 C0100200 */  sll        $v0, $v0, 3
     /* 2FD08 80079F6C 000083A4 */  sh         $v1, 0x0($a0)
-    /* 2FD0C 80079F70 0680033C */  lui        $v1, %hi(D_80067ECC)
-    /* 2FD10 80079F74 CC7E6394 */  lhu        $v1, %lo(D_80067ECC)($v1)
+    /* 2FD0C 80079F70 0680033C */  lui        $v1, %hi((g_Camera + 0x48))
+    /* 2FD10 80079F74 CC7E6394 */  lhu        $v1, %lo((g_Camera + 0x48))($v1)
     /* 2FD14 80079F78 43110200 */  sra        $v0, $v0, 5
     /* 2FD18 80079F7C 21186200 */  addu       $v1, $v1, $v0
-    /* 2FD1C 80079F80 0680013C */  lui        $at, %hi(D_80067ECC)
-    /* 2FD20 80079F84 CC7E23A4 */  sh         $v1, %lo(D_80067ECC)($at)
+    /* 2FD1C 80079F80 0680013C */  lui        $at, %hi((g_Camera + 0x48))
+    /* 2FD20 80079F84 CC7E23A4 */  sh         $v1, %lo((g_Camera + 0x48))($at)
   .Ltitlescreen_and_loading_80079F88:
     /* 2FD24 80079F88 0780023C */  lui        $v0, %hi(D_80068C44)
     /* 2FD28 80079F8C 448C428C */  lw         $v0, %lo(D_80068C44)($v0)

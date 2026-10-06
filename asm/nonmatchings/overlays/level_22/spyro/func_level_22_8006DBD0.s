@@ -101,8 +101,8 @@ glabel func_level_22_8006DBD0
     /* 178B9EC 8006DC50 21200002 */   addu      $a0, $s0, $zero
     /* 178B9F0 8006DC54 686F000C */  jal        func_8001BDA0
     /* 178B9F4 8006DC58 0C000426 */   addiu     $a0, $s0, 0xC
-    /* 178B9F8 8006DC5C 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 178B9FC 8006DC60 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 178B9F8 8006DC5C 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 178B9FC 8006DC60 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 178BA00 8006DC64 07000224 */  addiu      $v0, $zero, 0x7
     /* 178BA04 8006DC68 E3036210 */  beq        $v1, $v0, .Llevel_22_8006EBF8
     /* 178BA08 8006DC6C 00000000 */   nop
@@ -581,8 +581,8 @@ glabel func_level_22_8006DBD0
     /* 178C0F4 8006E358 52B90108 */  j          .Llevel_22_8006E548
     /* 178C0F8 8006E35C 3800A2AF */   sw        $v0, 0x38($sp)
   .Llevel_22_8006E360:
-    /* 178C0FC 8006E360 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 178C100 8006E364 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 178C0FC 8006E360 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 178C100 8006E364 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 178C104 8006E368 07000224 */  addiu      $v0, $zero, 0x7
     /* 178C108 8006E36C 5E006210 */  beq        $v1, $v0, .Llevel_22_8006E4E8
     /* 178C10C 8006E370 3000A427 */   addiu     $a0, $sp, 0x30
@@ -908,8 +908,8 @@ glabel func_level_22_8006DBD0
     /* 178C5C4 8006E828 FEBA0108 */  j          .Llevel_22_8006EBF8
     /* 178C5C8 8006E82C 00000000 */   nop
   .Llevel_22_8006E830:
-    /* 178C5CC 8006E830 0680033C */  lui        $v1, %hi(D_80067ED0)
-    /* 178C5D0 8006E834 D07E638C */  lw         $v1, %lo(D_80067ED0)($v1)
+    /* 178C5CC 8006E830 0680033C */  lui        $v1, %hi((g_Camera + 0x4C))
+    /* 178C5D0 8006E834 D07E638C */  lw         $v1, %lo((g_Camera + 0x4C))($v1)
     /* 178C5D4 8006E838 00000000 */  nop
     /* 178C5D8 8006E83C 05006214 */  bne        $v1, $v0, .Llevel_22_8006E854
     /* 178C5DC 8006E840 00000000 */   nop

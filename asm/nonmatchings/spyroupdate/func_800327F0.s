@@ -7,8 +7,8 @@ glabel func_800327F0
     /* 22FF0 800327F0 D0FFBD27 */  addiu      $sp, $sp, -0x30
     /* 22FF4 800327F4 1000A427 */  addiu      $a0, $sp, 0x10
     /* 22FF8 800327F8 2400B1AF */  sw         $s1, 0x24($sp)
-    /* 22FFC 800327FC 0680113C */  lui        $s1, %hi(D_80067EAC)
-    /* 23000 80032800 AC7E3126 */  addiu      $s1, $s1, %lo(D_80067EAC)
+    /* 22FFC 800327FC 0680113C */  lui        $s1, %hi((g_Camera + 0x28))
+    /* 23000 80032800 AC7E3126 */  addiu      $s1, $s1, %lo((g_Camera + 0x28))
     /* 23004 80032804 21282002 */  addu       $a1, $s1, $zero
     /* 23008 80032808 2000B0AF */  sw         $s0, 0x20($sp)
     /* 2300C 8003280C 0780103C */  lui        $s0, %hi(g_Spyro)
