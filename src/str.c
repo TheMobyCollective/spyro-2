@@ -162,7 +162,7 @@ void func_80012CBC(void) {
       else
         func_80058C98(0x3E8, &cdMusic.cdPos);
 
-      func_80058994(2, (void *)&cdMusic.cdPos);
+      func_80058994(2, &cdMusic.cdPos.minute);
       return;
     }
     func_80058994(9, nullptr);
@@ -220,7 +220,7 @@ void func_80012CBC(void) {
     case 2:
       /* Position CD at start of XA stream. */
       func_80058C98(currentAudio->startLba, &cdMusic.cdPos);
-      func_80058994(2, (void *)&cdMusic.cdPos);
+      func_80058994(2, &cdMusic.cdPos.minute);
       streamingData.dat_00 = 3;
       break;
 
@@ -295,7 +295,7 @@ void func_80012CBC(void) {
         }
 
         if (func_800587D4() == 0x11) {
-          trackPosition = func_80058D9C((CdLoc *)&cdMusic.syncData[5]);
+          trackPosition = func_80058D9C(&cdMusic.syncData[5]);
 
           if (currentAudio->unk0 < trackPosition) {
             currentAudio->startLba = trackPosition;
