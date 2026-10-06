@@ -45,7 +45,7 @@ int func_800385D8(int arg0, int arg1) {
     int var_a0;
 
     var_a0 = (arg1 - arg0) & 0xFF;
-    if (var_a0 >= 0x81) {
+    if (var_a0 > 0x80) {
         var_a0 -= 0x100;
     }
     return var_a0;

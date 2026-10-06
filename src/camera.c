@@ -35,7 +35,7 @@ void func_8001ECCC(CameraPosition* arg0, CameraPosition* arg1, int arg2) {
 
     temp_v1 = (arg1->pos.azimuth + arg2) & 0xFFF;
     arg0->pos.azimuth = temp_v1;
-    if (temp_v1 >= 0x801) {
+    if (temp_v1 > 0x800) {
         arg0->pos.azimuth = (int) (temp_v1 - 0x1000);
     }
     arg0->pos.elevation = (int) arg1->pos.elevation;
@@ -101,9 +101,9 @@ INCLUDE_ASM("asm/nonmatchings/camera", func_8001F814);
 void func_8001FA24(void) {
     if (D_800698BA != 0) {
         g_Camera.m_0x58 = 0;
-        return;
+    } else {
+        g_Camera.m_0x58 = 7;
     }
-    g_Camera.m_0x58 = 7;
 }
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001FA58);
