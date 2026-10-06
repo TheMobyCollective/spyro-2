@@ -1,3 +1,6 @@
+#ifndef __DRAWUTIL_H
+#define __DRAWUTIL_H
+
 typedef struct
 {
     short x;
@@ -36,3 +39,5 @@ void func_80059FBC(int);                                 /* extern */
 void func_8005A0FC(int, int);                            /* extern */
 int func_8005A15C(int);                               /* extern */
 extern int D_80069918;
+
+#endif

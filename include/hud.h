@@ -1,3 +1,6 @@
+#ifndef __HUD_H
+#define __HUD_H
+
 typedef struct {
     char x;
     char y;
@@ -14,3 +17,5 @@ unsigned int * func_800520CC(SpriteInfo*, int, int, int);                   /* e
 void func_80052328(int, short, int);                           /* extern */
 void func_80052328();
 extern SpriteInfo D_80063544;
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef __COMMON_H
+#define __COMMON_H
+
 #include "include_asm.h"
 #include <sys/types.h>
 
@@ -172,3 +175,5 @@ typedef struct {
     GemToll finalCutsceneWatched;
     GemToll unknown4;
 } ProgressFlags;
+
+#endif

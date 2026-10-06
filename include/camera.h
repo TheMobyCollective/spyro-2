@@ -1,3 +1,8 @@
+#ifndef __CAMERA_H
+#define __CAMERA_H
+
+#include "common.h"
+
 typedef struct {
     SphericalCoordinates pos;
     int yaw;
@@ -12,3 +17,5 @@ extern int D_80067FF0;
 
 extern int D_80067EDC;
 extern char D_800698BA;
+
+#endif

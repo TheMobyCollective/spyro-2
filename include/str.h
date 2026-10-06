@@ -1,3 +1,8 @@
+#ifndef __STR_H
+#define __STR_H
+
+#include "common.h"
+
 // psyq
 extern int func_80058108(int sectors, unsigned long *buf, int mode); // CdRead  
 extern int func_80058858(unsigned char com, unsigned char *param, unsigned char *result); // CdControl
@@ -15,3 +20,5 @@ extern CDState cdState; // 800682D8
 extern StreamingData streamingData; // 800682F4
 
 
+
+#endif
