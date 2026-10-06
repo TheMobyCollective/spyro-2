@@ -1,29 +1,4 @@
-/* Minimal PSY-Q libspu subset required by func_80012CBC.
- * It would probably be preferable to add the full libspu.h to the project eventually and remove this.
- */
-typedef struct {
-    short left;
-    short right;
-} SpuVolume;
-
-typedef struct {
-    SpuVolume volume;
-    int reverb;
-    int mix;
-} SpuExtAttr;
-
-typedef struct {
-    unsigned long mask;
-    SpuVolume mvol;
-    SpuVolume mvolmode;
-    SpuVolume mvolx;
-    SpuExtAttr cd;
-    SpuExtAttr ext;
-} SpuCommonAttr;
-
-#define SPU_COMMON_CDVOLL (1 << 6)
-#define SPU_COMMON_CDVOLR (1 << 7)
-/* End of minimal libspu subset. */
+#include <libspu.h>
 
 // CdMusic - Spyro 2 and Spyro 3 appear to have the same members and layout
 typedef struct {
