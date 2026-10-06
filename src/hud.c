@@ -1,6 +1,6 @@
 #include "common.h"
 #include "hud.h"
-#include "loaders.h"
+#include "spu.h"
 
 INCLUDE_ASM("asm/nonmatchings/hud", func_8005199C);
 

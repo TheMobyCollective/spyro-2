@@ -2058,6 +2058,7 @@ dlabel D_80069A0C
 
 nonmatching D_80069A10, 0x1
 
+dlabel g_ActiveSounds
 dlabel D_80069A10
     /* 80069A10 */ .space 0x01
 

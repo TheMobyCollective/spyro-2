@@ -1,7 +1,22 @@
 #include "common.h"
 #include "drawutil.h"
 
-INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004C484);
+// https://decomp.me/scratch/xHP1X
+//INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004C484);
+void func_8004C484(void) {
+    Rect sp10;
+
+    func_800557E4(0);
+    func_80058EDC(0);
+    sp10.w = 0x200;
+    sp10.x = 0;
+    sp10.y = 0;
+    sp10.h = 0xF0;
+    func_80055968(&sp10, 0, 0, 0);
+    sp10.y = 0xE4;
+    func_80055968(&sp10, 0, 0, 0);
+    func_800557E4(0);
+}
 
 // https://decomp.me/scratch/GvRX1
 //INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004C4FC);
@@ -27,7 +42,21 @@ void func_8004D104(int arg0) {
     D_80067030 = temp_s0 + 0xC;
 }
 
-INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004D158);
+// https://decomp.me/scratch/MV2Rh
+//INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004D158);
+void func_8004D158(int arg0) {
+    int temp_s0;
+    int temp_v0;
+
+    func_800557E4(0);
+    D_80067170 = arg0;
+    temp_v0 = D_8006B2A4 - arg0;
+    temp_s0 = temp_v0 - arg0;
+    D_8006B2A0 = temp_v0;
+    D_8006B29C = temp_s0;
+    D_80069998 = temp_s0;
+    D_80069A0C = temp_v0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004D1BC);
 
@@ -45,11 +74,27 @@ INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004D748);
 
 INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004D810);
 
-INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004D984);
+// https://decomp.me/scratch/siIy1
+//INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004D984);
+void func_8004D984(int arg0, int arg1, int arg2, int arg3) {
+    func_8004A374(arg0, arg1 - (func_8004A7DC(arg0) >> 1), arg2, arg3, 0);
+}
 
-INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004D9EC);
+// https://decomp.me/scratch/i8Up4
+//INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004D9EC);
+void func_8004D9EC(int arg0, int arg1, int arg2, int arg3) {
+    int temp_v0;
 
-INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004DA6C);
+    temp_v0 = func_8004A7DC(arg0) >> 1;
+    func_8004D508((arg1 - temp_v0) - 8, arg1 + temp_v0 + 8, arg2 - 2, arg2 + 0xB);
+    func_8004D984(arg0, arg1, arg2, arg3);
+}
+
+// https://decomp.me/scratch/ncQCJ
+//INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004DA6C);
+void func_8004DA6C(int arg0, int arg1, int arg2, int arg3) {
+    func_8004A374(arg0, arg1 - func_8004A7DC(arg0), arg2, arg3, 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004DAD0);
 
@@ -57,7 +102,26 @@ INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004DBD8);
 
 INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004DD28);
 
-INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004DD94);
+// https://decomp.me/scratch/UY60J
+//INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004DD94);
+void func_8004DD94(void) {
+    int sp10;
+    Rect sp12;
+
+    func_800557E4(0);
+    func_80059FBC(0x7A000);
+    func_8005A0FC(D_8006B29C, 0x6000);
+    do {
+
+    } while (func_8005A15C(0) == 0);
+    sp12.x = 0x200;
+    sp12.y = 0x80;
+    sp12.w = 0xC0;
+    sp12.h = 0x40;
+    func_800559F8(&sp12, D_8006B29C);
+    func_800557E4(0);
+    D_80069918 = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004DE1C);
 

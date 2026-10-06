@@ -51,12 +51,12 @@
 - [ ] func_800156FC
 
 <!-- drawutil.c -->
-- [ ] func_8004C484
+- [x] func_8004C484
 - [x] func_8004C4FC
 - [ ] func_8004C534
 - [ ] func_8004C66C
 - [x] func_8004D104
-- [ ] func_8004D158
+- [x] func_8004D158
 - [ ] func_8004D1BC
 - [ ] func_8004D2D8
 - [ ] func_8004D348
@@ -65,13 +65,13 @@
 - [ ] func_8004D604
 - [ ] func_8004D748
 - [ ] func_8004D810
-- [ ] func_8004D984
-- [ ] func_8004D9EC
-- [ ] func_8004DA6C
+- [x] func_8004D984
+- [x] func_8004D9EC
+- [x] func_8004DA6C
 - [ ] func_8004DAD0
 - [ ] func_8004DBD8
 - [ ] func_8004DD28
-- [ ] func_8004DD94
+- [x] func_8004DD94
 - [ ] func_8004DE1C
 - [ ] func_8004DEE8
 - [ ] func_8004DF84
@@ -234,7 +234,7 @@
 - [ ] func_80050648
 - [ ] func_800506AC
 - [ ] func_80050720
-- [ ] func_80050A40
+- [x] func_80050A40
 - [ ] func_80050AAC
 - [ ] func_80050B20
 - [ ] func_80050B74
@@ -338,25 +338,25 @@
 - [ ] func_80015BE4
 - [ ] func_800161C8
 - [ ] func_80016328
-- [ ] func_80017164
-- [ ] func_800171BC
+- [x] func_80017164
+- [x] func_800171BC
 - [ ] func_8001722C
-- [ ] func_800175A4
+- [x] func_800175A4
 - [ ] func_800176A4
-- [ ] func_80019230
+- [x] func_80019230
 - [ ] func_80019364
 - [ ] func_80019928
 - [ ] func_80019C40
-- [ ] func_8001A290
+- [x] func_8001A290
 - [ ] func_8001A2FC
-- [ ] func_8001A6F8
+- [x] func_8001A6F8
 - [ ] func_8001A79C
 - [ ] func_8001A910
 - [ ] func_8001A9B0
 - [ ] func_8001AAA4
-- [ ] func_8001AC20
+- [x] func_8001AC20
 - [ ] func_8001AC40
 - [ ] func_8001AF18
 - [ ] func_8001B050
-- [ ] func_8001B140
+- [x] func_8001B140
 
