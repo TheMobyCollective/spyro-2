@@ -41,8 +41,8 @@ glabel func_level_10_8006FEE0
     /* D38CFC 8006FF60 D815A524 */  addiu      $a1, $a1, %lo(D_800615D8)
     /* D38D00 8006FF64 337B000C */  jal        func_8001ECCC
     /* D38D04 8006FF68 58FF8424 */   addiu     $a0, $a0, -0xA8
-    /* D38D08 8006FF6C 0780023C */  lui        $v0, %hi(D_8006A058)
-    /* D38D0C 8006FF70 58A0428C */  lw         $v0, %lo(D_8006A058)($v0)
+    /* D38D08 8006FF6C 0780023C */  lui        $v0, %hi((g_Spyro + 0x68))
+    /* D38D0C 8006FF70 58A0428C */  lw         $v0, %lo((g_Spyro + 0x68))($v0)
     /* D38D10 8006FF74 0680033C */  lui        $v1, %hi(D_80067F04)
     /* D38D14 8006FF78 047F638C */  lw         $v1, %lo(D_80067F04)($v1)
     /* D38D18 8006FF7C 23100200 */  negu       $v0, $v0
@@ -75,8 +75,8 @@ glabel func_level_10_8006FEE0
     /* D38D74 8006FFD8 0680013C */  lui        $at, %hi(D_80067F20)
     /* D38D78 8006FFDC 207F20AC */  sw         $zero, %lo(D_80067F20)($at)
   .Llevel_10_8006FFE0:
-    /* D38D7C 8006FFE0 0780023C */  lui        $v0, %hi(D_8006A054)
-    /* D38D80 8006FFE4 54A0428C */  lw         $v0, %lo(D_8006A054)($v0)
+    /* D38D7C 8006FFE0 0780023C */  lui        $v0, %hi((g_Spyro + 0x64))
+    /* D38D80 8006FFE4 54A0428C */  lw         $v0, %lo((g_Spyro + 0x64))($v0)
     /* D38D84 8006FFE8 00000000 */  nop
     /* D38D88 8006FFEC 23100200 */  negu       $v0, $v0
     /* D38D8C 8006FFF0 83100200 */  sra        $v0, $v0, 2
@@ -89,8 +89,8 @@ glabel func_level_10_8006FEE0
   .Llevel_10_8007000C:
     /* D38DA8 8007000C 0680103C */  lui        $s0, %hi(D_80067EE4)
     /* D38DAC 80070010 E47E1026 */  addiu      $s0, $s0, %lo(D_80067EE4)
-    /* D38DB0 80070014 0780053C */  lui        $a1, %hi(D_80069FF0)
-    /* D38DB4 80070018 F09FA524 */  addiu      $a1, $a1, %lo(D_80069FF0)
+    /* D38DB0 80070014 0780053C */  lui        $a1, %hi(g_Spyro)
+    /* D38DB4 80070018 F09FA524 */  addiu      $a1, $a1, %lo(g_Spyro)
     /* D38DB8 8007001C 6C6F000C */  jal        func_8001BDB0
     /* D38DBC 80070020 21200002 */   addu      $a0, $s0, $zero
     /* D38DC0 80070024 80000426 */  addiu      $a0, $s0, 0x80
@@ -100,8 +100,8 @@ glabel func_level_10_8006FEE0
     /* D38DD0 80070034 0680053C */  lui        $a1, %hi(D_8006172C)
     /* D38DD4 80070038 2C17A524 */  addiu      $a1, $a1, %lo(D_8006172C)
     /* D38DD8 8007003C 21282502 */  addu       $a1, $s1, $a1
-    /* D38DDC 80070040 0780023C */  lui        $v0, %hi(D_8006A05C)
-    /* D38DE0 80070044 5CA0428C */  lw         $v0, %lo(D_8006A05C)($v0)
+    /* D38DDC 80070040 0780023C */  lui        $v0, %hi((g_Spyro + 0x6C))
+    /* D38DE0 80070044 5CA0428C */  lw         $v0, %lo((g_Spyro + 0x6C))($v0)
     /* D38DE4 80070048 0680013C */  lui        $at, %hi(D_80067EF0)
     /* D38DE8 8007004C F07E22AC */  sw         $v0, %lo(D_80067EF0)($at)
     /* D38DEC 80070050 337B000C */  jal        func_8001ECCC
@@ -173,8 +173,8 @@ glabel func_level_10_8006FEE0
   .Llevel_10_80070148:
     /* D38EE4 80070148 0680113C */  lui        $s1, %hi(D_80067EE4)
     /* D38EE8 8007014C E47E3126 */  addiu      $s1, $s1, %lo(D_80067EE4)
-    /* D38EEC 80070150 0780053C */  lui        $a1, %hi(D_80069FF0)
-    /* D38EF0 80070154 F09FA524 */  addiu      $a1, $a1, %lo(D_80069FF0)
+    /* D38EEC 80070150 0780053C */  lui        $a1, %hi(g_Spyro)
+    /* D38EF0 80070154 F09FA524 */  addiu      $a1, $a1, %lo(g_Spyro)
     /* D38EF4 80070158 6C6F000C */  jal        func_8001BDB0
     /* D38EF8 8007015C 21202002 */   addu      $a0, $s1, $zero
     /* D38EFC 80070160 80002426 */  addiu      $a0, $s1, 0x80
@@ -183,8 +183,8 @@ glabel func_level_10_8006FEE0
     /* D38F08 8007016C 80801000 */  sll        $s0, $s0, 2
     /* D38F0C 80070170 0680053C */  lui        $a1, %hi(D_8006172C)
     /* D38F10 80070174 2C17A524 */  addiu      $a1, $a1, %lo(D_8006172C)
-    /* D38F14 80070178 0780023C */  lui        $v0, %hi(D_8006A208)
-    /* D38F18 8007017C 08A2428C */  lw         $v0, %lo(D_8006A208)($v0)
+    /* D38F14 80070178 0780023C */  lui        $v0, %hi((g_Spyro + 0x218))
+    /* D38F18 8007017C 08A2428C */  lw         $v0, %lo((g_Spyro + 0x218))($v0)
     /* D38F1C 80070180 21280502 */  addu       $a1, $s0, $a1
     /* D38F20 80070184 46004290 */  lbu        $v0, 0x46($v0)
     /* D38F24 80070188 00000000 */  nop

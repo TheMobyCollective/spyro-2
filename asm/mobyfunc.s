@@ -677,8 +677,8 @@ glabel func_800495E8
     /* 39EC0 800496C0 0010C348 */  ctc2       $v1, $2 /* handwritten instruction */
     /* 39EC4 800496C4 0018C448 */  ctc2       $a0, $3 /* handwritten instruction */
     /* 39EC8 800496C8 0020C548 */  ctc2       $a1, $4 /* handwritten instruction */
-    /* 39ECC 800496CC 07800F3C */  lui        $t7, %hi(D_80069FF0)
-    /* 39ED0 800496D0 F09FEF25 */  addiu      $t7, $t7, %lo(D_80069FF0)
+    /* 39ECC 800496CC 07800F3C */  lui        $t7, %hi(g_Spyro)
+    /* 39ED0 800496D0 F09FEF25 */  addiu      $t7, $t7, %lo(g_Spyro)
     /* 39ED4 800496D4 1C00E791 */  lbu        $a3, 0x1C($t7)
     /* 39ED8 800496D8 0680083C */  lui        $t0, %hi(D_80062868)
     /* 39EDC 800496DC 68280825 */  addiu      $t0, $t0, %lo(D_80062868)

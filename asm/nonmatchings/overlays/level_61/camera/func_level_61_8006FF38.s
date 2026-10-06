@@ -15,8 +15,8 @@ glabel func_level_61_8006FF38
     /* 3EBACF4 8006FF58 00000000 */  nop
     /* 3EBACF8 8006FF5C 0E008014 */  bnez       $a0, .Llevel_61_8006FF98
     /* 3EBACFC 8006FF60 00000000 */   nop
-    /* 3EBAD00 8006FF64 0780023C */  lui        $v0, %hi(D_8006A040)
-    /* 3EBAD04 8006FF68 40A0428C */  lw         $v0, %lo(D_8006A040)($v0)
+    /* 3EBAD00 8006FF64 0780023C */  lui        $v0, %hi((g_Spyro + 0x50))
+    /* 3EBAD04 8006FF68 40A0428C */  lw         $v0, %lo((g_Spyro + 0x50))($v0)
     /* 3EBAD08 8006FF6C 00000000 */  nop
     /* 3EBAD0C 8006FF70 80100200 */  sll        $v0, $v0, 2
     /* 3EBAD10 8006FF74 0680013C */  lui        $at, %hi(D_80061468)

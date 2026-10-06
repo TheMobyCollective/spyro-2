@@ -15,8 +15,8 @@ glabel func_8002AFDC
     /* 1B7FC 8002AFFC 1800B2AF */   sw        $s2, 0x18($sp)
     /* 1B800 8002B000 21200002 */  addu       $a0, $s0, $zero
     /* 1B804 8002B004 21280002 */  addu       $a1, $s0, $zero
-    /* 1B808 8002B008 0780123C */  lui        $s2, %hi(D_80069FF0)
-    /* 1B80C 8002B00C F09F5226 */  addiu      $s2, $s2, %lo(D_80069FF0)
+    /* 1B808 8002B008 0780123C */  lui        $s2, %hi(g_Spyro)
+    /* 1B80C 8002B00C F09F5226 */  addiu      $s2, $s2, %lo(g_Spyro)
     /* 1B810 8002B010 736F000C */  jal        func_8001BDCC
     /* 1B814 8002B014 21304002 */   addu      $a2, $s2, $zero
     /* 1B818 8002B018 21200000 */  addu       $a0, $zero, $zero

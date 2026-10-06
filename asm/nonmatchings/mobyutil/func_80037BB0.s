@@ -8,8 +8,8 @@ glabel func_80037BB0
     /* 283B4 80037BB4 4800B0AF */  sw         $s0, 0x48($sp)
     /* 283B8 80037BB8 21808000 */  addu       $s0, $a0, $zero
     /* 283BC 80037BBC 1000A427 */  addiu      $a0, $sp, 0x10
-    /* 283C0 80037BC0 0780053C */  lui        $a1, %hi(D_80069FF0)
-    /* 283C4 80037BC4 F09FA524 */  addiu      $a1, $a1, %lo(D_80069FF0)
+    /* 283C0 80037BC0 0780053C */  lui        $a1, %hi(g_Spyro)
+    /* 283C4 80037BC4 F09FA524 */  addiu      $a1, $a1, %lo(g_Spyro)
     /* 283C8 80037BC8 21300002 */  addu       $a2, $s0, $zero
     /* 283CC 80037BCC 5800BFAF */  sw         $ra, 0x58($sp)
     /* 283D0 80037BD0 5400B3AF */  sw         $s3, 0x54($sp)

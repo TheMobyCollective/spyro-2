@@ -23,8 +23,8 @@ glabel func_8001E808
     /* F048 8001E848 00000000 */  nop
     /* F04C 8001E84C 11016210 */  beq        $v1, $v0, .L8001EC94
     /* F050 8001E850 00000000 */   nop
-    /* F054 8001E854 0780053C */  lui        $a1, %hi(D_80069FF0)
-    /* F058 8001E858 F09FA524 */  addiu      $a1, $a1, %lo(D_80069FF0)
+    /* F054 8001E854 0780053C */  lui        $a1, %hi(g_Spyro)
+    /* F058 8001E858 F09FA524 */  addiu      $a1, $a1, %lo(g_Spyro)
     /* F05C 8001E85C 6C6F000C */  jal        func_8001BDB0
     /* F060 8001E860 1000A427 */   addiu     $a0, $sp, 0x10
     /* F064 8001E864 E7FE3226 */  addiu      $s2, $s1, -0x119

@@ -71,8 +71,8 @@ glabel func_level_26_8006E968
     /* 1DB1708 8006E96C 00210400 */  sll        $a0, $a0, 4
     /* 1DB170C 8006E970 0780023C */  lui        $v0, %hi(D_800683B0)
     /* 1DB1710 8006E974 B0834224 */  addiu      $v0, $v0, %lo(D_800683B0)
-    /* 1DB1714 8006E978 0780033C */  lui        $v1, %hi(D_8006A040)
-    /* 1DB1718 8006E97C 40A0638C */  lw         $v1, %lo(D_8006A040)($v1)
+    /* 1DB1714 8006E978 0780033C */  lui        $v1, %hi((g_Spyro + 0x50))
+    /* 1DB1718 8006E97C 40A0638C */  lw         $v1, %lo((g_Spyro + 0x50))($v1)
     /* 1DB171C 8006E980 21208200 */  addu       $a0, $a0, $v0
     /* 1DB1720 8006E984 1000BFAF */  sw         $ra, 0x10($sp)
     /* 1DB1724 8006E988 0680013C */  lui        $at, %hi(D_80066F38)
@@ -88,8 +88,8 @@ glabel func_level_26_8006E968
     /* 1DB174C 8006E9B0 08004000 */  jr         $v0
     /* 1DB1750 8006E9B4 00000000 */   nop
   .Llevel_26_8006E9B8:
-    /* 1DB1754 8006E9B8 0780043C */  lui        $a0, %hi(D_8006A044)
-    /* 1DB1758 8006E9BC 44A08424 */  addiu      $a0, $a0, %lo(D_8006A044)
+    /* 1DB1754 8006E9B8 0780043C */  lui        $a0, %hi((g_Spyro + 0x54))
+    /* 1DB1758 8006E9BC 44A08424 */  addiu      $a0, $a0, %lo((g_Spyro + 0x54))
     /* 1DB175C 8006E9C0 0000838C */  lw         $v1, 0x0($a0)
     /* 1DB1760 8006E9C4 01000224 */  addiu      $v0, $zero, 0x1
     /* 1DB1764 8006E9C8 07006210 */  beq        $v1, $v0, .Llevel_26_8006E9E8
@@ -97,8 +97,8 @@ glabel func_level_26_8006E968
     /* 1DB176C 8006E9D0 7BBA0108 */  j          .Llevel_26_8006E9EC
     /* 1DB1770 8006E9D4 00000000 */   nop
   .Llevel_26_8006E9D8:
-    /* 1DB1774 8006E9D8 0780043C */  lui        $a0, %hi(D_8006A0C4)
-    /* 1DB1778 8006E9DC C4A08424 */  addiu      $a0, $a0, %lo(D_8006A0C4)
+    /* 1DB1774 8006E9D8 0780043C */  lui        $a0, %hi((g_Spyro + 0xD4))
+    /* 1DB1778 8006E9DC C4A08424 */  addiu      $a0, $a0, %lo((g_Spyro + 0xD4))
     /* 1DB177C 8006E9E0 7BBA0108 */  j          .Llevel_26_8006E9EC
     /* 1DB1780 8006E9E4 00000000 */   nop
   .Llevel_26_8006E9E8:

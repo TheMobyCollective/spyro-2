@@ -4347,8 +4347,8 @@ nonmatching func_80040DB4, 0xE0
 
 glabel func_80040DB4
     /* 315B4 80040DB4 6401A520 */  addi       $a1, $a1, 0x164 /* handwritten instruction */
-    /* 315B8 80040DB8 0780093C */  lui        $t1, %hi(D_80069FF0)
-    /* 315BC 80040DBC F09F2925 */  addiu      $t1, $t1, %lo(D_80069FF0)
+    /* 315B8 80040DB8 0780093C */  lui        $t1, %hi(g_Spyro)
+    /* 315BC 80040DBC F09F2925 */  addiu      $t1, $t1, %lo(g_Spyro)
     /* 315C0 80040DC0 0000278D */  lw         $a3, 0x0($t1)
     /* 315C4 80040DC4 0000818C */  lw         $at, 0x0($a0)
     /* 315C8 80040DC8 00000000 */  nop

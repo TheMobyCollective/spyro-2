@@ -84,8 +84,8 @@ glabel func_titlescreen_and_loading_800741A0
     /* 2A06C 800742D0 E6C0010C */  jal        func_titlescreen_and_loading_80070398
     /* 2A070 800742D4 21289000 */   addu      $a1, $a0, $s0
   .Ltitlescreen_and_loading_800742D8:
-    /* 2A074 800742D8 0780013C */  lui        $at, %hi(D_8006A250)
-    /* 2A078 800742DC 50A220AC */  sw         $zero, %lo(D_8006A250)($at)
+    /* 2A074 800742D8 0780013C */  lui        $at, %hi((g_Spyro + 0x260))
+    /* 2A078 800742DC 50A220AC */  sw         $zero, %lo((g_Spyro + 0x260))($at)
     /* 2A07C 800742E0 1800BF8F */  lw         $ra, 0x18($sp)
     /* 2A080 800742E4 1400B18F */  lw         $s1, 0x14($sp)
     /* 2A084 800742E8 1000B08F */  lw         $s0, 0x10($sp)

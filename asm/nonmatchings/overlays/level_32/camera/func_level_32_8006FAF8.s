@@ -26,8 +26,8 @@ glabel func_level_32_8006FAF8
     /* 23618D8 8006FB3C 0680113C */  lui        $s1, %hi(D_80067ED4)
     /* 23618DC 8006FB40 D47E3126 */  addiu      $s1, $s1, %lo(D_80067ED4)
     /* 23618E0 8006FB44 10002426 */  addiu      $a0, $s1, 0x10
-    /* 23618E4 8006FB48 0780123C */  lui        $s2, %hi(D_80069FF0)
-    /* 23618E8 8006FB4C F09F5226 */  addiu      $s2, $s2, %lo(D_80069FF0)
+    /* 23618E4 8006FB48 0780123C */  lui        $s2, %hi(g_Spyro)
+    /* 23618E8 8006FB4C F09F5226 */  addiu      $s2, $s2, %lo(g_Spyro)
     /* 23618EC 8006FB50 21284002 */  addu       $a1, $s2, $zero
     /* 23618F0 8006FB54 000020AE */  sw         $zero, 0x0($s1)
     /* 23618F4 8006FB58 0680013C */  lui        $at, %hi(D_80067FC4)
@@ -40,8 +40,8 @@ glabel func_level_32_8006FAF8
     /* 236190C 8006FB70 0680113C */  lui        $s1, %hi(D_80067ED4)
     /* 2361910 8006FB74 D47E3126 */  addiu      $s1, $s1, %lo(D_80067ED4)
     /* 2361914 8006FB78 10002426 */  addiu      $a0, $s1, 0x10
-    /* 2361918 8006FB7C 0780123C */  lui        $s2, %hi(D_80069FF0)
-    /* 236191C 8006FB80 F09F5226 */  addiu      $s2, $s2, %lo(D_80069FF0)
+    /* 2361918 8006FB7C 0780123C */  lui        $s2, %hi(g_Spyro)
+    /* 236191C 8006FB80 F09F5226 */  addiu      $s2, $s2, %lo(g_Spyro)
     /* 2361920 8006FB84 21284002 */  addu       $a1, $s2, $zero
     /* 2361924 8006FB88 01000224 */  addiu      $v0, $zero, 0x1
     /* 2361928 8006FB8C 000020AE */  sw         $zero, 0x0($s1)
@@ -60,8 +60,8 @@ glabel func_level_32_8006FAF8
     /* 2361958 8006FBBC 2C003026 */   addiu     $s0, $s1, 0x2C
     /* 236195C 8006FBC0 21200002 */  addu       $a0, $s0, $zero
     /* 2361960 8006FBC4 D8FF2526 */  addiu      $a1, $s1, -0x28
-    /* 2361964 8006FBC8 0780023C */  lui        $v0, %hi(D_8006A05C)
-    /* 2361968 8006FBCC 5CA0428C */  lw         $v0, %lo(D_8006A05C)($v0)
+    /* 2361964 8006FBC8 0780023C */  lui        $v0, %hi((g_Spyro + 0x6C))
+    /* 2361968 8006FBCC 5CA0428C */  lw         $v0, %lo((g_Spyro + 0x6C))($v0)
     /* 236196C 8006FBD0 0680013C */  lui        $at, %hi(D_80067EF0)
     /* 2361970 8006FBD4 F07E22AC */  sw         $v0, %lo(D_80067EF0)($at)
     /* 2361974 8006FBD8 867B000C */  jal        func_8001EE18

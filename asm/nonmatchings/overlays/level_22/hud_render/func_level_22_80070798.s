@@ -4,8 +4,8 @@
 nonmatching func_level_22_80070798, 0x30
 
 glabel func_level_22_80070798
-    /* 178E534 80070798 0780023C */  lui        $v0, %hi(D_80069FF8)
-    /* 178E538 8007079C F89F428C */  lw         $v0, %lo(D_80069FF8)($v0)
+    /* 178E534 80070798 0780023C */  lui        $v0, %hi((g_Spyro + 0x8))
+    /* 178E538 8007079C F89F428C */  lw         $v0, %lo((g_Spyro + 0x8))($v0)
     /* 178E53C 800707A0 E8FFBD27 */  addiu      $sp, $sp, -0x18
     /* 178E540 800707A4 E4704228 */  slti       $v0, $v0, 0x70E4
     /* 178E544 800707A8 03004010 */  beqz       $v0, .Llevel_22_800707B8

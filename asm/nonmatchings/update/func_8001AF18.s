@@ -30,16 +30,16 @@ glabel func_8001AF18
     /* B770 8001AF70 21006228 */  slti       $v0, $v1, 0x21
     /* B774 8001AF74 0D004010 */  beqz       $v0, .L8001AFAC
     /* B778 8001AF78 00000000 */   nop
-    /* B77C 8001AF7C 0780023C */  lui        $v0, %hi(D_80069FF8)
-    /* B780 8001AF80 F89F4224 */  addiu      $v0, $v0, %lo(D_80069FF8)
+    /* B77C 8001AF7C 0780023C */  lui        $v0, %hi((g_Spyro + 0x8))
+    /* B780 8001AF80 F89F4224 */  addiu      $v0, $v0, %lo((g_Spyro + 0x8))
     /* B784 8001AF84 0000438C */  lw         $v1, 0x0($v0)
-    /* B788 8001AF88 0780043C */  lui        $a0, %hi(D_80069FFE)
-    /* B78C 8001AF8C FE9F8490 */  lbu        $a0, %lo(D_80069FFE)($a0)
+    /* B788 8001AF88 0780043C */  lui        $a0, %hi((g_Spyro + 0xE))
+    /* B78C 8001AF8C FE9F8490 */  lbu        $a0, %lo((g_Spyro + 0xE))($a0)
     /* B790 8001AF90 20006324 */  addiu      $v1, $v1, 0x20
     /* B794 8001AF94 08008424 */  addiu      $a0, $a0, 0x8
     /* B798 8001AF98 000043AC */  sw         $v1, 0x0($v0)
-    /* B79C 8001AF9C 0780013C */  lui        $at, %hi(D_80069FFE)
-    /* B7A0 8001AFA0 FE9F24A0 */  sb         $a0, %lo(D_80069FFE)($at)
+    /* B79C 8001AF9C 0780013C */  lui        $at, %hi((g_Spyro + 0xE))
+    /* B7A0 8001AFA0 FE9F24A0 */  sb         $a0, %lo((g_Spyro + 0xE))($at)
     /* B7A4 8001AFA4 066C0008 */  j          .L8001B018
     /* B7A8 8001AFA8 00000000 */   nop
   .L8001AFAC:
@@ -47,10 +47,10 @@ glabel func_8001AF18
     /* B7B0 8001AFB0 C4B28424 */  addiu      $a0, $a0, %lo(D_8006B2C4)
     /* B7B4 8001AFB4 E5C6000C */  jal        func_80031B94
     /* B7B8 8001AFB8 00000000 */   nop
-    /* B7BC 8001AFBC 0780013C */  lui        $at, %hi(D_80069FFC)
-    /* B7C0 8001AFC0 FC9F20A0 */  sb         $zero, %lo(D_80069FFC)($at)
-    /* B7C4 8001AFC4 0780013C */  lui        $at, %hi(D_80069FFD)
-    /* B7C8 8001AFC8 FD9F20A0 */  sb         $zero, %lo(D_80069FFD)($at)
+    /* B7BC 8001AFBC 0780013C */  lui        $at, %hi((g_Spyro + 0xC))
+    /* B7C0 8001AFC0 FC9F20A0 */  sb         $zero, %lo((g_Spyro + 0xC))($at)
+    /* B7C4 8001AFC4 0780013C */  lui        $at, %hi((g_Spyro + 0xD))
+    /* B7C8 8001AFC8 FD9F20A0 */  sb         $zero, %lo((g_Spyro + 0xD))($at)
     /* B7CC 8001AFCC 1F76000C */  jal        func_8001D87C
     /* B7D0 8001AFD0 21804000 */   addu      $s0, $v0, $zero
     /* B7D4 8001AFD4 10000016 */  bnez       $s0, .L8001B018

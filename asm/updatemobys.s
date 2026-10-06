@@ -25,8 +25,8 @@ glabel func_80040E94
     /* 316BC 80040EBC 01000A20 */  addi       $t2, $zero, 0x1 /* handwritten instruction */
     /* 316C0 80040EC0 07800B3C */  lui        $t3, %hi(D_800682B8)
     /* 316C4 80040EC4 B8826B25 */  addiu      $t3, $t3, %lo(D_800682B8)
-    /* 316C8 80040EC8 07800E3C */  lui        $t6, %hi(D_80069FF0)
-    /* 316CC 80040ECC F09FCE25 */  addiu      $t6, $t6, %lo(D_80069FF0)
+    /* 316C8 80040EC8 07800E3C */  lui        $t6, %hi(g_Spyro)
+    /* 316CC 80040ECC F09FCE25 */  addiu      $t6, $t6, %lo(g_Spyro)
     /* 316D0 80040ED0 0000CC8D */  lw         $t4, 0x0($t6)
     /* 316D4 80040ED4 0400CD8D */  lw         $t5, 0x4($t6)
     /* 316D8 80040ED8 0800CE8D */  lw         $t6, 0x8($t6)
@@ -772,8 +772,8 @@ glabel func_800418C8
     /* 320D0 800418D0 0000C120 */  addi       $at, $a2, 0x0 /* handwritten instruction */
     /* 320D4 800418D4 0000E220 */  addi       $v0, $a3, 0x0 /* handwritten instruction */
     /* 320D8 800418D8 1000A88F */  lw         $t0, 0x10($sp)
-    /* 320DC 800418DC 07800F3C */  lui        $t7, %hi(D_80069FF0)
-    /* 320E0 800418E0 F09FEF25 */  addiu      $t7, $t7, %lo(D_80069FF0)
+    /* 320DC 800418DC 07800F3C */  lui        $t7, %hi(g_Spyro)
+    /* 320E0 800418E0 F09FEF25 */  addiu      $t7, $t7, %lo(g_Spyro)
     /* 320E4 800418E4 06800E3C */  lui        $t6, %hi(D_80066F24)
     /* 320E8 800418E8 246FCE25 */  addiu      $t6, $t6, %lo(D_80066F24)
     /* 320EC 800418EC 0000CE8D */  lw         $t6, 0x0($t6)

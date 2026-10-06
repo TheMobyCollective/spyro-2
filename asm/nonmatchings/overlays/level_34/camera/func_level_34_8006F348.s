@@ -42,8 +42,8 @@ glabel func_level_34_8006F348
     /* 27AC168 8006F3CC 337B000C */  jal        func_8001ECCC
     /* 27AC16C 8006F3D0 58FF0426 */   addiu     $a0, $s0, -0xA8
   .Llevel_34_8006F3D4:
-    /* 27AC170 8006F3D4 0780053C */  lui        $a1, %hi(D_80069FF0)
-    /* 27AC174 8006F3D8 F09FA524 */  addiu      $a1, $a1, %lo(D_80069FF0)
+    /* 27AC170 8006F3D4 0780053C */  lui        $a1, %hi(g_Spyro)
+    /* 27AC174 8006F3D8 F09FA524 */  addiu      $a1, $a1, %lo(g_Spyro)
     /* 27AC178 8006F3DC 6C6F000C */  jal        func_8001BDB0
     /* 27AC17C 8006F3E0 28FF0426 */   addiu     $a0, $s0, -0xD8
     /* 27AC180 8006F3E4 A8FF0426 */  addiu      $a0, $s0, -0x58
@@ -99,8 +99,8 @@ glabel func_level_34_8006F348
   .Llevel_34_8006F4A8:
     /* 27AC244 8006F4A8 0680123C */  lui        $s2, %hi(D_80067EE4)
     /* 27AC248 8006F4AC E47E5226 */  addiu      $s2, $s2, %lo(D_80067EE4)
-    /* 27AC24C 8006F4B0 0780053C */  lui        $a1, %hi(D_80069FF0)
-    /* 27AC250 8006F4B4 F09FA524 */  addiu      $a1, $a1, %lo(D_80069FF0)
+    /* 27AC24C 8006F4B0 0780053C */  lui        $a1, %hi(g_Spyro)
+    /* 27AC250 8006F4B4 F09FA524 */  addiu      $a1, $a1, %lo(g_Spyro)
     /* 27AC254 8006F4B8 6C6F000C */  jal        func_8001BDB0
     /* 27AC258 8006F4BC 21204002 */   addu      $a0, $s2, $zero
     /* 27AC25C 8006F4C0 80004426 */  addiu      $a0, $s2, 0x80
@@ -109,8 +109,8 @@ glabel func_level_34_8006F348
     /* 27AC268 8006F4CC 80801000 */  sll        $s0, $s0, 2
     /* 27AC26C 8006F4D0 0680053C */  lui        $a1, %hi(D_8006172C)
     /* 27AC270 8006F4D4 2C17A524 */  addiu      $a1, $a1, %lo(D_8006172C)
-    /* 27AC274 8006F4D8 0780023C */  lui        $v0, %hi(D_8006A208)
-    /* 27AC278 8006F4DC 08A2428C */  lw         $v0, %lo(D_8006A208)($v0)
+    /* 27AC274 8006F4D8 0780023C */  lui        $v0, %hi((g_Spyro + 0x218))
+    /* 27AC278 8006F4DC 08A2428C */  lw         $v0, %lo((g_Spyro + 0x218))($v0)
     /* 27AC27C 8006F4E0 21280502 */  addu       $a1, $s0, $a1
     /* 27AC280 8006F4E4 46004290 */  lbu        $v0, 0x46($v0)
     /* 27AC284 8006F4E8 00000000 */  nop

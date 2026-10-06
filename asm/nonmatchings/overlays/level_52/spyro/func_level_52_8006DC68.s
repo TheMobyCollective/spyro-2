@@ -5,8 +5,8 @@ nonmatching func_level_52_8006DC68, 0xB0
 
 glabel func_level_52_8006DC68
     /* 3B00A04 8006DC68 E8FFBD27 */  addiu      $sp, $sp, -0x18
-    /* 3B00A08 8006DC6C 0780033C */  lui        $v1, %hi(D_8006A040)
-    /* 3B00A0C 8006DC70 40A0638C */  lw         $v1, %lo(D_8006A040)($v1)
+    /* 3B00A08 8006DC6C 0780033C */  lui        $v1, %hi((g_Spyro + 0x50))
+    /* 3B00A0C 8006DC70 40A0638C */  lw         $v1, %lo((g_Spyro + 0x50))($v1)
     /* 3B00A10 8006DC74 1D000224 */  addiu      $v0, $zero, 0x1D
     /* 3B00A14 8006DC78 13006210 */  beq        $v1, $v0, .Llevel_52_8006DCC8
     /* 3B00A18 8006DC7C 1000BFAF */   sw        $ra, 0x10($sp)
@@ -46,8 +46,8 @@ glabel func_level_52_8006DC68
     /* 3B00A94 8006DCF8 81AF000C */  jal        func_8002BE04
     /* 3B00A98 8006DCFC 00000000 */   nop
   .Llevel_52_8006DD00:
-    /* 3B00A9C 8006DD00 0780013C */  lui        $at, %hi(D_8006A018)
-    /* 3B00AA0 8006DD04 18A020AC */  sw         $zero, %lo(D_8006A018)($at)
+    /* 3B00A9C 8006DD00 0780013C */  lui        $at, %hi((g_Spyro + 0x28))
+    /* 3B00AA0 8006DD04 18A020AC */  sw         $zero, %lo((g_Spyro + 0x28))($at)
   .Llevel_52_8006DD08:
     /* 3B00AA4 8006DD08 1000BF8F */  lw         $ra, 0x10($sp)
     /* 3B00AA8 8006DD0C 1800BD27 */  addiu      $sp, $sp, 0x18

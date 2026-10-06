@@ -29,8 +29,8 @@ glabel func_8003CAFC
     /* 2D354 8003CB54 00290500 */  sll        $a1, $a1, 4
     /* 2D358 8003CB58 6C6F000C */  jal        func_8001BDB0
     /* 2D35C 8003CB5C 2128A200 */   addu      $a1, $a1, $v0
-    /* 2D360 8003CB60 0780103C */  lui        $s0, %hi(D_80069FFE)
-    /* 2D364 8003CB64 FE9F1026 */  addiu      $s0, $s0, %lo(D_80069FFE)
+    /* 2D360 8003CB60 0780103C */  lui        $s0, %hi((g_Spyro + 0xE))
+    /* 2D364 8003CB64 FE9F1026 */  addiu      $s0, $s0, %lo((g_Spyro + 0xE))
     /* 2D368 8003CB68 22000426 */  addiu      $a0, $s0, 0x22
     /* 2D36C 8003CB6C 0680023C */  lui        $v0, %hi(D_80066F5C)
     /* 2D370 8003CB70 5C6F428C */  lw         $v0, %lo(D_80066F5C)($v0)

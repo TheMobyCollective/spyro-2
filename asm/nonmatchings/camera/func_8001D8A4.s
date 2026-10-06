@@ -159,8 +159,8 @@ glabel func_8001D8A4
     /* E2C8 8001DAC8 00000000 */   nop
     /* E2CC 8001DACC 0680023C */  lui        $v0, %hi(D_80067F00)
     /* E2D0 8001DAD0 007F428C */  lw         $v0, %lo(D_80067F00)($v0)
-    /* E2D4 8001DAD4 0780033C */  lui        $v1, %hi(D_8006A05C)
-    /* E2D8 8001DAD8 5CA0638C */  lw         $v1, %lo(D_8006A05C)($v1)
+    /* E2D4 8001DAD4 0780033C */  lui        $v1, %hi((g_Spyro + 0x6C))
+    /* E2D8 8001DAD8 5CA0638C */  lw         $v1, %lo((g_Spyro + 0x6C))($v1)
     /* E2DC 8001DADC 00000000 */  nop
     /* E2E0 8001DAE0 23104300 */  subu       $v0, $v0, $v1
     /* E2E4 8001DAE4 00F84224 */  addiu      $v0, $v0, -0x800

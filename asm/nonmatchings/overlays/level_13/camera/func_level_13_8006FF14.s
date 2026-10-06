@@ -19,8 +19,8 @@ glabel func_level_13_8006FF14
     /* 133C4DC 8006FF40 00000000 */  nop
     /* 133C4E0 8006FF44 0E008014 */  bnez       $a0, .Llevel_13_8006FF80
     /* 133C4E4 8006FF48 00000000 */   nop
-    /* 133C4E8 8006FF4C 0780023C */  lui        $v0, %hi(D_8006A040)
-    /* 133C4EC 8006FF50 40A0428C */  lw         $v0, %lo(D_8006A040)($v0)
+    /* 133C4E8 8006FF4C 0780023C */  lui        $v0, %hi((g_Spyro + 0x50))
+    /* 133C4EC 8006FF50 40A0428C */  lw         $v0, %lo((g_Spyro + 0x50))($v0)
     /* 133C4F0 8006FF54 00000000 */  nop
     /* 133C4F4 8006FF58 80100200 */  sll        $v0, $v0, 2
     /* 133C4F8 8006FF5C 0680013C */  lui        $at, %hi(D_80061468)

@@ -68,8 +68,8 @@ glabel func_8002B4E4
     /* 1BDBC 8002B5BC 00000000 */   nop
     /* 1BDC0 8002B5C0 0680023C */  lui        $v0, %hi(D_80067ECC)
     /* 1BDC4 8002B5C4 CC7E4284 */  lh         $v0, %lo(D_80067ECC)($v0)
-    /* 1BDC8 8002B5C8 0780103C */  lui        $s0, %hi(D_8006A05C)
-    /* 1BDCC 8002B5CC 5CA0108E */  lw         $s0, %lo(D_8006A05C)($s0)
+    /* 1BDC8 8002B5C8 0780103C */  lui        $s0, %hi((g_Spyro + 0x6C))
+    /* 1BDCC 8002B5CC 5CA0108E */  lw         $s0, %lo((g_Spyro + 0x6C))($s0)
     /* 1BDD0 8002B5D0 00000000 */  nop
     /* 1BDD4 8002B5D4 23800202 */  subu       $s0, $s0, $v0
     /* 1BDD8 8002B5D8 FF0F1032 */  andi       $s0, $s0, 0xFFF

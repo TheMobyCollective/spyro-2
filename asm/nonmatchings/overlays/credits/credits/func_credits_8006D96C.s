@@ -46,8 +46,8 @@ glabel func_credits_8006D96C
     /* 2EDF3C 8006D9A0 E7006214 */  bne        $v1, $v0, .Lcredits_8006DD40
     /* 2EDF40 8006D9A4 7800B0AF */   sw        $s0, 0x78($sp)
     /* 2EDF44 8006D9A8 01000224 */  addiu      $v0, $zero, 0x1
-    /* 2EDF48 8006D9AC 0780013C */  lui        $at, %hi(D_8006A250)
-    /* 2EDF4C 8006D9B0 50A222AC */  sw         $v0, %lo(D_8006A250)($at)
+    /* 2EDF48 8006D9AC 0780013C */  lui        $at, %hi((g_Spyro + 0x260))
+    /* 2EDF4C 8006D9B0 50A222AC */  sw         $v0, %lo((g_Spyro + 0x260))($at)
     /* 2EDF50 8006D9B4 F955010C */  jal        func_800557E4
     /* 2EDF54 8006D9B8 21200000 */   addu      $a0, $zero, $zero
     /* 2EDF58 8006D9BC 0200023C */  lui        $v0, (0x2C000 >> 16)

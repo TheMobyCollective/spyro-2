@@ -233,25 +233,25 @@ glabel func_level_26_80077F20
     /* 1DBAEBC 80078120 AFE10108 */  j          .Llevel_26_800786BC
     /* 1DBAEC0 80078124 2000422C */   sltiu     $v0, $v0, 0x20
   .Llevel_26_80078128:
-    /* 1DBAEC4 80078128 0780033C */  lui        $v1, %hi(D_8006A040)
-    /* 1DBAEC8 8007812C 40A0638C */  lw         $v1, %lo(D_8006A040)($v1)
+    /* 1DBAEC4 80078128 0780033C */  lui        $v1, %hi((g_Spyro + 0x50))
+    /* 1DBAEC8 8007812C 40A0638C */  lw         $v1, %lo((g_Spyro + 0x50))($v1)
     /* 1DBAECC 80078130 1E000224 */  addiu      $v0, $zero, 0x1E
     /* 1DBAED0 80078134 06006214 */  bne        $v1, $v0, .Llevel_26_80078150
     /* 1DBAED4 80078138 00000000 */   nop
-    /* 1DBAED8 8007813C 0780023C */  lui        $v0, %hi(D_8006A248)
-    /* 1DBAEDC 80078140 48A2428C */  lw         $v0, %lo(D_8006A248)($v0)
+    /* 1DBAED8 8007813C 0780023C */  lui        $v0, %hi((g_Spyro + 0x258))
+    /* 1DBAEDC 80078140 48A2428C */  lw         $v0, %lo((g_Spyro + 0x258))($v0)
     /* 1DBAEE0 80078144 00000000 */  nop
     /* 1DBAEE4 80078148 04034004 */  bltz       $v0, .Llevel_26_80078D5C
     /* 1DBAEE8 8007814C 00000000 */   nop
   .Llevel_26_80078150:
-    /* 1DBAEEC 80078150 0780053C */  lui        $a1, %hi(D_8006A250)
-    /* 1DBAEF0 80078154 50A2A524 */  addiu      $a1, $a1, %lo(D_8006A250)
+    /* 1DBAEEC 80078150 0780053C */  lui        $a1, %hi((g_Spyro + 0x260))
+    /* 1DBAEF0 80078154 50A2A524 */  addiu      $a1, $a1, %lo((g_Spyro + 0x260))
     /* 1DBAEF4 80078158 0000A28C */  lw         $v0, 0x0($a1)
     /* 1DBAEF8 8007815C 00000000 */  nop
     /* 1DBAEFC 80078160 FE024014 */  bnez       $v0, .Llevel_26_80078D5C
     /* 1DBAF00 80078164 00000000 */   nop
-    /* 1DBAF04 80078168 0780023C */  lui        $v0, %hi(D_8006A24C)
-    /* 1DBAF08 8007816C 4CA2428C */  lw         $v0, %lo(D_8006A24C)($v0)
+    /* 1DBAF04 80078168 0780023C */  lui        $v0, %hi((g_Spyro + 0x25C))
+    /* 1DBAF08 8007816C 4CA2428C */  lw         $v0, %lo((g_Spyro + 0x25C))($v0)
     /* 1DBAF0C 80078170 00000000 */  nop
     /* 1DBAF10 80078174 F9024010 */  beqz       $v0, .Llevel_26_80078D5C
     /* 1DBAF14 80078178 1000A427 */   addiu     $a0, $sp, 0x10

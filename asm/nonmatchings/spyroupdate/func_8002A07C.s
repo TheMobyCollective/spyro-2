@@ -6,8 +6,8 @@ nonmatching func_8002A07C, 0xE8
 glabel func_8002A07C
     /* 1A87C 8002A07C E8FFBD27 */  addiu      $sp, $sp, -0x18
     /* 1A880 8002A080 1000B0AF */  sw         $s0, 0x10($sp)
-    /* 1A884 8002A084 0780103C */  lui        $s0, %hi(D_8006A06C)
-    /* 1A888 8002A088 6CA01026 */  addiu      $s0, $s0, %lo(D_8006A06C)
+    /* 1A884 8002A084 0780103C */  lui        $s0, %hi((g_Spyro + 0x7C))
+    /* 1A888 8002A088 6CA01026 */  addiu      $s0, $s0, %lo((g_Spyro + 0x7C))
     /* 1A88C 8002A08C 1400BFAF */  sw         $ra, 0x14($sp)
     /* 1A890 8002A090 686F000C */  jal        func_8001BDA0
     /* 1A894 8002A094 21200002 */   addu      $a0, $s0, $zero
@@ -35,8 +35,8 @@ glabel func_8002A07C
     /* 1A8EC 8002A0EC 00000000 */   nop
     /* 1A8F0 8002A0F0 F9C4000C */  jal        func_800313E4
     /* 1A8F4 8002A0F4 00000000 */   nop
-    /* 1A8F8 8002A0F8 0780033C */  lui        $v1, %hi(D_8006A048)
-    /* 1A8FC 8002A0FC 48A0638C */  lw         $v1, %lo(D_8006A048)($v1)
+    /* 1A8F8 8002A0F8 0780033C */  lui        $v1, %hi((g_Spyro + 0x58))
+    /* 1A8FC 8002A0FC 48A0638C */  lw         $v1, %lo((g_Spyro + 0x58))($v1)
     /* 1A900 8002A100 06000224 */  addiu      $v0, $zero, 0x6
     /* 1A904 8002A104 06006214 */  bne        $v1, $v0, .L8002A120
     /* 1A908 8002A108 3F000424 */   addiu     $a0, $zero, 0x3F
@@ -51,13 +51,13 @@ glabel func_8002A07C
     /* 1A928 8002A128 00000000 */  nop
     /* 1A92C 8002A12C 08004010 */  beqz       $v0, .L8002A150
     /* 1A930 8002A130 00000000 */   nop
-    /* 1A934 8002A134 0780023C */  lui        $v0, %hi(D_8006A001)
-    /* 1A938 8002A138 01A04290 */  lbu        $v0, %lo(D_8006A001)($v0)
+    /* 1A934 8002A134 0780023C */  lui        $v0, %hi((g_Spyro + 0x11))
+    /* 1A938 8002A138 01A04290 */  lbu        $v0, %lo((g_Spyro + 0x11))($v0)
     /* 1A93C 8002A13C 00000000 */  nop
     /* 1A940 8002A140 03004014 */  bnez       $v0, .L8002A150
     /* 1A944 8002A144 01000224 */   addiu     $v0, $zero, 0x1
-    /* 1A948 8002A148 0780013C */  lui        $at, %hi(D_8006A001)
-    /* 1A94C 8002A14C 01A022A0 */  sb         $v0, %lo(D_8006A001)($at)
+    /* 1A948 8002A148 0780013C */  lui        $at, %hi((g_Spyro + 0x11))
+    /* 1A94C 8002A14C 01A022A0 */  sb         $v0, %lo((g_Spyro + 0x11))($at)
   .L8002A150:
     /* 1A950 8002A150 1400BF8F */  lw         $ra, 0x14($sp)
     /* 1A954 8002A154 1000B08F */  lw         $s0, 0x10($sp)

@@ -610,8 +610,8 @@ glabel func_titlescreen_and_loading_8007501C
     /* 2B574 800757D8 06004230 */  andi       $v0, $v0, 0x6
     /* 2B578 800757DC 0E004224 */  addiu      $v0, $v0, 0xE
     /* 2B57C 800757E0 0A0002A2 */  sb         $v0, 0xA($s0)
-    /* 2B580 800757E4 0780033C */  lui        $v1, %hi(D_80069FFE)
-    /* 2B584 800757E8 FE9F6390 */  lbu        $v1, %lo(D_80069FFE)($v1)
+    /* 2B580 800757E4 0780033C */  lui        $v1, %hi((g_Spyro + 0xE))
+    /* 2B584 800757E8 FE9F6390 */  lbu        $v1, %lo((g_Spyro + 0xE))($v1)
     /* 2B588 800757EC 20000224 */  addiu      $v0, $zero, 0x20
     /* 2B58C 800757F0 0C0002A2 */  sb         $v0, 0xC($s0)
     /* 2B590 800757F4 0D0002A2 */  sb         $v0, 0xD($s0)

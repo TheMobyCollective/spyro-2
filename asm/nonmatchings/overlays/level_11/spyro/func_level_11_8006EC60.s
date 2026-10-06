@@ -4,8 +4,8 @@
 nonmatching func_level_11_8006EC60, 0x120
 
 glabel func_level_11_8006EC60
-    /* F2A1FC 8006EC60 0780033C */  lui        $v1, %hi(D_8006A004)
-    /* F2A200 8006EC64 04A06390 */  lbu        $v1, %lo(D_8006A004)($v1)
+    /* F2A1FC 8006EC60 0780033C */  lui        $v1, %hi((g_Spyro + 0x14))
+    /* F2A200 8006EC64 04A06390 */  lbu        $v1, %lo((g_Spyro + 0x14))($v1)
     /* F2A204 8006EC68 E0FFBD27 */  addiu      $sp, $sp, -0x20
     /* F2A208 8006EC6C 1800BFAF */  sw         $ra, 0x18($sp)
     /* F2A20C 8006EC70 1400B1AF */  sw         $s1, 0x14($sp)
@@ -19,8 +19,8 @@ glabel func_level_11_8006EC60
     /* F2A22C 8006EC90 32000224 */   addiu     $v0, $zero, 0x32
     /* F2A230 8006EC94 34006214 */  bne        $v1, $v0, .Llevel_11_8006ED68
     /* F2A234 8006EC98 03000224 */   addiu     $v0, $zero, 0x3
-    /* F2A238 8006EC9C 0780033C */  lui        $v1, %hi(D_8006A006)
-    /* F2A23C 8006ECA0 06A06390 */  lbu        $v1, %lo(D_8006A006)($v1)
+    /* F2A238 8006EC9C 0780033C */  lui        $v1, %hi((g_Spyro + 0x16))
+    /* F2A23C 8006ECA0 06A06390 */  lbu        $v1, %lo((g_Spyro + 0x16))($v1)
     /* F2A240 8006ECA4 00000000 */  nop
     /* F2A244 8006ECA8 03006210 */  beq        $v1, $v0, .Llevel_11_8006ECB8
     /* F2A248 8006ECAC 0A000224 */   addiu     $v0, $zero, 0xA
@@ -33,11 +33,11 @@ glabel func_level_11_8006EC60
     /* F2A260 8006ECC4 11004490 */  lbu        $a0, 0x11($v0)
     /* F2A264 8006ECC8 C841010C */  jal        func_80050720
     /* F2A268 8006ECCC 21300000 */   addu      $a2, $zero, $zero
-    /* F2A26C 8006ECD0 0780033C */  lui        $v1, %hi(D_8006A006)
-    /* F2A270 8006ECD4 06A06390 */  lbu        $v1, %lo(D_8006A006)($v1)
+    /* F2A26C 8006ECD0 0780033C */  lui        $v1, %hi((g_Spyro + 0x16))
+    /* F2A270 8006ECD4 06A06390 */  lbu        $v1, %lo((g_Spyro + 0x16))($v1)
     /* F2A274 8006ECD8 21204000 */  addu       $a0, $v0, $zero
-    /* F2A278 8006ECDC 0780013C */  lui        $at, %hi(D_8006A268)
-    /* F2A27C 8006ECE0 68A223AC */  sw         $v1, %lo(D_8006A268)($at)
+    /* F2A278 8006ECDC 0780013C */  lui        $at, %hi((g_Spyro + 0x278))
+    /* F2A27C 8006ECE0 68A223AC */  sw         $v1, %lo((g_Spyro + 0x278))($at)
     /* F2A280 8006ECE4 20008004 */  bltz       $a0, .Llevel_11_8006ED68
     /* F2A284 8006ECE8 0A000224 */   addiu     $v0, $zero, 0xA
     /* F2A288 8006ECEC 1C006210 */  beq        $v1, $v0, .Llevel_11_8006ED60
@@ -45,8 +45,8 @@ glabel func_level_11_8006EC60
     /* F2A290 8006ECF4 5ABB0108 */  j          .Llevel_11_8006ED68
     /* F2A294 8006ECF8 00000000 */   nop
   .Llevel_11_8006ECFC:
-    /* F2A298 8006ECFC 0780033C */  lui        $v1, %hi(D_8006A006)
-    /* F2A29C 8006ED00 06A06390 */  lbu        $v1, %lo(D_8006A006)($v1)
+    /* F2A298 8006ECFC 0780033C */  lui        $v1, %hi((g_Spyro + 0x16))
+    /* F2A29C 8006ED00 06A06390 */  lbu        $v1, %lo((g_Spyro + 0x16))($v1)
     /* F2A2A0 8006ED04 01001124 */  addiu      $s1, $zero, 0x1
     /* F2A2A4 8006ED08 03007110 */  beq        $v1, $s1, .Llevel_11_8006ED18
     /* F2A2A8 8006ED0C 03000224 */   addiu     $v0, $zero, 0x3
@@ -59,11 +59,11 @@ glabel func_level_11_8006EC60
     /* F2A2C0 8006ED24 11004490 */  lbu        $a0, 0x11($v0)
     /* F2A2C4 8006ED28 C841010C */  jal        func_80050720
     /* F2A2C8 8006ED2C 21300000 */   addu      $a2, $zero, $zero
-    /* F2A2CC 8006ED30 0780033C */  lui        $v1, %hi(D_8006A006)
-    /* F2A2D0 8006ED34 06A06390 */  lbu        $v1, %lo(D_8006A006)($v1)
+    /* F2A2CC 8006ED30 0780033C */  lui        $v1, %hi((g_Spyro + 0x16))
+    /* F2A2D0 8006ED34 06A06390 */  lbu        $v1, %lo((g_Spyro + 0x16))($v1)
     /* F2A2D4 8006ED38 21804000 */  addu       $s0, $v0, $zero
-    /* F2A2D8 8006ED3C 0780013C */  lui        $at, %hi(D_8006A268)
-    /* F2A2DC 8006ED40 68A223AC */  sw         $v1, %lo(D_8006A268)($at)
+    /* F2A2D8 8006ED3C 0780013C */  lui        $at, %hi((g_Spyro + 0x278))
+    /* F2A2DC 8006ED40 68A223AC */  sw         $v1, %lo((g_Spyro + 0x278))($at)
     /* F2A2E0 8006ED44 08000006 */  bltz       $s0, .Llevel_11_8006ED68
     /* F2A2E4 8006ED48 00000000 */   nop
     /* F2A2E8 8006ED4C 06007114 */  bne        $v1, $s1, .Llevel_11_8006ED68

@@ -13,8 +13,8 @@ glabel func_8002E304
     /* 1EB1C 8002E31C 2000B2AF */  sw         $s2, 0x20($sp)
     /* 1EB20 8002E320 2E004018 */  blez       $v0, .L8002E3DC
     /* 1EB24 8002E324 1C00B1AF */   sw        $s1, 0x1C($sp)
-    /* 1EB28 8002E328 0780113C */  lui        $s1, %hi(D_8006A1E0)
-    /* 1EB2C 8002E32C E0A13126 */  addiu      $s1, $s1, %lo(D_8006A1E0)
+    /* 1EB28 8002E328 0780113C */  lui        $s1, %hi((g_Spyro + 0x1F0))
+    /* 1EB2C 8002E32C E0A13126 */  addiu      $s1, $s1, %lo((g_Spyro + 0x1F0))
     /* 1EB30 8002E330 7CFF3226 */  addiu      $s2, $s1, -0x84
   .L8002E334:
     /* 1EB34 8002E334 0000228E */  lw         $v0, 0x0($s1)

@@ -18,8 +18,8 @@ glabel func_level_55_80070628
     /* 3D20BEC 80070650 0680113C */  lui        $s1, %hi(D_80067ED4)
     /* 3D20BF0 80070654 D47E3126 */  addiu      $s1, $s1, %lo(D_80067ED4)
     /* 3D20BF4 80070658 10002426 */  addiu      $a0, $s1, 0x10
-    /* 3D20BF8 8007065C 0780123C */  lui        $s2, %hi(D_80069FF0)
-    /* 3D20BFC 80070660 F09F5226 */  addiu      $s2, $s2, %lo(D_80069FF0)
+    /* 3D20BF8 8007065C 0780123C */  lui        $s2, %hi(g_Spyro)
+    /* 3D20BFC 80070660 F09F5226 */  addiu      $s2, $s2, %lo(g_Spyro)
     /* 3D20C00 80070664 01000224 */  addiu      $v0, $zero, 0x1
     /* 3D20C04 80070668 000020AE */  sw         $zero, 0x0($s1)
     /* 3D20C08 8007066C 0680013C */  lui        $at, %hi(D_80067FC4)
@@ -37,8 +37,8 @@ glabel func_level_55_80070628
     /* 3D20C38 8007069C 2C003026 */  addiu      $s0, $s1, 0x2C
     /* 3D20C3C 800706A0 21200002 */  addu       $a0, $s0, $zero
     /* 3D20C40 800706A4 D8FF2526 */  addiu      $a1, $s1, -0x28
-    /* 3D20C44 800706A8 0780023C */  lui        $v0, %hi(D_8006A05C)
-    /* 3D20C48 800706AC 5CA0428C */  lw         $v0, %lo(D_8006A05C)($v0)
+    /* 3D20C44 800706A8 0780023C */  lui        $v0, %hi((g_Spyro + 0x6C))
+    /* 3D20C48 800706AC 5CA0428C */  lw         $v0, %lo((g_Spyro + 0x6C))($v0)
     /* 3D20C4C 800706B0 0680013C */  lui        $at, %hi(D_80067EF0)
     /* 3D20C50 800706B4 F07E22AC */  sw         $v0, %lo(D_80067EF0)($at)
     /* 3D20C54 800706B8 867B000C */  jal        func_8001EE18

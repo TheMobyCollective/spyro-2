@@ -32,8 +32,8 @@ glabel func_level_46_8006EAC0
     /* 35828BC 8006EB20 00000000 */   nop
   .Llevel_46_8006EB24:
     /* 35828C0 8006EB24 28FF4426 */  addiu      $a0, $s2, -0xD8
-    /* 35828C4 8006EB28 0780103C */  lui        $s0, %hi(D_80069FF0)
-    /* 35828C8 8006EB2C F09F1026 */  addiu      $s0, $s0, %lo(D_80069FF0)
+    /* 35828C4 8006EB28 0780103C */  lui        $s0, %hi(g_Spyro)
+    /* 35828C8 8006EB2C F09F1026 */  addiu      $s0, $s0, %lo(g_Spyro)
     /* 35828CC 8006EB30 6C6F000C */  jal        func_8001BDB0
     /* 35828D0 8006EB34 21280002 */   addu      $a1, $s0, $zero
     /* 35828D4 8006EB38 1000A427 */  addiu      $a0, $sp, 0x10

@@ -423,25 +423,25 @@ glabel func_level_41_8007F9D0
     /* 2BCB414 8007FE78 AD010208 */  j          .Llevel_41_800806B4
     /* 2BCB418 8007FE7C 090023A2 */   sb        $v1, 0x9($s1)
   .Llevel_41_8007FE80:
-    /* 2BCB41C 8007FE80 0780033C */  lui        $v1, %hi(D_8006A040)
-    /* 2BCB420 8007FE84 40A0638C */  lw         $v1, %lo(D_8006A040)($v1)
+    /* 2BCB41C 8007FE80 0780033C */  lui        $v1, %hi((g_Spyro + 0x50))
+    /* 2BCB420 8007FE84 40A0638C */  lw         $v1, %lo((g_Spyro + 0x50))($v1)
     /* 2BCB424 8007FE88 1E000224 */  addiu      $v0, $zero, 0x1E
     /* 2BCB428 8007FE8C 06006214 */  bne        $v1, $v0, .Llevel_41_8007FEA8
     /* 2BCB42C 8007FE90 00000000 */   nop
-    /* 2BCB430 8007FE94 0780023C */  lui        $v0, %hi(D_8006A248)
-    /* 2BCB434 8007FE98 48A2428C */  lw         $v0, %lo(D_8006A248)($v0)
+    /* 2BCB430 8007FE94 0780023C */  lui        $v0, %hi((g_Spyro + 0x258))
+    /* 2BCB434 8007FE98 48A2428C */  lw         $v0, %lo((g_Spyro + 0x258))($v0)
     /* 2BCB438 8007FE9C 00000000 */  nop
     /* 2BCB43C 8007FEA0 E6034004 */  bltz       $v0, .Llevel_41_80080E3C
     /* 2BCB440 8007FEA4 00000000 */   nop
   .Llevel_41_8007FEA8:
-    /* 2BCB444 8007FEA8 0780053C */  lui        $a1, %hi(D_8006A250)
-    /* 2BCB448 8007FEAC 50A2A524 */  addiu      $a1, $a1, %lo(D_8006A250)
+    /* 2BCB444 8007FEA8 0780053C */  lui        $a1, %hi((g_Spyro + 0x260))
+    /* 2BCB448 8007FEAC 50A2A524 */  addiu      $a1, $a1, %lo((g_Spyro + 0x260))
     /* 2BCB44C 8007FEB0 0000A28C */  lw         $v0, 0x0($a1)
     /* 2BCB450 8007FEB4 00000000 */  nop
     /* 2BCB454 8007FEB8 E0034014 */  bnez       $v0, .Llevel_41_80080E3C
     /* 2BCB458 8007FEBC 00000000 */   nop
-    /* 2BCB45C 8007FEC0 0780023C */  lui        $v0, %hi(D_8006A24C)
-    /* 2BCB460 8007FEC4 4CA2428C */  lw         $v0, %lo(D_8006A24C)($v0)
+    /* 2BCB45C 8007FEC0 0780023C */  lui        $v0, %hi((g_Spyro + 0x25C))
+    /* 2BCB460 8007FEC4 4CA2428C */  lw         $v0, %lo((g_Spyro + 0x25C))($v0)
     /* 2BCB464 8007FEC8 00000000 */  nop
     /* 2BCB468 8007FECC DB034010 */  beqz       $v0, .Llevel_41_80080E3C
     /* 2BCB46C 8007FED0 2000B027 */   addiu     $s0, $sp, 0x20

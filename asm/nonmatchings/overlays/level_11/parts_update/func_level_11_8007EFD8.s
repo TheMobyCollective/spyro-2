@@ -381,25 +381,25 @@ glabel func_level_11_8007EFD8
     /* F3A984 8007F3E8 C3FE0108 */  j          .Llevel_11_8007FB0C
     /* F3A988 8007F3EC 090023A2 */   sb        $v1, 0x9($s1)
   .Llevel_11_8007F3F0:
-    /* F3A98C 8007F3F0 0780033C */  lui        $v1, %hi(D_8006A040)
-    /* F3A990 8007F3F4 40A0638C */  lw         $v1, %lo(D_8006A040)($v1)
+    /* F3A98C 8007F3F0 0780033C */  lui        $v1, %hi((g_Spyro + 0x50))
+    /* F3A990 8007F3F4 40A0638C */  lw         $v1, %lo((g_Spyro + 0x50))($v1)
     /* F3A994 8007F3F8 1E000224 */  addiu      $v0, $zero, 0x1E
     /* F3A998 8007F3FC 06006214 */  bne        $v1, $v0, .Llevel_11_8007F418
     /* F3A99C 8007F400 00000000 */   nop
-    /* F3A9A0 8007F404 0780023C */  lui        $v0, %hi(D_8006A248)
-    /* F3A9A4 8007F408 48A2428C */  lw         $v0, %lo(D_8006A248)($v0)
+    /* F3A9A0 8007F404 0780023C */  lui        $v0, %hi((g_Spyro + 0x258))
+    /* F3A9A4 8007F408 48A2428C */  lw         $v0, %lo((g_Spyro + 0x258))($v0)
     /* F3A9A8 8007F40C 00000000 */  nop
     /* F3A9AC 8007F410 86034004 */  bltz       $v0, .Llevel_11_8008022C
     /* F3A9B0 8007F414 00000000 */   nop
   .Llevel_11_8007F418:
-    /* F3A9B4 8007F418 0780053C */  lui        $a1, %hi(D_8006A250)
-    /* F3A9B8 8007F41C 50A2A524 */  addiu      $a1, $a1, %lo(D_8006A250)
+    /* F3A9B4 8007F418 0780053C */  lui        $a1, %hi((g_Spyro + 0x260))
+    /* F3A9B8 8007F41C 50A2A524 */  addiu      $a1, $a1, %lo((g_Spyro + 0x260))
     /* F3A9BC 8007F420 0000A28C */  lw         $v0, 0x0($a1)
     /* F3A9C0 8007F424 00000000 */  nop
     /* F3A9C4 8007F428 80034014 */  bnez       $v0, .Llevel_11_8008022C
     /* F3A9C8 8007F42C 00000000 */   nop
-    /* F3A9CC 8007F430 0780023C */  lui        $v0, %hi(D_8006A24C)
-    /* F3A9D0 8007F434 4CA2428C */  lw         $v0, %lo(D_8006A24C)($v0)
+    /* F3A9CC 8007F430 0780023C */  lui        $v0, %hi((g_Spyro + 0x25C))
+    /* F3A9D0 8007F434 4CA2428C */  lw         $v0, %lo((g_Spyro + 0x25C))($v0)
     /* F3A9D4 8007F438 00000000 */  nop
     /* F3A9D8 8007F43C 7B034010 */  beqz       $v0, .Llevel_11_8008022C
     /* F3A9DC 8007F440 2000B027 */   addiu     $s0, $sp, 0x20
