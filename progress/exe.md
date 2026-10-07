@@ -320,7 +320,7 @@
 - [x] func_80012B84
 - [x] func_80012C1C
 - [x] func_80012C58
-- [ ] func_80012CBC
+- [x] func_80012CBC
 - [x] func_80013690
 - [x] func_8001379C
 - [x] func_80013810

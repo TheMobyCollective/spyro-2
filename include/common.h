@@ -1,6 +1,8 @@
 #include "include_asm.h"
 #include <sys/types.h>
 
+#define nullptr ((void *)0)
+
 /*** Maths ***/
 
 typedef struct {
