@@ -1,3 +1,6 @@
+#ifndef __DRAW_H
+#define __DRAW_H
+
 extern void func_800155A0(int);                                 /* extern */
 extern void func_8004D104(int);                                 /* extern */
 extern void func_80052B88();                                  /* extern */
@@ -47,3 +50,5 @@ void func_800540B0();                                  /* extern */
 extern int D_80066F68;
 extern int D_80067150;
 extern Unk_80069F30 D_80069F30[];
+
+#endif

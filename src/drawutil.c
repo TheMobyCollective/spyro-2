@@ -105,7 +105,6 @@ INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004DD28);
 // https://decomp.me/scratch/UY60J
 //INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004DD94);
 void func_8004DD94(void) {
-    int sp10;
     Rect sp12;
 
     func_800557E4(0);
@@ -114,10 +113,10 @@ void func_8004DD94(void) {
     do {
 
     } while (func_8005A15C(0) == 0);
-    sp12.x = 0x200;
-    sp12.y = 0x80;
-    sp12.w = 0xC0;
-    sp12.h = 0x40;
+    sp12.x = 512;
+    sp12.y = 128;
+    sp12.w = 192;
+    sp12.h = 64;
     func_800559F8(&sp12, D_8006B29C);
     func_800557E4(0);
     D_80069918 = 0;

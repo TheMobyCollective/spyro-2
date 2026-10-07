@@ -4,8 +4,8 @@
 nonmatching func_8002BD70, 0x4C
 
 glabel func_8002BD70
-    /* 1C570 8002BD70 0780073C */  lui        $a3, %hi(D_8006A0A4)
-    /* 1C574 8002BD74 A4A0E724 */  addiu      $a3, $a3, %lo(D_8006A0A4)
+    /* 1C570 8002BD70 0780073C */  lui        $a3, %hi((g_Spyro + 0xB4))
+    /* 1C574 8002BD74 A4A0E724 */  addiu      $a3, $a3, %lo((g_Spyro + 0xB4))
     /* 1C578 8002BD78 0000E68C */  lw         $a2, 0x0($a3)
     /* 1C57C 8002BD7C 0400E38C */  lw         $v1, 0x4($a3)
     /* 1C580 8002BD80 00000000 */  nop

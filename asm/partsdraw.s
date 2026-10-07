@@ -25,8 +25,8 @@ glabel func_80048128
     /* 38954 80048154 24003DAC */  sw         $sp, 0x24($at)
     /* 38958 80048158 28003EAC */  sw         $fp, 0x28($at)
     /* 3895C 8004815C 2C003FAC */  sw         $ra, 0x2C($at)
-    /* 38960 80048160 0680013C */  lui        $at, %hi(D_80067E84)
-    /* 38964 80048164 847E2124 */  addiu      $at, $at, %lo(D_80067E84)
+    /* 38960 80048160 0680013C */  lui        $at, %hi(g_Camera)
+    /* 38964 80048164 847E2124 */  addiu      $at, $at, %lo(g_Camera)
     /* 38968 80048168 00002A8C */  lw         $t2, 0x0($at)
     /* 3896C 8004816C 04002B8C */  lw         $t3, 0x4($at)
     /* 38970 80048170 08002C8C */  lw         $t4, 0x8($at)
@@ -40,8 +40,8 @@ glabel func_80048128
     /* 38990 80048190 0028C048 */  ctc2       $zero, $5 /* handwritten instruction */
     /* 38994 80048194 0030C048 */  ctc2       $zero, $6 /* handwritten instruction */
     /* 38998 80048198 0038C048 */  ctc2       $zero, $7 /* handwritten instruction */
-    /* 3899C 8004819C 0680013C */  lui        $at, %hi(D_80067E84)
-    /* 389A0 800481A0 847E2124 */  addiu      $at, $at, %lo(D_80067E84)
+    /* 3899C 8004819C 0680013C */  lui        $at, %hi(g_Camera)
+    /* 389A0 800481A0 847E2124 */  addiu      $at, $at, %lo(g_Camera)
     /* 389A4 800481A4 2800378C */  lw         $s7, 0x28($at)
     /* 389A8 800481A8 2C00388C */  lw         $t8, 0x2C($at)
     /* 389AC 800481AC 3000398C */  lw         $t9, 0x30($at)

@@ -1,3 +1,6 @@
+#ifndef __INIT_H
+#define __INIT_H
+
 extern void func_800518EC(); //func_800518EC InitSound
 
 extern void func_80013810(int, int, int, int); //func_80013810 fLoadFromDisc
@@ -8,7 +11,7 @@ extern int func_80058858(int, char*, int); //func_80058858 CdControl
 extern int D_80011110; //ptrOverlayStart
 extern unsigned int D_800676D8; //wadHeader
 extern int D_800682D8; //wadSector
-extern void func_8001379C;
+extern void func_8001379C();
 
 extern void func_8004C484();                                  /* extern */
 extern void func_8005557C(int);                                 /* extern */
@@ -45,8 +48,10 @@ extern void func_80058408();                                  /* extern */
 extern unsigned char D_80068374;
 extern char D_8006A95C;
 extern char D_8006AB4C;
-extern void func_800125C8;
+extern void func_800125C8();
 
 extern void func_titlescreen_and_loading_8007CC38(int); //func_titlescreen_and_loading_8007CC38
 
 extern void func_8001D7E8(); //func_8001D7E8
+
+#endif

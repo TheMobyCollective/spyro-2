@@ -1,3 +1,6 @@
+#ifndef __UPDATE_H
+#define __UPDATE_H
+
 void func_titlescreen_and_loading_80079DF0();          /* extern */
 
 void func_80050AAC();                                  /* extern */
@@ -66,5 +69,6 @@ void func_80050D38();                                  /* extern */
 void func_titlescreen_and_loading_800742F8();          /* extern */
 extern void (*D_80066F84)();
 
-extern int D_80067ED4;
 
+
+#endif

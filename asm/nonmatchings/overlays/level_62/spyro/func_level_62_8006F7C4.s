@@ -71,8 +71,8 @@ glabel func_level_62_8006F7C4
     /* 40B3564 8006F7C8 00210400 */  sll        $a0, $a0, 4
     /* 40B3568 8006F7CC 0780023C */  lui        $v0, %hi(D_800683B0)
     /* 40B356C 8006F7D0 B0834224 */  addiu      $v0, $v0, %lo(D_800683B0)
-    /* 40B3570 8006F7D4 0780033C */  lui        $v1, %hi(D_8006A040)
-    /* 40B3574 8006F7D8 40A0638C */  lw         $v1, %lo(D_8006A040)($v1)
+    /* 40B3570 8006F7D4 0780033C */  lui        $v1, %hi((g_Spyro + 0x50))
+    /* 40B3574 8006F7D8 40A0638C */  lw         $v1, %lo((g_Spyro + 0x50))($v1)
     /* 40B3578 8006F7DC 21208200 */  addu       $a0, $a0, $v0
     /* 40B357C 8006F7E0 1000BFAF */  sw         $ra, 0x10($sp)
     /* 40B3580 8006F7E4 0680013C */  lui        $at, %hi(D_80066F38)
@@ -88,15 +88,15 @@ glabel func_level_62_8006F7C4
     /* 40B35A8 8006F80C 08004000 */  jr         $v0
     /* 40B35AC 8006F810 00000000 */   nop
   .Llevel_62_8006F814:
-    /* 40B35B0 8006F814 0780043C */  lui        $a0, %hi(D_8006A044)
-    /* 40B35B4 8006F818 44A08424 */  addiu      $a0, $a0, %lo(D_8006A044)
+    /* 40B35B0 8006F814 0780043C */  lui        $a0, %hi((g_Spyro + 0x54))
+    /* 40B35B4 8006F818 44A08424 */  addiu      $a0, $a0, %lo((g_Spyro + 0x54))
     /* 40B35B8 8006F81C 0000838C */  lw         $v1, 0x0($a0)
     /* 40B35BC 8006F820 01000224 */  addiu      $v0, $zero, 0x1
     /* 40B35C0 8006F824 07006210 */  beq        $v1, $v0, .Llevel_62_8006F844
     /* 40B35C4 8006F828 00000000 */   nop
   .Llevel_62_8006F82C:
-    /* 40B35C8 8006F82C 0780043C */  lui        $a0, %hi(D_8006A0C4)
-    /* 40B35CC 8006F830 C4A08424 */  addiu      $a0, $a0, %lo(D_8006A0C4)
+    /* 40B35C8 8006F82C 0780043C */  lui        $a0, %hi((g_Spyro + 0xD4))
+    /* 40B35CC 8006F830 C4A08424 */  addiu      $a0, $a0, %lo((g_Spyro + 0xD4))
     /* 40B35D0 8006F834 E3B6000C */  jal        func_8002DB8C
     /* 40B35D4 8006F838 00000000 */   nop
     /* 40B35D8 8006F83C 19BE0108 */  j          .Llevel_62_8006F864
@@ -107,8 +107,8 @@ glabel func_level_62_8006F7C4
     /* 40B35E8 8006F84C 19BE0108 */  j          .Llevel_62_8006F864
     /* 40B35EC 8006F850 00000000 */   nop
   .Llevel_62_8006F854:
-    /* 40B35F0 8006F854 0780043C */  lui        $a0, %hi(D_8006A0D0)
-    /* 40B35F4 8006F858 D0A08424 */  addiu      $a0, $a0, %lo(D_8006A0D0)
+    /* 40B35F0 8006F854 0780043C */  lui        $a0, %hi((g_Spyro + 0xE0))
+    /* 40B35F4 8006F858 D0A08424 */  addiu      $a0, $a0, %lo((g_Spyro + 0xE0))
     /* 40B35F8 8006F85C 03B8000C */  jal        func_8002E00C
     /* 40B35FC 8006F860 00000000 */   nop
   .Llevel_62_8006F864:

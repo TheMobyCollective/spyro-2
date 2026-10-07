@@ -522,8 +522,8 @@ glabel func_titlescreen_and_loading_80077374
     /* 2D8A8 80077B0C 0780013C */  lui        $at, %hi(D_80068C7C)
     /* 2D8AC 80077B10 7C8C22AC */  sw         $v0, %lo(D_80068C7C)($at)
     /* 2D8B0 80077B14 01000224 */  addiu      $v0, $zero, 0x1
-    /* 2D8B4 80077B18 0780013C */  lui        $at, %hi(D_8006A250)
-    /* 2D8B8 80077B1C 50A222AC */  sw         $v0, %lo(D_8006A250)($at)
+    /* 2D8B4 80077B18 0780013C */  lui        $at, %hi((g_Spyro + 0x260))
+    /* 2D8B8 80077B1C 50A222AC */  sw         $v0, %lo((g_Spyro + 0x260))($at)
     /* 2D8BC 80077B20 12006018 */  blez       $v1, .Ltitlescreen_and_loading_80077B6C
     /* 2D8C0 80077B24 21800000 */   addu      $s0, $zero, $zero
     /* 2D8C4 80077B28 21280002 */  addu       $a1, $s0, $zero

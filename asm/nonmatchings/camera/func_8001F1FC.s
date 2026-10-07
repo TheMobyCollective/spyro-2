@@ -6,8 +6,8 @@ nonmatching func_8001F1FC, 0x50
 glabel func_8001F1FC
     /* F9FC 8001F1FC E8FFBD27 */  addiu      $sp, $sp, -0x18
     /* FA00 8001F200 21288000 */  addu       $a1, $a0, $zero
-    /* FA04 8001F204 0680043C */  lui        $a0, %hi(D_80067FEC)
-    /* FA08 8001F208 EC7F8424 */  addiu      $a0, $a0, %lo(D_80067FEC)
+    /* FA04 8001F204 0680043C */  lui        $a0, %hi((g_Camera + 0x168))
+    /* FA08 8001F208 EC7F8424 */  addiu      $a0, $a0, %lo((g_Camera + 0x168))
     /* FA0C 8001F20C 1000BFAF */  sw         $ra, 0x10($sp)
     /* FA10 8001F210 0000838C */  lw         $v1, 0x0($a0)
     /* FA14 8001F214 00000000 */  nop

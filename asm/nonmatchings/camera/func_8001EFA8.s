@@ -4,8 +4,8 @@
 nonmatching func_8001EFA8, 0x60
 
 glabel func_8001EFA8
-    /* F7A8 8001EFA8 0680023C */  lui        $v0, %hi(D_80067ECA)
-    /* F7AC 8001EFAC CA7E4284 */  lh         $v0, %lo(D_80067ECA)($v0)
+    /* F7A8 8001EFA8 0680023C */  lui        $v0, %hi((g_Camera + 0x46))
+    /* F7AC 8001EFAC CA7E4284 */  lh         $v0, %lo((g_Camera + 0x46))($v0)
     /* F7B0 8001EFB0 0400A38C */  lw         $v1, 0x4($a1)
     /* F7B4 8001EFB4 00000000 */  nop
     /* F7B8 8001EFB8 23104300 */  subu       $v0, $v0, $v1
@@ -17,8 +17,8 @@ glabel func_8001EFA8
     /* F7D0 8001EFD0 0C0082AC */  sw         $v0, 0xC($a0)
   .L8001EFD4:
     /* F7D4 8001EFD4 0000A28C */  lw         $v0, 0x0($a1)
-    /* F7D8 8001EFD8 0680033C */  lui        $v1, %hi(D_80067ECC)
-    /* F7DC 8001EFDC CC7E6384 */  lh         $v1, %lo(D_80067ECC)($v1)
+    /* F7D8 8001EFD8 0680033C */  lui        $v1, %hi((g_Camera + 0x48))
+    /* F7DC 8001EFDC CC7E6384 */  lh         $v1, %lo((g_Camera + 0x48))($v1)
     /* F7E0 8001EFE0 00084224 */  addiu      $v0, $v0, 0x800
     /* F7E4 8001EFE4 23186200 */  subu       $v1, $v1, $v0
     /* F7E8 8001EFE8 FF0F6330 */  andi       $v1, $v1, 0xFFF

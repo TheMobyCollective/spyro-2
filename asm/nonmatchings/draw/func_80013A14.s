@@ -4,8 +4,8 @@
 nonmatching func_80013A14, 0x1B0
 
 glabel func_80013A14
-    /* 4214 80013A14 0680023C */  lui        $v0, %hi(D_80067EC4)
-    /* 4218 80013A18 C47E428C */  lw         $v0, %lo(D_80067EC4)($v0)
+    /* 4214 80013A14 0680023C */  lui        $v0, %hi((g_Camera + 0x40))
+    /* 4218 80013A18 C47E428C */  lw         $v0, %lo((g_Camera + 0x40))($v0)
     /* 421C 80013A1C E0FFBD27 */  addiu      $sp, $sp, -0x20
     /* 4220 80013A20 20004010 */  beqz       $v0, .L80013AA4
     /* 4224 80013A24 1800BFAF */   sw        $ra, 0x18($sp)

@@ -7,12 +7,12 @@ glabel func_800327F0
     /* 22FF0 800327F0 D0FFBD27 */  addiu      $sp, $sp, -0x30
     /* 22FF4 800327F4 1000A427 */  addiu      $a0, $sp, 0x10
     /* 22FF8 800327F8 2400B1AF */  sw         $s1, 0x24($sp)
-    /* 22FFC 800327FC 0680113C */  lui        $s1, %hi(D_80067EAC)
-    /* 23000 80032800 AC7E3126 */  addiu      $s1, $s1, %lo(D_80067EAC)
+    /* 22FFC 800327FC 0680113C */  lui        $s1, %hi((g_Camera + 0x28))
+    /* 23000 80032800 AC7E3126 */  addiu      $s1, $s1, %lo((g_Camera + 0x28))
     /* 23004 80032804 21282002 */  addu       $a1, $s1, $zero
     /* 23008 80032808 2000B0AF */  sw         $s0, 0x20($sp)
-    /* 2300C 8003280C 0780103C */  lui        $s0, %hi(D_80069FF0)
-    /* 23010 80032810 F09F1026 */  addiu      $s0, $s0, %lo(D_80069FF0)
+    /* 2300C 8003280C 0780103C */  lui        $s0, %hi(g_Spyro)
+    /* 23010 80032810 F09F1026 */  addiu      $s0, $s0, %lo(g_Spyro)
     /* 23014 80032814 2800BFAF */  sw         $ra, 0x28($sp)
     /* 23018 80032818 806F000C */  jal        func_8001BE00
     /* 2301C 8003281C 21300002 */   addu      $a2, $s0, $zero
@@ -54,13 +54,13 @@ glabel func_800327F0
     /* 230AC 800328AC 21300000 */   addu      $a2, $zero, $zero
     /* 230B0 800328B0 05004014 */  bnez       $v0, .L800328C8
     /* 230B4 800328B4 05000224 */   addiu     $v0, $zero, 0x5
-    /* 230B8 800328B8 0780013C */  lui        $at, %hi(D_8006A00E)
-    /* 230BC 800328BC 0EA020A0 */  sb         $zero, %lo(D_8006A00E)($at)
+    /* 230B8 800328B8 0780013C */  lui        $at, %hi((g_Spyro + 0x1E))
+    /* 230BC 800328BC 0EA020A0 */  sb         $zero, %lo((g_Spyro + 0x1E))($at)
     /* 230C0 800328C0 34CA0008 */  j          .L800328D0
     /* 230C4 800328C4 00000000 */   nop
   .L800328C8:
-    /* 230C8 800328C8 0780013C */  lui        $at, %hi(D_8006A00E)
-    /* 230CC 800328CC 0EA022A0 */  sb         $v0, %lo(D_8006A00E)($at)
+    /* 230C8 800328C8 0780013C */  lui        $at, %hi((g_Spyro + 0x1E))
+    /* 230CC 800328CC 0EA022A0 */  sb         $v0, %lo((g_Spyro + 0x1E))($at)
   .L800328D0:
     /* 230D0 800328D0 2800BF8F */  lw         $ra, 0x28($sp)
     /* 230D4 800328D4 2400B18F */  lw         $s1, 0x24($sp)

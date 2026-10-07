@@ -6,8 +6,8 @@ nonmatching func_80032AB4, 0xE0
 glabel func_80032AB4
     /* 232B4 80032AB4 C8FFBD27 */  addiu      $sp, $sp, -0x38
     /* 232B8 80032AB8 1800A427 */  addiu      $a0, $sp, 0x18
-    /* 232BC 80032ABC 0780053C */  lui        $a1, %hi(D_80069FF0)
-    /* 232C0 80032AC0 F09FA524 */  addiu      $a1, $a1, %lo(D_80069FF0)
+    /* 232BC 80032ABC 0780053C */  lui        $a1, %hi(g_Spyro)
+    /* 232C0 80032AC0 F09FA524 */  addiu      $a1, $a1, %lo(g_Spyro)
     /* 232C4 80032AC4 3000BFAF */  sw         $ra, 0x30($sp)
     /* 232C8 80032AC8 2C00B1AF */  sw         $s1, 0x2C($sp)
     /* 232CC 80032ACC 6C6F000C */  jal        func_8001BDB0
@@ -17,8 +17,8 @@ glabel func_80032AB4
     /* 232DC 80032ADC 01000624 */  addiu      $a2, $zero, 0x1
     /* 232E0 80032AE0 21380000 */  addu       $a3, $zero, $zero
     /* 232E4 80032AE4 2000A28F */  lw         $v0, 0x20($sp)
-    /* 232E8 80032AE8 0780033C */  lui        $v1, %hi(D_8006A260)
-    /* 232EC 80032AEC 60A2638C */  lw         $v1, %lo(D_8006A260)($v1)
+    /* 232E8 80032AE8 0780033C */  lui        $v1, %hi((g_Spyro + 0x270))
+    /* 232EC 80032AEC 60A2638C */  lw         $v1, %lo((g_Spyro + 0x270))($v1)
     /* 232F0 80032AF0 0800113C */  lui        $s1, (0x80000 >> 16)
     /* 232F4 80032AF4 23104300 */  subu       $v0, $v0, $v1
     /* 232F8 80032AF8 2000A2AF */  sw         $v0, 0x20($sp)

@@ -1,3 +1,7 @@
+#ifndef __STR_H
+#define __STR_H
+
+#include "common.h"
 #include <libspu.h>
 
 // CdMusic - Spyro 2 and Spyro 3 appear to have the same members and layout
@@ -31,3 +35,5 @@ extern CDState cdState; // 800682D8
 extern StreamingData streamingData; // 800682F4
 
 
+
+#endif

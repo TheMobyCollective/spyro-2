@@ -1,3 +1,8 @@
+#ifndef __SPU_H
+#define __SPU_H
+
+#include "common.h"
+
 typedef struct {
     unsigned char gemChime;
     unsigned char gemCollect;
@@ -78,3 +83,5 @@ extern SoundDefinition* D_80067068; // 80067068
 
 // bss
 extern ActiveSound g_ActiveSounds[24]; // 8006FCE4
+
+#endif

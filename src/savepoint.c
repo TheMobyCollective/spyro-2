@@ -1,4 +1,5 @@
 #include "common.h"
+#include "camera.h"
 #include "savepoint.h"
 
 // https://decomp.me/scratch/aZKLq
@@ -14,7 +15,7 @@ void func_8004C1AC(Savepoint* arg0) {
         func_8001B3C8(&D_8006718C, 0, 0x248);
     }
     func_80017164();
-    D_80067EC4 = 0;
+    g_Camera.m_0x40 = 0;
 }
 
 // Similar to func_8003B7B4 in Spyro 3

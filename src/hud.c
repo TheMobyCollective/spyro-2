@@ -25,7 +25,7 @@ INCLUDE_ASM("asm/nonmatchings/hud", func_80052328);
 //INCLUDE_ASM("asm/nonmatchings/hud", func_80052430);
 void func_80052430(int arg0, int arg1, int arg2) {
     unsigned int *primitive;
-    func_80052328();
+    func_80052328(arg0, arg1, arg2);
     primitive = func_800520CC(&D_80063544, 0xF8, arg1, 2);
     primitive[1] = 0x64C0C0C0;
     func_80052328(0xF0, arg1, arg2);

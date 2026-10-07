@@ -59,8 +59,8 @@ glabel func_8001B140
     /* B9A8 8001B1A8 A46C0008 */  j          .L8001B290
     /* B9AC 8001B1AC 00000000 */   nop
   .L8001B1B0:
-    /* B9B0 8001B1B0 0680033C */  lui        $v1, %hi(D_80067ED4)
-    /* B9B4 8001B1B4 D47E638C */  lw         $v1, %lo(D_80067ED4)($v1)
+    /* B9B0 8001B1B0 0680033C */  lui        $v1, %hi((g_Camera + 0x50))
+    /* B9B4 8001B1B4 D47E638C */  lw         $v1, %lo((g_Camera + 0x50))($v1)
     /* B9B8 8001B1B8 02000224 */  addiu      $v0, $zero, 0x2
     /* B9BC 8001B1BC 0A006214 */  bne        $v1, $v0, .L8001B1E8
     /* B9C0 8001B1C0 00000000 */   nop

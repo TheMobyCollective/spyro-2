@@ -452,8 +452,8 @@ glabel func_titlescreen_and_loading_8007490C
     /* 2AD64 80074FC8 21186200 */  addu       $v1, $v1, $v0
     /* 2AD68 80074FCC 4800A3AF */  sw         $v1, 0x48($sp)
   .Ltitlescreen_and_loading_80074FD0:
-    /* 2AD6C 80074FD0 0680103C */  lui        $s0, %hi(D_80067EAC)
-    /* 2AD70 80074FD4 AC7E1026 */  addiu      $s0, $s0, %lo(D_80067EAC)
+    /* 2AD6C 80074FD0 0680103C */  lui        $s0, %hi((g_Camera + 0x28))
+    /* 2AD70 80074FD4 AC7E1026 */  addiu      $s0, $s0, %lo((g_Camera + 0x28))
     /* 2AD74 80074FD8 21200002 */  addu       $a0, $s0, $zero
     /* 2AD78 80074FDC 6C6F000C */  jal        func_8001BDB0
     /* 2AD7C 80074FE0 2000A527 */   addiu     $a1, $sp, 0x20

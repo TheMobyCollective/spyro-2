@@ -47,11 +47,11 @@ glabel func_80038C44
     /* 294D4 80038CD4 10880000 */  mfhi       $s1
     /* 294D8 80038CD8 21300000 */  addu       $a2, $zero, $zero
     /* 294DC 80038CDC 1000458E */  lw         $a1, 0x10($s2)
-    /* 294E0 80038CE0 0780033C */  lui        $v1, %hi(D_80069FF0)
-    /* 294E4 80038CE4 F09F638C */  lw         $v1, %lo(D_80069FF0)($v1)
+    /* 294E0 80038CE0 0780033C */  lui        $v1, %hi(g_Spyro)
+    /* 294E4 80038CE4 F09F638C */  lw         $v1, %lo(g_Spyro)($v1)
     /* 294E8 80038CE8 0C00448E */  lw         $a0, 0xC($s2)
-    /* 294EC 80038CEC 0780023C */  lui        $v0, %hi(D_80069FF4)
-    /* 294F0 80038CF0 F49F428C */  lw         $v0, %lo(D_80069FF4)($v0)
+    /* 294EC 80038CEC 0780023C */  lui        $v0, %hi((g_Spyro + 0x4))
+    /* 294F0 80038CF0 F49F428C */  lw         $v0, %lo((g_Spyro + 0x4))($v0)
     /* 294F4 80038CF4 23206400 */  subu       $a0, $v1, $a0
     /* 294F8 80038CF8 23284500 */  subu       $a1, $v0, $a1
     /* 294FC 80038CFC 00811000 */  sll        $s0, $s0, 4
