@@ -15,10 +15,10 @@ typedef struct {
     int m_0x50;
     char pad_0x54[4];
     int m_0x58;
-    char m_0x5C[0x10C];
+    char pad_0x5C[0x10C];
     int m_0x168;
     int m_0x16C;
-    char m_0x170[0x84];
+    char pad_0x170[0x84];
 } Camera;
 
 extern Camera g_Camera;
