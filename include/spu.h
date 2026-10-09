@@ -2,6 +2,7 @@
 #define __SPU_H
 
 #include "common.h"
+#include <libspu.h>
 
 typedef struct {
     unsigned char gemChime;

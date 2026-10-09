@@ -46,4 +46,46 @@ INCLUDE_ASM("asm/nonmatchings/spu", func_80051548);
 
 INCLUDE_ASM("asm/nonmatchings/spu", func_80051704);
 
-INCLUDE_ASM("asm/nonmatchings/spu", func_800518EC);
+
+// SpuInitialize https://decomp.me/scratch/Bn3UN
+//INCLUDE_ASM("asm/nonmatchings/spu", func_800518EC);
+void func_800518EC(void) {
+
+    SpuCommonAttr commonAttr;
+    SpuVoiceAttr voiceAttr;
+
+    SpuInit();
+
+    commonAttr.mask = SPU_COMMON_MVOLL | SPU_COMMON_MVOLR;
+    commonAttr.mvol.right = 0x3CCC;
+    commonAttr.mvol.left = 0x3CCC;
+
+    SpuSetCommonAttr(&commonAttr);
+
+    voiceAttr.mask =
+        SPU_VOICE_VOLL | SPU_VOICE_VOLR | SPU_VOICE_PITCH |
+        SPU_VOICE_ADSR_AMODE | SPU_VOICE_ADSR_SMODE |
+        SPU_VOICE_ADSR_RMODE | SPU_VOICE_ADSR_AR |
+        SPU_VOICE_ADSR_DR | SPU_VOICE_ADSR_SR |
+        SPU_VOICE_ADSR_RR | SPU_VOICE_ADSR_SL;
+
+    voiceAttr.voice = SPU_ALLCH;
+
+    voiceAttr.volume.left = 0x2FFF;
+    voiceAttr.volume.right = 0x2FFF;
+    voiceAttr.pitch = 1024;
+
+    voiceAttr.a_mode = SPU_VOICE_LINEARIncN;
+    voiceAttr.s_mode = SPU_VOICE_LINEARIncN;
+    voiceAttr.r_mode = SPU_VOICE_LINEARDecN;
+
+    voiceAttr.ar = 0;
+    voiceAttr.dr = 0;
+    voiceAttr.sr = 0;
+    voiceAttr.rr = 0;
+    voiceAttr.sl = 15;
+
+    SpuSetVoiceAttr(&voiceAttr);
+    SpuSetKey(SPU_OFF, SPU_ALLCH);
+    SpuSetTransferMode(SPU_TRANSFER_BY_DMA);
+}

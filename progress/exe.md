@@ -246,7 +246,7 @@
 - [ ] func_80051350
 - [ ] func_80051548
 - [ ] func_80051704
-- [ ] func_800518EC
+- [x] func_800518EC
 
 <!-- spyroupdate.c -->
 - [ ] func_8002A07C
