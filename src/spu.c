@@ -2,7 +2,7 @@
 #include "spu.h"
 #include "camera.h"
 
-extern Vector3D g_Spyro;
+extern Vector3D g_Spyro; // temp until we have the proper g_Spyro struct
 
 INCLUDE_ASM("asm/nonmatchings/spu", func_80050648);
 
@@ -118,7 +118,83 @@ INCLUDE_ASM("asm/nonmatchings/spu", func_80050D38);
 
 INCLUDE_ASM("asm/nonmatchings/spu", func_80050FDC);
 
-INCLUDE_ASM("asm/nonmatchings/spu", func_80051350);
+// https://decomp.me/scratch/0F4aE
+//INCLUDE_ASM("asm/nonmatchings/spu", func_80051350);
+void func_80051350(ActiveSound *sound, SpuVoiceAttr *voiceAttr) {
+  Vector3D vec;
+  int volume;
+  int angle;
+  int angleDelta;
+  int product;
+  int leftVolume;
+  int rightVolume;
+  int magnitude;
+
+  sound->unk8 =
+      func_80051548((unsigned char)sound->unk1, &sound->unk28->position);
+
+  if (sound->unk8 <= 0) {
+    func_80050A40(sound - g_ActiveSounds);
+    return;
+  }
+
+  if (D_80066D50 != 0) {
+    func_8001BE00(&vec, &sound->unk28->position, &g_Camera.m_Position);
+
+    angle = func_8001B4B8(vec.x, vec.y, 1);
+
+    angleDelta = ((angle - g_Camera.m_0x48) >> 4) & 0xFF;
+
+    if (angleDelta >= 0x81) {
+      angleDelta -= 0x100;
+    }
+    volume = sound->unk8;
+    leftVolume = volume;
+    rightVolume = volume;
+    if (angleDelta > 0) {
+      product = D_80061C58[angleDelta] * volume;
+      magnitude = (product >= 0) ? product : -product;
+      rightVolume = magnitude >> 12;
+    } else if (angleDelta < 0) {
+      product = D_80061C58[angleDelta & 0xFF] * volume;
+      magnitude = (product >= 0) ? product : -product;
+      leftVolume = magnitude >> 12;
+    }
+  } else {
+    volume = sound->unk8;
+    leftVolume = volume;
+    rightVolume = volume;
+  }
+
+  if (D_800681C8 == 1 && (sound->unk2 & 0x80) == 0) {
+    leftVolume >>= 2;
+    rightVolume >>= 2;
+  }
+
+  if (leftVolume < 0) {
+    leftVolume = 0;
+  }
+
+  if (leftVolume >= 0x3000) {
+    leftVolume = 0x2FFF;
+  }
+
+  if (rightVolume < 0) {
+    rightVolume = 0;
+  }
+
+  if (rightVolume >= 0x3000) {
+    rightVolume = 0x2FFF;
+  }
+
+  voiceAttr->mask |= 0x3;
+
+  sound->unk14 = leftVolume;
+  voiceAttr->volume.left = leftVolume;
+
+  sound->unk10 = rightVolume;
+  voiceAttr->volume.right = rightVolume;
+}
 
 // https://decomp.me/scratch/xYFJn
 //INCLUDE_ASM("asm/nonmatchings/spu", func_80051548);
@@ -178,6 +254,7 @@ int func_80051548(int soundId, Vector3D *position) {
   return volume * D_80066D48 / 10;
 }
 
+// https://decomp.me/scratch/E8DU2
 INCLUDE_ASM("asm/nonmatchings/spu", func_80051704);
 
 

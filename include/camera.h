@@ -13,7 +13,12 @@ typedef struct {
     char pad_0x34[0xC];              // 0x34–0x3F
 
     int m_0x40;                      // 0x40
-    char pad_0x44[8];                // 0x44–0x4B
+    
+    char pad_0x44[4];                // 0x44–0x47
+    
+    short m_0x48;                    // 0x48; angle-related field
+    
+    char pad_0x4A[2];                // 0x4A–0x4B
 
     int m_CameraMode;                // 0x4C; mode selector / jump-table index
     int m_CameraSubstate;            // 0x50; small state values observed
