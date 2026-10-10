@@ -100,9 +100,9 @@ INCLUDE_ASM("asm/nonmatchings/camera", func_8001F814);
 
 void func_8001FA24(void) {
     if (D_800698BA != 0) {
-        g_Camera.m_0x58 = 0;
+        g_Camera.m_CameraFlags = 0;
     } else {
-        g_Camera.m_0x58 = 7;
+        g_Camera.m_CameraFlags = 7;
     }
 }
 

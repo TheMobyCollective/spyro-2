@@ -177,7 +177,7 @@ void func_8001B140(void) {
             func_80016328();
             break;
         case 2:
-            if (g_Camera.m_0x50 == 2) {
+            if (g_Camera.m_CameraSubstate == 2) {
                 D_80066F84();
                 func_8001B050(0x11);
             } else {

@@ -1,5 +1,8 @@
 #include "common.h"
 #include "spu.h"
+#include "camera.h"
+
+extern Vector3D g_Spyro;
 
 INCLUDE_ASM("asm/nonmatchings/spu", func_80050648);
 
@@ -118,7 +121,62 @@ INCLUDE_ASM("asm/nonmatchings/spu", func_80050FDC);
 INCLUDE_ASM("asm/nonmatchings/spu", func_80051350);
 
 // https://decomp.me/scratch/xYFJn
-INCLUDE_ASM("asm/nonmatchings/spu", func_80051548);
+//INCLUDE_ASM("asm/nonmatchings/spu", func_80051548);
+int func_80051548(int soundId, Vector3D *position) {
+  Vector3D vec;
+  int distance;
+  int volume;
+
+  volume = 0;
+
+  // Camera modes 9 and 10 use the camera's position.
+  if (((unsigned int)g_Camera.m_CameraMode - 9u) < 2u) {
+    func_8001BE00(&vec, position, &g_Camera.m_Position);
+  } else {
+    func_8001BE00(&vec, position, &g_Spyro);
+  }
+
+  // Calculate the shifted distance between the two positions.
+  distance = func_8001BA20(&vec, 1) >> 2;
+
+  if (distance >= 0x2000) {
+    // High-distance attenuation, with an explicit zero-volume path.
+    if (D_80067068[soundId].unk4 != 0 && distance < 0x2400) {
+      volume = ((0x2400 - distance) * D_80067068[soundId].unk4) >> 10;
+    } else {
+      volume = 0;
+    }
+  } else {
+    // SoundDefinition entries are 0x14 bytes:
+    // soundId * 5 words, then scale the word index by four.
+    int definitionIndex = soundId * 5;
+    unsigned int tableBase = (unsigned int)D_80067068;
+
+    SoundDefinition *definition =
+        (SoundDefinition *)((definitionIndex << 2) + tableBase);
+
+    if (definition->unkA != definition->unk8) {
+      if (distance <= definition->unk8) {
+        volume = definition->unk6;
+      } else if (distance >= definition->unkA) {
+        volume = definition->unk4;
+      } else {
+        volume = ((definition->unkA - distance) * definition->unk6) /
+                 (definition->unkA - definition->unk8);
+
+        if (volume < definition->unk4) {
+          volume = definition->unk4;
+        }
+
+        if (definition->unk6 < volume) {
+          volume = definition->unk6;
+        }
+      }
+    }
+  }
+
+  return volume * D_80066D48 / 10;
+}
 
 INCLUDE_ASM("asm/nonmatchings/spu", func_80051704);
 
