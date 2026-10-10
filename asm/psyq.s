@@ -5566,6 +5566,8 @@ endlabel func_800590EC
 nonmatching func_8005912C, 0x37C
 
 glabel func_8005912C
+.globl SpuSetCommonAttr
+SpuSetCommonAttr:
     /* 4992C 8005912C 21300000 */  addu       $a2, $zero, $zero
     /* 49930 80059130 0000898C */  lw         $t1, 0x0($a0)
     /* 49934 80059134 00000000 */  nop
@@ -6836,6 +6838,8 @@ endlabel func_8005A15C
 nonmatching func_8005A20C, 0x30
 
 glabel func_8005A20C
+.globl SpuSetTransferMode
+SpuSetTransferMode:
     /* 4AA0C 8005A20C 05008010 */  beqz       $a0, .L8005A224
     /* 4AA10 8005A210 01000224 */   addiu     $v0, $zero, 0x1
     /* 4AA14 8005A214 04008214 */  bne        $a0, $v0, .L8005A228
@@ -6855,6 +6859,8 @@ endlabel func_8005A20C
 nonmatching func_8005A23C, 0x1BC
 
 glabel func_8005A23C
+.globl SpuSetKey
+SpuSetKey:
     /* 4AA3C 8005A23C FF00023C */  lui        $v0, (0xFFFFFF >> 16)
     /* 4AA40 8005A240 FFFF4234 */  ori        $v0, $v0, (0xFFFFFF & 0xFFFF)
     /* 4AA44 8005A244 2428A200 */  and        $a1, $a1, $v0
@@ -7024,6 +7030,8 @@ endlabel func_8005A3FC
 nonmatching func_8005A488, 0x20
 
 glabel func_8005A488
+.globl SpuInit
+SpuInit:
     /* 4AC88 8005A488 E8FFBD27 */  addiu      $sp, $sp, -0x18
     /* 4AC8C 8005A48C 1000BFAF */  sw         $ra, 0x10($sp)
     /* 4AC90 8005A490 E17B010C */  jal        func_8005EF84
@@ -7037,6 +7045,8 @@ endlabel func_8005A488
 nonmatching func_8005A4A8, 0x5F8
 
 glabel func_8005A4A8
+.globl SpuSetVoiceAttr
+SpuSetVoiceAttr:
     /* 4ACA8 8005A4A8 C8FFBD27 */  addiu      $sp, $sp, -0x38
     /* 4ACAC 8005A4AC 1800B0AF */  sw         $s0, 0x18($sp)
     /* 4ACB0 8005A4B0 21808000 */  addu       $s0, $a0, $zero

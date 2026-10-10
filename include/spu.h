@@ -2,6 +2,7 @@
 #define __SPU_H
 
 #include "common.h"
+#include <libspu.h>
 
 typedef struct {
     unsigned char gemChime;
@@ -80,6 +81,12 @@ extern SoundTable* g_SoundTablePtr; // 80067020
 extern SoundTable* D_80067020; // 80067020
 extern SoundDefinition* g_SpuDefinitionsPtr; // 80067068
 extern SoundDefinition* D_80067068; // 80067068
+
+extern int D_80066D48;
+extern int D_80066FF8;
+extern int D_80066D50;
+extern int D_800681C8;
+extern short D_80061C58[];
 
 // bss
 extern ActiveSound g_ActiveSounds[24]; // 8006FCE4
