@@ -116,7 +116,97 @@ INCLUDE_ASM("asm/nonmatchings/spu", func_80050CF4);
 
 INCLUDE_ASM("asm/nonmatchings/spu", func_80050D38);
 
-INCLUDE_ASM("asm/nonmatchings/spu", func_80050FDC);
+// https://decomp.me/scratch/TFdJN
+//INCLUDE_ASM("asm/nonmatchings/spu", func_80050FDC);
+void func_80050FDC(int voiceIndex) {
+  SpuVoiceAttr voiceAttr;
+  int volume;
+  int scaledVolume;
+
+  voiceAttr.voice = 1 << voiceIndex;
+  voiceAttr.mask = 0;
+  volume = g_ActiveSounds[voiceIndex].unk8;
+  voiceAttr.mask = SPU_VOICE_VOLL | SPU_VOICE_VOLR;
+
+  /* must be chained to match prologue. */
+  voiceAttr.volume.left = voiceAttr.volume.right = volume;
+
+  if (D_800681C8 == 1) {
+    if ((g_ActiveSounds[voiceIndex].unk2 & 0x80) == 0) {
+      voiceAttr.volume.left = ((short)volume) >> 2;
+      voiceAttr.volume.right = ((short)volume) >> 2;
+    }
+  }
+
+  if ((g_ActiveSounds[voiceIndex].unk2 & 1) == 0) {
+    if (g_ActiveSounds[voiceIndex].unk28 != nullptr) {
+      if ((((unsigned char *)g_ActiveSounds[voiceIndex].unk28)[0x48] & 0x80) != 0) {
+        if (g_ActiveSounds[voiceIndex].unk3 != 0) {
+          func_80050A40(voiceIndex);
+          return;
+        }
+
+        g_ActiveSounds[voiceIndex].unk2 |= 1;
+      } else {
+        func_80051350(&g_ActiveSounds[voiceIndex], &voiceAttr);
+      }
+    }
+  }
+
+  if ((g_ActiveSounds[voiceIndex].unk2 & 0x08) != 0) {
+    voiceAttr.mask |= 0x10;
+
+    voiceAttr.pitch = g_ActiveSounds[voiceIndex].unk18;
+
+    g_ActiveSounds[voiceIndex].unk2 &= 0xF7;
+  }
+
+  if (g_ActiveSounds[voiceIndex].unk28 != nullptr) {
+    if ((g_ActiveSounds[voiceIndex].unk2 & 0x21) == 0) {
+      if ((((unsigned char *)g_ActiveSounds[voiceIndex].unk28)[0x48] & 0x80) == 0) {
+        func_80051704(&g_ActiveSounds[voiceIndex], &voiceAttr);
+      }
+    }
+  }
+
+  if (g_ActiveSounds[voiceIndex].unk0 == 1) {
+    voiceAttr.mask |= 0x93;
+    voiceAttr.addr = D_80067068[g_ActiveSounds[voiceIndex].unk1].m_Addr;
+    voiceAttr.pitch = g_ActiveSounds[voiceIndex].unk18;
+  }
+
+  if ((g_ActiveSounds[voiceIndex].unk2 & 0x10) != 0) {
+    voiceAttr.mask |= 0x3;
+
+    scaledVolume = (voiceAttr.volume.left * g_ActiveSounds[voiceIndex].unkC) >> 12;
+
+    if (scaledVolume < 0) {
+      scaledVolume = 0;
+    }
+
+    if (scaledVolume >= 0x4000) {
+      scaledVolume = 0x3FFF;
+    }
+
+    voiceAttr.volume.left = g_ActiveSounds[voiceIndex].unk14 = scaledVolume;
+
+    scaledVolume = (voiceAttr.volume.right * g_ActiveSounds[voiceIndex].unkC) >> 12;
+
+    if (scaledVolume < 0) {
+      scaledVolume = 0;
+    }
+
+    if (scaledVolume >= 0x4000) {
+      scaledVolume = 0x3FFF;
+    }
+
+    voiceAttr.volume.right = g_ActiveSounds[voiceIndex].unk10 = scaledVolume;
+  }
+
+  if (voiceAttr.mask != 0) {
+    SpuSetVoiceAttr(&voiceAttr);
+  }
+}
 
 // https://decomp.me/scratch/0F4aE
 //INCLUDE_ASM("asm/nonmatchings/spu", func_80051350);
