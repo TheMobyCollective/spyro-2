@@ -6985,6 +6985,8 @@ endlabel func_8005A23C
 nonmatching func_8005A3FC, 0x88
 
 glabel func_8005A3FC
+.globl SpuGetAllKeysStatus
+SpuGetAllKeysStatus:
     /* 4ABFC 8005A3FC 18000A24 */  addiu      $t2, $zero, 0x18
     /* 4AC00 8005A400 21300000 */  addu       $a2, $zero, $zero
     /* 4AC04 8005A404 01000724 */  addiu      $a3, $zero, 0x1

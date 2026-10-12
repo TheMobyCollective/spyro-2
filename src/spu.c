@@ -114,7 +114,103 @@ INCLUDE_ASM("asm/nonmatchings/spu", func_80050C64);
 // https://decomp.me/scratch/YPkPn
 INCLUDE_ASM("asm/nonmatchings/spu", func_80050CF4);
 
-INCLUDE_ASM("asm/nonmatchings/spu", func_80050D38);
+// https://decomp.me/scratch/fPnk7
+//INCLUDE_ASM("asm/nonmatchings/spu", func_80050D38);
+void func_80050D38(void)
+{
+    char status[24];
+    SpuVoiceAttr fadeAttr;
+    SpuVoiceAttr stopAttr;
+    int i;
+    unsigned long keyOn = 0;
+    unsigned long keyOff = 0;
+
+    SpuGetAllKeysStatus(status);
+
+    for (i = 0; i < 24; i++) {
+        switch (g_ActiveSounds[i].unk0) {
+        case 0:
+            if (status[i] == 1 || status[i] == 3) {
+                keyOff |= (1UL << i);
+                g_ActiveSounds[i].unk0 = 5;
+            }
+            break;
+
+        case 1:
+            func_80050FDC(i);
+
+            if (g_ActiveSounds[i].unk0 == 1) {
+                g_ActiveSounds[i].unk0 = 2;
+                keyOn |= (1UL << i);
+            } else {
+                keyOff |= (1UL << i);
+            }
+            break;
+
+        case 2:
+            if (status[i] == 3) {
+                keyOff |= (1UL << i);
+                g_ActiveSounds[i].unk0 = 5;
+            } else {
+                func_80050FDC(i);
+            }
+            break;
+
+        case 3:
+            fadeAttr.voice = (1UL << i);
+            fadeAttr.mask = 0x13;
+            fadeAttr.pitch = 0;
+
+            g_ActiveSounds[i].unk10 -= 0x400;
+            if (g_ActiveSounds[i].unk10 < 0) {
+                g_ActiveSounds[i].unk10 = 0;
+            }
+
+            g_ActiveSounds[i].unk14 -= 0x400;
+            if (g_ActiveSounds[i].unk14 < 0) {
+                g_ActiveSounds[i].unk14 = 0;
+            }
+
+            if (g_ActiveSounds[i].unk10 != 0 ||
+                g_ActiveSounds[i].unk14 != 0) {
+                fadeAttr.volume.left = g_ActiveSounds[i].unk14;
+                fadeAttr.volume.right = g_ActiveSounds[i].unk10;
+
+                SpuSetVoiceAttr(&fadeAttr);
+            } else {
+                g_ActiveSounds[i].unk0 = 5;
+                keyOff |= (1UL << i);
+            }
+            break;
+
+        case 4:
+            stopAttr.voice = (1UL << i);
+            stopAttr.mask = 0x10;
+            stopAttr.pitch = 0;
+
+            SpuSetVoiceAttr(&stopAttr);
+
+            keyOff |= (1UL << i);
+            g_ActiveSounds[i].unk0 = 5;
+            break;
+
+        case 5:
+            keyOff |= (1UL << i);
+            g_ActiveSounds[i].unk0 = 0;
+            break;
+        }
+    }
+
+    if (keyOn != 0) {
+        SpuSetKey(SPU_ON, keyOn);
+    }
+
+    if (keyOff != 0) {
+        SpuSetKey(SPU_OFF, keyOff);
+    }
+
+    D_80066FF8 = 0;
+}
 
 // https://decomp.me/scratch/TFdJN
 //INCLUDE_ASM("asm/nonmatchings/spu", func_80050FDC);

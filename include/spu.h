@@ -91,6 +91,7 @@ extern short D_80061C58[];
 // bss
 extern ActiveSound g_ActiveSounds[24]; // 8006FCE4
 
+void func_80050FDC(int voiceIndex);
 void func_80051350(ActiveSound *sound, SpuVoiceAttr *voiceAttr);
 
 #endif
