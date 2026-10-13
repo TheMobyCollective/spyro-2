@@ -86,6 +86,14 @@ typedef struct Moby {
     Colour colour;                   // 0x54
 } Moby;
 
+typedef struct {
+    Vector3D m_Vector_0x00;      // 0x00
+    char pad_0x0C[0x94];         // 0x0C–0x9F
+    Vector3D m_Vector_0xA0;      // 0xA0
+} Spyro;
+
+extern Spyro g_Spyro;
+
 /*** Streaming / CD / Loading ***/
 
 typedef struct {

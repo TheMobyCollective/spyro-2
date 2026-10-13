@@ -245,7 +245,7 @@
 - [x] func_80050FDC
 - [x] func_80051350
 - [x] func_80051548
-- [ ] func_80051704
+- [x] func_80051704
 - [x] func_800518EC
 
 <!-- spyroupdate.c -->

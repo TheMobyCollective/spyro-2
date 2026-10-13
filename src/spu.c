@@ -2,8 +2,6 @@
 #include "spu.h"
 #include "camera.h"
 
-extern Vector3D g_Spyro; // temp until we have the proper g_Spyro struct
-
 INCLUDE_ASM("asm/nonmatchings/spu", func_80050648);
 
 INCLUDE_ASM("asm/nonmatchings/spu", func_800506AC);
@@ -441,8 +439,86 @@ int func_80051548(int soundId, Vector3D *position) {
 }
 
 // https://decomp.me/scratch/E8DU2
-INCLUDE_ASM("asm/nonmatchings/spu", func_80051704);
+//INCLUDE_ASM("asm/nonmatchings/spu", func_80051704);
+void func_80051704(ActiveSound *sound, SpuVoiceAttr *voiceAttr)
+{
+    Vector3D relativeVector;
 
+    int angle;
+    int angleDelta;
+    int distance;
+    int pitchScale;
+    int upperPitchLimit;
+    int lowerPitchLimit;
+
+    voiceAttr->mask |= SPU_VOICE_PITCH;
+
+    func_8001BE00(
+        &relativeVector,
+        &g_Spyro.m_Vector_0x00,
+        &sound->unk28->position
+    );
+
+    angle = func_8001B4B8(relativeVector.x, relativeVector.y, 0);
+
+    /*
+     * Calculate the angle-weighted distance attenuation.
+     * Reuse distance to hold the adjusted attenuation value.
+     */
+    if ((sound->unk2 & 2) != 0) {
+        angleDelta =
+            (angle - func_8001B4B8(
+                sound->unk1C,
+                sound->unk20,
+                0
+            )) & 0xFF;
+
+        distance = func_8001BA20(&sound->unk1C, 0);
+
+        distance =
+            (distance * D_80061C58[angleDelta]) >> 12;
+    } else {
+        distance = 0;
+    }
+
+    angle += 0x80;
+
+    angleDelta =
+        (angle - func_8001B4B8(
+            g_Spyro.m_Vector_0xA0.x,
+            g_Spyro.m_Vector_0xA0.y,
+            0
+        )) & 0xFF;
+
+    /*
+     * Reuse pitchScale to hold the second distance temporarily,
+     * then convert it into the pitch scaling factor.
+     */
+    pitchScale = func_8001BA20(&g_Spyro.m_Vector_0xA0, 0);
+
+    pitchScale =
+        (((pitchScale >> 7) * D_80061C58[angleDelta]) >> 12)
+        + 0x1000;
+
+    voiceAttr->pitch =
+        (sound->unk18 * pitchScale) / (0x1000 - distance);
+
+    /* Enforce the lower pitch limit: 3/4 of the base pitch. */
+    lowerPitchLimit = ((sound->unk18 * 3) << 6) >> 8;
+
+    if (voiceAttr->pitch < lowerPitchLimit) {
+        voiceAttr->pitch = lowerPitchLimit;
+    }
+
+    /* Enforce the upper pitch limit: 5/4 of the base pitch. */
+    upperPitchLimit = ((sound->unk18 * 5) << 6) >> 8;
+
+    if (upperPitchLimit < voiceAttr->pitch) {
+        voiceAttr->pitch = upperPitchLimit;
+    }
+
+    sound->unk2 &= 0xFD;
+}
 
 // SpuInitialize https://decomp.me/scratch/Bn3UN
 //INCLUDE_ASM("asm/nonmatchings/spu", func_800518EC);
