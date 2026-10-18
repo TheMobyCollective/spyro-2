@@ -2,8 +2,6 @@
 #include "spu.h"
 #include "camera.h"
 
-extern Vector3D g_Spyro; // temp until we have the proper g_Spyro struct
-
 INCLUDE_ASM("asm/nonmatchings/spu", func_80050648);
 
 INCLUDE_ASM("asm/nonmatchings/spu", func_800506AC);
@@ -114,9 +112,195 @@ INCLUDE_ASM("asm/nonmatchings/spu", func_80050C64);
 // https://decomp.me/scratch/YPkPn
 INCLUDE_ASM("asm/nonmatchings/spu", func_80050CF4);
 
-INCLUDE_ASM("asm/nonmatchings/spu", func_80050D38);
+// https://decomp.me/scratch/fPnk7
+//INCLUDE_ASM("asm/nonmatchings/spu", func_80050D38);
+void func_80050D38(void)
+{
+    char status[24];
+    SpuVoiceAttr fadeAttr;
+    SpuVoiceAttr stopAttr;
+    int i;
+    unsigned long keyOn = 0;
+    unsigned long keyOff = 0;
 
-INCLUDE_ASM("asm/nonmatchings/spu", func_80050FDC);
+    SpuGetAllKeysStatus(status);
+
+    for (i = 0; i < 24; i++) {
+        switch (g_ActiveSounds[i].unk0) {
+        case 0:
+            if (status[i] == 1 || status[i] == 3) {
+                keyOff |= (1UL << i);
+                g_ActiveSounds[i].unk0 = 5;
+            }
+            break;
+
+        case 1:
+            func_80050FDC(i);
+
+            if (g_ActiveSounds[i].unk0 == 1) {
+                g_ActiveSounds[i].unk0 = 2;
+                keyOn |= (1UL << i);
+            } else {
+                keyOff |= (1UL << i);
+            }
+            break;
+
+        case 2:
+            if (status[i] == 3) {
+                keyOff |= (1UL << i);
+                g_ActiveSounds[i].unk0 = 5;
+            } else {
+                func_80050FDC(i);
+            }
+            break;
+
+        case 3:
+            fadeAttr.voice = (1UL << i);
+            fadeAttr.mask = 0x13;
+            fadeAttr.pitch = 0;
+
+            g_ActiveSounds[i].unk10 -= 0x400;
+            if (g_ActiveSounds[i].unk10 < 0) {
+                g_ActiveSounds[i].unk10 = 0;
+            }
+
+            g_ActiveSounds[i].unk14 -= 0x400;
+            if (g_ActiveSounds[i].unk14 < 0) {
+                g_ActiveSounds[i].unk14 = 0;
+            }
+
+            if (g_ActiveSounds[i].unk10 != 0 ||
+                g_ActiveSounds[i].unk14 != 0) {
+                fadeAttr.volume.left = g_ActiveSounds[i].unk14;
+                fadeAttr.volume.right = g_ActiveSounds[i].unk10;
+
+                SpuSetVoiceAttr(&fadeAttr);
+            } else {
+                g_ActiveSounds[i].unk0 = 5;
+                keyOff |= (1UL << i);
+            }
+            break;
+
+        case 4:
+            stopAttr.voice = (1UL << i);
+            stopAttr.mask = 0x10;
+            stopAttr.pitch = 0;
+
+            SpuSetVoiceAttr(&stopAttr);
+
+            keyOff |= (1UL << i);
+            g_ActiveSounds[i].unk0 = 5;
+            break;
+
+        case 5:
+            keyOff |= (1UL << i);
+            g_ActiveSounds[i].unk0 = 0;
+            break;
+        }
+    }
+
+    if (keyOn != 0) {
+        SpuSetKey(SPU_ON, keyOn);
+    }
+
+    if (keyOff != 0) {
+        SpuSetKey(SPU_OFF, keyOff);
+    }
+
+    D_80066FF8 = 0;
+}
+
+// https://decomp.me/scratch/TFdJN
+//INCLUDE_ASM("asm/nonmatchings/spu", func_80050FDC);
+void func_80050FDC(int voiceIndex) {
+  SpuVoiceAttr voiceAttr;
+  int volume;
+  int scaledVolume;
+
+  voiceAttr.voice = 1 << voiceIndex;
+  voiceAttr.mask = 0;
+  volume = g_ActiveSounds[voiceIndex].unk8;
+  voiceAttr.mask = SPU_VOICE_VOLL | SPU_VOICE_VOLR;
+
+  /* must be chained to match prologue. */
+  voiceAttr.volume.left = voiceAttr.volume.right = volume;
+
+  if (D_800681C8 == 1) {
+    if ((g_ActiveSounds[voiceIndex].unk2 & 0x80) == 0) {
+      voiceAttr.volume.left = ((short)volume) >> 2;
+      voiceAttr.volume.right = ((short)volume) >> 2;
+    }
+  }
+
+  if ((g_ActiveSounds[voiceIndex].unk2 & 1) == 0) {
+    if (g_ActiveSounds[voiceIndex].unk28 != nullptr) {
+      if ((((unsigned char *)g_ActiveSounds[voiceIndex].unk28)[0x48] & 0x80) != 0) {
+        if (g_ActiveSounds[voiceIndex].unk3 != 0) {
+          func_80050A40(voiceIndex);
+          return;
+        }
+
+        g_ActiveSounds[voiceIndex].unk2 |= 1;
+      } else {
+        func_80051350(&g_ActiveSounds[voiceIndex], &voiceAttr);
+      }
+    }
+  }
+
+  if ((g_ActiveSounds[voiceIndex].unk2 & 0x08) != 0) {
+    voiceAttr.mask |= 0x10;
+
+    voiceAttr.pitch = g_ActiveSounds[voiceIndex].unk18;
+
+    g_ActiveSounds[voiceIndex].unk2 &= 0xF7;
+  }
+
+  if (g_ActiveSounds[voiceIndex].unk28 != nullptr) {
+    if ((g_ActiveSounds[voiceIndex].unk2 & 0x21) == 0) {
+      if ((((unsigned char *)g_ActiveSounds[voiceIndex].unk28)[0x48] & 0x80) == 0) {
+        func_80051704(&g_ActiveSounds[voiceIndex], &voiceAttr);
+      }
+    }
+  }
+
+  if (g_ActiveSounds[voiceIndex].unk0 == 1) {
+    voiceAttr.mask |= 0x93;
+    voiceAttr.addr = D_80067068[g_ActiveSounds[voiceIndex].unk1].m_Addr;
+    voiceAttr.pitch = g_ActiveSounds[voiceIndex].unk18;
+  }
+
+  if ((g_ActiveSounds[voiceIndex].unk2 & 0x10) != 0) {
+    voiceAttr.mask |= 0x3;
+
+    scaledVolume = (voiceAttr.volume.left * g_ActiveSounds[voiceIndex].unkC) >> 12;
+
+    if (scaledVolume < 0) {
+      scaledVolume = 0;
+    }
+
+    if (scaledVolume >= 0x4000) {
+      scaledVolume = 0x3FFF;
+    }
+
+    voiceAttr.volume.left = g_ActiveSounds[voiceIndex].unk14 = scaledVolume;
+
+    scaledVolume = (voiceAttr.volume.right * g_ActiveSounds[voiceIndex].unkC) >> 12;
+
+    if (scaledVolume < 0) {
+      scaledVolume = 0;
+    }
+
+    if (scaledVolume >= 0x4000) {
+      scaledVolume = 0x3FFF;
+    }
+
+    voiceAttr.volume.right = g_ActiveSounds[voiceIndex].unk10 = scaledVolume;
+  }
+
+  if (voiceAttr.mask != 0) {
+    SpuSetVoiceAttr(&voiceAttr);
+  }
+}
 
 // https://decomp.me/scratch/0F4aE
 //INCLUDE_ASM("asm/nonmatchings/spu", func_80051350);
@@ -255,8 +439,86 @@ int func_80051548(int soundId, Vector3D *position) {
 }
 
 // https://decomp.me/scratch/E8DU2
-INCLUDE_ASM("asm/nonmatchings/spu", func_80051704);
+//INCLUDE_ASM("asm/nonmatchings/spu", func_80051704);
+void func_80051704(ActiveSound *sound, SpuVoiceAttr *voiceAttr)
+{
+    Vector3D relativeVector;
 
+    int angle;
+    int angleDelta;
+    int distance;
+    int pitchScale;
+    int upperPitchLimit;
+    int lowerPitchLimit;
+
+    voiceAttr->mask |= SPU_VOICE_PITCH;
+
+    func_8001BE00(
+        &relativeVector,
+        &g_Spyro.m_Vector_0x00,
+        &sound->unk28->position
+    );
+
+    angle = func_8001B4B8(relativeVector.x, relativeVector.y, 0);
+
+    /*
+     * Calculate the angle-weighted distance attenuation.
+     * Reuse distance to hold the adjusted attenuation value.
+     */
+    if ((sound->unk2 & 2) != 0) {
+        angleDelta =
+            (angle - func_8001B4B8(
+                sound->unk1C,
+                sound->unk20,
+                0
+            )) & 0xFF;
+
+        distance = func_8001BA20(&sound->unk1C, 0);
+
+        distance =
+            (distance * D_80061C58[angleDelta]) >> 12;
+    } else {
+        distance = 0;
+    }
+
+    angle += 0x80;
+
+    angleDelta =
+        (angle - func_8001B4B8(
+            g_Spyro.m_Vector_0xA0.x,
+            g_Spyro.m_Vector_0xA0.y,
+            0
+        )) & 0xFF;
+
+    /*
+     * Reuse pitchScale to hold the second distance temporarily,
+     * then convert it into the pitch scaling factor.
+     */
+    pitchScale = func_8001BA20(&g_Spyro.m_Vector_0xA0, 0);
+
+    pitchScale =
+        (((pitchScale >> 7) * D_80061C58[angleDelta]) >> 12)
+        + 0x1000;
+
+    voiceAttr->pitch =
+        (sound->unk18 * pitchScale) / (0x1000 - distance);
+
+    /* Enforce the lower pitch limit: 3/4 of the base pitch. */
+    lowerPitchLimit = ((sound->unk18 * 3) << 6) >> 8;
+
+    if (voiceAttr->pitch < lowerPitchLimit) {
+        voiceAttr->pitch = lowerPitchLimit;
+    }
+
+    /* Enforce the upper pitch limit: 5/4 of the base pitch. */
+    upperPitchLimit = ((sound->unk18 * 5) << 6) >> 8;
+
+    if (upperPitchLimit < voiceAttr->pitch) {
+        voiceAttr->pitch = upperPitchLimit;
+    }
+
+    sound->unk2 &= 0xFD;
+}
 
 // SpuInitialize https://decomp.me/scratch/Bn3UN
 //INCLUDE_ASM("asm/nonmatchings/spu", func_800518EC);

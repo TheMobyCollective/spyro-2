@@ -12,6 +12,7 @@ void func_8001D87C(void) {
 // https://decomp.me/scratch/zigZT
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001D8A4);
 
+// https://decomp.me/scratch/SgE3O
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001DB58);
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001DC6C);
