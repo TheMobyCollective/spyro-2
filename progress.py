@@ -67,6 +67,6 @@ print(table % (doneList[0], doneList[0] + todoList[0],
 print("\nStatus table:")
 i = 0
 while i < len(files):
-    print("%d/%d | %3.2f%%" % (doneList[i], doneList[i] + todoList[i],100*doneList[i]/(doneList[i] + todoList[i])))
+    print("%s | %d/%d | %3.2f%%" % (files[i], doneList[i], doneList[i] + todoList[i],100*doneList[i]/(doneList[i] + todoList[i])))
     i += 1
 
