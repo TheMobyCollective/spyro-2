@@ -103,4 +103,10 @@ extern char D_80068372;
 extern char D_80068373;
 extern char D_80068375;
 
+extern int D_80067024; // isDemoMode
+extern char D_8006837C;
+extern char D_80068380;
+extern char D_80068384;
+extern char D_80068388;
+
 #endif

@@ -4,8 +4,46 @@
 // https://decomp.me/scratch/wFrtz
 INCLUDE_ASM("asm/nonmatchings/pad", func_80011F50);
 
-// https://decomp.me/scratch/KZPjp
-INCLUDE_ASM("asm/nonmatchings/pad", func_8001200C);
+// https://decomp.me/scratch/KZPjp - 100%
+//INCLUDE_ASM("asm/nonmatchings/pad", func_8001200C);
+
+void func_8001200C(unsigned char* arg0) {
+    int var_a2;
+    int var_v1;
+    unsigned char temp_a1;
+    unsigned char temp_a1_2;
+    unsigned int temp_v1;
+    unsigned char temp_v1_2;
+
+    if (D_80067024 == 0) {
+        for (var_a2 = 0; var_a2 < 4; var_a2++) {
+            temp_v1 = *arg0;
+            temp_a1 = *(&D_8006837C + var_a2);
+            if (temp_a1 < temp_v1) {
+                *arg0 = ((int) ((temp_v1 - temp_a1) << 7) / (int) *(&D_80068384 + var_a2)) + 0x7F;
+            } else {
+                temp_a1_2 = *(&D_80068380 + var_a2);
+                if (temp_v1 < temp_a1_2) {
+                    *arg0 = ((int) ((temp_v1 - temp_a1_2) << 7) / (int) *(&D_80068388 + var_a2)) - 0x80;
+                } else {
+                    *arg0 = 0x7F;
+                }
+            }
+            arg0 += 1;
+        }
+        return;
+    }
+    for (var_v1 = 0; var_v1 < 4; var_v1++) {
+        temp_v1_2 = arg0[var_v1];
+        if (temp_v1_2 >= 0xB0U) {
+            arg0[var_v1] = (((temp_v1_2 - 0xAF) << 7) / 80) + 0x7F;
+        } else if (temp_v1_2 < 0x4FU) {
+            arg0[var_v1] = (((temp_v1_2 - 0x4F) << 7) / 79) - 0x80;
+        } else {
+            arg0[var_v1] = 0x7F;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/pad", func_800121B0);
 

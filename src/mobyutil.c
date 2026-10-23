@@ -32,11 +32,22 @@ INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80038290);
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80038388);
 
+// https://decomp.me/scratch/DGrUv
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_800384B4);
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_8003853C);
+// https://decomp.me/scratch/YYyH0 - 100%
+//INCLUDE_ASM("asm/nonmatchings/mobyutil", func_8003853C);
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80038594);
+int func_8003853C(int arg0, int arg1, unsigned char arg2) {
+    return func_800385F8(arg1, (func_800385D8(arg1, arg0) * arg2) >> 8); // y + ((x - y) * z) / 256
+}
+
+// https://decomp.me/scratch/49pIt - 100%
+//INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80038594);
+
+int func_80038594(int arg0, int arg1, int arg2, int arg3) {
+    return func_8003853C(func_800384B4(arg0, arg1, arg2), arg1, arg3 & 0xFF);
+}
 
 // https://decomp.me/scratch/z60iU
 //INCLUDE_ASM("asm/nonmatchings/mobyutil", func_800385D8); //SubAngle8()
@@ -68,8 +79,14 @@ INCLUDE_ASM("asm/nonmatchings/mobyutil", func_8003873C);
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80038844);
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_8003891C);
+// https://decomp.me/scratch/SOfiu - 100%
+//INCLUDE_ASM("asm/nonmatchings/mobyutil", func_8003891C);
 
+int func_8003891C(int arg0, int arg1) {
+    return (func_80059D2C() % (int) ((arg1 - arg0) + 1)) + arg0;
+}
+
+// https://decomp.me/scratch/x0rzd
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_8003898C);
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80038A0C);
