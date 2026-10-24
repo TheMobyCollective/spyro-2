@@ -232,7 +232,7 @@
 
 <!-- spu.c -->
 - [x] func_80050648
-- [ ] func_800506AC
+- [x] func_800506AC
 - [x] func_80050720
 - [x] func_80050A40
 - [ ] func_80050AAC

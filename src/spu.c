@@ -21,8 +21,20 @@ int func_80050648(Moby *pMoby, int soundOffset, int flags) {
     return func_80050720(soundId, pMoby, flags);
 }
 
+// https://decomp.me/scratch/FgAvj
+//INCLUDE_ASM("asm/nonmatchings/spu", func_800506AC);
+int func_800506AC(Moby *pMoby, int soundIndex, int flags) {
+    if (D_800670C0[soundIndex] == 0xFF) {
+        return -1;
+    }
 
-INCLUDE_ASM("asm/nonmatchings/spu", func_800506AC);
+    if (pMoby != 0 && pMoby->unknown5 == 0) {
+        return -1;
+    }
+
+    // Keep the lookup separate to match the original assembly.
+    return func_80050720(D_800670C0[soundIndex], pMoby, flags);
+}
 
 // PlaySound https://decomp.me/scratch/TcMsr
 //INCLUDE_ASM("asm/nonmatchings/spu", func_80050720);
