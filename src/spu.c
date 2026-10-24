@@ -146,7 +146,19 @@ void func_80050BC8(int voiceIndex, Vector3D *src) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/spu", func_80050C64);
+// https://decomp.me/scratch/iU1ZF
+//INCLUDE_ASM("asm/nonmatchings/spu", func_80050C64);
+void func_80050C64(int voiceIndex, int pitchScale) {
+    unsigned char soundId = g_ActiveSounds[voiceIndex].unk1;
+    int pitchProduct;
+
+    pitchProduct = pitchScale *
+        ((D_80067068[soundId].unkC +
+          D_80067068[soundId].unkE) >> 1);
+
+    g_ActiveSounds[voiceIndex].unk2 |= 8;
+    g_ActiveSounds[voiceIndex].unk18 = pitchProduct >> 12;
+}
 
 // https://decomp.me/scratch/YPkPn
 INCLUDE_ASM("asm/nonmatchings/spu", func_80050CF4);
