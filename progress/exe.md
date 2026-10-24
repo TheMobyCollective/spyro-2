@@ -240,7 +240,7 @@
 - [ ] func_80050B74
 - [x] func_80050BC8
 - [x] func_80050C64
-- [ ] func_80050CF4
+- [x] func_80050CF4
 - [x] func_80050D38
 - [x] func_80050FDC
 - [x] func_80051350

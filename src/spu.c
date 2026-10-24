@@ -176,8 +176,12 @@ void func_80050C64(int voiceIndex, int pitchScale) {
     g_ActiveSounds[voiceIndex].unk18 = pitchProduct >> 12;
 }
 
-// https://decomp.me/scratch/YPkPn
-INCLUDE_ASM("asm/nonmatchings/spu", func_80050CF4);
+// https://decomp.me/scratch/fy5Wl
+//INCLUDE_ASM("asm/nonmatchings/spu", func_80050CF4);
+void func_80050CF4(int voiceIndex, int volumeScale) {
+    g_ActiveSounds[voiceIndex].unkC = volumeScale;
+    g_ActiveSounds[voiceIndex].unk2 |= 0x10;
+}
 
 // https://decomp.me/scratch/fPnk7
 //INCLUDE_ASM("asm/nonmatchings/spu", func_80050D38);
