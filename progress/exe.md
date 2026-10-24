@@ -235,7 +235,7 @@
 - [x] func_800506AC
 - [x] func_80050720
 - [x] func_80050A40
-- [ ] func_80050AAC
+- [x] func_80050AAC
 - [ ] func_80050B20
 - [ ] func_80050B74
 - [x] func_80050BC8

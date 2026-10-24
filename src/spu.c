@@ -126,8 +126,24 @@ void func_80050A40(int arg0) {
 }
 
 
-// https://decomp.me/scratch/SH5Jm
-INCLUDE_ASM("asm/nonmatchings/spu", func_80050AAC);
+// https://decomp.me/scratch/Ixn0A
+//INCLUDE_ASM("asm/nonmatchings/spu", func_80050AAC);
+void func_80050AAC(void) {
+    int voiceIndex;
+    int offset;
+
+    D_80066FF8 = 1;
+
+    for (voiceIndex = 0, offset = 0;
+        voiceIndex < 24;
+        voiceIndex++, offset += sizeof(ActiveSound)) {
+        unsigned char state = ((unsigned char *)g_ActiveSounds)[offset];
+
+        if (state - 1U < 2U) {
+            func_80050A40(voiceIndex);
+        }
+    }
+}
 
 // https://decomp.me/scratch/rgUtQ
 INCLUDE_ASM("asm/nonmatchings/spu", func_80050B20);
