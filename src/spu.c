@@ -2,7 +2,25 @@
 #include "spu.h"
 #include "camera.h"
 
-INCLUDE_ASM("asm/nonmatchings/spu", func_80050648);
+
+// https://decomp.me/scratch/yS6c7
+//INCLUDE_ASM("asm/nonmatchings/spu", func_80050648);
+int func_80050648(Moby *pMoby, int soundOffset, int flags) {
+    int soundId;
+
+    soundId = (D_80068C94[pMoby->mobyClass] + soundOffset)[4];
+
+    if (soundId == 0xFF) {
+        return -1;
+    }
+
+    if (pMoby->unknown5 == 0) {
+        return -1;
+    }
+
+    return func_80050720(soundId, pMoby, flags);
+}
+
 
 INCLUDE_ASM("asm/nonmatchings/spu", func_800506AC);
 

@@ -86,11 +86,13 @@ extern int D_80066D48;
 extern int D_80066FF8;
 extern int D_80066D50;
 extern int D_800681C8;
+extern unsigned char *D_80068C94[];
 extern short D_80061C58[];
 
 // bss
 extern ActiveSound g_ActiveSounds[24]; // 8006FCE4
 
+int func_80050720(int soundId, Moby *pMoby, int flags); // PlaySound
 void func_80050FDC(int voiceIndex);
 void func_80051350(ActiveSound *sound, SpuVoiceAttr *voiceAttr);
 void func_80051704(ActiveSound *sound, SpuVoiceAttr *voiceAttr);
