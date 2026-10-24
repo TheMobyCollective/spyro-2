@@ -135,7 +135,16 @@ INCLUDE_ASM("asm/nonmatchings/spu", func_80050B20);
 // https://decomp.me/scratch/qPkuv
 INCLUDE_ASM("asm/nonmatchings/spu", func_80050B74);
 
-INCLUDE_ASM("asm/nonmatchings/spu", func_80050BC8);
+// https://decomp.me/scratch/RKxaZ
+//INCLUDE_ASM("asm/nonmatchings/spu", func_80050BC8);
+void func_80050BC8(int voiceIndex, Vector3D *src) {
+    if (g_ActiveSounds[voiceIndex].unk28 != 0) {
+        if (g_ActiveSounds[voiceIndex].unk0 - 1U < 2U) {
+            func_8001BDB0(&g_ActiveSounds[voiceIndex].unk1C, src);
+            g_ActiveSounds[voiceIndex].unk2 |= 2;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/spu", func_80050C64);
 
