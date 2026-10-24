@@ -70,9 +70,7 @@ typedef struct {
     int unk10;
     int unk14;
     int unk18; // pitch?
-    int unk1C;
-    int unk20;
-    int unk24;
+    Vector3D unk1C;
     Moby* unk28;
 } ActiveSound;
 

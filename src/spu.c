@@ -539,8 +539,8 @@ void func_80051704(ActiveSound *sound, SpuVoiceAttr *voiceAttr)
     if ((sound->unk2 & 2) != 0) {
         angleDelta =
             (angle - func_8001B4B8(
-                sound->unk1C,
-                sound->unk20,
+                sound->unk1C.x,
+                sound->unk1C.y,
                 0
             )) & 0xFF;
 
