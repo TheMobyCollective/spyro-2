@@ -16,4 +16,13 @@ unsigned int * func_800520CC(SpriteInfo*, int, int, int);                   /* e
 void func_80052328(int, int, int);                           /* extern */
 extern SpriteInfo D_80063544;
 
+void func_8004D104(int);                                 /* extern */
+extern SpriteInfo D_8006358C;
+extern int D_80066F90;
+extern int D_80067114;
+extern int D_800681C8;
+extern int D_8006A9A0;
+extern int D_8006A9A4;
+extern unsigned char D_8006ABF8;
+
 #endif

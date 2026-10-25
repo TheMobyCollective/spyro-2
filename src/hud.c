@@ -61,7 +61,26 @@ INCLUDE_ASM("asm/nonmatchings/hud", func_80053D28);
 INCLUDE_ASM("asm/nonmatchings/hud", func_80053E78);
 
 // https://decomp.me/scratch/6Kf9h
-INCLUDE_ASM("asm/nonmatchings/hud", func_800540B0);
+//INCLUDE_ASM("asm/nonmatchings/hud", func_800540B0);
+void func_800540B0(void) {
+    int var_a1;
+    int var_a2;
+
+    if ((D_80066F90 == 0x37) && (D_8006ABF8 != 0) && ((D_800681C8 == 0) || (D_800681C8 == 4))) {
+        func_8004D104(0x38);
+        var_a1 = D_8006A9A0 - 0x10;
+        var_a2 = D_8006A9A4 - 0x10;
+        func_800520CC(&D_8006358C, var_a1, var_a2, 1);
+    } else {
+        var_a1 = 0xF0;
+        if (D_80067114 != 0) {
+            func_8004D104(0x38);
+            var_a2 = 0x68;
+            func_800520CC(&D_8006358C, var_a1, var_a2, 1);
+        }
+    }
+
+}
 
 // Plays the sound when opening up a menu when paused, but not when opening the pause menu itself
 // https://decomp.me/scratch/urcn8
