@@ -63,18 +63,21 @@ INCLUDE_ASM("asm/nonmatchings/hud", func_80053E78);
 // https://decomp.me/scratch/6Kf9h
 INCLUDE_ASM("asm/nonmatchings/hud", func_800540B0);
 
+// Plays the sound when opening up a menu when paused, but not when opening the pause menu itself
 // https://decomp.me/scratch/urcn8
 //INCLUDE_ASM("asm/nonmatchings/hud", func_80054170);
 void func_80054170(void) {
     func_80050720(D_80067020->pauseSubPageEntry, 0, 0);
 }
 
+// Plays the sound when closing anything in the pause menu, including itself
 // https://decomp.me/scratch/CnzzI
 //INCLUDE_ASM("asm/nonmatchings/hud", func_800541A0);
 void func_800541A0(void) {
     func_80050720(D_80067020->pauseExit, 0, 0);
 }
 
+// Plays the sound when moving up and down in the pause menu
 // https://decomp.me/scratch/C3wBx
 //INCLUDE_ASM("asm/nonmatchings/hud", func_800541D0);
 void func_800541D0(void) {
@@ -86,6 +89,7 @@ void func_800541D0(void) {
     }
 }
 
+// Plays the sound when changing an option in the pause menu
 // https://decomp.me/scratch/ZoTFQ
 //INCLUDE_ASM("asm/nonmatchings/hud", func_80054210);
 void func_80054210(void) {
@@ -126,6 +130,7 @@ void func_800542D8(void) {
     }
 }
 
+// Plays the sound when flipping a guidebook page
 // https://decomp.me/scratch/DQDpd
 //INCLUDE_ASM("asm/nonmatchings/hud", func_80054318);
 void func_80054318(void) {
