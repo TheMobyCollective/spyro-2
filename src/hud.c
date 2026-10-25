@@ -81,11 +81,9 @@ void func_800541A0(void) {
 // https://decomp.me/scratch/C3wBx
 //INCLUDE_ASM("asm/nonmatchings/hud", func_800541D0);
 void func_800541D0(void) {
-    int temp_v0;
-
-    temp_v0 = func_80050720(D_80067020->pauseMove, 0, 0);
-    if (temp_v0 >= 0) {
-        func_80050CF4(temp_v0, 0x640);
+    int sound = func_80050720(D_80067020->pauseMove, 0, 0);
+    if (sound >= 0) {
+        func_80050CF4(sound, 0x640);
     }
 }
 
@@ -93,11 +91,9 @@ void func_800541D0(void) {
 // https://decomp.me/scratch/ZoTFQ
 //INCLUDE_ASM("asm/nonmatchings/hud", func_80054210);
 void func_80054210(void) {
-    int temp_v0;
-
-    temp_v0 = func_80050720(D_80067020->changeOption, 0, 0);
-    if (temp_v0 >= 0) {
-        func_80050CF4(temp_v0, 0xC00);
+    int sound = func_80050720(D_80067020->changeOption, 0, 0);
+    if (sound >= 0) {
+        func_80050CF4(sound, 0xC00);
     }
 }
 
@@ -110,23 +106,19 @@ void func_80054250(void) {
 // https://decomp.me/scratch/44uL7
 //INCLUDE_ASM("asm/nonmatchings/hud", func_80054280);
 void func_80054280(void) {
-    int temp_v0;
-
-    temp_v0 = func_80050720(D_80067020->changeOption, 0, 0);
-    if (temp_v0 >= 0) {
-        func_80050CF4(temp_v0, 0x2000);
-        func_80050C64(temp_v0, 0x600);
+    int sound = func_80050720(D_80067020->changeOption, 0, 0);
+    if (sound >= 0) {
+        func_80050CF4(sound, 0x2000);
+        func_80050C64(sound, 0x600);
     }
 }
 
 // https://decomp.me/scratch/80Txx
 //INCLUDE_ASM("asm/nonmatchings/hud", func_800542D8);
 void func_800542D8(void) {
-    int temp_v0;
-
-    temp_v0 = func_80050720(D_80067020->gemChime, 0, 0);
-    if (temp_v0 >= 0) {
-        func_80050CF4(temp_v0, 0x2000);
+    int sound = func_80050720(D_80067020->gemChime, 0, 0);
+    if (sound >= 0) {
+        func_80050CF4(sound, 0x2000);
     }
 }
 
@@ -134,11 +126,9 @@ void func_800542D8(void) {
 // https://decomp.me/scratch/DQDpd
 //INCLUDE_ASM("asm/nonmatchings/hud", func_80054318);
 void func_80054318(void) {
-    int temp_v0;
-
-    temp_v0 = func_80050720(D_80067020->guidebookPageTurn, 0, 0);
-    if (temp_v0 >= 0) {
-        func_80050CF4(temp_v0, 0xC00);
-        func_80050C64(temp_v0, 0x1200 - ((func_80059D2C() % 5) << 7));
+    int sound = func_80050720(D_80067020->guidebookPageTurn, 0, 0);
+    if (sound >= 0) {
+        func_80050CF4(sound, 0xC00);
+        func_80050C64(sound, 0x1200 - ((func_80059D2C() % 5) << 7));
     }
 }
