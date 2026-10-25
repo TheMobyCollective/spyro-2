@@ -70,9 +70,7 @@ typedef struct {
     int unk10;
     int unk14;
     int unk18; // pitch?
-    int unk1C;
-    int unk20;
-    int unk24;
+    Vector3D unk1C;
     Moby* unk28;
 } ActiveSound;
 
@@ -82,15 +80,19 @@ extern SoundTable* D_80067020; // 80067020
 extern SoundDefinition* g_SpuDefinitionsPtr; // 80067068
 extern SoundDefinition* D_80067068; // 80067068
 
+extern unsigned char *D_800670C0;
+
 extern int D_80066D48;
 extern int D_80066FF8;
 extern int D_80066D50;
 extern int D_800681C8;
+extern unsigned char *D_80068C94[];
 extern short D_80061C58[];
 
 // bss
 extern ActiveSound g_ActiveSounds[24]; // 8006FCE4
 
+int func_80050720(int soundId, Moby *pMoby, int flags); // PlaySound
 void func_80050FDC(int voiceIndex);
 void func_80051350(ActiveSound *sound, SpuVoiceAttr *voiceAttr);
 void func_80051704(ActiveSound *sound, SpuVoiceAttr *voiceAttr);

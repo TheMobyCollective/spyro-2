@@ -2,9 +2,39 @@
 #include "spu.h"
 #include "camera.h"
 
-INCLUDE_ASM("asm/nonmatchings/spu", func_80050648);
 
-INCLUDE_ASM("asm/nonmatchings/spu", func_800506AC);
+// https://decomp.me/scratch/yS6c7
+//INCLUDE_ASM("asm/nonmatchings/spu", func_80050648);
+int func_80050648(Moby *pMoby, int soundOffset, int flags) {
+    int soundId;
+
+    soundId = (D_80068C94[pMoby->mobyClass] + soundOffset)[4];
+
+    if (soundId == 0xFF) {
+        return -1;
+    }
+
+    if (pMoby->unknown5 == 0) {
+        return -1;
+    }
+
+    return func_80050720(soundId, pMoby, flags);
+}
+
+// https://decomp.me/scratch/FgAvj
+//INCLUDE_ASM("asm/nonmatchings/spu", func_800506AC);
+int func_800506AC(Moby *pMoby, int soundIndex, int flags) {
+    if (D_800670C0[soundIndex] == 0xFF) {
+        return -1;
+    }
+
+    if (pMoby != 0 && pMoby->unknown5 == 0) {
+        return -1;
+    }
+
+    // Keep the lookup separate to match the original assembly.
+    return func_80050720(D_800670C0[soundIndex], pMoby, flags);
+}
 
 // PlaySound https://decomp.me/scratch/TcMsr
 //INCLUDE_ASM("asm/nonmatchings/spu", func_80050720);
@@ -96,8 +126,24 @@ void func_80050A40(int arg0) {
 }
 
 
-// https://decomp.me/scratch/SH5Jm
-INCLUDE_ASM("asm/nonmatchings/spu", func_80050AAC);
+// https://decomp.me/scratch/Ixn0A
+//INCLUDE_ASM("asm/nonmatchings/spu", func_80050AAC);
+void func_80050AAC(void) {
+    int voiceIndex;
+    int offset;
+
+    D_80066FF8 = 1;
+
+    for (voiceIndex = 0, offset = 0;
+        voiceIndex < 24;
+        voiceIndex++, offset += sizeof(ActiveSound)) {
+        unsigned char state = ((unsigned char *)g_ActiveSounds)[offset];
+
+        if (state - 1U < 2U) {
+            func_80050A40(voiceIndex);
+        }
+    }
+}
 
 // https://decomp.me/scratch/rgUtQ
 INCLUDE_ASM("asm/nonmatchings/spu", func_80050B20);
@@ -105,12 +151,37 @@ INCLUDE_ASM("asm/nonmatchings/spu", func_80050B20);
 // https://decomp.me/scratch/qPkuv
 INCLUDE_ASM("asm/nonmatchings/spu", func_80050B74);
 
-INCLUDE_ASM("asm/nonmatchings/spu", func_80050BC8);
+// https://decomp.me/scratch/RKxaZ
+//INCLUDE_ASM("asm/nonmatchings/spu", func_80050BC8);
+void func_80050BC8(int voiceIndex, Vector3D *src) {
+    if (g_ActiveSounds[voiceIndex].unk28 != 0) {
+        if (g_ActiveSounds[voiceIndex].unk0 - 1U < 2U) {
+            func_8001BDB0(&g_ActiveSounds[voiceIndex].unk1C, src);
+            g_ActiveSounds[voiceIndex].unk2 |= 2;
+        }
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/spu", func_80050C64);
+// https://decomp.me/scratch/iU1ZF
+//INCLUDE_ASM("asm/nonmatchings/spu", func_80050C64);
+void func_80050C64(int voiceIndex, int pitchScale) {
+    unsigned char soundId = g_ActiveSounds[voiceIndex].unk1;
+    int pitchProduct;
 
-// https://decomp.me/scratch/YPkPn
-INCLUDE_ASM("asm/nonmatchings/spu", func_80050CF4);
+    pitchProduct = pitchScale *
+        ((D_80067068[soundId].unkC +
+          D_80067068[soundId].unkE) >> 1);
+
+    g_ActiveSounds[voiceIndex].unk2 |= 8;
+    g_ActiveSounds[voiceIndex].unk18 = pitchProduct >> 12;
+}
+
+// https://decomp.me/scratch/fy5Wl
+//INCLUDE_ASM("asm/nonmatchings/spu", func_80050CF4);
+void func_80050CF4(int voiceIndex, int volumeScale) {
+    g_ActiveSounds[voiceIndex].unkC = volumeScale;
+    g_ActiveSounds[voiceIndex].unk2 |= 0x10;
+}
 
 // https://decomp.me/scratch/fPnk7
 //INCLUDE_ASM("asm/nonmatchings/spu", func_80050D38);
@@ -468,8 +539,8 @@ void func_80051704(ActiveSound *sound, SpuVoiceAttr *voiceAttr)
     if ((sound->unk2 & 2) != 0) {
         angleDelta =
             (angle - func_8001B4B8(
-                sound->unk1C,
-                sound->unk20,
+                sound->unk1C.x,
+                sound->unk1C.y,
                 0
             )) & 0xFF;
 

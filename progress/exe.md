@@ -231,16 +231,16 @@
 - [ ] func_8004C3D4
 
 <!-- spu.c -->
-- [ ] func_80050648
-- [ ] func_800506AC
+- [x] func_80050648
+- [x] func_800506AC
 - [x] func_80050720
 - [x] func_80050A40
-- [ ] func_80050AAC
+- [x] func_80050AAC
 - [ ] func_80050B20
 - [ ] func_80050B74
-- [ ] func_80050BC8
-- [ ] func_80050C64
-- [ ] func_80050CF4
+- [x] func_80050BC8
+- [x] func_80050C64
+- [x] func_80050CF4
 - [x] func_80050D38
 - [x] func_80050FDC
 - [x] func_80051350

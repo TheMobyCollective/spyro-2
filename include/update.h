@@ -27,7 +27,6 @@ extern unsigned char D_80064B84;
 extern int D_80066F54;
 extern unsigned char D_8006B084;
 
-void func_80050720(unsigned char, int, int);                          /* extern */
 void func_800539A8(int);                               /* extern */
 void func_800543A8();                                  /* extern */
 extern char D_8006470C;
