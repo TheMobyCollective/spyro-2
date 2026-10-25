@@ -66,13 +66,13 @@ INCLUDE_ASM("asm/nonmatchings/hud", func_800540B0);
 // https://decomp.me/scratch/urcn8
 //INCLUDE_ASM("asm/nonmatchings/hud", func_80054170);
 void func_80054170(void) {
-    func_80050720(D_80067020->spyroHurt, 0, 0);
+    func_80050720(D_80067020->pauseSubPageEntry, 0, 0);
 }
 
 // https://decomp.me/scratch/CnzzI
 //INCLUDE_ASM("asm/nonmatchings/hud", func_800541A0);
 void func_800541A0(void) {
-    func_80050720(D_80067020->pauseEnter, 0, 0);
+    func_80050720(D_80067020->pauseExit, 0, 0);
 }
 
 // https://decomp.me/scratch/C3wBx
@@ -80,7 +80,7 @@ void func_800541A0(void) {
 void func_800541D0(void) {
     int temp_v0;
 
-    temp_v0 = func_80050720(D_80067020->pauseExit, 0, 0);
+    temp_v0 = func_80050720(D_80067020->pauseMove, 0, 0);
     if (temp_v0 >= 0) {
         func_80050CF4(temp_v0, 0x640);
     }
@@ -91,7 +91,7 @@ void func_800541D0(void) {
 void func_80054210(void) {
     int temp_v0;
 
-    temp_v0 = func_80050720(D_80067020->underwaterHit, 0, 0);
+    temp_v0 = func_80050720(D_80067020->changeOption, 0, 0);
     if (temp_v0 >= 0) {
         func_80050CF4(temp_v0, 0xC00);
     }
@@ -108,7 +108,7 @@ void func_80054250(void) {
 void func_80054280(void) {
     int temp_v0;
 
-    temp_v0 = func_80050720(D_80067020->underwaterHit, 0, 0);
+    temp_v0 = func_80050720(D_80067020->changeOption, 0, 0);
     if (temp_v0 >= 0) {
         func_80050CF4(temp_v0, 0x2000);
         func_80050C64(temp_v0, 0x600);

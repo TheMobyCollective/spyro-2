@@ -65,7 +65,7 @@ void func_800175A4(void) {
         var_v1 += 1;
     } while (var_v1 < 0x14);
     func_80050AAC();
-    func_80050720(D_80067020->spyroHurt, 0, 0x40);
+    func_80050720(D_80067020->pauseSubPageEntry, 0, 0x40);
     D_80068304 = 1;
 }
 

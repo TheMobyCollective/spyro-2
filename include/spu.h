@@ -26,12 +26,12 @@ typedef struct {
     unsigned char spyroStop;
     unsigned char unk13;
     unsigned char headbash;
-    unsigned char spyroHurt;
-    unsigned char pauseEnter;
+    unsigned char pauseSubPageEntry;
     unsigned char pauseExit;
     unsigned char pauseMove;
-    unsigned char underwaterHit;
-    unsigned char changeVolume;
+    unsigned char unk18;
+    unsigned char changeOption;
+    unsigned char unk1A;
     unsigned char supercharge;
     unsigned char unk1C;
     unsigned char eggHatching;
