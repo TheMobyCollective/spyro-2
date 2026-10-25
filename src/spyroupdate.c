@@ -13,6 +13,7 @@ INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002AAFC);
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002AFDC);
 
+// https://decomp.me/scratch/FRUhP
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002B078);
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002B0B8);

@@ -130,6 +130,7 @@ INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004DF84);
 
 INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004E14C);
 
+// https://decomp.me/scratch/eHrxY
 INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004E1CC);
 
 INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004E238);
