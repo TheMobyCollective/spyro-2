@@ -146,10 +146,28 @@ void func_80050AAC(void) {
 }
 
 // https://decomp.me/scratch/rgUtQ
-INCLUDE_ASM("asm/nonmatchings/spu", func_80050B20);
+//INCLUDE_ASM("asm/nonmatchings/spu", func_80050B20);
+
+int func_80050B20(int arg0, int arg1) {
+    if (arg1 >= 0 && g_ActiveSounds[arg1].unk1 == arg0) {
+        if (g_ActiveSounds[arg1].unk0 == 1 || g_ActiveSounds[arg1].unk0 == 2) {
+          return 1;
+        }
+    }
+    return 0;
+}
 
 // https://decomp.me/scratch/qPkuv
-INCLUDE_ASM("asm/nonmatchings/spu", func_80050B74);
+//INCLUDE_ASM("asm/nonmatchings/spu", func_80050B74);
+
+int func_80050B74(Moby* arg0, int arg1) {
+    if (arg1 >= 0 && g_ActiveSounds[arg1].unk28 == arg0) {
+        if (g_ActiveSounds[arg1].unk0 == 1 || g_ActiveSounds[arg1].unk0 == 2) {
+          return 1;
+        }
+    }
+    return 0;
+}
 
 // https://decomp.me/scratch/RKxaZ
 //INCLUDE_ASM("asm/nonmatchings/spu", func_80050BC8);
