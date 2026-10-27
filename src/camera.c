@@ -94,7 +94,345 @@ void func_8001DB58(void)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001DC6C);
+// https://decomp.me/scratch/NStcV
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001DC6C);
+void func_8001DC6C(void) {
+    // Five Camera Channels
+    // Channel One: azimuth.
+    {
+        int input;
+        int state;
+        int magnitude;
+        int angle;
+        int threshold;
+        int *azimuthPtr;
+
+        azimuthPtr = &g_Camera.m_CameraPositions[4].pos.azimuth;
+        state = *azimuthPtr;
+
+        state += ((g_Camera.m_CameraPositions[5].pos.azimuth *
+                   g_Camera.m_CameraPositions[3].pos.azimuth -
+                   g_Camera.m_CameraPositions[6].pos.azimuth * state) >> 6);
+
+        *azimuthPtr = state;
+
+        input = g_Camera.m_CameraPositions[3].pos.azimuth;
+
+        // If the updated state is below the threshold, reset it
+        // towards the input value and clamp it to +/- 0x100.
+        magnitude = state;
+        threshold = g_Camera.m_CameraPositions[7].pos.azimuth;
+
+        if (magnitude < 0) {
+            magnitude = -magnitude;
+        }
+
+        magnitude = (magnitude < threshold);
+
+        if (magnitude) {
+            *azimuthPtr = input << 7;
+
+            if (*azimuthPtr > 0x100) {
+                *azimuthPtr = 0x100;
+            }
+
+            if (*azimuthPtr < -0x100) {
+                *azimuthPtr = -0x100;
+            }
+        }
+
+        // Apply the optional azimuth magnitude limit.
+        if (g_Camera.m_CameraPositions[8].pos.azimuth >= 0) {
+            if (g_Camera.m_CameraPositions[4].pos.azimuth <
+                ((-g_Camera.m_CameraPositions[8].pos.azimuth) << 8)) {
+                g_Camera.m_CameraPositions[4].pos.azimuth =
+                    (-g_Camera.m_CameraPositions[8].pos.azimuth) << 8;
+            }
+
+            if ((g_Camera.m_CameraPositions[8].pos.azimuth << 8) <
+                g_Camera.m_CameraPositions[4].pos.azimuth) {
+                g_Camera.m_CameraPositions[4].pos.azimuth =
+                    g_Camera.m_CameraPositions[8].pos.azimuth << 8;
+            }
+        }
+
+        // Accumulate azimuth and wrap to the signed 12-bit range.
+        angle = g_Camera.m_CameraPositions[2].pos.azimuth +
+                (g_Camera.m_CameraPositions[4].pos.azimuth >> 8);
+        angle &= 0xFFF;
+
+        g_Camera.m_CameraPositions[2].pos.azimuth = angle;
+
+        if (angle >= 0x801) {
+            g_Camera.m_CameraPositions[2].pos.azimuth = angle - 0x1000;
+        }
+    }
+
+    // Channel Two: elevation.
+    {
+        int input;
+        int state;
+        int magnitude;
+        int angle;
+        int threshold;
+
+        state = g_Camera.m_CameraPositions[4].pos.elevation;
+
+        state +=
+            ((g_Camera.m_CameraPositions[5].pos.elevation *
+              g_Camera.m_CameraPositions[3].pos.elevation -
+              g_Camera.m_CameraPositions[6].pos.elevation * state) >> 6);
+
+        g_Camera.m_CameraPositions[4].pos.elevation = state;
+
+        input = g_Camera.m_CameraPositions[3].pos.elevation;
+        threshold = g_Camera.m_CameraPositions[7].pos.elevation;
+
+        magnitude = state;
+
+        if (magnitude < 0) {
+            magnitude = -magnitude;
+        }
+
+        magnitude = (magnitude < threshold);
+
+        if (magnitude) {
+            g_Camera.m_CameraPositions[4].pos.elevation = input << 7;
+
+            if (g_Camera.m_CameraPositions[4].pos.elevation > 0x100) {
+                g_Camera.m_CameraPositions[4].pos.elevation = 0x100;
+            }
+
+            if (g_Camera.m_CameraPositions[4].pos.elevation < -0x100) {
+                g_Camera.m_CameraPositions[4].pos.elevation = -0x100;
+            }
+        }
+
+        // Apply the optional elevation magnitude limit.
+        if (g_Camera.m_CameraPositions[8].pos.elevation >= 0) {
+            if (g_Camera.m_CameraPositions[4].pos.elevation <
+                ((-g_Camera.m_CameraPositions[8].pos.elevation) << 8)) {
+                g_Camera.m_CameraPositions[4].pos.elevation =
+                    (-g_Camera.m_CameraPositions[8].pos.elevation) << 8;
+            }
+
+            if ((g_Camera.m_CameraPositions[8].pos.elevation << 8) <
+                g_Camera.m_CameraPositions[4].pos.elevation) {
+                g_Camera.m_CameraPositions[4].pos.elevation =
+                    g_Camera.m_CameraPositions[8].pos.elevation << 8;
+            }
+        }
+
+        // Accumulate elevation and wrap to the signed 12-bit range.
+        angle = g_Camera.m_CameraPositions[2].pos.elevation +
+                (g_Camera.m_CameraPositions[4].pos.elevation >> 8);
+        angle &= 0xFFF;
+
+        g_Camera.m_CameraPositions[2].pos.elevation = angle;
+
+        if (angle >= 0x801) {
+            g_Camera.m_CameraPositions[2].pos.elevation = angle - 0x1000;
+        }
+    }
+
+    // Channel Three: radius.
+    {
+        int input;
+        int state;
+        int magnitude;
+        int threshold;
+        int coefficient;
+
+        // Load the coefficient first to preserve the matched instruction order.
+        coefficient = g_Camera.m_CameraPositions[5].pos.radius;
+
+        input = g_Camera.m_CameraPositions[3].pos.radius;
+        state = g_Camera.m_CameraPositions[4].pos.radius;
+
+        state += ((coefficient * input -
+                   g_Camera.m_CameraPositions[6].pos.radius * state) >> 6);
+
+        threshold = g_Camera.m_CameraPositions[7].pos.radius;
+        g_Camera.m_CameraPositions[4].pos.radius = state;
+
+        magnitude = state;
+
+        if (magnitude < 0) {
+            magnitude = -magnitude;
+        }
+
+        magnitude = (magnitude < threshold);
+
+        if (magnitude) {
+            g_Camera.m_CameraPositions[4].pos.radius = input << 7;
+
+            if (g_Camera.m_CameraPositions[4].pos.radius > 0x100) {
+                g_Camera.m_CameraPositions[4].pos.radius = 0x100;
+            }
+
+            if (g_Camera.m_CameraPositions[4].pos.radius < -0x100) {
+                g_Camera.m_CameraPositions[4].pos.radius = -0x100;
+            }
+        }
+
+        // Apply the optional radius magnitude limit.
+        if (g_Camera.m_CameraPositions[8].pos.radius >= 0) {
+            if (g_Camera.m_CameraPositions[4].pos.radius <
+                ((-g_Camera.m_CameraPositions[8].pos.radius) << 8)) {
+                g_Camera.m_CameraPositions[4].pos.radius =
+                    (-g_Camera.m_CameraPositions[8].pos.radius) << 8;
+            }
+
+            if ((g_Camera.m_CameraPositions[8].pos.radius << 8) <
+                g_Camera.m_CameraPositions[4].pos.radius) {
+                g_Camera.m_CameraPositions[4].pos.radius =
+                    g_Camera.m_CameraPositions[8].pos.radius << 8;
+            }
+        }
+
+        // Accumulate radius without 12-bit angle wrapping.
+        g_Camera.m_CameraPositions[2].pos.radius +=
+            (g_Camera.m_CameraPositions[4].pos.radius >> 8);
+    }
+
+    // Channel Four: yaw.
+    {
+        int input;
+        int state;
+        int magnitude;
+        int angle;
+        int threshold;
+        int previousState;
+        int coefficient;
+
+        // Smooth the state at position[4].yaw.
+        coefficient = g_Camera.m_CameraPositions[5].yaw;
+
+        input = g_Camera.m_CameraPositions[3].yaw;
+        previousState = g_Camera.m_CameraPositions[4].yaw;
+
+        state = previousState +
+                ((coefficient * input -
+                  g_Camera.m_CameraPositions[6].yaw * previousState) >> 6);
+
+        threshold = g_Camera.m_CameraPositions[7].yaw;
+        g_Camera.m_CameraPositions[4].yaw = state;
+
+        magnitude = state;
+
+        if (magnitude < 0) {
+            magnitude = -magnitude;
+        }
+
+        magnitude = (magnitude < threshold);
+
+        if (magnitude) {
+            g_Camera.m_CameraPositions[4].yaw = input << 7;
+
+            if (g_Camera.m_CameraPositions[4].yaw > 0x100) {
+                g_Camera.m_CameraPositions[4].yaw = 0x100;
+            }
+
+            if (g_Camera.m_CameraPositions[4].yaw < -0x100) {
+                g_Camera.m_CameraPositions[4].yaw = -0x100;
+            }
+        }
+
+        // Apply the optional yaw magnitude limit.
+        if (g_Camera.m_CameraPositions[8].yaw >= 0) {
+            if (g_Camera.m_CameraPositions[4].yaw <
+                ((-g_Camera.m_CameraPositions[8].yaw) << 8)) {
+                g_Camera.m_CameraPositions[4].yaw =
+                    (-g_Camera.m_CameraPositions[8].yaw) << 8;
+            }
+
+            if ((g_Camera.m_CameraPositions[8].yaw << 8) <
+                g_Camera.m_CameraPositions[4].yaw) {
+                g_Camera.m_CameraPositions[4].yaw =
+                    g_Camera.m_CameraPositions[8].yaw << 8;
+            }
+        }
+
+        // Accumulate yaw and wrap to the signed 12-bit range.
+        angle = g_Camera.m_CameraPositions[2].yaw +
+                (g_Camera.m_CameraPositions[4].yaw >> 8);
+        angle &= 0xFFF;
+
+        g_Camera.m_CameraPositions[2].yaw = angle;
+
+        if (angle >= 0x801) {
+            g_Camera.m_CameraPositions[2].yaw = angle - 0x1000;
+        }
+    }
+
+    // Channel Five: pitch.
+    {
+        int input;
+        int state;
+        int magnitude;
+        int angle;
+        int threshold;
+        int coefficient;
+
+        coefficient = g_Camera.m_CameraPositions[5].pitch;
+        input = g_Camera.m_CameraPositions[3].pitch;
+
+        // Smooth the state at position[4].pitch.
+        state = g_Camera.m_CameraPositions[4].pitch;
+
+        state += ((coefficient * input -
+                   g_Camera.m_CameraPositions[6].pitch * state) >> 6);
+
+        threshold = g_Camera.m_CameraPositions[7].pitch;
+        g_Camera.m_CameraPositions[4].pitch = state;
+
+        magnitude = state;
+
+        if (magnitude < 0) {
+            magnitude = -magnitude;
+        }
+
+        magnitude = (magnitude < threshold);
+
+        if (magnitude) {
+            g_Camera.m_CameraPositions[4].pitch = input << 7;
+
+            if (g_Camera.m_CameraPositions[4].pitch > 0x100) {
+                g_Camera.m_CameraPositions[4].pitch = 0x100;
+            }
+
+            if (g_Camera.m_CameraPositions[4].pitch < -0x100) {
+                g_Camera.m_CameraPositions[4].pitch = -0x100;
+            }
+        }
+
+        // Apply the optional pitch magnitude limit.
+        if (g_Camera.m_CameraPositions[8].pitch >= 0) {
+            if (g_Camera.m_CameraPositions[4].pitch <
+                ((-g_Camera.m_CameraPositions[8].pitch) << 8)) {
+                g_Camera.m_CameraPositions[4].pitch =
+                    (-g_Camera.m_CameraPositions[8].pitch) << 8;
+            }
+
+            if ((g_Camera.m_CameraPositions[8].pitch << 8) <
+                g_Camera.m_CameraPositions[4].pitch) {
+                g_Camera.m_CameraPositions[4].pitch =
+                    g_Camera.m_CameraPositions[8].pitch << 8;
+            }
+        }
+
+        // Accumulate pitch and wrap to the signed 12-bit range.
+        angle = g_Camera.m_CameraPositions[2].pitch +
+                (g_Camera.m_CameraPositions[4].pitch >> 8);
+        angle &= 0xFFF;
+
+        g_Camera.m_CameraPositions[2].pitch = angle;
+
+        if (angle >= 0x801) {
+            g_Camera.m_CameraPositions[2].pitch = angle - 0x1000;
+        }
+    }
+}
 
 // https://decomp.me/scratch/dg0nn - 100%
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001E204);
