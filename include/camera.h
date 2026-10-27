@@ -112,6 +112,8 @@ extern void func_8001FA24(void);
 extern void func_800216D8(int mode);
 
 
+
+
 extern char D_800698BA;
 
 
@@ -146,7 +148,7 @@ extern unsigned char D_800698BB;
 /* Callback for unhandled camera modes. */
 extern void (*D_80067014)(void);
 
-//func_8001E2E4
+//func_8001E2E4 and func_8001E454
 extern int D_8006ABA4;
 
 //func_8001E808
@@ -166,6 +168,21 @@ extern int D_80067018;
 
 // Global state value compared against 7.
 extern int D_800681C8;
+
+
+/*  
+Provisional collision-object layout; only m_0x53 is currently identified. 
+Used in func_8001E454 and func_8001F618
+*/
+typedef struct CollisionObject {
+    unsigned char pad_0x00[0x53];
+    unsigned char m_0x53;
+} CollisionObject;
+
+//func_8001E454
+// collision.s function
+extern CollisionObject *func_8004055C(Vector3D *position, int flags, int arg2, int arg3, int arg4, int arg5);
+extern Vector3D D_8006AB7C;
 
 // Camera control flags
 extern int D_800683A0;

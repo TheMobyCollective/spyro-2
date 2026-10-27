@@ -553,7 +553,172 @@ void func_8001E2E4(CameraPosition *arg0) {
     g_Camera.m_0x13C = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001E454);
+// https://decomp.me/scratch/JuBAj
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001E454);
+void func_8001E454(void)
+{
+    Vector3D delta;
+    Vector3D position;
+    Vector3D previousPosition;
+    Vector3D testPosition;
+
+    int steps;
+    int step;
+    int j;
+    int found;
+
+    CollisionObject *object;
+
+    found = 0;
+    g_Camera.m_0x144 = 0;
+
+    if (g_Camera.m_0x140 != 0) {
+        func_8001BDB0(
+            &g_Camera.m_Position,
+            &g_Camera.m_0x70
+        );
+    } else {
+        /* Calculate the displacement and number of intermediate steps. */
+        func_8001BE00(
+            &delta,
+            &g_Camera.m_0x70,
+            &g_Camera.m_Position
+        );
+
+        steps = func_8001BA20(&delta, 1);
+        steps = steps / 240 + 1;
+
+        if (steps >= 2) {
+            delta.x /= steps;
+            delta.y /= steps;
+            delta.z /= steps;
+        }
+
+        func_8001BDB0(
+            &position,
+            &g_Camera.m_Position
+        );
+
+        for (step = 0; step < steps; step++) {
+            func_8001BDCC(
+                &position,
+                &position,
+                &delta
+            );
+
+            func_8001BDB0(
+                &previousPosition,
+                &position
+            );
+
+            j = 0;
+
+            for (;;) {
+                object = nullptr;
+
+                if (g_Camera.m_0x141 == 0) {
+                    object = func_8004055C(
+                        &position,
+                        0x100,
+                        0,
+                        0,
+                        0,
+                        0
+                    );
+                }
+
+                if (object != nullptr) {
+                    if ((object->m_0x53 & 0x80) != 0) {
+                        object = nullptr;
+                    } else {
+                        func_8001BDB0(
+                            &position,
+                            &D_8006AB7C
+                        );
+
+                        found = 1;
+                    }
+                }
+
+                if (func_8003DCC0(&position, 0x100) == 0) {
+                    if (object == nullptr) {
+                        break;
+                    }
+                } else {
+                    func_8001BDB0(
+                        &position,
+                        &D_8006AB7C
+                    );
+
+                    g_Camera.m_0x144 = 1;
+                }
+
+                j++;
+
+                if (j >= 6) {
+                    break;
+                }
+            }
+
+            if (j >= 6 && found != 0) {
+                func_8001BDB0(
+                    &position,
+                    &previousPosition
+                );
+
+                for (j = 0; j < 6; j++) {
+                    if (func_8003DCC0(&position, 0x100) == 0) {
+                        break;
+                    }
+
+                    func_8001BDB0(
+                        &position,
+                        &D_8006AB7C
+                    );
+
+                    g_Camera.m_0x144 = 1;
+                }
+            }
+        }
+
+        func_8001BDB0(
+            &g_Camera.m_Position,
+            &position
+        );
+    }
+
+    /* Test the resulting camera position against the collision geometry. */
+    func_8001BDB0(
+        &testPosition,
+        &g_Camera.m_Position
+    );
+
+    testPosition.z += 0x80;
+
+    testPosition.z = func_8003EE84(
+        &testPosition,
+        0x300
+    );
+
+    if (testPosition.z != 0 && D_8006ABA4 != 0) {
+        g_Camera.m_0x146 = 1;
+        g_Camera.m_0x13C = testPosition.z;
+    } else {
+        if (g_Camera.m_0x146 == 0) {
+            g_Camera.m_0x13C = 0;
+        }
+
+        g_Camera.m_0x146 = 0;
+    }
+
+    if (g_Camera.m_0x13C != 0) {
+        if (g_Camera.m_Position.z < g_Camera.m_0x13C) {
+            g_Camera.m_0x40 = 0x800;
+        } else {
+            g_Camera.m_0x40 = 0;
+        }
+    }
+}
 
 // https://decomp.me/scratch/HFe14
 //INCLUDE_ASM("asm/nonmatchings/camera", func_8001E808);
