@@ -1040,7 +1040,126 @@ INCLUDE_ASM("asm/nonmatchings/camera", func_8001F1FC);
 // https://decomp.me/scratch/smjIy
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001F24C);
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001F2E4);
+// https://decomp.me/scratch/MGyZN
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001F2E4);
+void func_8001F2E4(int arg0) {
+    int mode;
+    int cameraAction;
+
+    mode = g_Camera.m_CameraMode;
+
+    if (mode == 9) {
+        if (arg0 != 0) {
+            func_8001BDB0(
+                &g_Camera.m_0x184,
+                &g_Spyro.m_Vector_0x00
+            );
+
+            func_8001ECCC(
+                &g_Camera.m_0x170,
+                &g_Camera.m_0x190,
+                0
+            );
+
+            g_Camera.m_CameraSubstate = 0x80;
+            g_Camera.m_CameraModeTimer = 0;
+            return;
+        }
+
+        /* Initialise the camera for mode 9. */
+        g_Camera.m_RequestedCameraMode = 0;
+
+        func_8001BDB0(
+            &g_Camera.m_0x60,
+            &g_Spyro.m_Vector_0x00
+        );
+
+        g_Camera.m_SphericalFlipState = func_8001EE18(
+            &g_Camera.m_CameraPositions[0].pos,
+            &g_Camera.m_Position,
+            &g_Camera.m_0x60
+        );
+
+        func_8001EFA8(
+            &g_Camera.m_CameraPositions[0],
+            &g_Camera.m_CameraPositions[0]
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[2],
+            &g_Camera.m_CameraPositions[0],
+            0
+        );
+
+        cameraAction = D_80061468[g_Spyro.m_0x50];
+
+        /*
+         * Preserve this single-iteration loop: its structure is
+         * required for the matching mode 9 dispatch.
+         */
+        do {
+            if (cameraAction == 0) {
+                cameraAction = 6;
+                func_800216D8(cameraAction);
+                return;
+            }
+        } while (0);
+
+        func_800216D8(cameraAction);
+        return;
+    }
+
+    if (mode != 10) {
+        return;
+    }
+
+    if (arg0 == 0) {
+        /* Initialise the camera for mode 10. Keep this block duplicated. */
+        g_Camera.m_RequestedCameraMode = 0;
+
+        func_8001BDB0(
+            &g_Camera.m_0x60,
+            &g_Spyro.m_Vector_0x00
+        );
+
+        g_Camera.m_SphericalFlipState = func_8001EE18(
+            &g_Camera.m_CameraPositions[0].pos,
+            &g_Camera.m_Position,
+            &g_Camera.m_0x60
+        );
+
+        func_8001EFA8(
+            &g_Camera.m_CameraPositions[0],
+            &g_Camera.m_CameraPositions[0]
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[2],
+            &g_Camera.m_CameraPositions[0],
+            0
+        );
+
+        cameraAction = D_80061468[g_Spyro.m_0x50];
+
+        do {
+            if (cameraAction != 0) {
+                break;
+            }
+
+            cameraAction = 6;
+        } while (0);
+
+        func_800216D8(cameraAction);
+        return;
+    }
+
+    if ((g_Camera.m_CameraSubstate & 0x80) != 0) {
+        return;
+    }
+
+    g_Camera.m_CameraSubstate = 0x80;
+    g_Camera.m_CameraModeTimer = 0;
+}
 
 // https://decomp.me/scratch/KXnuG - 100%
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001F4A4);
