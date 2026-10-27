@@ -109,4 +109,9 @@ extern void func_80021DC0();                                  /* extern */
 
 extern char D_800698BA;
 
+
+// func_80021558
+extern int D_80061564;
+extern void (*D_80067040)(void);
+
 #endif

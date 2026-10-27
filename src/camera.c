@@ -612,7 +612,77 @@ void func_8001FA24(void) {
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001FA58);
 
 // https://decomp.me/scratch/AyB10
-INCLUDE_ASM("asm/nonmatchings/camera", func_80021558);
+//INCLUDE_ASM("asm/nonmatchings/camera", func_80021558);
+void func_80021558(void)
+{
+    int wrappedElevationDifference;
+
+    switch (g_Camera.m_CameraMode) {
+    case 6:
+        /* Update the third camera position. */
+        func_8001F008(&g_Camera.m_CameraPositions[3]);
+
+        /*
+         * Refresh the elevation difference when the relevant
+         * camera flag is enabled or the camera offset is nonzero.
+         */
+        if ((g_Camera.m_CameraFlags & 0x4) != 0 ||
+            g_Camera.m_0x40 != 0) {
+            wrappedElevationDifference =
+                (D_80061564 -
+                 g_Camera.m_CameraPositions[2].pos.elevation) & 0xFFF;
+
+            g_Camera.m_CameraPositions[3].pos.elevation =
+                wrappedElevationDifference;
+
+            if (wrappedElevationDifference >= 0x801) {
+                g_Camera.m_CameraPositions[3].pos.elevation =
+                    wrappedElevationDifference - 0x1000;
+            }
+        }
+
+        /* Apply the explicit azimuth override when present. */
+        if (g_Camera.m_0x150 != 0) {
+            g_Camera.m_CameraPositions[3].pos.azimuth =
+                g_Camera.m_0x150;
+        }
+        break;
+
+    case 9:
+    case 10:
+    case 11:
+        if (g_Camera.m_CameraSubstate == 0) {
+            func_8001F008(&g_Camera.m_CameraPositions[3]);
+            break;
+        }
+
+        if (g_Spyro.m_0x50 == 6 &&
+            g_Spyro.m_0x54 == 1) {
+            func_8001DB58();
+            break;
+        }
+
+        /* This path handles the camera transition directly. */
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[2],
+            &g_Camera.m_CameraPositions[1],
+            0
+        );
+        return;
+
+    default:
+        /* Use the registered callback when one is available. */
+        if (D_80067040 != nullptr) {
+            D_80067040();
+            return;
+        }
+
+        func_8001DB58();
+        break;
+    }
+
+    func_8001DC6C();
+}
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_800216D8);
 
