@@ -15,6 +15,7 @@ INCLUDE_ASM("asm/nonmatchings/camera", func_8001D8A4);
 // https://decomp.me/scratch/SgE3O
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001DB58);
 
+
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001DC6C);
 
 // https://decomp.me/scratch/dg0nn - 100%
@@ -74,7 +75,7 @@ INCLUDE_ASM("asm/nonmatchings/camera", func_8001F0BC);
 //INCLUDE_ASM("asm/nonmatchings/camera", func_8001F1E4);
 
 void func_8001F1E4(int arg0, int arg1) {
-    g_Camera.m_0x168 = arg1;
+    g_Camera.m_RequestedCameraMode = arg1;
     g_Camera.m_0x16C = arg0;
 }
 
