@@ -611,6 +611,7 @@ void func_8001FA24(void) {
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001FA58);
 
+// https://decomp.me/scratch/AyB10
 INCLUDE_ASM("asm/nonmatchings/camera", func_80021558);
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_800216D8);
