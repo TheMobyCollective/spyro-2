@@ -465,7 +465,92 @@ void func_8001ECCC(CameraPosition* arg0, CameraPosition* arg1, int arg2) {
 // https://decomp.me/scratch/9Fp5c
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001ED20);
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001EE18);
+// https://decomp.me/scratch/BTTNp
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001EE18);
+int func_8001EE18(SphericalCoordinates* arg0, Vector3D* arg1, void* arg2) {
+    Vector3D offset;
+    int flipped;
+    int planarDistance;
+    int angle;
+    int angleDelta;
+    int magnitude;
+
+    flipped = 0;
+
+    // Calculate the offset using the appropriate coordinate transform.
+    if (arg2 != 0) {
+        func_8001BE00(&offset, arg1, arg2);
+    } else {
+        func_8001BDB0(&offset, arg1);
+    }
+
+    // Calculate elevation from the offset.
+    planarDistance = func_8001BA20(&offset, 0);
+    arg0->elevation = func_8001B4B8(planarDistance, offset.z, 1);
+
+    // Calculate the new azimuth.
+    angle = func_8001B4B8(offset.x, offset.y, 1);
+
+    // Find the shortest signed angular difference.
+    angleDelta = (angle - arg0->azimuth) & 0xFFF;
+    
+
+    if (angleDelta >= 0x801) {         
+        angleDelta -= 0x1000;
+    }
+
+    magnitude = (angleDelta >= 0) ? angleDelta : -angleDelta;
+
+    // For a large direction change, consider reversing the viewing direction.
+    if (magnitude >= 0x401) {
+        if (g_Camera.m_SphericalFlipState != 0 ||
+            g_Camera.m_CameraMode == 7 ||
+            g_Camera.m_CameraMode == 15) {
+            angle = (angle + 0x800) & 0xFFF;
+            flipped = 1;
+
+            // Reverse the elevation when the azimuth is flipped.
+            arg0->elevation = (0x800 - arg0->elevation) & 0xFFF;
+        }
+    }
+
+    // Preserve the previous azimuth when the offset is nearly zero
+    // in both of the first two coordinate axes.
+    magnitude = offset.x;
+
+    if (magnitude < 0) {
+        magnitude = -magnitude;
+    }
+
+    if (magnitude < 0x80) {
+        magnitude = offset.y;
+
+        if (magnitude < 0) {
+            magnitude = -magnitude;
+        }
+
+        if (magnitude < 0x80) {
+            angle = g_Camera.m_CameraPositions[2].pos.azimuth;
+        }
+    }
+
+    // Convert azimuth to the signed angle range.
+    if (angle >= 0x801) {
+        angle -= 0x1000;
+    }
+
+    arg0->azimuth = angle;
+
+    // Convert elevation to the signed angle range.
+    if (arg0->elevation >= 0x801) {
+        arg0->elevation -= 0x1000;
+    }
+
+    // Calculate the full distance.
+    arg0->radius = func_8001BA20(&offset, 1);
+
+    return flipped;
+}
 
 // https://decomp.me/scratch/FuNiS - 100%
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001EFA8);
