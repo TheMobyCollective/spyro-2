@@ -184,6 +184,7 @@ typedef struct CollisionObject {
 extern CollisionObject *func_8004055C(Vector3D *position, int flags, int arg2, int arg3, int arg4, int arg5);
 extern Vector3D D_8006AB7C;
 
+//func_8001F814
 // Camera control flags
 extern int D_800683A0;
 

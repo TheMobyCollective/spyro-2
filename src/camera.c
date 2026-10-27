@@ -1051,8 +1051,105 @@ INCLUDE_ASM("asm/nonmatchings/camera", func_8001F524);
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001F618);
 
 // https://decomp.me/scratch/dzJBh
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001F814);
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001F814);
+void func_8001F814(void) {
+    int input[2];
+    CameraPosition *setting;
 
+    switch (g_Camera.m_CameraMode) {
+    case 1:
+        setting = &D_80061560;
+
+        if (func_8001BEBC(
+                g_Spyro.m_0x6C,
+                g_Camera.m_CameraPositions[0].pos.azimuth) < 0x280) {
+            setting = &D_80061574;
+        }
+        break;
+
+    case 2:
+        setting = &D_80061588;
+        break;
+
+    case 3:
+        setting = &D_800615C4;
+        break;
+
+    case 0:
+    case 4:
+    case 8:
+    case 12:
+    case 23:
+        setting = &D_80061560;
+        break;
+
+    case 5:
+        setting = &D_8006159C;
+        break;
+
+    case 6:
+        func_800216D8(0);
+        return;
+
+    case 14:
+        setting = &D_80061600;
+        break;
+
+    case 16:
+        setting = &D_80061614;
+        break;
+
+    case 17:
+    case 18:
+        setting = &g_Camera.m_0x170;
+        break;
+
+    case 13:
+        setting = &D_80061628;
+        break;
+
+    case 21:
+        setting = &D_800616A0;
+        break;
+
+    case 22:
+        setting = &D_800616B4;
+        break;
+
+    case 24:
+        setting = &D_800616C8;
+        break;
+
+    case 25:
+        setting = &D_800616DC;
+        break;
+
+    case 26:
+        setting = &D_800616F0;
+        break;
+
+    case 15:
+    case 29:
+        setting = &D_800615EC;
+        break;
+
+    default:
+        return;
+    }
+
+    func_8002B4E4(input, 0);
+
+    // Apply only the first matching camera-control flag.
+    if (D_800683A0 & 0x8) {
+        setting->pos.radius -= input[1] >> 2;
+    } else if (D_800683A0 & 0x4) {
+        setting->pitch -= input[0] >> 3;
+        setting->yaw += input[1] >> 3;
+    } else if (D_800683A0 & 0x40) {
+        setting->pos.azimuth += input[0] >> 3;
+        setting->pos.elevation += input[1] >> 3;
+    }
+}
 
 // https://decomp.me/scratch/eaquc
 //INCLUDE_ASM("asm/nonmatchings/camera", func_8001FA24);
