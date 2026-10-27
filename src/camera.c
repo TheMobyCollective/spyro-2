@@ -13,8 +13,86 @@ void func_8001D87C(void) {
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001D8A4);
 
 // https://decomp.me/scratch/SgE3O
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001DB58);
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001DB58);
+void func_8001DB58(void)
+{
+    int wrappedAzimuthDifference;
+    int azimuthValue;
+    int radius1;
+    int radius2;
+    int elevation1;
+    int elevation2;
+    int radiusDifference;
+    int wrappedElevationDifference;
+    int wrappedYawDifference;
+    int wrappedPitchDifference;
 
+    /*
+     * Calculate the wrapped azimuth difference.
+     * A nonzero value at 0x150 overrides the calculation.
+     */
+    azimuthValue = g_Camera.m_0x150;
+
+    if (azimuthValue == 0) {
+        wrappedAzimuthDifference =
+            (g_Camera.m_CameraPositions[1].pos.azimuth -
+             g_Camera.m_CameraPositions[2].pos.azimuth) & 0xFFF;
+
+        g_Camera.m_CameraPositions[3].pos.azimuth =
+            wrappedAzimuthDifference;
+
+        if (wrappedAzimuthDifference >= 0x801) {
+            azimuthValue = wrappedAzimuthDifference - 0x1000;
+            g_Camera.m_CameraPositions[3].pos.azimuth = azimuthValue;
+        }
+    } else {
+        g_Camera.m_CameraPositions[3].pos.azimuth = azimuthValue;
+    }
+
+    /*
+     * Calculate the radius difference and wrapped elevation difference.
+     */
+    radius1 = g_Camera.m_CameraPositions[1].pos.radius;
+    radius2 = g_Camera.m_CameraPositions[2].pos.radius;
+    elevation1 = g_Camera.m_CameraPositions[1].pos.elevation;
+    elevation2 = g_Camera.m_CameraPositions[2].pos.elevation;
+
+    radiusDifference = radius1 - radius2;
+    wrappedElevationDifference = (elevation1 - elevation2) & 0xFFF;
+
+    g_Camera.m_CameraPositions[3].pos.radius = radiusDifference;
+    g_Camera.m_CameraPositions[3].pos.elevation =
+        wrappedElevationDifference;
+
+    if (wrappedElevationDifference >= 0x801) {
+        g_Camera.m_CameraPositions[3].pos.elevation =
+            wrappedElevationDifference - 0x1000;
+    }
+
+    /* Calculate the wrapped yaw difference. */
+    wrappedYawDifference =
+        (g_Camera.m_CameraPositions[1].yaw -
+         g_Camera.m_CameraPositions[2].yaw) & 0xFFF;
+
+    g_Camera.m_CameraPositions[3].yaw = wrappedYawDifference;
+
+    if (wrappedYawDifference >= 0x801) {
+        g_Camera.m_CameraPositions[3].yaw =
+            wrappedYawDifference - 0x1000;
+    }
+
+    /* Calculate the wrapped pitch difference. */
+    wrappedPitchDifference =
+        (g_Camera.m_CameraPositions[1].pitch -
+         g_Camera.m_CameraPositions[2].pitch) & 0xFFF;
+
+    g_Camera.m_CameraPositions[3].pitch = wrappedPitchDifference;
+
+    if (wrappedPitchDifference >= 0x801) {
+        g_Camera.m_CameraPositions[3].pitch =
+            wrappedPitchDifference - 0x1000;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001DC6C);
 
