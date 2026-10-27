@@ -24,8 +24,7 @@ typedef struct {
     int pitch;
 } CameraPosition;
 
-// Size 0x1F4 / 500, possibly including padding
-
+/* Camera structure: 0x1F4 bytes (500 bytes). */
 typedef struct {
     SHORTMATRIX m_ProjectionMatrix; // 0x00
     SHORTMATRIX m_ViewMatrix;       // 0x14
@@ -102,97 +101,46 @@ typedef struct {
 
 extern Camera g_Camera;
 
-
-extern void func_8001D8A4();                                  /* extern */
-extern void func_80021DC0();                                  /* extern */
-extern void func_8001EFA8(CameraPosition*, CameraPosition*); 
-extern void func_8001ECCC(CameraPosition* arg0, CameraPosition* arg1, int arg2);
-extern void func_8001F008(CameraPosition* arg0);
-extern void func_8001FA24(void);
-extern void func_800216D8(int mode);
-
-
-
-
-extern char D_800698BA;
-
-
-// func_80021558
-extern int D_80061564;
-extern void (*D_80067040)(void);
-
-// func_800216D8
-extern int D_800683A0;
-extern int D_80067114;
-
-extern unsigned char *D_80066F78; // Object data used by camera mode 18.
-
-extern short D_80061C58[]; // Cosine lookup table.
-extern short D_80061BD8[]; // Sine lookup table.
-
-extern CameraPosition D_8006163C[];
-extern int D_80066F5C;
-
-extern void (*D_800670AC)(int);
-
-//func_80021DC0
-extern int D_80061468[];
-extern int D_80066F68;
-extern int D_80067100;
-extern int D_80067114;
-extern int D_800681C8;
-extern int D_800683A0;
-extern int D_800683A4;
-extern unsigned char D_800698BB;
-
-/* Callback for unhandled camera modes. */
-extern void (*D_80067014)(void);
-
-//func_8001E2E4, func_8001E454, func_8001F618
-extern int D_8006ABA4;
-
-//func_8001E808
-// Camera-position configuration table.
-extern CameraPosition D_8006186C[9];
-
-// Interior-symbol aliases into D_8006186C[0].
-// These also serve as bases for corresponding fields in later entries.
-extern int D_80061870; // pos.elevation, offset +0x04
-extern int D_80061874; // pos.radius,    offset +0x08
-
-// Alias for D_8006186C[4] through D_8006186C[8].
-extern CameraPosition D_800618BC[5];
-
-// Camera timer increment.
-extern int D_80067018;
-
-// Global state value compared against 7.
-extern int D_800681C8;
-
-
-/*  
-Provisional collision-object layout; only m_0x53 is currently identified. 
-Used in func_8001E454 and func_8001F618
-*/
+/*
+ * CollisionObject layout is provisional; only m_0x53 is currently identified.
+ * Used by func_8001E454 and func_8001F618.
+ */
 typedef struct CollisionObject {
     unsigned char pad_0x00[0x53];
     unsigned char m_0x53;
 } CollisionObject;
 
-extern Vector3D D_8006AB7C;
-// collision.s functions
-//func_8001E454
+
+/* =========================================================================
+ * Camera function prototypes
+ * =========================================================================
+ */
+
+extern void func_8001D8A4(void);
+extern void func_8001ECCC(CameraPosition* arg0, CameraPosition* arg1, int arg2);
+extern void func_8001EFA8(CameraPosition*, CameraPosition*);
+extern void func_8001F008(CameraPosition* arg0);
+extern void func_8001FA24(void);
+extern void func_800216D8(int mode);
+extern void func_80021DC0(void);
+
+
+/* =========================================================================
+ * Collision functions
+ * =========================================================================
+ */
+
+/* Defined in collision.s; used by camera collision checks. */
 extern CollisionObject *func_8004055C(Vector3D *position, int flags, int arg2, int arg3, int arg4, int arg5);
-//func_8001F618
 extern int func_8003CE38(Vector3D *start, Vector3D *end, int flags, int arg3, int arg4);
 extern CollisionObject *func_8003F88C(Vector3D *start, Vector3D *end, int flags, int arg3, int arg4);
 
+/* =========================================================================
+ * Camera-position records and configuration tables
+ * =========================================================================
+ */
 
-//func_8001F814
-// Camera control flags
-extern int D_800683A0;
-
-// Camera position configuration records
+/* Individually named camera-position records. */
 extern CameraPosition D_80061560;
 extern CameraPosition D_80061574;
 extern CameraPosition D_80061588;
@@ -202,10 +150,99 @@ extern CameraPosition D_800615EC;
 extern CameraPosition D_80061600;
 extern CameraPosition D_80061614;
 extern CameraPosition D_80061628;
+
+/* Camera-position array beginning at D_8006163C. */
+extern CameraPosition D_8006163C[];
+
+/* Named records within the address range covered by D_8006163C[]. */
 extern CameraPosition D_800616A0;
 extern CameraPosition D_800616B4;
 extern CameraPosition D_800616C8;
 extern CameraPosition D_800616DC;
 extern CameraPosition D_800616F0;
+
+/* Camera-position configuration table. */
+extern CameraPosition D_8006186C[9];
+
+/*
+ * Interior-symbol aliases into D_8006186C[0].
+ * These also correspond to fields at the same offsets in later entries.
+ */
+extern int D_80061870;  /* pos.elevation, offset +0x04 */
+extern int D_80061874;  /* pos.radius,    offset +0x08 */
+
+/* Alias for D_8006186C[4] through D_8006186C[8]. */
+extern CameraPosition D_800618BC[5];
+
+
+/* =========================================================================
+ * Lookup tables
+ * =========================================================================
+ */
+
+extern short D_80061BD8[];  /* Sine lookup table. */
+extern short D_80061C58[];  /* Cosine lookup table. */
+
+
+/* =========================================================================
+ * Camera callbacks
+ * =========================================================================
+ */
+
+/* Callback for unhandled camera modes. */
+extern void (*D_80067014)(void);
+
+/* Callback used by func_80021558. */
+extern void (*D_80067040)(void);
+
+extern void (*D_800670AC)(int);
+
+
+/* =========================================================================
+ * Camera state and mode-specific data
+ * =========================================================================
+ */
+
+/* State used by func_80021558. */
+extern int D_80061564;
+
+/* Additional camera state. */
+extern int D_80066F5C;
+extern int D_80066F68;  /* Used by func_80021DC0. */
+
+/* Object data used by camera mode 18. */
+extern unsigned char *D_80066F78;
+
+/* Camera timer increment. */
+extern int D_80067018;
+
+/* Additional state used by func_80021DC0. */
+extern int D_80067100;
+extern int D_80067114;
+
+/* Global state value compared against 7. */
+extern int D_800681C8;
+
+/* Camera control flags. */
+extern int D_800683A0;
+extern int D_800683A4;
+
+/* Byte-sized camera state. */
+extern char D_800698BA;
+extern unsigned char D_800698BB;
+
+/* Data used by func_80021DC0. */
+extern int D_80061468[];
+
+
+/* =========================================================================
+ * Collision-tracing state
+ * =========================================================================
+ */
+
+/* Collision state shared by func_8001E2E4, func_8001E454 and func_8001F618. */
+extern int D_8006ABA4;
+
+extern Vector3D D_8006AB7C;
 
 #endif
