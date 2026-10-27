@@ -148,7 +148,7 @@ extern unsigned char D_800698BB;
 /* Callback for unhandled camera modes. */
 extern void (*D_80067014)(void);
 
-//func_8001E2E4 and func_8001E454
+//func_8001E2E4, func_8001E454, func_8001F618
 extern int D_8006ABA4;
 
 //func_8001E808
@@ -179,10 +179,14 @@ typedef struct CollisionObject {
     unsigned char m_0x53;
 } CollisionObject;
 
-//func_8001E454
-// collision.s function
-extern CollisionObject *func_8004055C(Vector3D *position, int flags, int arg2, int arg3, int arg4, int arg5);
 extern Vector3D D_8006AB7C;
+// collision.s functions
+//func_8001E454
+extern CollisionObject *func_8004055C(Vector3D *position, int flags, int arg2, int arg3, int arg4, int arg5);
+//func_8001F618
+extern int func_8003CE38(Vector3D *start, Vector3D *end, int flags, int arg3, int arg4);
+extern CollisionObject *func_8003F88C(Vector3D *start, Vector3D *end, int flags, int arg3, int arg4);
+
 
 //func_8001F814
 // Camera control flags

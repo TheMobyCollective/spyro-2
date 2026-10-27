@@ -1167,7 +1167,70 @@ INCLUDE_ASM("asm/nonmatchings/camera", func_8001F4A4);
 // https://decomp.me/scratch/AssXr
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001F524);
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001F618);
+// https://decomp.me/scratch/k3BuE
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001F618);
+int func_8001F618(Vector3D *start, Vector3D *end, int flags) {
+    Vector3D delta;
+    Vector3D rayStart;
+    Vector3D rayEnd;
+    CollisionObject *hitObject;
+    int raySegments;
+    int raySegmentsMinusOne;
+    int i;
+
+    // Reset the collision state.
+    D_8006ABA4 = 0;
+
+    // Calculate the vector from the start point to the end point.
+    func_8001BE00(&delta, end, start);
+
+    // Derive the number of ray segments from the vector's magnitude.
+    raySegments = func_8001BA20(&delta, 1);
+    raySegmentsMinusOne = raySegments >> 10;
+    raySegments = raySegmentsMinusOne + 1;
+
+    // Divide the vector evenly across the ray segments.
+    if (raySegments >= 2) {
+        delta.x /= raySegments;
+        delta.y /= raySegments;
+        delta.z /= raySegments;
+    }
+
+    // Start tracing from the initial point.
+    func_8001BDB0(&rayStart, start);
+
+    for (i = 0; i < raySegments; i++) {
+        // Calculate the endpoint of the current ray segment.
+        func_8001BDCC(&rayEnd, &rayStart, &delta);
+
+        // Check for collisions along this segment.
+        if (func_8003CE38(&rayStart, &rayEnd, 2, 0, 0) != 0) {
+            if (D_8006ABA4 == 0) {
+                return 0;
+            }
+        }
+
+        // Reject the trace if flag 2 is set and a collision was recorded.
+        if ((flags & 2) != 0 && D_8006ABA4 != 0) {
+            return 0;
+        }
+
+        // Optionally check for collision objects along the segment.
+        if ((flags & 1) != 0) {
+            hitObject = func_8003F88C(&rayStart, &rayEnd, 1, 0, 0);
+
+            // Reject hits whose 0x80 flag is not set.
+            if (hitObject != nullptr && (hitObject->m_0x53 & 0x80) == 0) {
+                return 0;
+            }
+        }
+
+        // Advance to the endpoint before tracing the next segment.
+        func_8001BDB0(&rayStart, &rayEnd);
+    }
+
+    return 1;
+}
 
 // https://decomp.me/scratch/dzJBh
 //INCLUDE_ASM("asm/nonmatchings/camera", func_8001F814);
@@ -1281,6 +1344,7 @@ void func_8001FA24(void) {
     }
 }
 
+// https://decomp.me/scratch/NYpJX
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001FA58);
 
 // https://decomp.me/scratch/AyB10
