@@ -106,6 +106,10 @@ extern Camera g_Camera;
 extern void func_8001D8A4();                                  /* extern */
 extern void func_80021DC0();                                  /* extern */
 extern void func_8001EFA8(CameraPosition*, CameraPosition*); 
+extern void func_8001ECCC(CameraPosition* arg0, CameraPosition* arg1, int arg2);
+extern void func_8001F008(CameraPosition* arg0);
+extern void func_8001FA24(void);
+extern void func_800216D8(int mode);
 
 
 extern char D_800698BA;
@@ -141,6 +145,9 @@ extern unsigned char D_800698BB;
 
 /* Callback for unhandled camera modes. */
 extern void (*D_80067014)(void);
+
+//func_8001E2E4
+extern int D_8006ABA4;
 
 // Camera control flags
 extern int D_800683A0;

@@ -467,7 +467,91 @@ void func_8001E270(void) {
     func_8001EFA8(position, position);
 }
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001E2E4);
+// https://decomp.me/scratch/1pOaS
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001E2E4);
+void func_8001E2E4(CameraPosition *arg0) {
+    Vector3D localPosition;
+    int angleOffset;
+    unsigned int spyroState;
+    int *flagPtr;
+
+    // Initialise camera flags.
+    func_8001FA24();
+
+    // Build the camera reference position from Spyro's data.
+    func_8001BDB0(&g_Camera.m_0x60, &g_Spyro);
+
+    angleOffset = g_Spyro.m_0x6C;
+    g_Camera.m_0x6C = angleOffset;
+
+    // Copy the supplied camera position, applying Spyro's angle offset.
+    func_8001ECCC(
+        &g_Camera.m_CameraPositions[1],
+        arg0,
+        angleOffset
+    );
+
+    // Copy position 1 into positions 2 and 0.
+    func_8001ECCC(
+        &g_Camera.m_CameraPositions[2],
+        &g_Camera.m_CameraPositions[1],
+        0
+    );
+
+    func_8001ECCC(
+        &g_Camera.m_CameraPositions[0],
+        &g_Camera.m_CameraPositions[1],
+        0
+    );
+
+    // Reset the working camera position at offset 0xCC.
+    func_8001F008(&g_Camera.m_CameraPositions[4]);
+
+    // Calculate the camera-relative vector and resulting position.
+    func_8001ED20(
+        &g_Camera.m_0x70,
+        &g_Camera.m_CameraPositions[2],
+        &g_Camera.m_0x60
+    );
+
+    func_8001BDB0(&g_Camera.m_Position, &g_Camera.m_0x70);
+
+    // Update the reference angles.
+    func_8001E270();
+
+    // Clear the threshold/limit region and subsequent temporary data.
+    g_Camera.m_0x134 = 0;
+    g_Camera.m_SpyroOffCenterFrames = 0;
+
+    func_8001B3C8(&g_Camera.m_RequestedCameraMode, 0, 0x6C);
+    func_8001B3C8(&g_Camera.m_0x1D4[0], 0, 0xC);
+
+    func_800216D8(1);
+
+    // Special handling for Spyro states 0xB and 0xC.
+    spyroState = g_Spyro.m_0x58;
+
+    if ((unsigned int)(spyroState - 0xB) < 2) {
+        func_8001BDB0(&localPosition, &g_Camera.m_Position);
+
+        flagPtr = &D_8006ABA4;
+        *flagPtr = 0;
+
+        localPosition.z -= 0x1000;
+
+        func_8003CE94(&g_Camera.m_Position, &localPosition);
+
+        if (*flagPtr != 0) {
+            g_Camera.m_0x40 = 0;
+        }
+    } else {
+        g_Camera.m_0x40 = 0;
+    }
+
+    // Clear the remaining camera state fields.
+    g_Camera.m_0x146 = 0;
+    g_Camera.m_0x13C = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001E454);
 
