@@ -128,6 +128,19 @@ extern int D_80066F5C;
 
 extern void (*D_800670AC)(int);
 
+//func_80021DC0
+extern int D_80061468[];
+extern int D_80066F68;
+extern int D_80067100;
+extern int D_80067114;
+extern int D_800681C8;
+extern int D_800683A0;
+extern int D_800683A4;
+extern unsigned char D_800698BB;
+
+/* Callback for unhandled camera modes. */
+extern void (*D_80067014)(void);
+
 // Camera control flags
 extern int D_800683A0;
 

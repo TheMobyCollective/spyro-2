@@ -1048,4 +1048,389 @@ void func_800216D8(int mode)
     g_Camera.m_0x154 = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_80021DC0);
+// https://decomp.me/scratch/lzpbq
+//INCLUDE_ASM("asm/nonmatchings/camera", func_80021DC0);
+void func_80021DC0(void) {
+    int mode;
+    int expectedMode;
+    int newSubstate;
+
+    switch (g_Camera.m_CameraMode) {
+    case 0:
+        if (g_Camera.m_RequestedCameraMode != 0) {
+            func_800216D8(g_Camera.m_RequestedCameraMode);
+            return;
+        }
+
+        if ((D_800683A0 & 0x10) != 0 &&
+            g_Spyro.m_0x1C1 != 0) {
+            func_800216D8(7);
+            return;
+        }
+
+        if ((D_800683A4 & 0xF) != 0) {
+            if ((D_800683A0 & 0xA) != 0 &&
+                (D_800683A0 & 0x5) != 0 &&
+                g_Spyro.m_0x240 == 0) {
+                func_800216D8(8);
+                return;
+            }
+        }
+
+        mode = g_Camera.m_CameraMode;
+        expectedMode = D_80061468[g_Spyro.m_0x50];
+
+        if (mode != expectedMode) {
+            func_800216D8(expectedMode);
+            return;
+        }
+
+        if (g_Camera.m_0x154 == 3) {
+            func_800216D8(6);
+            g_Camera.m_CameraSubstate = 1;
+            return;
+        }
+
+        if ((g_Camera.m_CameraFlags & 1) == 0) {
+            return;
+        }
+
+        if (g_Camera.m_0x130 >= 0x400) {
+            return;
+        }
+
+        if (g_Camera.m_0x134 != 0) {
+            return;
+        }
+
+        if (g_Camera.unk_0x5C != 0) {
+            return;
+        }
+
+        if (g_Camera.m_CameraSubstate == 1 ||
+            g_Camera.m_CameraSubstate == 2) {
+            return;
+        }
+
+        func_800216D8(6);
+        return;
+
+    case 1:
+        if (g_Camera.m_RequestedCameraMode != 0) {
+            func_800216D8(g_Camera.m_RequestedCameraMode);
+            return;
+        }
+
+        if ((D_800683A0 & 0x10) != 0 &&
+            g_Spyro.m_0x1C1 != 0) {
+            func_800216D8(7);
+            return;
+        }
+
+        if ((D_800683A4 & 0xF) != 0) {
+            if ((D_800683A0 & 0xA) != 0 &&
+                (D_800683A0 & 0x5) != 0 &&
+                g_Spyro.m_0x240 == 0) {
+                func_800216D8(8);
+                return;
+            }
+        }
+
+        mode = g_Camera.m_CameraMode;
+        expectedMode = D_80061468[g_Spyro.m_0x50];
+
+        if (mode == expectedMode) {
+            return;
+        }
+
+        if (expectedMode == 0) {
+            func_800216D8(6);
+        } else {
+            func_800216D8(expectedMode);
+        }
+
+        return;
+
+    case 2:
+        if (g_Camera.m_RequestedCameraMode != 0) {
+            func_800216D8(g_Camera.m_RequestedCameraMode);
+            return;
+        }
+
+        mode = g_Camera.m_CameraMode;
+        expectedMode = D_80061468[g_Spyro.m_0x50];
+
+        if (mode == expectedMode) {
+            return;
+        }
+
+        if (expectedMode != 0) {
+            func_800216D8(expectedMode);
+        } else {
+            func_800216D8(6);
+        }
+
+        return;
+
+    /*
+     * Keep mode 7 before mode 6 to preserve the target's
+     * emitted code order.
+     */
+    case 7:
+        if (g_Camera.m_RequestedCameraMode != 0) {
+            if (g_Camera.m_RequestedCameraMode != 12 &&
+                g_Camera.m_RequestedCameraMode != 13 &&
+                g_Camera.m_RequestedCameraMode != 14 &&
+                g_Camera.m_RequestedCameraMode != 16 &&
+                g_Camera.m_RequestedCameraMode != 17 &&
+                g_Camera.m_RequestedCameraMode != 18 &&
+                g_Camera.m_RequestedCameraMode != 19 &&
+                g_Camera.m_RequestedCameraMode != 20 &&
+                g_Camera.m_RequestedCameraMode != 22 &&
+                g_Camera.m_RequestedCameraMode != 26 &&
+                g_Camera.m_RequestedCameraMode != 24) {
+                func_800216D8(g_Camera.m_RequestedCameraMode);
+            }
+        }
+
+        if (g_Spyro.m_0x1C1 == 0) {
+            g_Spyro.m_0x260 = 0;
+            expectedMode = D_80061468[g_Spyro.m_0x50];
+
+            D_80067114 = 0;
+
+            func_800216D8(expectedMode);
+            return;
+        }
+
+        if ((D_800683A0 & 0x10) == 0 &&
+            ((D_800683A0 & 0xA) == 0 ||
+             (D_800683A0 & 0x5) == 0)) {
+
+            /* Substate-progression path. */
+            {
+                int *substate = &g_Camera.m_CameraSubstate;
+
+                if (*substate == 3) {
+                    *substate = 4;
+                    g_Camera.m_CameraModeTimer = 0;
+                    return;
+                }
+
+                if (*substate == 4) {
+                    if (g_Spyro.m_0x16C == *substate) {
+                        if (g_Camera.m_CameraModeTimer >= 0xE) {
+                            g_Camera.m_CameraModeTimer = 0xD;
+                        }
+
+                        return;
+                    }
+
+                    if (g_Camera.m_CameraModeTimer < 0x10) {
+                        return;
+                    }
+                }
+
+                D_80067114 = 0;
+                g_Spyro.m_0x260 = 0;
+
+                func_800216D8(0);
+
+                *substate = 2;
+                return;
+            }
+        }
+
+        /* Shared flag-handling path. */
+        if (g_Camera.m_CameraSubstate == 4) {
+            g_Camera.m_CameraSubstate = 3;
+            return;
+        }
+
+        if (g_Camera.m_0x147 == 0) {
+            return;
+        }
+
+        if (g_Spyro.m_0x1D8 != 0) {
+            return;
+        }
+
+        if (g_Spyro.m_0x1DC != 0) {
+            return;
+        }
+
+        if (g_Spyro.m_0x1E4 != 0) {
+            return;
+        }
+
+        if (D_800698BB != 0) {
+            return;
+        }
+
+        D_80067114 = 0;
+        g_Spyro.m_0x260 = 0;
+        g_Camera.m_0x147 = 0;
+        return;
+
+    case 6:
+        if (g_Camera.m_RequestedCameraMode != 0 &&
+            g_Camera.m_RequestedCameraMode != 17) {
+            func_800216D8(g_Camera.m_RequestedCameraMode);
+            return;
+        }
+
+        if ((D_800683A0 & 0x10) != 0 &&
+            g_Spyro.m_0x1C1 != 0) {
+            func_800216D8(7);
+            return;
+        }
+
+        if ((D_800683A4 & 0xF) != 0) {
+            if ((D_800683A0 & 0xA) != 0 &&
+                (D_800683A0 & 0x5) != 0 &&
+                g_Spyro.m_0x240 == 0) {
+                func_800216D8(8);
+                return;
+            }
+        }
+
+        expectedMode = D_80061468[g_Spyro.m_0x50];
+
+        if (expectedMode != 0) {
+            func_800216D8(expectedMode);
+            return;
+        }
+
+        if (g_Camera.m_0x134 != 0) {
+            func_800216D8(0);
+            return;
+        }
+
+        if (g_Camera.m_CameraSubstate != 1 &&
+            g_Camera.m_CameraModeTimer >= 0x3C) {
+            if (g_Camera.m_RequestedCameraMode == 17) {
+                func_800216D8(17);
+            } else {
+                func_800216D8(0);
+            }
+
+            g_Camera.m_CameraSubstate = 1;
+            return;
+        }
+
+        if ((g_Camera.m_CameraFlags & 1) == 0 &&
+            g_Camera.m_CameraSubstate != 1) {
+            func_800216D8(0);
+            return;
+        }
+
+        if (g_Camera.unk_0x5C != 0) {
+            func_800216D8(0);
+            return;
+        }
+
+        if (g_Camera.m_0x154 != 3) {
+            return;
+        }
+
+        g_Camera.m_CameraSubstate = 1;
+        return;
+
+    case 8:
+        if (g_Camera.m_0x144 != 0) {
+            func_800216D8(7);
+        }
+
+        if (g_Camera.m_0x130 < 0x1000) {
+            func_800216D8(0);
+        }
+
+        return;
+
+    case 9:
+        if (g_Camera.m_CameraSubstate == 0x82) {
+            g_Camera.m_RequestedCameraMode = 0;
+            expectedMode = D_80061468[g_Spyro.m_0x50];
+
+            func_800216D8(expectedMode);
+        }
+
+        return;
+
+    case 10:
+        if (g_Camera.m_CameraSubstate == 0x82) {
+            g_Camera.m_RequestedCameraMode = 0;
+            expectedMode = D_80061468[g_Spyro.m_0x50];
+
+            func_800216D8(expectedMode);
+            return;
+        }
+
+        if ((g_Camera.m_0x1B4 & 8) == 0) {
+            return;
+        }
+
+        if (g_Camera.m_0x1A8 < g_Camera.m_0x1A4->m_SampleCount - 1) {
+            return;
+        }
+
+        g_Camera.m_RequestedCameraMode = 0;
+        expectedMode = D_80061468[g_Spyro.m_0x50];
+
+        func_800216D8(expectedMode);
+        D_80067100 = 0;
+        return;
+
+    case 11:
+        if (g_Camera.m_RequestedCameraMode == 0) {
+            expectedMode = D_80061468[g_Spyro.m_0x50];
+
+            func_800216D8(expectedMode);
+            return;
+        }
+
+        if (g_Camera.m_RequestedCameraMode != 9) {
+            return;
+        }
+
+        newSubstate = (D_80066F68 >= 0x80) ? 0x10 : 0;
+
+        func_800216D8(9);
+        g_Camera.m_CameraModeTimer = newSubstate;
+        return;
+
+    case 18:
+        if (g_Camera.m_RequestedCameraMode != 0 &&
+            g_Camera.m_RequestedCameraMode != g_Camera.m_CameraMode) {
+            func_800216D8(g_Camera.m_RequestedCameraMode);
+            return;
+        }
+
+        if (D_800681C8 == 1) {
+            return;
+        }
+
+        g_Camera.m_RequestedCameraMode = 0;
+        expectedMode = D_80061468[g_Spyro.m_0x50];
+
+        func_800216D8(expectedMode);
+        return;
+
+    /* These modes, and out-of-range modes, use the callback. */
+    case 3:
+    case 4:
+    case 5:
+    case 12:
+    case 13:
+    case 14:
+    case 15:
+    case 16:
+    case 17:
+    default:
+        if (D_80067014 != 0) {
+            D_80067014();
+        }
+
+        return;
+    }
+}
