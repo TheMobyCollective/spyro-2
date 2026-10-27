@@ -437,7 +437,35 @@ void func_8001DC6C(void) {
 // https://decomp.me/scratch/dg0nn - 100%
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001E204);
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001E270);
+// https://decomp.me/scratch/yNVyU
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001E270);
+void func_8001E270(void) {
+    short *anglePtr;
+    CameraPosition *position;
+    int pitchOffset;
+
+    // Reset the halfword at Camera offset 0x44.
+    anglePtr = &g_Camera.m_Rotation.x;
+    *anglePtr = 0;
+
+    // Prepare the reference used to derive position[0].yaw
+    // from position[2].yaw, with 12-bit angle wrapping.
+    g_Camera.m_Rotation.y =
+        (g_Camera.m_CameraPositions[0].pos.elevation +
+         g_Camera.m_CameraPositions[2].yaw) & 0xFFF;
+
+    // Prepare the reference used to derive position[0].pitch
+    // from position[2].pitch.
+    pitchOffset = g_Camera.m_CameraPositions[2].pitch + 0x800;
+
+    g_Camera.m_Rotation.z =
+        (g_Camera.m_CameraPositions[0].pos.azimuth +
+         pitchOffset) & 0xFFF;
+
+    position = &g_Camera.m_CameraPositions[0];
+
+    func_8001EFA8(position, position);
+}
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001E2E4);
 

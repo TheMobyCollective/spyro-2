@@ -105,6 +105,7 @@ extern Camera g_Camera;
 
 extern void func_8001D8A4();                                  /* extern */
 extern void func_80021DC0();                                  /* extern */
+extern void func_8001EFA8(CameraPosition*, CameraPosition*); 
 
 
 extern char D_800698BA;
