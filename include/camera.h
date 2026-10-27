@@ -114,4 +114,37 @@ extern char D_800698BA;
 extern int D_80061564;
 extern void (*D_80067040)(void);
 
+// func_800216D8
+extern int D_800683A0;
+extern int D_80067114;
+
+extern unsigned char *D_80066F78; // Object data used by camera mode 18.
+
+extern short D_80061C58[]; // Cosine lookup table.
+extern short D_80061BD8[]; // Sine lookup table.
+
+extern CameraPosition D_8006163C[];
+extern int D_80066F5C;
+
+extern void (*D_800670AC)(int);
+
+// Camera control flags
+extern int D_800683A0;
+
+// Camera position configuration records
+extern CameraPosition D_80061560;
+extern CameraPosition D_80061574;
+extern CameraPosition D_80061588;
+extern CameraPosition D_8006159C;
+extern CameraPosition D_800615C4;
+extern CameraPosition D_800615EC;
+extern CameraPosition D_80061600;
+extern CameraPosition D_80061614;
+extern CameraPosition D_80061628;
+extern CameraPosition D_800616A0;
+extern CameraPosition D_800616B4;
+extern CameraPosition D_800616C8;
+extern CameraPosition D_800616DC;
+extern CameraPosition D_800616F0;
+
 #endif

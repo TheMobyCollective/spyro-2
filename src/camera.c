@@ -596,7 +596,9 @@ INCLUDE_ASM("asm/nonmatchings/camera", func_8001F524);
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001F618);
 
+// https://decomp.me/scratch/dzJBh
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001F814);
+
 
 // https://decomp.me/scratch/eaquc
 //INCLUDE_ASM("asm/nonmatchings/camera", func_8001FA24);
@@ -684,6 +686,366 @@ void func_80021558(void)
     func_8001DC6C();
 }
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_800216D8);
+// https://decomp.me/scratch/uJSzo
+//INCLUDE_ASM("asm/nonmatchings/camera", func_800216D8);
+void func_800216D8(int mode)
+{
+    int cameraFlags;
+    int direction;
+    int attempt;
+    int collisionResult;
+    int lookAngleOffset;
+
+    Vector3D playerPosition; 
+    Vector3D candidatePosition;
+    Vector3D pathOffset;
+
+    /*
+     * Validate requests to switch into camera mode 6.
+     */
+    if (mode == 6) {
+        if ((g_Camera.m_CameraFlags & 0x1) == 0 &&
+            g_Camera.m_CameraMode != 8 &&
+            g_Camera.m_0x154 != 3) {
+            mode = 0;
+        } else if (g_Spyro.m_0x58 == 13 ||
+                   g_Camera.unk_0x5C != 0) {
+            mode = 0;
+        } else {
+            cameraFlags = D_800683A0;
+
+            if ((cameraFlags & 0xA) != 0 &&
+                (cameraFlags & 0x5) != 0) {
+                mode = 0;
+            }
+        }
+    }
+
+    g_Camera.m_0x147 = 0;
+    D_80067114 = 0;
+
+    if ((g_Spyro.m_0x210 & 0x2000) == 0) {
+        g_Spyro.m_0x260 = 0;
+    }
+
+    switch (mode) {
+    case 0:
+    case 6:
+        g_Camera.m_CameraSubstate = 0;
+
+        g_Camera.m_0x140 = 0;
+        g_Camera.m_0x141 = 0;
+        g_Camera.m_0x142 = 0;
+        g_Camera.m_0x145 = 0;
+
+        func_8001BDB0(
+            &g_Camera.m_0x60,
+            &g_Spyro.m_Vector_0x00
+        );
+
+        g_Camera.m_0x6C = g_Spyro.m_0x6C;
+
+        func_8001EE18(
+            &g_Camera.m_CameraPositions[0].pos,
+            &g_Camera.m_Position,
+            &g_Spyro
+        );
+
+        func_8001EFA8(
+            &g_Camera.m_CameraPositions[0],
+            &g_Camera.m_CameraPositions[0]
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[2],
+            &g_Camera.m_CameraPositions[0],
+            0
+        );
+        break;
+
+    case 1:
+        g_Camera.m_CameraSubstate = 0;
+
+        g_Camera.m_0x140 = 0;
+        g_Camera.m_0x141 = 0;
+        g_Camera.m_0x142 = 1;
+        g_Camera.m_0x145 = 0;
+
+        func_8001BDB0(
+            &g_Camera.m_0x60,
+            &g_Spyro.m_Vector_0x00
+        );
+
+        g_Camera.m_0x6C = g_Spyro.m_0x6C;
+
+        func_8001EE18(
+            &g_Camera.m_CameraPositions[0].pos,
+            &g_Camera.m_Position,
+            &g_Spyro
+        );
+
+        func_8001EFA8(
+            &g_Camera.m_CameraPositions[0],
+            &g_Camera.m_CameraPositions[0]
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[2],
+            &g_Camera.m_CameraPositions[0],
+            0
+        );
+        break;
+
+    case 2:
+    case 8:
+        g_Camera.m_CameraSubstate = 0;
+
+        g_Camera.m_0x140 = 0;
+        g_Camera.m_0x141 = 0;
+        g_Camera.m_0x142 = 1;
+        g_Camera.m_0x145 = 0;
+        g_Camera.unk_0x5C = 0;
+
+        func_8001BDB0(
+            &g_Camera.m_0x60,
+            &g_Spyro.m_Vector_0x00
+        );
+
+        g_Camera.m_0x6C = g_Spyro.m_0x6C;
+
+        func_8001EE18(
+            &g_Camera.m_CameraPositions[0].pos,
+            &g_Camera.m_Position,
+            &g_Spyro
+        );
+
+        func_8001EFA8(
+            &g_Camera.m_CameraPositions[0],
+            &g_Camera.m_CameraPositions[0]
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[2],
+            &g_Camera.m_CameraPositions[0],
+            0
+        );
+        break;
+
+    case 7:
+        g_Camera.m_CameraSubstate = 0;
+
+        g_Camera.m_0x148 = 0;
+        g_Camera.m_0x14C = 0;
+        g_Camera.m_0x15C.y = 0;
+        g_Camera.m_0x15C.z = 0;
+
+        g_Camera.m_0x140 = 0;
+        g_Camera.m_0x141 = 0;
+        g_Camera.m_0x142 = 1;
+        g_Camera.m_0x145 = 0;
+        g_Camera.unk_0x5C = 0;
+
+        func_8001BDB0(
+            &g_Camera.m_0x60,
+            &g_Spyro.m_Vector_0x00
+        );
+
+        g_Camera.m_0x6C = g_Spyro.m_0x6C;
+
+        func_8001EE18(
+            &g_Camera.m_CameraPositions[0].pos,
+            &g_Camera.m_Position,
+            &g_Spyro
+        );
+
+        func_8001EFA8(
+            &g_Camera.m_CameraPositions[0],
+            &g_Camera.m_CameraPositions[0]
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[2],
+            &g_Camera.m_CameraPositions[0],
+            0
+        );
+        break;
+
+    case 9:
+    case 11:
+        g_Camera.m_CameraSubstate = 0;
+
+        g_Camera.m_0x134 = 0;
+        g_Camera.m_SpyroOffCenterFrames = 0;
+        g_Camera.m_0x140 = 1;
+        g_Camera.m_0x141 = 1;
+        g_Camera.unk_0x5C = 0;
+        break;
+
+    case 10:
+        if ((g_Camera.m_0x1B4 & 0x2) != 0) {
+            g_Camera.m_CameraSubstate = 3;
+
+            func_8001BDB0(
+                &g_Camera.m_0x1B8,
+                &g_Camera.m_Position
+            );
+
+            g_Camera.m_0x145 = 1;
+            g_Camera.m_0x1C4.x = g_Camera.m_Rotation.x;
+            g_Camera.m_0x1C4.y = g_Camera.m_Rotation.y;
+            g_Camera.m_0x1C4.z = g_Camera.m_Rotation.z;
+        } else if ((unsigned int)(g_Camera.m_CameraMode - 9) >= 2) {
+            g_Camera.m_CameraSubstate = 0;
+        }
+
+        g_Camera.m_0x134 = 0;
+        g_Camera.m_SpyroOffCenterFrames = 0;
+        g_Camera.m_0x140 = 1;
+        g_Camera.m_0x141 = 1;
+        g_Camera.unk_0x5C = 0;
+        break;
+
+    case 18: 
+        g_Camera.m_CameraSubstate = 0;
+        g_Camera.m_0x140 = 0;
+        g_Camera.m_0x141 = 1;
+        g_Camera.m_0x142 = 1;
+        g_Camera.m_0x145 = 0;
+        g_Camera.unk_0x5C = 0;        
+        
+        pathOffset.x =
+            (D_80061C58[D_80066F78[0x46]] * 13) >> 5;
+        pathOffset.y =
+            (D_80061BD8[D_80066F78[0x46]] * 13) >> 5;
+        pathOffset.z = 0x164;
+
+        func_8001BDCC(
+            &pathOffset,
+            &pathOffset,
+            (Vector3D *)(D_80066F78 + 0xC)
+        );
+
+        collisionResult = func_8003EE84(
+            &pathOffset,
+            0x800
+        );
+
+        pathOffset.z = collisionResult;
+
+        if (collisionResult != 0) {
+            pathOffset.z += 0x164;
+        } else {
+            func_8001BDB0(
+                &pathOffset,
+                &g_Spyro.m_Vector_0x00
+            );
+        }
+
+        func_8001BDB0(
+            &playerPosition,
+            &g_Spyro.m_Vector_0x00
+        );
+
+        playerPosition.z -= 0x124;
+        
+        lookAngleOffset = (D_80066F78[0x46] << 4) + 0x800;
+
+        direction =
+            (g_Camera.m_CameraPositions[0].pos.azimuth -
+             lookAngleOffset) & 0xFFF;
+
+        if (direction >= 0x801) {
+            direction -= 0x1000;
+        }
+
+        direction = (unsigned int)direction >> 31;
+        
+        for (attempt = 0; attempt < 2; attempt++) {
+            func_8001ECCC(
+                &g_Camera.m_CameraPositions[1],
+                &D_8006163C[direction],
+                lookAngleOffset
+            );
+
+            func_8001ED20(
+                &candidatePosition,
+                &g_Camera.m_CameraPositions[1],
+                &pathOffset
+            );
+
+            collisionResult = func_8003DCC0(
+                &candidatePosition,
+                0x100
+            );
+
+            if (collisionResult == 0 &&
+                func_8001F618(
+                    &g_Camera.m_Position,
+                    &candidatePosition,
+                    0
+                ) != 0 &&
+                func_8001F618(
+                    &candidatePosition,
+                    &pathOffset,
+                    0
+                ) != 0) {
+                break;
+            }
+
+            direction = 1 - direction;
+        }
+
+        if (attempt == 2) {
+            direction = 2;
+        }
+
+        if (D_80066F5C >= 0) {
+            direction = D_80066F5C;
+        }
+
+        D_80066F5C = direction;
+
+        func_8001BDB0(
+            &g_Camera.m_0x60,
+            &g_Spyro.m_Vector_0x00
+        );
+
+        g_Camera.m_0x6C = g_Spyro.m_0x6C;
+
+        func_8001ECCC(
+            &g_Camera.m_0x170,
+            &D_8006163C[D_80066F5C],
+            0
+        );
+
+        func_8001EE18(
+            &g_Camera.m_CameraPositions[0].pos,
+            &g_Camera.m_Position,
+            &g_Spyro
+        );
+
+        func_8001EFA8(
+            &g_Camera.m_CameraPositions[0],
+            &g_Camera.m_CameraPositions[0]
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[2],
+            &g_Camera.m_CameraPositions[0],
+            0
+        );
+        break;
+
+    default:
+        if (D_800670AC != nullptr) {
+            D_800670AC(mode);
+        }
+        break;
+    }
+
+    g_Camera.m_CameraMode = mode;
+    g_Camera.m_CameraModeTimer = 0;
+    g_Camera.m_0x154 = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_80021DC0);
