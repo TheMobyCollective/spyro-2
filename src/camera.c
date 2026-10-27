@@ -555,7 +555,184 @@ void func_8001E2E4(CameraPosition *arg0) {
 
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001E454);
 
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001E808);
+// https://decomp.me/scratch/HFe14
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001E808);
+void func_8001E808(void) {
+    Vector3D target;
+    Vector3D candidate;
+    CameraPosition offset;
+    CameraPosition *setting;
+    int i;
+    int mask;
+
+    if (g_Camera.m_0x141 != 0 || D_800681C8 == 7) {
+        g_Camera.m_0x134 = 0;
+        g_Camera.m_SpyroOffCenterFrames = 0;
+        return;
+    }
+
+    func_8001BDB0(&target, (Vector3D *)&g_Spyro);
+    target.z -= 0x124;
+
+    if (func_8001F618(&g_Camera.m_Position, &target, 1) == 0) {
+        mask = 0;
+        g_Camera.m_0x144 = 1;
+        g_Camera.m_SpyroOffCenterFrames += D_80067018;
+
+        if (g_Camera.m_SpyroOffCenterFrames >= 0x3D) {
+            for (i = 0, setting = D_800618BC;
+                 i < 5;
+                 i++, setting++) {
+                func_8001E2E4(setting);
+
+                if (func_8003DCC0(&g_Camera.m_Position, 0x100) == 0) {
+                    if (func_8001F618(&g_Camera.m_Position, &target, 1) != 0) {
+                        return;
+                    }
+                }
+            }
+
+            return;
+        }
+
+        // First pass: test the configured offsets at scale 1.
+        for (i = 0; i < 4; i++) {
+            offset.pos.azimuth =
+                (g_Camera.m_CameraPositions[0].pos.azimuth +
+                 D_8006186C[i].pos.azimuth) & 0xFFF;
+
+            if (offset.pos.azimuth >= 0x801) {
+                offset.pos.azimuth -= 0x1000;
+            }
+
+            if (offset.pos.azimuth >= 0x401) {
+                offset.pos.azimuth = 0x400;
+            }
+
+            // Use the interior alias with a CameraPosition-sized stride.
+            offset.pos.elevation =
+                (g_Camera.m_CameraPositions[0].pos.elevation +
+                 D_8006186C[i].pos.elevation) & 0xFFF;
+
+            offset.pos.radius =
+                g_Camera.m_CameraPositions[0].pos.radius +
+                D_8006186C[i].pos.radius;
+
+            func_8001ED20(&candidate, &offset, &g_Camera.m_0x60);
+
+            if (func_8003DCC0(&candidate, 0x100) == 0 &&
+                func_8001F618(&g_Camera.m_Position, &candidate, 1) != 0) {
+                mask |= 1 << i;
+
+                if (func_8001F618(&candidate, &target, 1) != 0) {
+                    func_8001EE18(&g_Camera.m_CameraPositions[1].pos,
+                                  &candidate, &g_Camera.m_0x60);
+                    g_Camera.m_0x134 = 0x10;
+                    return;
+                }
+            }
+        }
+
+        if (mask == 0) {
+            return;
+        }
+
+        // Second pass: test surviving offsets at scale 2.
+        for (i = 0; i < 4; i++) {
+            if ((mask & (1 << i)) == 0) {
+                continue;
+            }
+
+            offset.pos.azimuth =
+                (g_Camera.m_CameraPositions[0].pos.azimuth +
+                 (D_8006186C[i].pos.azimuth << 1)) & 0xFFF;
+
+            if (offset.pos.azimuth >= 0x801) {
+                offset.pos.azimuth -= 0x1000;
+            }
+
+            if (offset.pos.azimuth >= 0x401) {
+                offset.pos.azimuth = 0x400;
+            }
+
+            offset.pos.elevation =
+                (g_Camera.m_CameraPositions[0].pos.elevation +
+                 (D_8006186C[i].pos.elevation << 1)) & 0xFFF;
+
+            offset.pos.radius =
+                g_Camera.m_CameraPositions[0].pos.radius +
+                (D_8006186C[i].pos.radius << 1);
+
+            func_8001ED20(&candidate, &offset, &g_Camera.m_0x60);
+
+            if (func_8003DCC0(&candidate, 0x100) == 0 &&
+                func_8001F618(&g_Camera.m_Position, &candidate, 1) != 0) {
+                if (func_8001F618(&candidate, &target, 1) != 0) {
+                    func_8001EE18(&g_Camera.m_CameraPositions[1].pos,
+                                  &candidate, &g_Camera.m_0x60);
+                    g_Camera.m_0x134 = 0x10;
+                    return;
+                }
+            } else {
+                mask &= ~(1 << i);
+            }
+        }
+
+        if (mask == 0) {
+            return;
+        }
+
+        // Third pass: test surviving offsets at scale 4.
+        for (i = 0; i < 4; i++) {
+            if ((mask & (1 << i)) == 0) {
+                continue;
+            }
+
+            offset.pos.azimuth =
+                (g_Camera.m_CameraPositions[0].pos.azimuth +
+                 (D_8006186C[i].pos.azimuth << 2)) & 0xFFF;
+
+            if (offset.pos.azimuth >= 0x801) {
+                offset.pos.azimuth -= 0x1000;
+            }
+
+            if (offset.pos.azimuth >= 0x401) {
+                offset.pos.azimuth = 0x400;
+            }
+
+            offset.pos.elevation =
+                (g_Camera.m_CameraPositions[0].pos.elevation +
+                 (D_8006186C[i].pos.elevation << 2)) & 0xFFF;
+
+            offset.pos.radius =
+                g_Camera.m_CameraPositions[0].pos.radius +
+                (D_8006186C[i].pos.radius << 2);
+
+            func_8001ED20(&candidate, &offset, &g_Camera.m_0x60);
+
+            if (func_8003DCC0(&candidate, 0x100) == 0 &&
+                func_8001F618(&g_Camera.m_Position, &candidate, 1) != 0) {
+                if (func_8001F618(&candidate, &target, 1) != 0) {
+                    func_8001EE18(&g_Camera.m_CameraPositions[1].pos,
+                                  &candidate, &g_Camera.m_0x60);
+                    g_Camera.m_0x134 = 0x10;
+                    return;
+                }
+            } else {
+                mask &= ~(1 << i);
+            }
+        }
+    } else {
+        if (g_Camera.m_0x142 == 0) {
+            g_Camera.m_SpyroOffCenterFrames = 0;
+            return;
+        }
+
+        g_Camera.m_0x134 = 0;
+        g_Camera.m_SpyroOffCenterFrames = 0;
+        return;
+    }
+}
 
 // https://decomp.me/scratch/zNKgH
 //INCLUDE_ASM("asm/nonmatchings/camera", func_8001ECCC); SetCameraPosition()

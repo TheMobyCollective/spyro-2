@@ -149,6 +149,24 @@ extern void (*D_80067014)(void);
 //func_8001E2E4
 extern int D_8006ABA4;
 
+//func_8001E808
+// Camera-position configuration table.
+extern CameraPosition D_8006186C[9];
+
+// Interior-symbol aliases into D_8006186C[0].
+// These also serve as bases for corresponding fields in later entries.
+extern int D_80061870; // pos.elevation, offset +0x04
+extern int D_80061874; // pos.radius,    offset +0x08
+
+// Alias for D_8006186C[4] through D_8006186C[8].
+extern CameraPosition D_800618BC[5];
+
+// Camera timer increment.
+extern int D_80067018;
+
+// Global state value compared against 7.
+extern int D_800681C8;
+
 // Camera control flags
 extern int D_800683A0;
 
