@@ -8,6 +8,12 @@
 
 /*** Maths ***/
 
+#define ABS(x) ((x) >= 0 ? (x) : -(x))
+
+typedef struct {
+  int x, y;
+} Vector2D;
+
 typedef struct {
     int x, y, z;
 } Vector3D;
@@ -87,9 +93,56 @@ typedef struct Moby {
 } Moby;
 
 typedef struct {
-    Vector3D m_Vector_0x00;      // 0x00
-    char pad_0x0C[0x94];         // 0x0C–0x9F
-    Vector3D m_Vector_0xA0;      // 0xA0
+    Vector3D m_Vector_0x00;       // 0x00–0x0B
+    char pad_0x0C[0x44];          // 0x0C–0x4F
+
+    int m_0x50;                   // 0x50; tested against 6
+    int m_0x54;                   // 0x54; tested against 1
+    int m_0x58;                   // 0x58; tested against states 0xB and 0xA
+
+    char pad_0x5C[0x0C];          // 0x5C–0x67
+    int m_0x68;                   // 0x68
+    int m_0x6C;                   // 0x6C; copied to Camera and passed as an argument
+
+    char pad_0x70[0x24];          // 0x70–0x93
+    Vector3D m_Vector_0x94;       // 0x94–0x9F
+    Vector3D m_Vector_0xA0;       // 0xA0–0xAB
+
+    char pad_0xAC[0xC0];          // 0xAC–0x16B
+    int m_0x16C;                  // 0x16C
+
+    char pad_0x170[0x14];         // 0x170–0x183
+    Vector3D m_Vector_0x184;      // 0x184–0x18F; provisional grouping
+    char pad_0x190[0x31];         // 0x190–0x1C0
+
+    unsigned char m_0x1C1;        // 0x1C1
+    char pad_0x1C2[0x16];         // 0x1C2–0x1D7
+
+    int m_0x1D8;                  // 0x1D8
+    int m_0x1DC;                  // 0x1DC
+
+    char pad_0x1E0[0x04];         // 0x1E0–0x1E3
+    int m_0x1E4;                  // 0x1E4
+
+    char pad_0x1E8[0x24];         // 0x1E8–0x20B
+    int m_0x20C;                  // 0x20C; flag bits are tested and set
+
+    int m_0x210;                  // 0x210–0x213
+    char pad_0x214[0x08];         // 0x214–0x21B
+    Vector3D m_Vector_0x21C;      // 0x21C–0x227; passed to func_8001BDA0
+
+    char pad_0x228[0x04];         // 0x228–0x22B
+    Vector3D m_Vector_0x22C;      // 0x22C–0x237; copied into the position at 0x00
+
+    int m_0x238;                  // 0x238; copied to Camera + 0x6C
+    int m_0x23C;                  // 0x23C; tested against 0x29
+    int m_0x240;                  // 0x240
+
+    char pad_0x244[0x14];         // 0x244–0x257
+    int m_0x258;                  // 0x258; negative values are cleared
+    char pad_0x25C[0x04];         // 0x25C–0x25F
+
+    int m_0x260;                  // 0x260
 } Spyro;
 
 extern Spyro g_Spyro;

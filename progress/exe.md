@@ -1,16 +1,16 @@
 <!-- camera.c -->
 - [x] func_8001D87C
 - [ ] func_8001D8A4
-- [ ] func_8001DB58
-- [ ] func_8001DC6C
+- [x] func_8001DB58
+- [x] func_8001DC6C
 - [ ] func_8001E204
-- [ ] func_8001E270
-- [ ] func_8001E2E4
-- [ ] func_8001E454
-- [ ] func_8001E808
+- [x] func_8001E270
+- [x] func_8001E2E4
+- [x] func_8001E454
+- [x] func_8001E808
 - [x] func_8001ECCC
 - [ ] func_8001ED20
-- [ ] func_8001EE18
+- [x] func_8001EE18
 - [ ] func_8001EFA8
 - [x] func_8001F008
 - [ ] func_8001F020
@@ -18,16 +18,16 @@
 - [x] func_8001F1E4
 - [ ] func_8001F1FC
 - [ ] func_8001F24C
-- [ ] func_8001F2E4
+- [x] func_8001F2E4
 - [ ] func_8001F4A4
 - [ ] func_8001F524
-- [ ] func_8001F618
-- [ ] func_8001F814
+- [x] func_8001F618
+- [x] func_8001F814
 - [x] func_8001FA24
 - [ ] func_8001FA58
-- [ ] func_80021558
-- [ ] func_800216D8
-- [ ] func_80021DC0
+- [x] func_80021558
+- [x] func_800216D8
+- [x] func_80021DC0
 
 <!-- cheat.c -->
 - [ ] func_800543A8
