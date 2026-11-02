@@ -736,7 +736,7 @@ void func_8001E808(void) {
         return;
     }
 
-    func_8001BDB0(&target, (Vector3D *)&g_Spyro);
+    func_8001BDB0(&target, &g_Spyro.m_Vector_0x00);
     target.z -= 0x124;
 
     if (func_8001F618(&g_Camera.m_Position, &target, 1) == 0) {
