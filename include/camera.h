@@ -1,3 +1,4 @@
+
 #ifndef __CAMERA_H
 #define __CAMERA_H
 
@@ -36,10 +37,10 @@ typedef struct {
     Vector3D16 m_Rotation;          // 0x44–0x49;
     char pad_0x4A[2];               // 0x4A–0x4B
 
-    int m_CameraMode;                // 0x4C
-    int m_CameraSubstate;            // 0x50
-    int m_CameraModeTimer;           // 0x54
-    int m_CameraFlags;               // 0x58
+    int m_CameraMode;               // 0x4C
+    int m_CameraSubstate;           // 0x50
+    int m_CameraModeTimer;          // 0x54
+    int m_CameraFlags;              // 0x58
 
     unsigned char unk_0x5C;         // 0x5C
     char pad_0x5D[3];               // 0x5D–0x5F
@@ -58,19 +59,19 @@ typedef struct {
     unsigned char m_0x140;          // 0x140; control flag
     unsigned char m_0x141;          // 0x141; inner-loop flag
     unsigned char m_0x142;          // 0x142
-    unsigned char m_SphericalFlipState;          // 0x143
+    unsigned char m_SphericalFlipState; // 0x143
     unsigned char m_0x144;          // 0x144; cleared/set by func_8001E454
     unsigned char m_0x145;          // 0x145
     unsigned char m_0x146;          // 0x146; state flag
-    unsigned char m_0x147;          // 0x147  
+    unsigned char m_0x147;          // 0x147
 
     int m_0x148;                    // 0x148
     int m_0x14C;                    // 0x14C
     int m_0x150;                    // 0x150
     int m_0x154;                    // 0x154
     int m_0x158;                    // 0x158
-    
-    Vector3D m_0x15C;            // 0x15C–0x167
+
+    Vector3D m_0x15C;               // 0x15C–0x167
 
     int m_RequestedCameraMode;      // 0x168
     int m_0x16C;                    // 0x16C
@@ -79,24 +80,24 @@ typedef struct {
     Vector3D m_0x184;               // 0x184–0x18F
     CameraPosition m_0x190;         // 0x190–0x1A3
 
-    CameraMotionTable *m_0x1A4;     // 0x1A4; sample count and motion samples
-    int m_0x1A8;                    // 0x1A8; current sample index/progress
-    
-    char pad_0x1AC[0x8];            // 0x1AC–0x1B3
-    
-    int m_0x1B4;                    // 0x1B4; motion/control flags
-    Vector3D m_0x1B8;               // 0x1B8–0x1C3   
-    Vector3D m_0x1C4;               // 0x1C4–0x1CF; rotation related
-    
-    char pad_0x1D0[0x4];            // 0x1D0–0x1D3    
-    int m_0x1D4[3];                 // 0x1D4–0x1DF; not yet fully identified
+    CameraMotionTable *m_0x1A4;      // 0x1A4; sample count and motion samples
+    int m_0x1A8;                     // 0x1A8; current sample index/progress
 
-    Vector3D m_0x1E0;               // 0x1E0–0x1EB; interpolation output
-   
-    short m_0x1EC;                  // 0x1EC
-    short m_0x1EE;                  // 0x1EE
-    short m_0x1F0;                  // 0x1F0
-    char pad_0x1F2[2];              // 0x1F2–0x1F3
+    char pad_0x1AC[0x8];            // 0x1AC–0x1B3
+
+    int m_0x1B4;                     // 0x1B4; motion/control flags
+    Vector3D m_0x1B8;                // 0x1B8–0x1C3
+    Vector3D m_0x1C4;                // 0x1C4–0x1CF; rotation related
+
+    char pad_0x1D0[0x4];             // 0x1D0–0x1D3
+    int m_0x1D4[3];                  // 0x1D4–0x1DF; not yet fully identified
+
+    Vector3D m_0x1E0;                // 0x1E0–0x1EB; interpolation output
+
+    short m_0x1EC;                   // 0x1EC
+    short m_0x1EE;                   // 0x1EE
+    short m_0x1F0;                   // 0x1F0
+    char pad_0x1F2[2];               // 0x1F2–0x1F3
 } Camera;
 
 extern Camera g_Camera;
@@ -135,6 +136,7 @@ extern CollisionObject *func_8004055C(Vector3D *position, int flags, int arg2, i
 extern int func_8003CE38(Vector3D *start, Vector3D *end, int flags, int arg3, int arg4);
 extern CollisionObject *func_8003F88C(Vector3D *start, Vector3D *end, int flags, int arg3, int arg4);
 
+
 /* =========================================================================
  * Camera-position records and configuration tables
  * =========================================================================
@@ -145,11 +147,17 @@ extern CameraPosition D_80061560;
 extern CameraPosition D_80061574;
 extern CameraPosition D_80061588;
 extern CameraPosition D_8006159C;
+extern CameraPosition D_800615B0;
 extern CameraPosition D_800615C4;
 extern CameraPosition D_800615EC;
 extern CameraPosition D_80061600;
 extern CameraPosition D_80061614;
 extern CameraPosition D_80061628;
+
+/* Interior-symbol aliases within D_800615B0. */
+extern int D_800615B8;
+extern int D_800615BC;
+extern int D_800615C0;
 
 /* Camera-position array beginning at D_8006163C. */
 extern CameraPosition D_8006163C[];
@@ -160,6 +168,17 @@ extern CameraPosition D_800616B4;
 extern CameraPosition D_800616C8;
 extern CameraPosition D_800616DC;
 extern CameraPosition D_800616F0;
+
+/* Camera-mode position presets and configuration tables. */
+extern CameraPosition D_8006172C[];
+extern CameraPosition D_80061790;
+extern CameraPosition D_800617A4;
+extern CameraPosition D_800617B8[];
+
+extern CameraPosition D_8006181C;
+extern CameraPosition D_80061830;
+extern CameraPosition D_80061844;
+extern CameraPosition D_80061858;
 
 /* Camera-position configuration table. */
 extern CameraPosition D_8006186C[9];
@@ -180,6 +199,8 @@ extern CameraPosition D_800618BC[5];
  * =========================================================================
  */
 
+extern unsigned char D_80061373[];  /* Camera-mode lookup table. */
+
 extern short D_80061BD8[];  /* Sine lookup table. */
 extern short D_80061C58[];  /* Cosine lookup table. */
 
@@ -195,6 +216,9 @@ extern void (*D_80067014)(void);
 /* Callback used by func_80021558. */
 extern void (*D_80067040)(void);
 
+/* Callback used by func_8001FA58. */
+extern void (*D_8006709C)(void);
+
 extern void (*D_800670AC)(int);
 
 
@@ -208,7 +232,7 @@ extern int D_80061564;
 
 /* Additional camera state. */
 extern int D_80066F5C;
-extern int D_80066F68;  /* Used by func_80021DC0. */
+extern int D_80066F68;  /* Camera transition fade value. */
 
 /* Object data used by camera mode 18. */
 extern unsigned char *D_80066F78;
@@ -216,7 +240,7 @@ extern unsigned char *D_80066F78;
 /* Camera timer increment. */
 extern int D_80067018;
 
-/* Additional state used by func_80021DC0. */
+/* Camera transition and interpolation state. */
 extern int D_80067100;
 extern int D_80067114;
 

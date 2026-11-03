@@ -1344,8 +1344,1369 @@ void func_8001FA24(void) {
     }
 }
 
-// https://decomp.me/scratch/NYpJX
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001FA58);
+// https://decomp.me/scratch/dRDzX
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001FA58);
+void func_8001FA58(void)
+{
+    int step;
+
+    g_Camera.m_0x150 = 0;
+
+    if (g_Camera.m_0x144 != 0) {
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[2],
+            &g_Camera.m_CameraPositions[0],
+            0
+        );
+    }
+
+    /*
+     * Derive the camera update step from Spyro's off-center
+     * frame count, limiting the initial value to 4.
+     */
+    step = (g_Camera.m_SpyroOffCenterFrames + 2) >> 2;
+
+    if (step >= 5) {
+        step = 4;
+    }
+
+    /*
+     * Main camera-mode dispatcher.
+     */
+    switch (g_Camera.m_CameraMode) {
+    case 0:
+        func_8001F020(0x400);
+
+        if (g_Camera.m_0x150 != 0) {
+            g_Camera.m_0x142 = 1;
+
+            if (g_Camera.m_CameraSubstate == 1) {
+                g_Camera.m_CameraSubstate = 0;
+            }
+        } else {
+            g_Camera.m_0x142 = 0;
+        }
+
+        if (g_Camera.m_0x134 == 0) {
+            func_8001ECCC(
+                &g_Camera.m_CameraPositions[1],
+                &D_80061560,
+                g_Camera.m_0x6C
+            );
+        } else {
+            g_Camera.m_0x150 = 0;
+        }
+
+        func_8001BDB0(
+            &g_Camera.m_0x60,
+            &g_Spyro.m_Vector_0x00
+        );
+
+        g_Camera.m_0x6C = g_Spyro.m_0x6C;
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[5],
+            &D_8006172C[step],
+            0
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[6],
+            &D_800617B8[step],
+            0
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[8],
+            &D_80061844,
+            0
+        );
+
+        if (g_Camera.m_CameraSubstate == 1 &&
+            g_Camera.m_CameraPositions[8].pos.azimuth >= 9) {
+            g_Camera.m_CameraPositions[8].pos.azimuth = 8;
+        }
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[7],
+            &D_80061858,
+            0
+        );
+
+        if ((g_Camera.m_CameraFlags & 2) == 0 &&
+            g_Camera.m_CameraPositions[5].pos.azimuth < 0x4C) {
+            g_Camera.m_CameraPositions[5].pos.azimuth = 0x4C;
+        }
+        break;
+
+    case 1: {
+        Vector3D targetVector;
+        int pitchAdjustment;
+
+        if (g_Camera.m_0x134 == 0) {
+            if (g_Camera.unk_0x5C == 0 &&
+                func_8001BEBC(
+                    g_Spyro.m_0x6C,
+                    g_Camera.m_CameraPositions[0].pos.azimuth
+                ) < 0x280 &&
+                (
+                    (D_800683A0 & 0xA) == 0 ||
+                    (D_800683A0 & 0x5) == 0
+                )) {
+                func_8001ECCC(
+                    &g_Camera.m_CameraPositions[1],
+                    &D_80061574,
+                    g_Camera.m_0x6C
+                );
+            } else {
+                func_8001ECCC(
+                    &g_Camera.m_CameraPositions[1],
+                    &D_80061560,
+                    g_Camera.m_0x6C
+                );
+            }
+
+            func_8001BDB0(
+                &targetVector,
+                &g_Spyro.m_Vector_0x94
+            );
+
+            func_8001BD48(&targetVector, 2);
+
+            func_8001BDCC(
+                &targetVector,
+                &g_Spyro.m_Vector_0x00,
+                &targetVector
+            );
+
+            func_8001BE00(
+                &targetVector,
+                &targetVector,
+                &g_Camera.m_Position
+            );
+
+            pitchAdjustment = (
+                func_8001B4B8(targetVector.x, targetVector.y, 1) -
+                g_Camera.m_Rotation.z
+            ) & 0xFFF;
+
+            if (pitchAdjustment >= 0x801) {
+                pitchAdjustment -= 0x1000;
+            }
+
+            pitchAdjustment = (pitchAdjustment * 205) >> 8;
+
+            if (pitchAdjustment > 0xC0) {
+                pitchAdjustment = 0xC0;
+            }
+
+            if (pitchAdjustment < -0xC0) {
+                pitchAdjustment = -0xC0;
+            }
+
+            if (!(ABS(pitchAdjustment) < 9)) {
+                g_Camera.m_CameraPositions[1].pitch = pitchAdjustment;
+            } else {
+                g_Camera.m_CameraPositions[1].pitch = 0;
+            }
+
+            func_8001F020(0x400);
+        }
+
+        func_8001BDB0(
+            &g_Camera.m_0x60,
+            &g_Spyro.m_Vector_0x00
+        );
+
+        g_Camera.m_0x6C = g_Spyro.m_0x6C;
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[5],
+            &D_8006172C[step],
+            0
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[6],
+            &D_800617B8[step],
+            0
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[8],
+            &D_80061844,
+            0
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[7],
+            &D_80061858,
+            0
+        );
+
+        if ((g_Camera.m_CameraFlags & 2) == 0 &&
+            g_Camera.m_CameraPositions[5].pos.azimuth < 0x4C) {
+            g_Camera.m_CameraPositions[5].pos.azimuth = 0x4C;
+        }
+
+        break;
+    }
+
+    case 2:
+        if (g_Camera.m_0x134 == 0) {
+            func_8001ECCC(
+                &g_Camera.m_CameraPositions[1],
+                &D_80061588,
+                g_Camera.m_0x6C
+            );
+        }
+
+        func_8001BDB0(
+            &g_Camera.m_0x60,
+            &g_Spyro.m_Vector_0x00
+        );
+
+        g_Camera.m_0x6C = g_Spyro.m_0x6C;
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[5],
+            &D_8006172C[step],
+            0
+        );
+
+        if (g_Camera.m_CameraPositions[5].pos.azimuth < 0x100) {
+            g_Camera.m_CameraPositions[5].pos.azimuth = 0x100;
+        }
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[6],
+            &D_800617B8[step],
+            0
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[7],
+            &D_80061858,
+            0
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[8],
+            &D_80061844,
+            0
+        );
+        break;
+
+    case 6:
+        func_8001F020(0x400);
+
+        if (g_Camera.m_0x150 != 0) {
+            g_Camera.m_0x142 = 1;
+            g_Camera.m_CameraModeTimer = 0;
+        } else {
+            g_Camera.m_0x142 = 0;
+        }
+
+        if (g_Camera.m_0x134 != 0) {
+            g_Camera.m_0x150 = 0;
+        }
+
+        func_8001BDB0(
+            &g_Camera.m_0x60,
+            &g_Spyro.m_Vector_0x00
+        );
+
+        g_Camera.m_0x6C = g_Spyro.m_0x6C;
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[5],
+            &D_8006172C[step],
+            0
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[6],
+            &D_800617B8[step],
+            0
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[8],
+            &D_80061844,
+            0
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[7],
+            &D_80061858,
+            0
+        );
+        break;
+
+    case 7: {
+        int radiusDifference;
+        int presetRadiusDifference;
+        int elevationDifference;
+        int azimuthDifference;
+        Vector2D cameraAdjustment;
+
+        switch (g_Camera.m_CameraSubstate) {
+        case 0:
+            if (g_Camera.m_0x134 == 0) {
+                func_8001ECCC(
+                    &g_Camera.m_CameraPositions[1],
+                    &D_800615B0,
+                    g_Camera.m_0x6C
+                );
+
+                radiusDifference =
+                    g_Camera.m_CameraPositions[1].pos.radius -
+                    g_Camera.m_CameraPositions[0].pos.radius;
+
+                if (ABS(radiusDifference) < 0x200) {
+                    g_Camera.m_CameraSubstate = 2;
+                }
+            }
+
+            if (g_Camera.m_0x144 != 0) {
+                func_8001ECCC(
+                    &g_Camera.m_CameraPositions[1],
+                    &g_Camera.m_CameraPositions[0],
+                    0
+                );
+
+                g_Camera.m_CameraSubstate = 1;
+            }
+            break;
+
+        case 1:
+            g_Camera.m_CameraPositions[1].pos.radius = D_800615B8;
+            g_Camera.m_CameraPositions[1].yaw = D_800615BC;
+            g_Camera.m_CameraPositions[1].pitch = D_800615C0;
+
+            presetRadiusDifference =
+                D_800615B8 -
+                g_Camera.m_CameraPositions[0].pos.radius;
+
+            if (ABS(presetRadiusDifference) < 0x200) {
+                g_Camera.m_CameraSubstate = 2;
+            }
+            break;
+
+        default:
+            if (g_Camera.m_0x134 == 0) {
+                func_8001ECCC(
+                    &g_Camera.m_CameraPositions[1],
+                    &D_800615B0,
+                    g_Camera.m_0x6C
+                );
+
+                func_8002B694(
+                    &cameraAdjustment,
+                    &g_Camera.m_0x15C,
+                    1
+                );
+
+                if (g_Camera.m_CameraSubstate == 3 ||
+                    g_Camera.m_CameraSubstate == 4) {
+                    g_Camera.m_0x148 += (-cameraAdjustment.x) >> 2;
+                    g_Camera.m_0x14C += cameraAdjustment.y >> 2;
+
+                    if (g_Camera.m_0x14C < -0x200) {
+                        g_Camera.m_0x14C = -0x200;
+                    }
+
+                    if (g_Camera.m_0x14C > 0x200) {
+                        g_Camera.m_0x14C = 0x200;
+                    }
+
+                    if (g_Camera.m_0x148 < -0x300) {
+                        g_Camera.m_0x148 = -0x300;
+                    }
+
+                    if (g_Camera.m_0x148 > 0x300) {
+                        g_Camera.m_0x148 = 0x300;
+                    }
+                } else {
+                    g_Camera.m_0x148 += (-cameraAdjustment.x) >> 1;
+                    g_Camera.m_0x14C += cameraAdjustment.y >> 1;
+
+                    if (g_Camera.m_0x14C < -0x3D0) {
+                        g_Camera.m_0x14C = -0x3D0;
+                    }
+
+                    if (g_Camera.m_0x14C > 0x500) {
+                        g_Camera.m_0x14C = 0x500;
+                    }
+
+                    if (g_Camera.m_0x148 < -0x400) {
+                        g_Camera.m_0x148 = -0x400;
+                    }
+
+                    if (g_Camera.m_0x148 > 0x400) {
+                        g_Camera.m_0x148 = 0x400;
+                    }
+                }
+
+                g_Camera.m_CameraPositions[1].pos.azimuth -=
+                    g_Camera.m_0x148;
+
+                if (g_Camera.m_0x14C < -0x140) {
+                    g_Camera.m_CameraPositions[1].pos.elevation -= 0x140;
+                    g_Camera.m_CameraPositions[1].yaw +=
+                        0x140 + g_Camera.m_0x14C;
+                } else {
+                    g_Camera.m_CameraPositions[1].pos.elevation +=
+                        g_Camera.m_0x14C;
+                }
+
+                g_Spyro.m_Vector_0x184.z = -g_Camera.m_0x148;
+
+                if (g_Spyro.m_0x58 == 11) {
+                    if (g_Spyro.m_Vector_0x184.z < -0x140) {
+                        g_Spyro.m_Vector_0x184.z = -0x140;
+                    }
+
+                    if (g_Spyro.m_Vector_0x184.z > 0x140) {
+                        g_Spyro.m_Vector_0x184.z = 0x140;
+                    }
+                } else if (g_Spyro.m_0x58 == 10) {
+                    if (g_Spyro.m_Vector_0x184.z < -0x200) {
+                        g_Spyro.m_Vector_0x184.z = -0x200;
+                    }
+
+                    if (g_Spyro.m_Vector_0x184.z > 0x200) {
+                        g_Spyro.m_Vector_0x184.z = 0x200;
+                    }
+                } else {
+                    if (g_Spyro.m_Vector_0x184.z < -0x300) {
+                        g_Spyro.m_Vector_0x184.z = -0x300;
+                    }
+
+                    if (g_Spyro.m_Vector_0x184.z > 0x300) {
+                        g_Spyro.m_Vector_0x184.z = 0x300;
+                    }
+                }
+
+                g_Spyro.m_Vector_0x184.y = -g_Camera.m_0x14C;
+
+                if (g_Spyro.m_0x58 == 11) {
+                    if (g_Spyro.m_Vector_0x184.y < -0x100) {
+                        g_Spyro.m_Vector_0x184.y = -0x100;
+                    }
+                } else if (g_Spyro.m_0x58 == 10) {
+                    if (g_Spyro.m_Vector_0x184.y < -0x140) {
+                        g_Spyro.m_Vector_0x184.y = -0x140;
+                    }
+                } else {
+                    if (g_Spyro.m_Vector_0x184.y < -0x200) {
+                        g_Spyro.m_Vector_0x184.y = -0x200;
+                    }
+                }
+
+                if (g_Spyro.m_Vector_0x184.y > 0x200) {
+                    g_Spyro.m_Vector_0x184.y = 0x200;
+                }
+
+                if (g_Spyro.m_0x16C == 3 &&
+                    g_Camera.m_CameraSubstate != 3 &&
+                    g_Camera.m_CameraSubstate != 4) {
+                    azimuthDifference = (
+                        g_Camera.m_CameraPositions[1].pos.azimuth -
+                        g_Camera.m_CameraPositions[0].pos.azimuth
+                    ) & 0xFFF;
+
+                    if (azimuthDifference >= 0x801) {
+                        azimuthDifference -= 0x1000;
+                    }
+
+                    elevationDifference = (
+                        g_Camera.m_CameraPositions[1].pos.elevation -
+                        g_Camera.m_CameraPositions[0].pos.elevation
+                    ) & 0xFFF;
+
+                    if (elevationDifference >= 0x801) {
+                        elevationDifference -= 0x1000;
+                    }
+
+                    if (ABS(azimuthDifference) < 0x80 &&
+                        ABS(elevationDifference) < 0x80) {
+                        g_Camera.m_CameraSubstate = g_Spyro.m_0x16C;
+                    }
+                } else if (
+                    (g_Spyro.m_0x1D8 != 0 ||
+                     D_800698BB != 0 ||
+                     g_Spyro.m_0x1DC != 0 ||
+                     g_Spyro.m_0x1E4 != 0) &&
+                    D_80061373[g_Spyro.m_0x50 * 4] != 0 &&
+                    g_Camera.m_CameraSubstate != 3 &&
+                    g_Camera.m_CameraSubstate != 4
+                ) {
+                    azimuthDifference = (
+                        g_Camera.m_CameraPositions[1].pos.azimuth -
+                        g_Camera.m_CameraPositions[0].pos.azimuth
+                    ) & 0xFFF;
+
+                    if (azimuthDifference >= 0x801) {
+                        azimuthDifference -= 0x1000;
+                    }
+
+                    elevationDifference = (
+                        g_Camera.m_CameraPositions[1].pos.elevation -
+                        g_Camera.m_CameraPositions[0].pos.elevation
+                    ) & 0xFFF;
+
+                    if (elevationDifference >= 0x801) {
+                        elevationDifference -= 0x1000;
+                    }
+
+                    if (ABS(azimuthDifference) < 0x80 &&
+                        ABS(elevationDifference) < 0x80) {
+                        g_Camera.m_CameraSubstate = 3;
+                    }
+                }
+            }
+            break;
+        }
+
+        func_8001BDB0(
+            &g_Camera.m_0x60,
+            &g_Spyro.m_Vector_0x00
+        );
+
+        g_Camera.m_0x6C = g_Spyro.m_0x6C;
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[5],
+            &D_80061790,
+            0
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[6],
+            &D_8006181C,
+            0
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[8],
+            &D_80061844,
+            0
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[7],
+            &D_80061858,
+            0
+        );
+        break;
+    }
+
+    case 8:
+        if (g_Camera.m_0x134 == 0) {
+            func_8001ECCC(
+                &g_Camera.m_CameraPositions[1],
+                &D_80061560,
+                g_Camera.m_0x6C
+            );
+        }
+
+        g_Camera.m_0x150 = 0;
+
+        func_8001BDB0(
+            &g_Camera.m_0x60,
+            &g_Spyro.m_Vector_0x00
+        );
+
+        g_Camera.m_0x6C = g_Spyro.m_0x6C;
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[5],
+            &D_800617A4,
+            0
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[6],
+            &D_80061830,
+            0
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[7],
+            &D_80061858,
+            0
+        );
+
+        g_Camera.m_CameraPositions[8].pos.azimuth = -1;
+        g_Camera.m_CameraPositions[8].pos.elevation = -1;
+        g_Camera.m_CameraPositions[8].pos.radius = -1;
+        g_Camera.m_CameraPositions[8].yaw = -1;
+        g_Camera.m_CameraPositions[8].pitch = -1;
+
+        g_Spyro.m_0x20C |= 0x10004000;
+        break;
+
+    case 9: {
+        int substate = g_Camera.m_CameraSubstate;
+        int maskedSubstate = substate & ~0x80;
+        int timer;
+
+        if (maskedSubstate != 0) {
+            if (maskedSubstate < 0) {
+                g_Spyro.m_0x20C |= 0x10000002;
+                break;
+            }
+
+            if (maskedSubstate >= 3) {
+                g_Spyro.m_0x20C |= 0x10000002;
+                break;
+            }
+
+            func_8001ECCC(
+                &g_Camera.m_CameraPositions[1],
+                &g_Camera.m_0x170,
+                0
+            );
+
+            func_8001BDB0(
+                &g_Camera.m_0x60,
+                &g_Camera.m_0x184
+            );
+
+            g_Camera.m_0x6C = 0;
+
+            if (g_Spyro.m_0x50 == 6 &&
+                g_Spyro.m_0x54 == 1) {
+                func_8001ECCC(
+                    &g_Camera.m_CameraPositions[5],
+                    &D_80061790,
+                    0
+                );
+
+                func_8001ECCC(
+                    &g_Camera.m_CameraPositions[6],
+                    &D_8006181C,
+                    0
+                );
+            } else {
+                func_8001ECCC(
+                    &g_Camera.m_CameraPositions[5],
+                    &D_8006172C[step],
+                    0
+                );
+
+                func_8001ECCC(
+                    &g_Camera.m_CameraPositions[6],
+                    &D_800617B8[step],
+                    0
+                );
+            }
+
+            func_8001ECCC(
+                &g_Camera.m_CameraPositions[7],
+                &D_80061858,
+                0
+            );
+
+            func_8001ECCC(
+                &g_Camera.m_CameraPositions[8],
+                &D_80061844,
+                0
+            );
+
+            /*
+             * For masked substate 1, animate the transition fade.
+             */
+            if ((g_Camera.m_CameraSubstate & ~0x80) == 1) {
+                timer = g_Camera.m_CameraModeTimer;
+
+                D_80066F68 = 0x100 - ((timer - 0x10) << 4);
+
+                if (D_80066F68 <= 0) {
+                    D_80066F68 = 0;
+
+                    g_Camera.m_CameraSubstate =
+                        (g_Camera.m_CameraSubstate & 0x80) | 2;
+                }
+
+                if (D_80066F68 >= 0x100) {
+                    D_80066F68 = 0xFF;
+                }
+            }
+
+            /*
+             * Update the transition flag only for these raw substates.
+             */
+            if (g_Camera.m_CameraSubstate == 1) {
+                D_80067100 = g_Camera.m_CameraSubstate;
+            } else if (g_Camera.m_CameraSubstate == 0x81) {
+                D_80067100 = 0;
+            }
+
+            /*
+             * Normal path falls through to the common flag update.
+             */
+        } else {
+            timer = g_Camera.m_CameraModeTimer;
+
+            D_80066F68 = timer << 4;
+
+            if (D_80066F68 >= 0x100) {
+                D_80066F68 = 0xFF;
+            }
+
+            if (timer < 0x11) {
+                g_Spyro.m_0x20C |= 0x10000002;
+                break;
+            }
+
+            g_Camera.m_CameraSubstate = (substate & 0x80) | 1;
+
+            func_8001ECCC(
+                &g_Camera.m_CameraPositions[1],
+                &g_Camera.m_0x170,
+                0
+            );
+
+            func_8001BDB0(
+                &g_Camera.m_0x60,
+                &g_Camera.m_0x184
+            );
+
+            g_Camera.m_0x6C = 0;
+
+            func_8001ECCC(
+                &g_Camera.m_CameraPositions[2],
+                &g_Camera.m_CameraPositions[1],
+                0
+            );
+
+            func_8001ECCC(
+                &g_Camera.m_CameraPositions[0],
+                &g_Camera.m_CameraPositions[1],
+                0
+            );
+
+            func_8001F008(
+                &g_Camera.m_CameraPositions[4]
+            );
+
+            func_8001ED20(
+                &g_Camera.m_0x70,
+                &g_Camera.m_CameraPositions[2],
+                &g_Camera.m_0x60
+            );
+
+            func_8001BDB0(
+                &g_Camera.m_Position,
+                &g_Camera.m_0x70
+            );
+
+            g_Camera.m_0x145 = 0;
+
+            /*
+             * Successful path falls through to the common flag update.
+             */
+        }
+
+        /*
+         * Common exit for the normal paths of both branches.
+         */
+        g_Spyro.m_0x20C |= 0x10000002;
+        break;
+    }
+
+    case 10: {
+        int substate;
+        int timer;
+        int sampleIndex;
+        int motionFlags;
+        unsigned short *motionSample;
+        volatile int *cameraSubstatePtr;
+
+        cameraSubstatePtr = &g_Camera.m_CameraSubstate;
+        substate = *cameraSubstatePtr;
+
+        do {
+            switch (substate) {
+            case 1:
+                /*
+                 * Fade down, then copy the current motion sample.
+                 */
+                timer = g_Camera.m_CameraModeTimer;
+
+                D_80066F68 = 0x100 - ((timer - 0x10) << 4);
+
+                if (D_80066F68 <= 0) {
+                    D_80066F68 = 0;
+                    g_Camera.m_CameraSubstate = 2;
+                }
+
+                if (D_80066F68 >= 0x100) {
+                    D_80066F68 = 0xFF;
+                }
+
+                motionSample = (unsigned short *)(
+                    (char *)g_Camera.m_0x1A4 +
+                    g_Camera.m_0x1A8 * 12
+                );
+
+                g_Camera.m_0x1E0.x = motionSample[2] << 2;
+                g_Camera.m_0x1E0.y = motionSample[3] << 2;
+                g_Camera.m_0x1E0.z = motionSample[4] << 2;
+
+                g_Camera.m_0x1EC = motionSample[5];
+                g_Camera.m_0x1EE = motionSample[6];
+                g_Camera.m_0x1F0 = motionSample[7];
+
+                D_80067100 = 1;
+                continue;
+
+            case 2:
+                /*
+                 * Advance through the motion samples.
+                 */
+                motionFlags = g_Camera.m_0x1B4;
+                D_80067100 = 1;
+
+                if ((motionFlags & 1) == 0) {
+                    sampleIndex = g_Camera.m_0x1A8 + 1;
+                    g_Camera.m_0x1A8 = sampleIndex;
+
+                    if (sampleIndex >=
+                        g_Camera.m_0x1A4->m_SampleCount) {
+                        if (motionFlags & 4) {
+                            g_Camera.m_0x1A8 = 0;
+                        } else if (motionFlags & 8) {
+                            g_Camera.m_0x1A8 =
+                                g_Camera.m_0x1A4->m_SampleCount - 1;
+                        } else {
+                            g_Camera.m_0x1A8 =
+                                g_Camera.m_0x1A4->m_SampleCount - 1;
+
+                            g_Camera.m_CameraSubstate = 0x80;
+                            g_Camera.m_CameraModeTimer = 0;
+                        }
+                    }
+                }
+                break;
+
+            case 3:
+                /*
+                 * Interpolate the first motion sample.
+                 */
+                {
+                    Vector3D position;
+                    Vector3D angleDiff;
+
+                    if (g_Camera.m_CameraModeTimer >= 0x40) {
+                        g_Camera.m_CameraModeTimer = 0x40;
+                        g_Camera.m_CameraSubstate = 2;
+                    }
+
+                    motionSample = (unsigned short *)g_Camera.m_0x1A4;
+
+                    position.x = motionSample[2] << 2;
+                    position.y = motionSample[3] << 2;
+                    position.z = motionSample[4] << 2;
+
+                    angleDiff.x = (short)motionSample[5];
+                    angleDiff.y = (short)motionSample[6];
+                    angleDiff.z = (short)motionSample[7];
+
+                    func_8001BE00(
+                        &position,
+                        &position,
+                        &g_Camera.m_0x1B8
+                    );
+
+                    angleDiff.x -= g_Camera.m_0x1C4.x;
+                    angleDiff.x &= 0xFFF;
+
+                    if (angleDiff.x >= 0x801) {
+                        angleDiff.x -= 0x1000;
+                    }
+
+                    angleDiff.y -= g_Camera.m_0x1C4.y;
+                    angleDiff.y &= 0xFFF;
+
+                    if (angleDiff.y >= 0x801) {
+                        angleDiff.y -= 0x1000;
+                    }
+
+                    angleDiff.z -= g_Camera.m_0x1C4.z;
+                    angleDiff.z &= 0xFFF;
+
+                    if (angleDiff.z >= 0x801) {
+                        angleDiff.z -= 0x1000;
+                    }
+
+                    func_8001BCC4(
+                        &position,
+                        0x40,
+                        g_Camera.m_CameraModeTimer
+                    );
+
+                    func_8001BCC4(
+                        &angleDiff,
+                        0x40,
+                        g_Camera.m_CameraModeTimer
+                    );
+
+                    func_8001BDCC(
+                        &g_Camera.m_0x1E0,
+                        &position,
+                        &g_Camera.m_0x1B8
+                    );
+
+                    timer = (
+                        angleDiff.x + g_Camera.m_0x1C4.x
+                    ) & 0xFFF;
+
+                    g_Camera.m_0x1EC = timer;
+
+                    if (timer >= 0x801) {
+                        g_Camera.m_0x1EC = timer - 0x1000;
+                    }
+
+                    timer = (
+                        angleDiff.y + g_Camera.m_0x1C4.y
+                    ) & 0xFFF;
+
+                    g_Camera.m_0x1EE = timer;
+
+                    if (timer >= 0x801) {
+                        g_Camera.m_0x1EE = timer - 0x1000;
+                    }
+
+                    timer = (
+                        angleDiff.z + g_Camera.m_0x1C4.z
+                    ) & 0xFFF;
+
+                    g_Camera.m_0x1F0 = timer;
+
+                    if (timer >= 0x801) {
+                        g_Camera.m_0x1F0 = timer - 0x1000;
+                    }
+
+                    D_80067100 = 1;
+                }
+
+                /*
+                 * Interpolation has updated the camera directly;
+                 * skip the shared motion-sample copy.
+                 */
+                continue;
+
+            case 0x81:
+                /*
+                 * Fade down into state 0x82.
+                 */
+                timer = g_Camera.m_CameraModeTimer;
+
+                D_80066F68 = 0x100 - ((timer - 0x10) << 4);
+
+                if (D_80066F68 <= 0) {
+                    D_80066F68 = 0;
+                    g_Camera.m_CameraSubstate = 0x82;
+                }
+
+                D_80067100 = 0;
+
+                if (D_80066F68 >= 0x100) {
+                    D_80066F68 = 0xFF;
+                }
+                break;
+
+            case 0:
+                /*
+                 * Fade up before entering state 1.
+                 */
+                timer = g_Camera.m_CameraModeTimer;
+                D_80066F68 = timer << 4;
+
+                if (D_80066F68 >= 0x100) {
+                    D_80066F68 = 0xFF;
+                }
+
+                if (timer < 0x11) {
+                    /*
+                     * The transition is not ready; skip the sample copy.
+                     */
+                    continue;
+                }
+
+                *cameraSubstatePtr = 1;
+                g_Camera.m_0x145 = 1;
+
+                motionSample = (unsigned short *)(
+                    (char *)g_Camera.m_0x1A4 +
+                    g_Camera.m_0x1A8 * 12
+                );
+
+                g_Camera.m_0x1E0.x = motionSample[2] << 2;
+                g_Camera.m_0x1E0.y = motionSample[3] << 2;
+                g_Camera.m_0x1E0.z = motionSample[4] << 2;
+
+                g_Camera.m_0x1EC = motionSample[5];
+                g_Camera.m_0x1EE = motionSample[6];
+                g_Camera.m_0x1F0 = motionSample[7];
+
+                continue;
+
+            case 0x80:
+                /*
+                 * Fade up before entering state 0x81.
+                 */
+                timer = g_Camera.m_CameraModeTimer;
+                D_80066F68 = timer << 4;
+
+                if (D_80066F68 >= 0x100) {
+                    D_80066F68 = 0xFF;
+                }
+
+                if (timer < 0x11) {
+                    /*
+                     * Continue displaying the current motion sample.
+                     */
+                    motionSample = (unsigned short *)(
+                        (char *)g_Camera.m_0x1A4 +
+                        g_Camera.m_0x1A8 * 12
+                    );
+
+                    g_Camera.m_0x1E0.x = motionSample[2] << 2;
+                    g_Camera.m_0x1E0.y = motionSample[3] << 2;
+                    g_Camera.m_0x1E0.z = motionSample[4] << 2;
+
+                    g_Camera.m_0x1EC = motionSample[5];
+                    g_Camera.m_0x1EE = motionSample[6];
+                    g_Camera.m_0x1F0 = motionSample[7];
+
+                    continue;
+                }
+
+                g_Camera.m_CameraSubstate = 0x81;
+
+                func_8001BDB0(
+                    &g_Camera.m_0x60,
+                    &g_Spyro.m_Vector_0x00
+                );
+
+                func_8001ECCC(
+                    &g_Camera.m_CameraPositions[1],
+                    &g_Camera.m_0x190,
+                    0
+                );
+
+                g_Camera.m_0x145 = 0;
+                continue;
+
+            case 0x82:
+            default:
+                /*
+                 * No motion-sample copy is required in these states.
+                 */
+                continue;
+            }
+
+            /*
+             * Shared indexed motion-sample copy.
+             */
+            motionSample = (unsigned short *)(
+                (char *)g_Camera.m_0x1A4 +
+                g_Camera.m_0x1A8 * 12
+            );
+
+            g_Camera.m_0x1E0.x = motionSample[2] << 2;
+            g_Camera.m_0x1E0.y = motionSample[3] << 2;
+            g_Camera.m_0x1E0.z = motionSample[4] << 2;
+
+            g_Camera.m_0x1EC = motionSample[5];
+            g_Camera.m_0x1EE = motionSample[6];
+            g_Camera.m_0x1F0 = motionSample[7];
+
+        } while (0);
+
+        /*
+         * Common transition tail.
+         */
+        g_Spyro.m_0x20C |= 0x10000002;
+        break;
+    }
+
+    case 11: {
+        Vector3D adjustedPosition;
+        Vector3D *cameraPosition;
+
+        if (g_Camera.m_CameraSubstate != 0) {
+            if (g_Camera.m_CameraSubstate != 1) {
+                g_Spyro.m_0x20C |= 0x10000002;
+                break;
+            }
+
+            func_8001BDB0(
+                &g_Camera.m_0x60,
+                &g_Spyro.m_Vector_0x00
+            );
+
+            g_Camera.m_0x6C = g_Spyro.m_0x6C;
+
+            func_8001ECCC(
+                &g_Camera.m_CameraPositions[1],
+                &g_Camera.m_0x170,
+                g_Spyro.m_0x6C
+            );
+
+            func_8001ECCC(
+                &g_Camera.m_CameraPositions[5],
+                &D_8006172C[step],
+                0
+            );
+
+            func_8001ECCC(
+                &g_Camera.m_CameraPositions[6],
+                &D_800617B8[step],
+                0
+            );
+
+            func_8001ECCC(
+                &g_Camera.m_CameraPositions[7],
+                &D_80061858,
+                0
+            );
+
+            func_8001ECCC(
+                &g_Camera.m_CameraPositions[8],
+                &D_80061844,
+                0
+            );
+
+            if (g_Camera.m_RequestedCameraMode != 9) {
+                D_80066F68 =
+                    0x100 - ((g_Camera.m_CameraModeTimer - 0x10) << 4);
+            }
+
+            if (D_80066F68 <= 0) {
+                D_80066F68 = 0;
+                g_Camera.m_RequestedCameraMode = 0;
+            }
+
+            D_80067100 = 0;
+
+            if (D_80066F68 >= 0x100) {
+                D_80066F68 = 0xFF;
+            }
+
+        } else {
+            /*
+             * Transition timer and camera/Spyro updates.
+             */
+            D_80066F68 = g_Camera.m_CameraModeTimer << 4;
+
+            if (D_80066F68 >= 0x100) {
+                D_80066F68 = 0xFF;
+            }
+
+            if (g_Camera.m_CameraModeTimer < 0x11) {
+                g_Spyro.m_0x20C |= 0x10000002;
+                break;
+            }
+
+            if (g_Spyro.m_0x23C == 0x29) {
+                func_8001BDB0(
+                    &g_Spyro.m_Vector_0x00,
+                    &g_Spyro.m_Vector_0x22C
+                );
+            } else {
+                func_8001BDB0(
+                    &adjustedPosition,
+                    &g_Spyro.m_Vector_0x22C
+                );
+
+                adjustedPosition.z += 0x200;
+                adjustedPosition.z = func_8003EE84(&adjustedPosition, 0x800);
+
+                func_8001BDB0(
+                    &g_Spyro.m_Vector_0x00,
+                    &adjustedPosition
+                );
+
+                if (adjustedPosition.z == 0) {
+                    g_Spyro.m_Vector_0x00.z =
+                        g_Spyro.m_Vector_0x22C.z;
+                } else {
+                    g_Spyro.m_Vector_0x00.z += 0x164;
+                }
+            }
+
+            g_Spyro.m_0x6C = g_Spyro.m_0x238;
+            g_Spyro.m_0x20C |= 0x10010480;
+
+            if (g_Spyro.m_0x23C != 0x29) {
+                g_Camera.m_0x40 = 0;
+            }
+
+            func_8001BDA0(&g_Spyro.m_Vector_0x21C);
+
+            cameraPosition = &g_Camera.m_0x60;
+
+            func_8001BDB0(
+                cameraPosition,
+                &g_Spyro.m_Vector_0x00
+            );
+
+            if (g_Spyro.m_0x258 < 0) {
+                g_Spyro.m_0x258 = 0;
+            }
+
+            g_Camera.m_0x6C = g_Spyro.m_0x6C;
+            g_Camera.m_SphericalFlipState = 0;
+
+            if (g_Camera.m_0x184.x != 0) {
+                func_8001EE18(
+                    &g_Camera.m_CameraPositions[1].pos,
+                    &g_Camera.m_0x184,
+                    cameraPosition
+                );
+
+                func_8001EFA8(
+                    &g_Camera.m_CameraPositions[1],
+                    &g_Camera.m_CameraPositions[1]
+                );
+
+                g_Camera.m_CameraPositions[1].pos.azimuth =
+                    (g_Camera.m_CameraPositions[1].pos.azimuth +
+                     g_Camera.m_0x6C) & 0xFFF;
+
+                func_8001ECCC(
+                    &g_Camera.m_0x170,
+                    &g_Camera.m_CameraPositions[1],
+                    0
+                );
+            } else {
+                func_8001ECCC(
+                    &g_Camera.m_0x170,
+                    &D_80061560,
+                    g_Camera.m_0x6C
+                );
+
+                g_Camera.m_0x170.pos.azimuth =
+                    (g_Camera.m_0x170.pos.azimuth -
+                     g_Camera.m_0x6C) & 0xFFF;
+
+                func_8001ECCC(
+                    &g_Camera.m_CameraPositions[1],
+                    &g_Camera.m_0x170,
+                    0
+                );
+            }
+
+            func_8001ECCC(
+                &g_Camera.m_CameraPositions[2],
+                &g_Camera.m_CameraPositions[1],
+                g_Camera.m_0x6C
+            );
+
+            func_8001ECCC(
+                &g_Camera.m_CameraPositions[0],
+                &g_Camera.m_CameraPositions[1],
+                g_Camera.m_0x6C
+            );
+
+            func_8001F008(
+                &g_Camera.m_CameraPositions[4]
+            );
+
+            func_8001ED20(
+                &g_Camera.m_0x70,
+                &g_Camera.m_CameraPositions[2],
+                &g_Camera.m_0x60
+            );
+
+            func_8001BDB0(
+                &g_Camera.m_Position,
+                &g_Camera.m_0x70
+            );
+
+            g_Camera.m_0x134 = 0;
+            g_Camera.m_SpyroOffCenterFrames = 0;
+            g_Camera.m_0x145 = 0;
+
+            g_Camera.m_CameraSubstate = 1;
+        }
+
+        g_Spyro.m_0x20C |= 0x10000002;
+        break;
+    }
+
+    case 18:
+        if (g_Camera.m_0x134 == 0) {
+            func_8001ECCC(
+                &g_Camera.m_CameraPositions[1],
+                &g_Camera.m_0x170,
+                g_Camera.m_0x6C
+            );
+        }
+
+        func_8001BDB0(
+            &g_Camera.m_0x60,
+            &g_Spyro.m_Vector_0x00
+        );
+
+        g_Camera.m_0x6C =
+            (((unsigned char *)D_80066F78)[0x46] << 4) + 0x800;
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[5],
+            &D_8006172C[step],
+            0
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[6],
+            &D_800617B8[step],
+            0
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[7],
+            &D_80061858,
+            0
+        );
+
+        func_8001ECCC(
+            &g_Camera.m_CameraPositions[8],
+            &D_80061844,
+            0
+        );
+
+        if ((g_Camera.m_CameraFlags & 2) == 0) {
+            if (g_Camera.m_CameraPositions[5].pos.azimuth < 0x4C) {
+                g_Camera.m_CameraPositions[5].pos.azimuth = 0x4C;
+                break;
+            }
+        }
+        break;
+
+    case 3:
+    case 4:
+    case 5:
+    case 12:
+    case 13:
+    case 14:
+    case 15:
+    case 16:
+    case 17:
+    default:
+        if (D_8006709C != 0) {
+            ((void (*)(void))D_8006709C)();
+        }
+        break;
+    }
+
+    g_Camera.m_CameraModeTimer += D_80067018;
+}
 
 // https://decomp.me/scratch/AyB10
 //INCLUDE_ASM("asm/nonmatchings/camera", func_80021558);

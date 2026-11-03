@@ -24,7 +24,7 @@
 - [x] func_8001F618
 - [x] func_8001F814
 - [x] func_8001FA24
-- [ ] func_8001FA58
+- [x] func_8001FA58
 - [x] func_80021558
 - [x] func_800216D8
 - [x] func_80021DC0
