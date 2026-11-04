@@ -31,7 +31,7 @@ void func_8001DB58(void)
      * Calculate the wrapped azimuth difference.
      * A nonzero value at 0x150 overrides the calculation.
      */
-    azimuthValue = g_Camera.m_0x150;
+    azimuthValue = g_Camera.m_CameraAzimuthOverride;
 
     if (azimuthValue == 0) {
         wrappedAzimuthDifference =
@@ -549,8 +549,8 @@ void func_8001E2E4(CameraPosition *arg0) {
     }
 
     // Clear the remaining camera state fields.
-    g_Camera.m_0x146 = 0;
-    g_Camera.m_0x13C = 0;
+    g_Camera.m_HasCameraHeightLimit = 0;
+    g_Camera.m_CameraHeightLimit = 0;
 }
 
 // https://decomp.me/scratch/JuBAj
@@ -570,9 +570,9 @@ void func_8001E454(void)
     CollisionObject *object;
 
     found = 0;
-    g_Camera.m_0x144 = 0;
+    g_Camera.m_CameraCollisionFlag = 0;
 
-    if (g_Camera.m_0x140 != 0) {
+    if (g_Camera.m_UseDirectCameraPosition != 0) {
         func_8001BDB0(
             &g_Camera.m_Position,
             &g_Camera.m_0x70
@@ -616,7 +616,7 @@ void func_8001E454(void)
             for (;;) {
                 object = nullptr;
 
-                if (g_Camera.m_0x141 == 0) {
+                if (g_Camera.m_DisableObjectCollisionChecks == 0) {
                     object = func_8004055C(
                         &position,
                         0x100,
@@ -650,7 +650,7 @@ void func_8001E454(void)
                         &D_8006AB7C
                     );
 
-                    g_Camera.m_0x144 = 1;
+                    g_Camera.m_CameraCollisionFlag = 1;
                 }
 
                 j++;
@@ -676,7 +676,7 @@ void func_8001E454(void)
                         &D_8006AB7C
                     );
 
-                    g_Camera.m_0x144 = 1;
+                    g_Camera.m_CameraCollisionFlag = 1;
                 }
             }
         }
@@ -701,18 +701,18 @@ void func_8001E454(void)
     );
 
     if (testPosition.z != 0 && D_8006ABA4 != 0) {
-        g_Camera.m_0x146 = 1;
-        g_Camera.m_0x13C = testPosition.z;
+        g_Camera.m_HasCameraHeightLimit = 1;
+        g_Camera.m_CameraHeightLimit = testPosition.z;
     } else {
-        if (g_Camera.m_0x146 == 0) {
-            g_Camera.m_0x13C = 0;
+        if (g_Camera.m_HasCameraHeightLimit == 0) {
+            g_Camera.m_CameraHeightLimit = 0;
         }
 
-        g_Camera.m_0x146 = 0;
+        g_Camera.m_HasCameraHeightLimit = 0;
     }
 
-    if (g_Camera.m_0x13C != 0) {
-        if (g_Camera.m_Position.z < g_Camera.m_0x13C) {
+    if (g_Camera.m_CameraHeightLimit != 0) {
+        if (g_Camera.m_Position.z < g_Camera.m_CameraHeightLimit) {
             g_Camera.m_0x40 = 0x800;
         } else {
             g_Camera.m_0x40 = 0;
@@ -730,7 +730,7 @@ void func_8001E808(void) {
     int i;
     int mask;
 
-    if (g_Camera.m_0x141 != 0 || D_800681C8 == 7) {
+    if (g_Camera.m_DisableObjectCollisionChecks != 0 || D_800681C8 == 7) {
         g_Camera.m_0x134 = 0;
         g_Camera.m_SpyroOffCenterFrames = 0;
         return;
@@ -741,7 +741,7 @@ void func_8001E808(void) {
 
     if (func_8001F618(&g_Camera.m_Position, &target, 1) == 0) {
         mask = 0;
-        g_Camera.m_0x144 = 1;
+        g_Camera.m_CameraCollisionFlag = 1;
         g_Camera.m_SpyroOffCenterFrames += D_80067018;
 
         if (g_Camera.m_SpyroOffCenterFrames >= 0x3D) {
@@ -1350,9 +1350,9 @@ void func_8001FA58(void)
 {
     int step;
 
-    g_Camera.m_0x150 = 0;
+    g_Camera.m_CameraAzimuthOverride = 0;
 
-    if (g_Camera.m_0x144 != 0) {
+    if (g_Camera.m_CameraCollisionFlag != 0) {
         func_8001ECCC(
             &g_Camera.m_CameraPositions[2],
             &g_Camera.m_CameraPositions[0],
@@ -1377,7 +1377,7 @@ void func_8001FA58(void)
     case 0:
         func_8001F020(0x400);
 
-        if (g_Camera.m_0x150 != 0) {
+        if (g_Camera.m_CameraAzimuthOverride != 0) {
             g_Camera.m_0x142 = 1;
 
             if (g_Camera.m_CameraSubstate == 1) {
@@ -1394,7 +1394,7 @@ void func_8001FA58(void)
                 g_Camera.m_0x6C
             );
         } else {
-            g_Camera.m_0x150 = 0;
+            g_Camera.m_CameraAzimuthOverride = 0;
         }
 
         func_8001BDB0(
@@ -1600,7 +1600,7 @@ void func_8001FA58(void)
     case 6:
         func_8001F020(0x400);
 
-        if (g_Camera.m_0x150 != 0) {
+        if (g_Camera.m_CameraAzimuthOverride != 0) {
             g_Camera.m_0x142 = 1;
             g_Camera.m_CameraModeTimer = 0;
         } else {
@@ -1608,7 +1608,7 @@ void func_8001FA58(void)
         }
 
         if (g_Camera.m_0x134 != 0) {
-            g_Camera.m_0x150 = 0;
+            g_Camera.m_CameraAzimuthOverride = 0;
         }
 
         func_8001BDB0(
@@ -1668,7 +1668,7 @@ void func_8001FA58(void)
                 }
             }
 
-            if (g_Camera.m_0x144 != 0) {
+            if (g_Camera.m_CameraCollisionFlag != 0) {
                 func_8001ECCC(
                     &g_Camera.m_CameraPositions[1],
                     &g_Camera.m_CameraPositions[0],
@@ -1709,58 +1709,58 @@ void func_8001FA58(void)
 
                 if (g_Camera.m_CameraSubstate == 3 ||
                     g_Camera.m_CameraSubstate == 4) {
-                    g_Camera.m_0x148 += (-cameraAdjustment.x) >> 2;
-                    g_Camera.m_0x14C += cameraAdjustment.y >> 2;
+                    g_Camera.m_CameraAzimuthAdjustment += (-cameraAdjustment.x) >> 2;
+                    g_Camera.m_CameraElevationAdjustment += cameraAdjustment.y >> 2;
 
-                    if (g_Camera.m_0x14C < -0x200) {
-                        g_Camera.m_0x14C = -0x200;
+                    if (g_Camera.m_CameraElevationAdjustment < -0x200) {
+                        g_Camera.m_CameraElevationAdjustment = -0x200;
                     }
 
-                    if (g_Camera.m_0x14C > 0x200) {
-                        g_Camera.m_0x14C = 0x200;
+                    if (g_Camera.m_CameraElevationAdjustment > 0x200) {
+                        g_Camera.m_CameraElevationAdjustment = 0x200;
                     }
 
-                    if (g_Camera.m_0x148 < -0x300) {
-                        g_Camera.m_0x148 = -0x300;
+                    if (g_Camera.m_CameraAzimuthAdjustment < -0x300) {
+                        g_Camera.m_CameraAzimuthAdjustment = -0x300;
                     }
 
-                    if (g_Camera.m_0x148 > 0x300) {
-                        g_Camera.m_0x148 = 0x300;
+                    if (g_Camera.m_CameraAzimuthAdjustment > 0x300) {
+                        g_Camera.m_CameraAzimuthAdjustment = 0x300;
                     }
                 } else {
-                    g_Camera.m_0x148 += (-cameraAdjustment.x) >> 1;
-                    g_Camera.m_0x14C += cameraAdjustment.y >> 1;
+                    g_Camera.m_CameraAzimuthAdjustment += (-cameraAdjustment.x) >> 1;
+                    g_Camera.m_CameraElevationAdjustment += cameraAdjustment.y >> 1;
 
-                    if (g_Camera.m_0x14C < -0x3D0) {
-                        g_Camera.m_0x14C = -0x3D0;
+                    if (g_Camera.m_CameraElevationAdjustment < -0x3D0) {
+                        g_Camera.m_CameraElevationAdjustment = -0x3D0;
                     }
 
-                    if (g_Camera.m_0x14C > 0x500) {
-                        g_Camera.m_0x14C = 0x500;
+                    if (g_Camera.m_CameraElevationAdjustment > 0x500) {
+                        g_Camera.m_CameraElevationAdjustment = 0x500;
                     }
 
-                    if (g_Camera.m_0x148 < -0x400) {
-                        g_Camera.m_0x148 = -0x400;
+                    if (g_Camera.m_CameraAzimuthAdjustment < -0x400) {
+                        g_Camera.m_CameraAzimuthAdjustment = -0x400;
                     }
 
-                    if (g_Camera.m_0x148 > 0x400) {
-                        g_Camera.m_0x148 = 0x400;
+                    if (g_Camera.m_CameraAzimuthAdjustment > 0x400) {
+                        g_Camera.m_CameraAzimuthAdjustment = 0x400;
                     }
                 }
 
                 g_Camera.m_CameraPositions[1].pos.azimuth -=
-                    g_Camera.m_0x148;
+                    g_Camera.m_CameraAzimuthAdjustment;
 
-                if (g_Camera.m_0x14C < -0x140) {
+                if (g_Camera.m_CameraElevationAdjustment < -0x140) {
                     g_Camera.m_CameraPositions[1].pos.elevation -= 0x140;
                     g_Camera.m_CameraPositions[1].yaw +=
-                        0x140 + g_Camera.m_0x14C;
+                        0x140 + g_Camera.m_CameraElevationAdjustment;
                 } else {
                     g_Camera.m_CameraPositions[1].pos.elevation +=
-                        g_Camera.m_0x14C;
+                        g_Camera.m_CameraElevationAdjustment;
                 }
 
-                g_Spyro.m_Vector_0x184.z = -g_Camera.m_0x148;
+                g_Spyro.m_Vector_0x184.z = -g_Camera.m_CameraAzimuthAdjustment;
 
                 if (g_Spyro.m_0x58 == 11) {
                     if (g_Spyro.m_Vector_0x184.z < -0x140) {
@@ -1788,7 +1788,7 @@ void func_8001FA58(void)
                     }
                 }
 
-                g_Spyro.m_Vector_0x184.y = -g_Camera.m_0x14C;
+                g_Spyro.m_Vector_0x184.y = -g_Camera.m_CameraElevationAdjustment;
 
                 if (g_Spyro.m_0x58 == 11) {
                     if (g_Spyro.m_Vector_0x184.y < -0x100) {
@@ -1911,7 +1911,7 @@ void func_8001FA58(void)
             );
         }
 
-        g_Camera.m_0x150 = 0;
+        g_Camera.m_CameraAzimuthOverride = 0;
 
         func_8001BDB0(
             &g_Camera.m_0x60,
@@ -2148,17 +2148,17 @@ void func_8001FA58(void)
                 }
 
                 motionSample = (unsigned short *)(
-                    (char *)g_Camera.m_0x1A4 +
-                    g_Camera.m_0x1A8 * 12
+                    (char *)g_Camera.m_MotionTable +
+                    g_Camera.m_MotionSampleIndex * 12
                 );
 
-                g_Camera.m_0x1E0.x = motionSample[2] << 2;
-                g_Camera.m_0x1E0.y = motionSample[3] << 2;
-                g_Camera.m_0x1E0.z = motionSample[4] << 2;
+                g_Camera.m_MotionPosition.x = motionSample[2] << 2;
+                g_Camera.m_MotionPosition.y = motionSample[3] << 2;
+                g_Camera.m_MotionPosition.z = motionSample[4] << 2;
 
-                g_Camera.m_0x1EC = motionSample[5];
-                g_Camera.m_0x1EE = motionSample[6];
-                g_Camera.m_0x1F0 = motionSample[7];
+                g_Camera.m_MotionAngleX = motionSample[5];
+                g_Camera.m_MotionAngleY = motionSample[6];
+                g_Camera.m_MotionAngleZ = motionSample[7];
 
                 D_80067100 = 1;
                 continue;
@@ -2167,23 +2167,23 @@ void func_8001FA58(void)
                 /*
                  * Advance through the motion samples.
                  */
-                motionFlags = g_Camera.m_0x1B4;
+                motionFlags = g_Camera.m_MotionFlags;
                 D_80067100 = 1;
 
                 if ((motionFlags & 1) == 0) {
-                    sampleIndex = g_Camera.m_0x1A8 + 1;
-                    g_Camera.m_0x1A8 = sampleIndex;
+                    sampleIndex = g_Camera.m_MotionSampleIndex + 1;
+                    g_Camera.m_MotionSampleIndex = sampleIndex;
 
                     if (sampleIndex >=
-                        g_Camera.m_0x1A4->m_SampleCount) {
+                        g_Camera.m_MotionTable->m_SampleCount) {
                         if (motionFlags & 4) {
-                            g_Camera.m_0x1A8 = 0;
+                            g_Camera.m_MotionSampleIndex = 0;
                         } else if (motionFlags & 8) {
-                            g_Camera.m_0x1A8 =
-                                g_Camera.m_0x1A4->m_SampleCount - 1;
+                            g_Camera.m_MotionSampleIndex =
+                                g_Camera.m_MotionTable->m_SampleCount - 1;
                         } else {
-                            g_Camera.m_0x1A8 =
-                                g_Camera.m_0x1A4->m_SampleCount - 1;
+                            g_Camera.m_MotionSampleIndex =
+                                g_Camera.m_MotionTable->m_SampleCount - 1;
 
                             g_Camera.m_CameraSubstate = 0x80;
                             g_Camera.m_CameraModeTimer = 0;
@@ -2205,7 +2205,7 @@ void func_8001FA58(void)
                         g_Camera.m_CameraSubstate = 2;
                     }
 
-                    motionSample = (unsigned short *)g_Camera.m_0x1A4;
+                    motionSample = (unsigned short *)g_Camera.m_MotionTable;
 
                     position.x = motionSample[2] << 2;
                     position.y = motionSample[3] << 2;
@@ -2218,24 +2218,24 @@ void func_8001FA58(void)
                     func_8001BE00(
                         &position,
                         &position,
-                        &g_Camera.m_0x1B8
+                        &g_Camera.m_MotionPositionOrigin
                     );
 
-                    angleDiff.x -= g_Camera.m_0x1C4.x;
+                    angleDiff.x -= g_Camera.m_MotionAngleOffset.x;
                     angleDiff.x &= 0xFFF;
 
                     if (angleDiff.x >= 0x801) {
                         angleDiff.x -= 0x1000;
                     }
 
-                    angleDiff.y -= g_Camera.m_0x1C4.y;
+                    angleDiff.y -= g_Camera.m_MotionAngleOffset.y;
                     angleDiff.y &= 0xFFF;
 
                     if (angleDiff.y >= 0x801) {
                         angleDiff.y -= 0x1000;
                     }
 
-                    angleDiff.z -= g_Camera.m_0x1C4.z;
+                    angleDiff.z -= g_Camera.m_MotionAngleOffset.z;
                     angleDiff.z &= 0xFFF;
 
                     if (angleDiff.z >= 0x801) {
@@ -2255,39 +2255,39 @@ void func_8001FA58(void)
                     );
 
                     func_8001BDCC(
-                        &g_Camera.m_0x1E0,
+                        &g_Camera.m_MotionPosition,
                         &position,
-                        &g_Camera.m_0x1B8
+                        &g_Camera.m_MotionPositionOrigin
                     );
 
                     timer = (
-                        angleDiff.x + g_Camera.m_0x1C4.x
+                        angleDiff.x + g_Camera.m_MotionAngleOffset.x
                     ) & 0xFFF;
 
-                    g_Camera.m_0x1EC = timer;
+                    g_Camera.m_MotionAngleX = timer;
 
                     if (timer >= 0x801) {
-                        g_Camera.m_0x1EC = timer - 0x1000;
+                        g_Camera.m_MotionAngleX = timer - 0x1000;
                     }
 
                     timer = (
-                        angleDiff.y + g_Camera.m_0x1C4.y
+                        angleDiff.y + g_Camera.m_MotionAngleOffset.y
                     ) & 0xFFF;
 
-                    g_Camera.m_0x1EE = timer;
+                    g_Camera.m_MotionAngleY = timer;
 
                     if (timer >= 0x801) {
-                        g_Camera.m_0x1EE = timer - 0x1000;
+                        g_Camera.m_MotionAngleY = timer - 0x1000;
                     }
 
                     timer = (
-                        angleDiff.z + g_Camera.m_0x1C4.z
+                        angleDiff.z + g_Camera.m_MotionAngleOffset.z
                     ) & 0xFFF;
 
-                    g_Camera.m_0x1F0 = timer;
+                    g_Camera.m_MotionAngleZ = timer;
 
                     if (timer >= 0x801) {
-                        g_Camera.m_0x1F0 = timer - 0x1000;
+                        g_Camera.m_MotionAngleZ = timer - 0x1000;
                     }
 
                     D_80067100 = 1;
@@ -2341,17 +2341,17 @@ void func_8001FA58(void)
                 g_Camera.m_0x145 = 1;
 
                 motionSample = (unsigned short *)(
-                    (char *)g_Camera.m_0x1A4 +
-                    g_Camera.m_0x1A8 * 12
+                    (char *)g_Camera.m_MotionTable +
+                    g_Camera.m_MotionSampleIndex * 12
                 );
 
-                g_Camera.m_0x1E0.x = motionSample[2] << 2;
-                g_Camera.m_0x1E0.y = motionSample[3] << 2;
-                g_Camera.m_0x1E0.z = motionSample[4] << 2;
+                g_Camera.m_MotionPosition.x = motionSample[2] << 2;
+                g_Camera.m_MotionPosition.y = motionSample[3] << 2;
+                g_Camera.m_MotionPosition.z = motionSample[4] << 2;
 
-                g_Camera.m_0x1EC = motionSample[5];
-                g_Camera.m_0x1EE = motionSample[6];
-                g_Camera.m_0x1F0 = motionSample[7];
+                g_Camera.m_MotionAngleX = motionSample[5];
+                g_Camera.m_MotionAngleY = motionSample[6];
+                g_Camera.m_MotionAngleZ = motionSample[7];
 
                 continue;
 
@@ -2371,17 +2371,17 @@ void func_8001FA58(void)
                      * Continue displaying the current motion sample.
                      */
                     motionSample = (unsigned short *)(
-                        (char *)g_Camera.m_0x1A4 +
-                        g_Camera.m_0x1A8 * 12
+                        (char *)g_Camera.m_MotionTable +
+                        g_Camera.m_MotionSampleIndex * 12
                     );
 
-                    g_Camera.m_0x1E0.x = motionSample[2] << 2;
-                    g_Camera.m_0x1E0.y = motionSample[3] << 2;
-                    g_Camera.m_0x1E0.z = motionSample[4] << 2;
+                    g_Camera.m_MotionPosition.x = motionSample[2] << 2;
+                    g_Camera.m_MotionPosition.y = motionSample[3] << 2;
+                    g_Camera.m_MotionPosition.z = motionSample[4] << 2;
 
-                    g_Camera.m_0x1EC = motionSample[5];
-                    g_Camera.m_0x1EE = motionSample[6];
-                    g_Camera.m_0x1F0 = motionSample[7];
+                    g_Camera.m_MotionAngleX = motionSample[5];
+                    g_Camera.m_MotionAngleY = motionSample[6];
+                    g_Camera.m_MotionAngleZ = motionSample[7];
 
                     continue;
                 }
@@ -2414,17 +2414,17 @@ void func_8001FA58(void)
              * Shared indexed motion-sample copy.
              */
             motionSample = (unsigned short *)(
-                (char *)g_Camera.m_0x1A4 +
-                g_Camera.m_0x1A8 * 12
+                (char *)g_Camera.m_MotionTable +
+                g_Camera.m_MotionSampleIndex * 12
             );
 
-            g_Camera.m_0x1E0.x = motionSample[2] << 2;
-            g_Camera.m_0x1E0.y = motionSample[3] << 2;
-            g_Camera.m_0x1E0.z = motionSample[4] << 2;
+            g_Camera.m_MotionPosition.x = motionSample[2] << 2;
+            g_Camera.m_MotionPosition.y = motionSample[3] << 2;
+            g_Camera.m_MotionPosition.z = motionSample[4] << 2;
 
-            g_Camera.m_0x1EC = motionSample[5];
-            g_Camera.m_0x1EE = motionSample[6];
-            g_Camera.m_0x1F0 = motionSample[7];
+            g_Camera.m_MotionAngleX = motionSample[5];
+            g_Camera.m_MotionAngleY = motionSample[6];
+            g_Camera.m_MotionAngleZ = motionSample[7];
 
         } while (0);
 
@@ -2739,9 +2739,9 @@ void func_80021558(void)
         }
 
         /* Apply the explicit azimuth override when present. */
-        if (g_Camera.m_0x150 != 0) {
+        if (g_Camera.m_CameraAzimuthOverride != 0) {
             g_Camera.m_CameraPositions[3].pos.azimuth =
-                g_Camera.m_0x150;
+                g_Camera.m_CameraAzimuthOverride;
         }
         break;
 
@@ -2828,8 +2828,8 @@ void func_800216D8(int mode)
     case 6:
         g_Camera.m_CameraSubstate = 0;
 
-        g_Camera.m_0x140 = 0;
-        g_Camera.m_0x141 = 0;
+        g_Camera.m_UseDirectCameraPosition = 0;
+        g_Camera.m_DisableObjectCollisionChecks = 0;
         g_Camera.m_0x142 = 0;
         g_Camera.m_0x145 = 0;
 
@@ -2861,8 +2861,8 @@ void func_800216D8(int mode)
     case 1:
         g_Camera.m_CameraSubstate = 0;
 
-        g_Camera.m_0x140 = 0;
-        g_Camera.m_0x141 = 0;
+        g_Camera.m_UseDirectCameraPosition = 0;
+        g_Camera.m_DisableObjectCollisionChecks = 0;
         g_Camera.m_0x142 = 1;
         g_Camera.m_0x145 = 0;
 
@@ -2895,8 +2895,8 @@ void func_800216D8(int mode)
     case 8:
         g_Camera.m_CameraSubstate = 0;
 
-        g_Camera.m_0x140 = 0;
-        g_Camera.m_0x141 = 0;
+        g_Camera.m_UseDirectCameraPosition = 0;
+        g_Camera.m_DisableObjectCollisionChecks = 0;
         g_Camera.m_0x142 = 1;
         g_Camera.m_0x145 = 0;
         g_Camera.unk_0x5C = 0;
@@ -2929,13 +2929,13 @@ void func_800216D8(int mode)
     case 7:
         g_Camera.m_CameraSubstate = 0;
 
-        g_Camera.m_0x148 = 0;
-        g_Camera.m_0x14C = 0;
+        g_Camera.m_CameraAzimuthAdjustment = 0;
+        g_Camera.m_CameraElevationAdjustment = 0;
         g_Camera.m_0x15C.y = 0;
         g_Camera.m_0x15C.z = 0;
 
-        g_Camera.m_0x140 = 0;
-        g_Camera.m_0x141 = 0;
+        g_Camera.m_UseDirectCameraPosition = 0;
+        g_Camera.m_DisableObjectCollisionChecks = 0;
         g_Camera.m_0x142 = 1;
         g_Camera.m_0x145 = 0;
         g_Camera.unk_0x5C = 0;
@@ -2971,39 +2971,39 @@ void func_800216D8(int mode)
 
         g_Camera.m_0x134 = 0;
         g_Camera.m_SpyroOffCenterFrames = 0;
-        g_Camera.m_0x140 = 1;
-        g_Camera.m_0x141 = 1;
+        g_Camera.m_UseDirectCameraPosition = 1;
+        g_Camera.m_DisableObjectCollisionChecks = 1;
         g_Camera.unk_0x5C = 0;
         break;
 
     case 10:
-        if ((g_Camera.m_0x1B4 & 0x2) != 0) {
+        if ((g_Camera.m_MotionFlags & 0x2) != 0) {
             g_Camera.m_CameraSubstate = 3;
 
             func_8001BDB0(
-                &g_Camera.m_0x1B8,
+                &g_Camera.m_MotionPositionOrigin,
                 &g_Camera.m_Position
             );
 
             g_Camera.m_0x145 = 1;
-            g_Camera.m_0x1C4.x = g_Camera.m_Rotation.x;
-            g_Camera.m_0x1C4.y = g_Camera.m_Rotation.y;
-            g_Camera.m_0x1C4.z = g_Camera.m_Rotation.z;
+            g_Camera.m_MotionAngleOffset.x = g_Camera.m_Rotation.x;
+            g_Camera.m_MotionAngleOffset.y = g_Camera.m_Rotation.y;
+            g_Camera.m_MotionAngleOffset.z = g_Camera.m_Rotation.z;
         } else if ((unsigned int)(g_Camera.m_CameraMode - 9) >= 2) {
             g_Camera.m_CameraSubstate = 0;
         }
 
         g_Camera.m_0x134 = 0;
         g_Camera.m_SpyroOffCenterFrames = 0;
-        g_Camera.m_0x140 = 1;
-        g_Camera.m_0x141 = 1;
+        g_Camera.m_UseDirectCameraPosition = 1;
+        g_Camera.m_DisableObjectCollisionChecks = 1;
         g_Camera.unk_0x5C = 0;
         break;
 
     case 18: 
         g_Camera.m_CameraSubstate = 0;
-        g_Camera.m_0x140 = 0;
-        g_Camera.m_0x141 = 1;
+        g_Camera.m_UseDirectCameraPosition = 0;
+        g_Camera.m_DisableObjectCollisionChecks = 1;
         g_Camera.m_0x142 = 1;
         g_Camera.m_0x145 = 0;
         g_Camera.unk_0x5C = 0;        
@@ -3432,7 +3432,7 @@ void func_80021DC0(void) {
         return;
 
     case 8:
-        if (g_Camera.m_0x144 != 0) {
+        if (g_Camera.m_CameraCollisionFlag != 0) {
             func_800216D8(7);
         }
 
@@ -3461,11 +3461,11 @@ void func_80021DC0(void) {
             return;
         }
 
-        if ((g_Camera.m_0x1B4 & 8) == 0) {
+        if ((g_Camera.m_MotionFlags & 8) == 0) {
             return;
         }
 
-        if (g_Camera.m_0x1A8 < g_Camera.m_0x1A4->m_SampleCount - 1) {
+        if (g_Camera.m_MotionSampleIndex < g_Camera.m_MotionTable->m_SampleCount - 1) {
             return;
         }
 
