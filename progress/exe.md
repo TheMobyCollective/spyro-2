@@ -30,7 +30,7 @@
 - [x] func_80021DC0
 
 <!-- cheat.c -->
-- [ ] func_800543A8
+- [x] func_800543A8
 - [ ] func_800543DC
 - [ ] func_80054518
 
