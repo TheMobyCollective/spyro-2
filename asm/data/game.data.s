@@ -8263,6 +8263,7 @@ enddlabel D_80064668
 
 nonmatching D_80064670
 
+dlabel flags
 dlabel D_80064670
     /* 54E70 80064670 */ .short 0x00C8
 enddlabel D_80064670

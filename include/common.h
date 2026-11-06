@@ -239,4 +239,6 @@ typedef struct {
     GemToll unknown4;
 } ProgressFlags;
 
+extern ProgressFlags flags;
+
 #endif

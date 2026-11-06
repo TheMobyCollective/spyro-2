@@ -978,6 +978,8 @@ dlabel D_800683A0
 
 nonmatching D_800683A4, 0x4
 
+dlabel pad
+dlabel g_pad
 dlabel D_800683A4
     /* 800683A4 */ .space 0x04
 
@@ -1248,6 +1250,7 @@ dlabel D_800698B4
 
 nonmatching D_800698B8, 0x1
 
+dlabel cheatFlags
 dlabel D_800698B8
     /* 800698B8 */ .space 0x01
 
@@ -1679,6 +1682,7 @@ dlabel D_8006A8CC
 
 nonmatching D_8006A91C, 0x3C
 
+dlabel recordedInputs
 dlabel D_8006A91C
     /* 8006A91C */ .space 0x3C
 

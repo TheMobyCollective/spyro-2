@@ -246,6 +246,7 @@ dlabel D_80066F94
 
 nonmatching D_80066F98, 0x4
 
+dlabel inputCount
 dlabel D_80066F98
     /* 80066F98 */ .space 0x04
 
