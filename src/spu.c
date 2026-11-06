@@ -416,7 +416,7 @@ void func_80051350(ActiveSound *sound, SpuVoiceAttr *voiceAttr) {
 
     angle = func_8001B4B8(vec.x, vec.y, 1);
 
-    angleDelta = ((angle - g_Camera.m_0x48) >> 4) & 0xFF;
+    angleDelta = ((angle - g_Camera.m_Rotation.z) >> 4) & 0xFF;
 
     if (angleDelta >= 0x81) {
       angleDelta -= 0x100;
