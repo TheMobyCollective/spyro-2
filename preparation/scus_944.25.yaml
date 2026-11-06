@@ -98,12 +98,12 @@ segments:
       - [0x40AFC, c, tracers]
       - [0x40E48, c, spu]
       - [0x4219C, c, hud]
-      - [0x44D18, c, cheat]
+      - [0x44BA8, c, cheat]
       - [0x44F8C, asm, psyq]
 
       # data
       - [0x5092C, data, game] # Not sure how to split this up yet
-      - [0x55714, data, psyq]
+      - [0x55894, data, psyq]
 
       # sdata
       - [0x57538, sdata, game] # Not sure how to split this up yet
