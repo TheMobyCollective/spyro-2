@@ -329,7 +329,7 @@
 <!-- tracers.c -->
 - [ ] func_800502FC
 - [x] func_800504A0
-- [ ] func_800504A8
+- [x] func_800504A8
 - [x] func_800505B8
 - [x] func_80050640
 
