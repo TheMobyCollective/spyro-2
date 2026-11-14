@@ -9960,6 +9960,7 @@ enddlabel D_80064EEA
 .align 2
 nonmatching D_80064F14
 
+dlabel g_CheatCodes
 dlabel D_80064F14
     /* 55714 80064F14 */ .asciz " "
     /* 20000000 */

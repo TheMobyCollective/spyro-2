@@ -93,8 +93,7 @@ typedef struct {
 } Pad;
 
 // bss
-extern Pad pad; // D_800683A4
-extern Pad g_Pad; // D_800683A4
+extern Pad g_Pad; // D_80068370
 
 extern void func_8001B40C(void*, void*, int);                         /* extern */
 

@@ -31,8 +31,8 @@
 
 <!-- cheat.c -->
 - [x] func_800543A8
-- [ ] func_800543DC
-- [ ] func_80054518
+- [x] func_800543DC
+- [x] func_80054518
 
 <!-- draw.c -->
 - [ ] func_80013A14

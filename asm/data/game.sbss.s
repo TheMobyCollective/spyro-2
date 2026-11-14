@@ -422,6 +422,7 @@ dlabel D_8006701C
 
 nonmatching D_80067020, 0x4
 
+dlabel g_SoundTablePtr
 dlabel D_80067020
     /* 80067020 */ .space 0x04
 
