@@ -1,6 +1,8 @@
 #ifndef __PAD_H
 #define __PAD_H
 
+#include "str.h"
+
 #define PAD_L2 (1 << 0)
 #define PAD_R2 (1 << 1)
 #define PAD_L1 (1 << 2)
@@ -52,12 +54,14 @@ enum ControllerType {
     CONTROLLER_TYPE_STICK = 3,
 };
 
-typedef struct {
+/*typedef struct {
     unsigned char rx;
     unsigned char ry;
     unsigned char lx;
     unsigned char ly;
-} StickState;
+} StickState;*/
+
+typedef unsigned char StickState[4];
 
 typedef struct {
 	enum PadInput held; // currently held
@@ -107,5 +111,16 @@ extern char D_8006837C;
 extern char D_80068380;
 extern char D_80068384;
 extern char D_80068388;
+
+extern int D_8006700C;
+extern char D_8006710C;
+extern char D_8006710D;
+
+void func_800121B0();                                  /* extern */
+void func_80058EDC(int);                                 /* extern */
+// sdata
+extern PsyqPad* D_80066F04;
+extern int* D_80066F28;
+extern PsyqPad D_8006A95C;
 
 #endif

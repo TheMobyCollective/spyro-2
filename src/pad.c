@@ -8,50 +8,102 @@ INCLUDE_ASM("asm/nonmatchings/pad", func_80011F50);
 //INCLUDE_ASM("asm/nonmatchings/pad", func_8001200C);
 
 void func_8001200C(unsigned char* arg0) {
-    int var_a2;
+    int var_t0;
     int var_v1;
-    unsigned char temp_a1;
-    unsigned char temp_a1_2;
-    unsigned int temp_v1;
+    unsigned char temp_a2;
+    unsigned char temp_a2_2;
+    unsigned char temp_v1;
     unsigned char temp_v1_2;
 
     if (D_80067024 == 0) {
-        for (var_a2 = 0; var_a2 < 4; var_a2++) {
-            temp_v1 = *arg0;
-            temp_a1 = *(&D_8006837C + var_a2);
-            if (temp_a1 < temp_v1) {
-                *arg0 = ((int) ((temp_v1 - temp_a1) << 7) / (int) *(&D_80068384 + var_a2)) + 0x7F;
-            } else {
-                temp_a1_2 = *(&D_80068380 + var_a2);
-                if (temp_v1 < temp_a1_2) {
-                    *arg0 = ((int) ((temp_v1 - temp_a1_2) << 7) / (int) *(&D_80068388 + var_a2)) - 0x80;
-                } else {
-                    *arg0 = 0x7F;
-                }
+        for (var_t0 = 0; var_t0 < 4; var_t0++) {
+            temp_v1 = arg0[var_t0];
+            temp_a2 = g_Pad.unk2b[0][var_t0];
+
+            if (temp_v1 > temp_a2)       arg0[var_t0] = (((temp_v1 -   temp_a2) << 7) / g_Pad.unk2b[2][var_t0]) + 0x7F;
+            else {
+                temp_a2_2 = g_Pad.unk2b[1][var_t0];
+                if (temp_v1 < temp_a2_2) arg0[var_t0] = (((temp_v1 - temp_a2_2) << 7) / g_Pad.unk2b[3][var_t0]) - 0x80;
+                else                     arg0[var_t0] = 0x7F;
             }
-            arg0 += 1;
         }
         return;
     }
     for (var_v1 = 0; var_v1 < 4; var_v1++) {
         temp_v1_2 = arg0[var_v1];
-        if (temp_v1_2 >= 0xB0U) {
-            arg0[var_v1] = (((temp_v1_2 - 0xAF) << 7) / 80) + 0x7F;
-        } else if (temp_v1_2 < 0x4FU) {
-            arg0[var_v1] = (((temp_v1_2 - 0x4F) << 7) / 79) - 0x80;
-        } else {
-            arg0[var_v1] = 0x7F;
-        }
+        if     (temp_v1_2 >= 0xB0) arg0[var_v1] = (((temp_v1_2 - 0xAF) << 7) / 80) + 0x7F;
+        else if (temp_v1_2 < 0x4F) arg0[var_v1] = (((temp_v1_2 - 0x4F) << 7) / 79) - 0x80;
+        else                       arg0[var_v1] = 0x7F;
     }
 }
 
 INCLUDE_ASM("asm/nonmatchings/pad", func_800121B0);
 
 // https://decomp.me/scratch/YjKA2 - 100%
-INCLUDE_ASM("asm/nonmatchings/pad", func_80012488);
+//INCLUDE_ASM("asm/nonmatchings/pad", func_80012488);
+
+void func_80012488(void) {
+    int i;
+    int x;
+
+    g_Pad.unk3[0] = 0;
+    g_Pad.unk3[1] = 0;
+    g_Pad.unk3[2] = 0;
+    if (D_80067024 == 2) {
+        *(int*)&D_80066F04->status = *(int*)&D_8006A95C.status;
+        x = ((int)D_80066F04 - (int)D_80066F28) >> 2;
+        *(int*)&D_80066F04->stick = *(int*)&D_8006A95C.stick;
+        *D_80066F28 = (x + 1) / 2;
+    }
+    for (i = 0; i < 2; i++) {
+        D_8006700C++;
+        *(int*)&D_8006A95C.status = *(int*)&D_80066F04->status;
+        *(int*)&D_8006A95C.stick = *(int*)&D_80066F04->stick;
+        func_800121B0();
+    };
+    if (D_80067024 == 2) {
+        func_80058EDC(2);
+    }
+    *(int*)&D_8006A95C.status = 0xFFFF7300;
+    *(int*)&D_8006A95C.stick = 0x7F7F7F7F;
+    D_80066F04++;
+}
 
 // https://decomp.me/scratch/fSmuO - 100%
-INCLUDE_ASM("asm/nonmatchings/pad", func_800125C8);
+//INCLUDE_ASM("asm/nonmatchings/pad", func_800125C8);
+
+void func_800125C8(void) {
+    cdState.readTime++;
+    if (D_80067024 == 0) {
+        D_8006710C = 0;
+        D_8006710D = 0;
+        D_8006700C += 1;
+        if ((g_Pad.unk1d != 0) && (g_Pad.vibrationMode != 0)) {
+            if (g_Pad.unk3[2] != 0) {
+                g_Pad.unk3[2] -= 1;
+                D_8006710C = 0;
+                D_8006710D = (char) g_Pad.unk3[3];
+            }
+            if (g_Pad.unk3[1] != 0) {
+                g_Pad.unk3[1]  -= 1;
+                D_8006710C = 1;
+                D_8006710D = 0;
+            }
+            if (g_Pad.unk3[0] != 0) {
+                g_Pad.unk3[0] -= 1;
+                D_8006710C = 1;
+                D_8006710D = 0x78;
+            }
+        } else {
+            g_Pad.unk3[0] = 0;
+            g_Pad.unk3[1]  = 0;
+            g_Pad.unk3[2] = 0;
+        }
+        if (D_80067024 == 0) {
+            func_800121B0();
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/pad", func_8001271C);
 
@@ -88,9 +140,9 @@ void func_80012B1C(Pad* arg0, Pad* arg1) {
 //INCLUDE_ASM("asm/nonmatchings/pad", func_80012B58);
 
 void func_80012B58(void) {
-    D_80068375 = 1;
-    D_80068372 = 0;
-    D_80068373 = 0;
-    D_80068371 = 0;
+    g_Pad.unk2[0] = 1;
+    g_Pad.unk1c = 0;
+    g_Pad.unk1d = 0;
+    g_Pad.unk1b = 0;
 }
 
