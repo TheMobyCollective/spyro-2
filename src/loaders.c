@@ -14,6 +14,7 @@ INCLUDE_ASM("asm/nonmatchings/loaders", func_8001C734);
 // https://decomp.me/scratch/19Z89 - 100%
 //INCLUDE_ASM("asm/nonmatchings/loaders", func_8001D5FC);
 
+// SetNewSoundTable
 // Load sound table, might take in a struct ptr rather than a SoundTable pointer?
 void func_8001D5FC(char* pData, int pPatchAddressesInTable) {
     int soundCount;

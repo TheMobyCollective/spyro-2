@@ -89,8 +89,28 @@ void func_80011D78(void) {
     func_80054934(&func_800125C8);
 }
 
-// https://decomp.me/scratch/bD40e
-INCLUDE_ASM("asm/nonmatchings/init", func_80011DD4);
+// https://decomp.me/scratch/bD40e - 100%
+//INCLUDE_ASM("asm/nonmatchings/init", func_80011DD4);
+
+void func_80011DD4(void) {
+    int temp_a0;
+    int temp_v0;
+
+    D_8006B2B0 = 0x801FF800;
+    temp_a0 = D_8006B2AC - 0x2C08;
+    temp_v0 = temp_a0 + 0xFFFE4000;
+    D_8006B284 = D_80011110;
+    D_8006B2A8 = D_8006B2AC - 0x2C00;
+    D_8006B2A4 = temp_a0;
+    D_8006B2A0 = temp_v0;
+    D_8006B29C = temp_v0 + 0xFFFE4000;
+    D_80069998 = temp_v0 + 0xFFFE4000;
+    D_80069A0C = temp_v0;
+    func_8001B3C8(temp_a0, 0, 8);
+    func_8001B3C8(D_8006B2A8, 0, 0x2C00);
+    D_80067000 = D_8006B2A4;
+    D_80066FFC = D_8006B2A8;
+}
 
 // https://decomp.me/scratch/1STBX Probably need to get the WadHeader properly set up first for a match. Supposed to be 0x628 in size
 INCLUDE_ASM("asm/nonmatchings/init", func_80011E9C);

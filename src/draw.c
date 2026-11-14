@@ -30,14 +30,49 @@ INCLUDE_ASM("asm/nonmatchings/draw", func_800145AC);
 
 INCLUDE_ASM("asm/nonmatchings/draw", func_800151F0);
 
-// https://decomp.me/scratch/FNdjo
-INCLUDE_ASM("asm/nonmatchings/draw", func_800153F8);
+// https://decomp.me/scratch/FNdjo - 100%
+//INCLUDE_ASM("asm/nonmatchings/draw", func_800153F8);
 
-// https://decomp.me/scratch/ZyYH9
-INCLUDE_ASM("asm/nonmatchings/draw", func_80015430);
+void func_800153F8(void) {
+    if (D_80066F90 >= 0x46) {
+        func_800155A0(0x1D);
+        return;
+    }
+    func_800155A0(0xD);
+}
 
-// https://decomp.me/scratch/0uSL4
-INCLUDE_ASM("asm/nonmatchings/draw", func_80015494);
+// https://decomp.me/scratch/onUVZ - 100%
+//INCLUDE_ASM("asm/nonmatchings/draw", func_80015430);
+
+void func_80015430() {
+    switch (D_800698F0) {
+        case 0:
+        case 4:
+            func_800155A0(0xD);
+            break;
+        case 1:
+        case 2:
+        case 3:
+            func_titlescreen_and_loading_80070EEC();
+            break;
+    }
+}
+
+// https://decomp.me/scratch/SYxp5 - 100%
+//INCLUDE_ASM("asm/nonmatchings/draw", func_80015494);
+
+void func_80015494() {
+    switch (D_800698F0) {
+        case 0:
+        case 4:
+            func_800155A0(0xD);
+            break;
+        case 1:
+        case 2:
+            func_titlescreen_and_loading_80072B90();
+            break;
+    }
+}
 
 // https://decomp.me/scratch/JU2pd
 //INCLUDE_ASM("asm/nonmatchings/draw", func_800154F8);

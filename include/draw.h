@@ -14,16 +14,12 @@ extern char D_800699B5;
 extern char D_800699B6;
 extern char D_800699B7;
 
-extern void func_800155A0(int);                                 /* extern */
 extern void func_titlescreen_and_loading_800733B0();                                  /* extern */
 extern int D_800698F0;
 
 extern void func_credits_8006EE18();                                  /* extern */
 
 extern void func_titlescreen_and_loading_8007BFC4();                                  /* extern */
-
-extern void func_800155A0(int);                                 /* extern */
-
 
 typedef struct {
     int unk0;
@@ -50,5 +46,11 @@ void func_800540B0();                                  /* extern */
 extern int D_80066F68;
 extern int D_80067150;
 extern Unk_80069F30 D_80069F30[];
+
+extern int D_80066F90;
+
+void func_titlescreen_and_loading_80070EEC();
+
+void func_titlescreen_and_loading_80072B90();
 
 #endif

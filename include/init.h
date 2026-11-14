@@ -54,4 +54,17 @@ extern void func_titlescreen_and_loading_8007CC38(int); //func_titlescreen_and_l
 
 extern void func_8001D7E8(); //func_8001D7E8
 
+void func_8001B3C8(int, int, int);                    /* extern */
+extern int D_80066FFC;
+extern int D_80067000;
+extern int D_80069998;
+extern int D_80069A0C;
+extern int D_8006B284;
+extern int D_8006B29C;
+extern int D_8006B2A0;
+extern int D_8006B2A4;
+extern int D_8006B2A8;
+extern int D_8006B2AC;
+extern int D_8006B2B0;
+
 #endif

@@ -435,7 +435,14 @@ void func_8001DC6C(void) {
 }
 
 // https://decomp.me/scratch/dg0nn - 100%
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001E204);
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001E204);
+
+void func_8001E204(void) {
+    func_8001ED20(&g_Camera.m_0x70, &g_Camera.m_CameraPositions[2].pos, &g_Camera.m_0x60);
+    func_8001E454();
+    g_Camera.m_SphericalFlipState = func_8001EE18(&g_Camera.m_CameraPositions[0], &g_Camera.m_Position, &g_Camera.m_0x60);
+    func_8001E808();
+}
 
 // https://decomp.me/scratch/yNVyU
 //INCLUDE_ASM("asm/nonmatchings/camera", func_8001E270);
@@ -1007,7 +1014,23 @@ int func_8001EE18(SphericalCoordinates* arg0, Vector3D* arg1, void* arg2) {
 }
 
 // https://decomp.me/scratch/FuNiS - 100%
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001EFA8);
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001EFA8);
+
+void func_8001EFA8(CameraPosition* arg0, CameraPosition* arg1) {
+    int temp_v1;
+    int temp_v1_2;
+
+    temp_v1 = (g_Camera.m_Rotation.y - arg1->pos.elevation) & 0xFFF;
+    arg0->yaw = temp_v1;
+    if (temp_v1 >= 0x801) {
+        arg0->yaw = (int) (temp_v1 - 0x1000);
+    }
+    temp_v1_2 = ((g_Camera.m_Rotation.z - 0x800) - arg1->pos.azimuth) & 0xFFF;
+    arg0->pitch = temp_v1_2;
+    if (temp_v1_2 >= 0x801) {
+        arg0->pitch = (int) (temp_v1_2 - 0x1000);
+    }
+}
 
 // https://decomp.me/scratch/GBd7i
 //INCLUDE_ASM("asm/nonmatchings/camera", func_8001F008); ResetCameraPosition()
@@ -1021,7 +1044,28 @@ void func_8001F008(CameraPosition* arg0) {
 }
 
 // https://decomp.me/scratch/ZWw25 - 100%
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001F020);
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001F020);
+
+void func_8001F020(int arg0) {
+    g_Camera.m_CameraAzimuthOverride = 0;
+    if (g_Camera.m_0x154 == 1) {
+        g_Camera.m_0x154 = 3;
+    }
+    if (g_Spyro.m_0x240 == 0) {
+        if (D_800683A0 & 0xA) {
+            if (!(D_800683A0 & 5)) {
+                g_Camera.m_CameraAzimuthOverride = arg0;
+                g_Camera.m_0x154 = 1;
+            }
+        }
+        if (D_800683A0 & 5) {
+            if (!(D_800683A0 & 0xA)) {
+                g_Camera.m_CameraAzimuthOverride = (int) -arg0;
+                g_Camera.m_0x154 = 1;
+            }
+        }
+    }
+}
 
 // https://decomp.me/scratch/1inpk
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001F0BC);
@@ -1035,7 +1079,13 @@ void func_8001F1E4(int arg0, int arg1) {
 }
 
 // https://decomp.me/scratch/CRD8v - 100%
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001F1FC);
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001F1FC);
+void func_8001F1FC(int arg0) {
+    if ((g_Camera.m_RequestedCameraMode == 0) || (g_Camera.m_RequestedCameraMode == 0x11)) {
+        g_Camera.m_RequestedCameraMode = 0x11;
+        func_8001ECCC(&g_Camera.m_0x170, arg0, 0);
+    }
+}
 
 // https://decomp.me/scratch/smjIy
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001F24C);
@@ -1162,7 +1212,17 @@ void func_8001F2E4(int arg0) {
 }
 
 // https://decomp.me/scratch/KXnuG - 100%
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001F4A4);
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001F4A4);
+
+void func_8001F4A4(int arg0, int arg1) {
+    if (g_Camera.m_CameraMode < 9 || g_Camera.m_CameraMode > 10) {
+        func_8001ECCC(&g_Camera.m_0x190, &g_Camera.m_CameraPositions[0], 0);
+    }
+    g_Camera.m_RequestedCameraMode = 0xA;
+    g_Camera.m_MotionTable = arg0;
+    g_Camera.m_MotionSampleIndex = 0;
+    g_Camera.m_MotionFlags = arg1;
+}
 
 // https://decomp.me/scratch/AssXr
 INCLUDE_ASM("asm/nonmatchings/camera", func_8001F524);

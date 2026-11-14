@@ -57,7 +57,7 @@ INCLUDE_ASM("asm/nonmatchings/pad", func_8001271C);
 
 // https://decomp.me/scratch/068hb - 100%
 //INCLUDE_ASM("asm/nonmatchings/pad", func_80012AC0);
-
+// PadReset
 void func_80012AC0(Pad* arg0) {
     int var_v1;
 
