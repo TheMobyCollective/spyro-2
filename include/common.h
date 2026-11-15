@@ -40,7 +40,10 @@ typedef struct {
     short _pad;    /* padding */
 } SHORTMATRIX;
 
-
+typedef struct {
+    Vector3D normal;
+    int offset;
+} Plane;
 
 typedef struct {
     int azimuth, elevation, radius;

@@ -1,7 +1,20 @@
 #include "common.h"
 #include "mobyutil.h"
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_800375C8);
+// https://decomp.me/scratch/RdXgB
+//INCLUDE_ASM("asm/nonmatchings/mobyutil", func_800375C8);
+
+void func_800375C8(Moby* arg0) {
+    arg0->lowDrawDistance = 0x10;
+    arg0->updateDistance = 0xFF;
+    arg0->unknown4 = 4;
+    arg0->animationState.nextFrame = 1;
+    arg0->animationProgress = 0x30;
+    arg0->unknown3[0] = 1;
+    arg0->animationRun = 0xFF;
+    arg0->highDrawDistance = 0x40;
+    arg0->subtype = 0xFF;
+}
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80037608);
 
@@ -24,16 +37,48 @@ INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80037EF0);
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80037FCC);
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_800381EC);
+// https://decomp.me/scratch/qnDu8
+//INCLUDE_ASM("asm/nonmatchings/mobyutil", func_800381EC);
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80038238);
+int func_800381EC(Moby* arg0) {
+    int x;
+
+    arg0->position.z += 0x5DC;
+    x = func_8003EE84(&arg0->position, 0x1000);
+    arg0->position.z -= 0x5DC;
+    return x;
+}
+
+// https://decomp.me/scratch/pALOr
+//INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80038238);
+
+int func_80038238(Moby* arg0, int arg1) {
+    int x;
+    arg0->position.z += arg1;
+    x = func_8003EE84(&arg0->position, 0x1000);
+    arg0->position.z -= arg1;
+    return x;
+}
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80038290);
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80038388);
 
 // https://decomp.me/scratch/DGrUv
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_800384B4);
+//INCLUDE_ASM("asm/nonmatchings/mobyutil", func_800384B4);
+
+int func_800384B4(int arg0, int arg1, int arg2) {
+    int diff;
+    int absDiff;
+
+    diff = func_800385D8(arg0, arg1); // arg1 - arg0
+    absDiff = ABS(diff); // |arg1 - arg0|
+    if (arg2 < absDiff) {
+        if (diff < 0) return func_800385F8(arg1, arg2);  // if arg1 < arg0,  return arg1 + arg2
+        else          return func_800385F8(arg1, -arg2); // if arg1 >= arg0, return arg1 - arg2
+    }
+    return arg0;
+}
 
 // https://decomp.me/scratch/YYyH0 - 100%
 //INCLUDE_ASM("asm/nonmatchings/mobyutil", func_8003853C);
@@ -87,7 +132,19 @@ int func_8003891C(int arg0, int arg1) {
 }
 
 // https://decomp.me/scratch/x0rzd
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_8003898C);
+//INCLUDE_ASM("asm/nonmatchings/mobyutil", func_8003898C);
+
+int func_8003898C(int low, int high) {
+    int r;
+    int out;
+
+    r = func_80059D2C();
+    out = (r % ((high - low) + 1)) + low;
+    if (r & 1) {
+        return out;
+    }
+    return -out;
+}
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80038A0C);
 
@@ -97,7 +154,16 @@ INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80038B9C);
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80038C44);
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80038E08);
+// https://decomp.me/scratch/9iI4A
+//INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80038E08);
+
+int func_80038E08(int arg0) {
+    int temp_v0;
+
+    temp_v0 = -((arg0 - D_80066F14) * 0x45D1745D);
+    // I do not like the double bitshift of 3 and 5 but it matches so I'll leave it for now.
+    return ((int) *(&D_80067418 + ((temp_v0 >> 3) >> 5)) >> ((temp_v0 >> 3) & 0x1F)) & 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80038E6C);
 
@@ -114,13 +180,21 @@ void func_800391F8(void) {
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80039218);
 
+// https://decomp.me/scratch/5MbGF
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_800392A8);
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80039334);
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_80039678);
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_8003986C);
+// https://decomp.me/scratch/JhZ8d
+//INCLUDE_ASM("asm/nonmatchings/mobyutil", func_8003986C);
+
+void func_8003986C(Moby* arg0) {
+    arg0->position.z = func_800381EC() + arg0->distanceToGround;
+    func_80041A8C(arg0);
+    func_80041AB8(arg0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_800398B0);
 
@@ -154,7 +228,13 @@ INCLUDE_ASM("asm/nonmatchings/mobyutil", func_8003C444);
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_8003C87C);
 
-INCLUDE_ASM("asm/nonmatchings/mobyutil", func_8003C99C);
+// https://decomp.me/scratch/XpGL2
+//INCLUDE_ASM("asm/nonmatchings/mobyutil", func_8003C99C);
+
+int func_8003C99C(Vector3D *arg0, Plane *arg1) {
+    int sum = arg1->normal.x * arg0->x + arg1->normal.y * arg0->y + arg1->normal.z * arg0->z;
+    return ABS((sum >> 10) + arg1->offset);
+}
 
 INCLUDE_ASM("asm/nonmatchings/mobyutil", func_8003CA00);
 

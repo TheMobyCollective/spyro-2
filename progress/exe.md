@@ -152,7 +152,7 @@
 - [x] func_80011ADC
 
 <!-- mobyutil.c -->
-- [ ] func_800375C8
+- [x] func_800375C8
 - [ ] func_80037608
 - [ ] func_800379F4
 - [ ] func_80037BB0
@@ -161,11 +161,11 @@
 - [ ] func_80037DA8
 - [ ] func_80037EF0
 - [ ] func_80037FCC
-- [ ] func_800381EC
-- [ ] func_80038238
+- [x] func_800381EC
+- [x] func_80038238
 - [ ] func_80038290
 - [ ] func_80038388
-- [ ] func_800384B4
+- [x] func_800384B4
 - [x] func_8003853C
 - [x] func_80038594
 - [x] func_800385D8
@@ -175,12 +175,12 @@
 - [ ] func_8003873C
 - [ ] func_80038844
 - [x] func_8003891C
-- [ ] func_8003898C
+- [x] func_8003898C
 - [ ] func_80038A0C
 - [ ] func_80038ACC
 - [ ] func_80038B9C
 - [ ] func_80038C44
-- [ ] func_80038E08
+- [x] func_80038E08
 - [ ] func_80038E6C
 - [ ] func_80038F90
 - [ ] func_8003912C
@@ -189,7 +189,7 @@
 - [ ] func_800392A8
 - [ ] func_80039334
 - [ ] func_80039678
-- [ ] func_8003986C
+- [x] func_8003986C
 - [ ] func_800398B0
 - [ ] func_800399C0
 - [ ] func_80039DE4
@@ -206,7 +206,7 @@
 - [ ] func_8003C310
 - [ ] func_8003C444
 - [ ] func_8003C87C
-- [ ] func_8003C99C
+- [x] func_8003C99C
 - [ ] func_8003CA00
 - [ ] func_8003CAFC
 - [ ] func_8003CBF0
