@@ -2,7 +2,34 @@
 #include "pad.h"
 
 // https://decomp.me/scratch/wFrtz
-INCLUDE_ASM("asm/nonmatchings/pad", func_80011F50);
+//INCLUDE_ASM("asm/nonmatchings/pad", func_80011F50);
+
+void func_80011F50(char* arg0) {
+    int i;
+    int j;
+    char temp_v0;
+    char temp_v1;
+    unsigned char* var_a1;
+
+    (char*)var_a1 = arg0;
+    for (j = 0; j < 4; j++) {
+        if ( arg0[j] + 0xF >= 0xBFU ) {
+            *(int*)arg0 = 0x7F7F7F7F;
+            break;
+        }
+    }
+
+    *(int*)&g_Pad.unk2[3] = *(int*)arg0;
+    for (i = 0; i < 4; i++) {
+        temp_v0 = ((char*)&g_Pad.unk2[3])[i] + 0x30;
+        ((char*)&g_Pad.unk2b[0])[i] = temp_v0;
+        ((char*)&g_Pad.unk2b[2])[i] = -1 - temp_v0;
+
+        temp_v1 = ((char*)&g_Pad.unk2[3])[i];
+        ((char*)&g_Pad.unk2b[1])[i] = temp_v1 - 0x30;
+        ((char*)&g_Pad.unk2b[3])[i] = temp_v1 - 0x30;
+    }
+}
 
 // https://decomp.me/scratch/KZPjp - 100%
 //INCLUDE_ASM("asm/nonmatchings/pad", func_8001200C);
