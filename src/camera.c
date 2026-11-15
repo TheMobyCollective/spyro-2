@@ -924,7 +924,17 @@ void func_8001ECCC(CameraPosition* arg0, CameraPosition* arg1, int arg2) {
 }
 
 // https://decomp.me/scratch/9Fp5c
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001ED20);
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001ED20);
+
+void func_8001ED20(Vector3D* arg0, SphericalCoordinates* arg1, Vector3D* arg2) {
+
+    arg0->x = (((int) (arg1->radius * func_8001B664(arg1->elevation)) >> 0xC) * func_8001B664(arg1->azimuth)) >> 0xC;
+    arg0->y = (((int) (arg1->radius * func_8001B664(arg1->elevation)) >> 0xC) * func_8001B61C(arg1->azimuth)) >> 0xC;
+    arg0->z = (int) (arg1->radius * func_8001B61C(arg1->elevation)) >> 0xC;
+    if (arg2 != 0) {
+        func_8001BDCC(arg0, arg0, arg2);
+    }
+}
 
 // https://decomp.me/scratch/BTTNp
 //INCLUDE_ASM("asm/nonmatchings/camera", func_8001EE18);
@@ -1087,8 +1097,19 @@ void func_8001F1FC(int arg0) {
     }
 }
 
-// https://decomp.me/scratch/smjIy
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001F24C);
+// https://decomp.me/scratch/g5ulk
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001F24C);
+
+void func_8001F24C(int arg0, int arg1) {
+    if (g_Camera.m_CameraMode != 9) {
+        func_8001ECCC(&g_Camera.m_0x190, &g_Camera.m_CameraPositions, 0);
+    }
+    g_Camera.m_RequestedCameraMode = 9;
+    func_8001BDB0(&g_Camera.m_0x184, arg1);
+    func_8001EE18(&g_Camera.m_0x170, arg0, arg1);
+    g_Camera.m_0x170.yaw = 0;
+    g_Camera.m_0x170.pitch = 0;
+}
 
 // https://decomp.me/scratch/MGyZN
 //INCLUDE_ASM("asm/nonmatchings/camera", func_8001F2E4);
@@ -1224,8 +1245,32 @@ void func_8001F4A4(int arg0, int arg1) {
     g_Camera.m_MotionFlags = arg1;
 }
 
-// https://decomp.me/scratch/AssXr
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001F524);
+// https://decomp.me/scratch/ZeyAQ
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001F524);
+
+void func_8001F524(int arg0, int arg1, int arg2, int arg3) {
+    int var_s3;
+    void* temp_a0;
+
+    if (g_Spyro.m_0x258 >= 0) {
+        var_s3 = 0;
+        func_8001BDB0(&g_Spyro.m_Vector_0x22C, arg0);
+        temp_a0 = &g_Camera.m_RequestedCameraMode;
+        g_Spyro.m_0x238 = (int) (arg1 * 0x10);
+        g_Camera.m_RequestedCameraMode = 0xB;
+        g_Spyro.m_0x23C = arg3;
+        if (arg2 != 0) {
+            func_8001BDB0(temp_a0 + 0x1C, arg2);
+        } else {
+            func_8001BDA0(temp_a0 + 0x1C);
+        }
+        if ((g_Camera.m_CameraMode == 9) && (D_80066F68 >= 0x80)) {
+            var_s3 = 0x10;
+        }
+        func_800216D8(0xB);
+        g_Camera.m_CameraModeTimer = var_s3;
+    }
+}
 
 // https://decomp.me/scratch/k3BuE
 //INCLUDE_ASM("asm/nonmatchings/camera", func_8001F618);

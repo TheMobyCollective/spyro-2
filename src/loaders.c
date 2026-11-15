@@ -1,13 +1,28 @@
 #include "common.h"
 #include "spu.h"
+#include "loaders.h"
 
 INCLUDE_ASM("asm/nonmatchings/loaders", func_8001C454);
 
 INCLUDE_ASM("asm/nonmatchings/loaders", func_8001C510);
 
+// https://decomp.me/scratch/mScRG
 INCLUDE_ASM("asm/nonmatchings/loaders", func_8001C5EC);
 
-INCLUDE_ASM("asm/nonmatchings/loaders", func_8001C68C);
+// https://decomp.me/scratch/GqnCG
+//INCLUDE_ASM("asm/nonmatchings/loaders", func_8001C68C);
+
+void func_8001C68C(Particle* arg0) {
+    D_80066F18 = arg0;
+    D_80066FD8 = arg0;
+    arg0->unk1 = 0xFF;
+    *(int*)&D_80066F18[256].unk0 = -1;
+    func_8001B3C8(&D_80068078, 0, 0x140);
+    func_8001B3C8(&D_80067D00, 0, 0x100);
+    func_8001B3C8((int*)&D_8006B400, 0, 0x180);
+    func_8001B3C8((int*)&D_8006A2B4, 0, 0x600);
+    func_8001B3C8(&D_80069F30, 0, 0xA0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/loaders", func_8001C734);
 
@@ -36,5 +51,5 @@ void func_8001D5FC(char* pData, int pPatchAddressesInTable) {
 
 INCLUDE_ASM("asm/nonmatchings/loaders", func_8001D658);
 
-// Seems to break Decomp.me at the moment?
+// https://decomp.me/scratch/JWJrT
 INCLUDE_ASM("asm/nonmatchings/loaders", func_8001D7E8);

@@ -241,4 +241,30 @@ typedef struct {
 
 extern ProgressFlags flags;
 
+/*** Parts ***/
+
+typedef struct {
+    char unk0; // possible class
+    unsigned char unk1;
+    char unk2;
+    char unk3;
+    short unk4; // ShortVector3D?
+    short unk6;
+    short unk8;
+    char unkA;
+    char unkB;
+    char unkC;
+    char unkD;
+    char unkE;
+    char unkF;
+    short unk10;
+    short unk12; // ShortVector3D?
+    short unk14;
+    short unk16;
+    short unk18; // ShortVector3D?
+    short unk1A;
+    short unk1C;
+    short unk1E;
+} Particle;
+
 #endif

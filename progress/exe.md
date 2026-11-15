@@ -9,7 +9,7 @@
 - [x] func_8001E454
 - [x] func_8001E808
 - [x] func_8001ECCC
-- [ ] func_8001ED20
+- [x] func_8001ED20
 - [x] func_8001EE18
 - [x] func_8001EFA8
 - [x] func_8001F008
@@ -17,10 +17,10 @@
 - [ ] func_8001F0BC
 - [x] func_8001F1E4
 - [x] func_8001F1FC
-- [ ] func_8001F24C
+- [x] func_8001F24C
 - [x] func_8001F2E4
 - [x] func_8001F4A4
-- [ ] func_8001F524
+- [x] func_8001F524
 - [x] func_8001F618
 - [x] func_8001F814
 - [x] func_8001FA24
@@ -142,7 +142,7 @@
 - [ ] func_8001C454
 - [ ] func_8001C510
 - [ ] func_8001C5EC
-- [ ] func_8001C68C
+- [x] func_8001C68C
 - [ ] func_8001C734
 - [x] func_8001D5FC
 - [ ] func_8001D658

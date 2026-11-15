@@ -64,6 +64,7 @@ void func_8001200C(unsigned char* arg0) {
     }
 }
 
+// https://decomp.me/scratch/aJF2u
 INCLUDE_ASM("asm/nonmatchings/pad", func_800121B0);
 
 // https://decomp.me/scratch/YjKA2 - 100%
