@@ -269,4 +269,6 @@ extern int D_8006ABA4;
 
 extern Vector3D D_8006AB7C;
 
+extern int D_80067008;
+
 #endif

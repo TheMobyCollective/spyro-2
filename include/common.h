@@ -4,6 +4,11 @@
 #include "include_asm.h"
 #include <sys/types.h>
 
+#define SUB_ANGLE(a, b, c) a = (b - c) & 0xFFF; \
+if(a > 0x800) a -= 0x1000
+#define ADD_ANGLE(a, b, c) a = (b + c) & 0xFFF; \
+if(a > 0x800) a -= 0x1000
+
 #define nullptr ((void *)0)
 
 /*** Maths ***/

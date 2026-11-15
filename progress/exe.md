@@ -1,6 +1,6 @@
 <!-- camera.c -->
 - [x] func_8001D87C
-- [ ] func_8001D8A4
+- [x] func_8001D8A4
 - [x] func_8001DB58
 - [x] func_8001DC6C
 - [x] func_8001E204
@@ -14,7 +14,7 @@
 - [x] func_8001EFA8
 - [x] func_8001F008
 - [x] func_8001F020
-- [ ] func_8001F0BC
+- [x] func_8001F0BC
 - [x] func_8001F1E4
 - [x] func_8001F1FC
 - [x] func_8001F24C

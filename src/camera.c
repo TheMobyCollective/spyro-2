@@ -9,8 +9,58 @@ void func_8001D87C(void) {
     func_80021DC0();
 }
 
-// https://decomp.me/scratch/zigZT
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001D8A4);
+// https://decomp.me/scratch/RON0O
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001D8A4);
+
+void func_8001D8A4(void) {
+    int var_s0;
+    int var_v0_2;
+    int var_v1;
+    short foo[2]; //fixes the stack size, maybe need some temp variables
+
+    func_8001FA58();
+    if (g_Camera.m_0x145 != 0) {
+        func_8001BDB0(&g_Camera.m_Position, &g_Camera.m_MotionPosition);
+        g_Camera.m_Rotation.x = g_Camera.m_MotionAngleX;
+        g_Camera.m_Rotation.y = g_Camera.m_MotionAngleY;
+        g_Camera.m_Rotation.z = g_Camera.m_MotionAngleZ;
+    } else {
+        var_s0 = 0;
+        if (D_80067018 > 0) {
+            do {
+                var_s0 += 1;
+                func_80021558();
+            } while (var_s0 < D_80067018);
+        }
+        func_8001E204();
+        func_8001E270();
+    }
+    var_v1 = ABS(g_Camera.m_CameraPositions[4].pos.azimuth) + ABS(g_Camera.m_CameraPositions[4].pos.elevation) + ABS(g_Camera.m_CameraPositions[4].pos.radius);
+    g_Camera.m_0x130 = var_v1 + ABS(g_Camera.m_CameraPositions[4].yaw) + ABS(g_Camera.m_CameraPositions[4].pitch);
+    if (g_Camera.m_0x1D4[1] != 0) {
+        if (g_Camera.m_0x1D4[2] < g_Camera.m_0x1D4[1]) {
+            g_Camera.m_0x1D4[2] = g_Camera.m_0x1D4[1];
+        }
+        g_Camera.m_0x1D4[1] = g_Camera.m_0x1D4[1] - D_80067018;
+        if (g_Camera.m_0x1D4[1] < 0) {
+            g_Camera.m_0x1D4[1] = 0;
+        }
+        g_Camera.m_Position.z += (int) ((int) (g_Camera.m_0x1D4[0] * g_Camera.m_0x1D4[1] * ((D_80067008 & 2) - 1)) / (int) g_Camera.m_0x1D4[2]) >> 6;
+    } else {
+        g_Camera.m_0x1D4[2] = 0;
+    }
+    if (g_Camera.unk_0x5C != 0) {
+        var_s0 = ((g_Camera.m_CameraPositions[0].pos.azimuth - g_Spyro.m_0x6C) - 0x800) & 0xFFF;
+        if (var_s0 >= 0x801) {
+            var_s0 -= 0x1000;
+        }
+        var_v0_2 = ABS(var_s0);
+
+        if ((var_v0_2 < 0x40) || (g_Camera.m_CameraAzimuthOverride != 0) || (g_Camera.m_CameraCollisionFlag != 0)) {
+            g_Camera.unk_0x5C = 0;
+        }
+    }
+}
 
 // https://decomp.me/scratch/SgE3O
 //INCLUDE_ASM("asm/nonmatchings/camera", func_8001DB58);
@@ -437,7 +487,7 @@ void func_8001DC6C(void) {
 // https://decomp.me/scratch/dg0nn - 100%
 //INCLUDE_ASM("asm/nonmatchings/camera", func_8001E204);
 
-void func_8001E204(void) {
+int func_8001E204(void) {
     func_8001ED20(&g_Camera.m_0x70, &g_Camera.m_CameraPositions[2].pos, &g_Camera.m_0x60);
     func_8001E454();
     g_Camera.m_SphericalFlipState = func_8001EE18(&g_Camera.m_CameraPositions[0], &g_Camera.m_Position, &g_Camera.m_0x60);
@@ -446,7 +496,7 @@ void func_8001E204(void) {
 
 // https://decomp.me/scratch/yNVyU
 //INCLUDE_ASM("asm/nonmatchings/camera", func_8001E270);
-void func_8001E270(void) {
+int func_8001E270(void) {
     short *anglePtr;
     CameraPosition *position;
     int pitchOffset;
@@ -562,7 +612,7 @@ void func_8001E2E4(CameraPosition *arg0) {
 
 // https://decomp.me/scratch/JuBAj
 //INCLUDE_ASM("asm/nonmatchings/camera", func_8001E454);
-void func_8001E454(void)
+int func_8001E454(void)
 {
     Vector3D delta;
     Vector3D position;
@@ -729,7 +779,7 @@ void func_8001E454(void)
 
 // https://decomp.me/scratch/HFe14
 //INCLUDE_ASM("asm/nonmatchings/camera", func_8001E808);
-void func_8001E808(void) {
+int func_8001E808(void) {
     Vector3D target;
     Vector3D candidate;
     CameraPosition offset;
@@ -926,7 +976,7 @@ void func_8001ECCC(CameraPosition* arg0, CameraPosition* arg1, int arg2) {
 // https://decomp.me/scratch/9Fp5c
 //INCLUDE_ASM("asm/nonmatchings/camera", func_8001ED20);
 
-void func_8001ED20(Vector3D* arg0, SphericalCoordinates* arg1, Vector3D* arg2) {
+int func_8001ED20(Vector3D* arg0, SphericalCoordinates* arg1, Vector3D* arg2) {
 
     arg0->x = (((int) (arg1->radius * func_8001B664(arg1->elevation)) >> 0xC) * func_8001B664(arg1->azimuth)) >> 0xC;
     arg0->y = (((int) (arg1->radius * func_8001B664(arg1->elevation)) >> 0xC) * func_8001B61C(arg1->azimuth)) >> 0xC;
@@ -1077,8 +1127,35 @@ void func_8001F020(int arg0) {
     }
 }
 
-// https://decomp.me/scratch/1inpk
-INCLUDE_ASM("asm/nonmatchings/camera", func_8001F0BC);
+// https://decomp.me/scratch/uuf2V
+//INCLUDE_ASM("asm/nonmatchings/camera", func_8001F0BC);
+
+void func_8001F0BC(void) {
+    if (g_Camera.m_CameraAzimuthOverride != 0) {
+        g_Camera.m_0x154 = 1;
+    }
+    else if (g_Camera.m_0x154 == 1) {
+        SUB_ANGLE(g_Camera.m_0x158, g_Camera.m_CameraPositions[0].pos.azimuth, g_Camera.m_CameraPositions[1].pos.azimuth);
+        g_Camera.m_CameraPositions[1].pos.azimuth = g_Camera.m_CameraPositions[0].pos.azimuth;
+        g_Camera.m_0x154 = 2;
+    }
+    else if (g_Camera.m_0x154 == 2) {
+        if (g_Camera.m_0x158 > 0) {
+            g_Camera.m_0x158 -= 0x18;
+            if (g_Camera.m_0x158 <= 0) {
+                g_Camera.m_0x158 = 0;
+                g_Camera.m_0x154 = 0;
+            }
+        } else {
+            g_Camera.m_0x158 += 0x18;
+            if (g_Camera.m_0x158 >= 0) {
+                g_Camera.m_0x158 = 0;
+                g_Camera.m_0x154 = 0;
+            }
+        }
+        ADD_ANGLE(g_Camera.m_CameraPositions[1].pos.azimuth, g_Camera.m_CameraPositions[1].pos.azimuth, g_Camera.m_0x158);
+    }
+}
 
 // https://decomp.me/scratch/mW3JY
 //INCLUDE_ASM("asm/nonmatchings/camera", func_8001F1E4);
@@ -1090,7 +1167,7 @@ void func_8001F1E4(int arg0, int arg1) {
 
 // https://decomp.me/scratch/CRD8v - 100%
 //INCLUDE_ASM("asm/nonmatchings/camera", func_8001F1FC);
-void func_8001F1FC(int arg0) {
+void func_8001F1FC(CameraPosition* arg0) {
     if ((g_Camera.m_RequestedCameraMode == 0) || (g_Camera.m_RequestedCameraMode == 0x11)) {
         g_Camera.m_RequestedCameraMode = 0x11;
         func_8001ECCC(&g_Camera.m_0x170, arg0, 0);
@@ -1100,7 +1177,7 @@ void func_8001F1FC(int arg0) {
 // https://decomp.me/scratch/g5ulk
 //INCLUDE_ASM("asm/nonmatchings/camera", func_8001F24C);
 
-void func_8001F24C(int arg0, int arg1) {
+void func_8001F24C(Vector3D* arg0, int* arg1) {
     if (g_Camera.m_CameraMode != 9) {
         func_8001ECCC(&g_Camera.m_0x190, &g_Camera.m_CameraPositions, 0);
     }
@@ -1451,7 +1528,7 @@ void func_8001FA24(void) {
 
 // https://decomp.me/scratch/dRDzX
 //INCLUDE_ASM("asm/nonmatchings/camera", func_8001FA58);
-void func_8001FA58(void)
+int func_8001FA58(void)
 {
     int step;
 
@@ -2815,7 +2892,7 @@ void func_8001FA58(void)
 
 // https://decomp.me/scratch/AyB10
 //INCLUDE_ASM("asm/nonmatchings/camera", func_80021558);
-void func_80021558(void)
+int func_80021558(void)
 {
     int wrappedElevationDifference;
 
