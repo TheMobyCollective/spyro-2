@@ -1,14 +1,14 @@
 <!-- camera.c -->
 - [ ] func_level_50_8006FE18
-- [ ] func_level_50_80070308
+- [x] func_level_50_80070308
 - [ ] func_level_50_80070330
 - [ ] func_level_50_80070408
 
 <!-- hud_render.c -->
-- [ ] func_level_50_800705A8
+- [x] func_level_50_800705A8
 
 <!-- hud_update.c -->
-- [ ] func_level_50_800705A0
+- [x] func_level_50_800705A0
 
 <!-- moby_spawn.c -->
 - [ ] func_level_50_80079D68

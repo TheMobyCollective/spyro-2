@@ -5,10 +5,10 @@
 - [ ] func_level_10_80070324
 
 <!-- hud_render.c -->
-- [ ] func_level_10_80070460
+- [x] func_level_10_80070460
 
 <!-- hud_update.c -->
-- [ ] func_level_10_80070458
+- [x] func_level_10_80070458
 
 <!-- moby_spawn.c -->
 - [ ] func_level_10_8007BCB8

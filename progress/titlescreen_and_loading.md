@@ -16,7 +16,7 @@
 - [ ] func_titlescreen_and_loading_8007490C
 - [ ] func_titlescreen_and_loading_8007501C
 - [ ] func_titlescreen_and_loading_8007644C
-- [ ] func_titlescreen_and_loading_80076614
+- [x] func_titlescreen_and_loading_80076614
 - [ ] func_titlescreen_and_loading_8007663C
 - [ ] func_titlescreen_and_loading_80076674
 - [ ] func_titlescreen_and_loading_800766A0

@@ -38,7 +38,22 @@ INCLUDE_ASM("asm/nonmatchings/overlays/titlescreen_and_loading/leveldata", func_
 INCLUDE_ASM("asm/nonmatchings/overlays/titlescreen_and_loading/leveldata", func_titlescreen_and_loading_8007644C);
 
 // https://decomp.me/scratch/FX0ZG
-INCLUDE_ASM("asm/nonmatchings/overlays/titlescreen_and_loading/leveldata", func_titlescreen_and_loading_80076614);
+//INCLUDE_ASM("asm/nonmatchings/overlays/titlescreen_and_loading/leveldata", func_titlescreen_and_loading_80076614);
+
+int func_titlescreen_and_loading_80076614(unsigned char* arg0) {
+    unsigned char temp_v0;
+    int var_v1;
+    unsigned char *temp_a1;
+
+    var_v1 = 0;
+    temp_a1 = arg0 + 0x5A8;
+    do {
+        temp_v0 = *arg0;
+        var_v1 = var_v1 + temp_v0;
+        arg0++;
+    } while (arg0 < temp_a1);
+    return var_v1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/overlays/titlescreen_and_loading/leveldata", func_titlescreen_and_loading_8007663C);
 
