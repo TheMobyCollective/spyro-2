@@ -68,6 +68,19 @@ void func_80050D38();                                  /* extern */
 void func_titlescreen_and_loading_800742F8();          /* extern */
 extern void (*D_80066F84)();
 
-
+void func_80013810(int, int, int, int);                /* extern */
+extern int D_80011110;
+extern short D_80066EE8;
+extern short D_80066F0C;
+extern int D_80066F34;
+extern short D_8006707C;
+extern int D_80067080;
+extern short D_800670E8;
+extern short D_800670EC;
+extern short D_80067128;
+extern int D_80067184;
+extern int D_80067710;
+extern int D_80067714;
+extern int D_800682D8;
 
 #endif

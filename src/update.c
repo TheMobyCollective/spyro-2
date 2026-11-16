@@ -145,7 +145,23 @@ void func_8001A6F8(void) {
 
 INCLUDE_ASM("asm/nonmatchings/update", func_8001A79C);
 
-INCLUDE_ASM("asm/nonmatchings/update", func_8001A910);
+// https://decomp.me/scratch/DZuSH
+//INCLUDE_ASM("asm/nonmatchings/update", func_8001A910);
+
+void func_8001A910(void) {
+    D_800681C8 = 0xA;
+    D_800670EC = 0;
+    D_800670E8 = 0;
+    D_80066F0C = 0;
+    D_80066EE8 = -1;
+    D_80067080 = 0;
+    D_80067184 = 0;
+    D_80067128 = 0;
+    D_8006707C = 0;
+    D_80066F34 = 0;
+    func_80013810(D_800682D8, D_80011110, D_80067714, D_80067710);
+    func_80050AAC();
+}
 
 INCLUDE_ASM("asm/nonmatchings/update", func_8001A9B0);
 

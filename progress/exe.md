@@ -351,7 +351,7 @@
 - [ ] func_8001A2FC
 - [x] func_8001A6F8
 - [ ] func_8001A79C
-- [ ] func_8001A910
+- [x] func_8001A910
 - [ ] func_8001A9B0
 - [ ] func_8001AAA4
 - [x] func_8001AC20
