@@ -2574,7 +2574,54 @@ void func_800327F0(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800328E8);
+// https://decomp.me/scratch/ky8E7
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800328E8);
+void func_800328E8(Vector3D *targetPosition) {
+    int transform[8];
+    Vector3D targetOffset;
+
+    targetOffset.x = 100;
+    targetOffset.y = 0;
+    targetOffset.z = 64;
+
+    func_8001B9A4(&g_Spyro.m_RotationMatrix_0x30, &targetOffset, &targetOffset);
+    func_8001BDCC(&targetOffset, &targetOffset, &g_Spyro.m_Position);
+    func_8001BE00(&targetOffset, targetPosition, &targetOffset);
+
+    func_8001B92C(transform, &g_Spyro.m_RotationMatrix_0x30);
+    func_8001B9A4(transform, &targetOffset, &targetOffset);
+
+    g_Spyro.m_Vector_0x184.y =
+        func_8001B4B8(func_8001BA20(&targetOffset, 0), targetOffset.z, 1) & 0xFFF;
+
+    if (g_Spyro.m_Vector_0x184.y >= 0x801) {
+        g_Spyro.m_Vector_0x184.y -= 0x1000;
+    }
+
+    if (g_Spyro.m_Vector_0x184.y < -0x180) {
+        g_Spyro.m_Vector_0x184.y = -0x180;
+    }
+
+    if (g_Spyro.m_Vector_0x184.y >= 0x181) {
+        g_Spyro.m_Vector_0x184.y = 0x180;
+    }
+
+    g_Spyro.m_Vector_0x184.z = func_8001B4B8(targetOffset.x, targetOffset.y, 1) & 0xFFF;
+
+    if (g_Spyro.m_Vector_0x184.z >= 0x801) {
+        g_Spyro.m_Vector_0x184.z -= 0x1000;
+    }
+
+    if (g_Spyro.m_Vector_0x184.z < -0x200) {
+        g_Spyro.m_Vector_0x184.z = -0x200;
+    }
+
+    if (g_Spyro.m_Vector_0x184.z >= 0x201) {
+        g_Spyro.m_Vector_0x184.z = 0x200;
+    }
+
+    g_Spyro.m_0x20C |= 0x10000004;
+}
 
 // https://decomp.me/scratch/zm8aX
 //INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80032A90);
