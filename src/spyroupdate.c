@@ -2401,11 +2401,126 @@ void func_80031468(unsigned char *sourceData) {
     g_Spyro.m_0x218 = nullptr;
 }
 
+// https://decomp.me/scratch/EAXFb
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800315BC);
 
+// https://decomp.me/scratch/leZhf
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80031960);
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80031B94);
+// https://decomp.me/scratch/4zH0E
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80031B94);
+int func_80031B94(Vector3D *targetPosition) {
+    Vector3D offsetVector;
+    int angle;
+    int headingDifference;
+    int maxHeadingStep;
+    int movementScale;
+    int targetDistance;
+
+    // Calculate the offset between the target and Spyro.
+    func_8001BE00(&offsetVector, targetPosition, &g_Spyro.m_Position);
+
+    // Calculate the target heading and its angular difference from Spyro's yaw.
+    angle = func_8001B4B8(offsetVector.x, offsetVector.y, 1);
+    headingDifference = func_8001BEBC(angle, g_Spyro.m_Vector_0x64.z);
+
+    // Determine movement speed and the maximum permitted heading adjustment.
+    if (headingDifference >= 0x320) {
+        movementScale = 0;
+        maxHeadingStep = 0x80;
+    } else {
+        movementScale = (0x320 - headingDifference) >> 2;
+
+        if (movementScale >= 0x65) {
+            movementScale = 0x64;
+        }
+
+        maxHeadingStep = (headingDifference >> 3) + 4;
+    }
+
+    // Apply a clamped adjustment to Spyro's yaw.
+    headingDifference = func_8001BF00(angle, g_Spyro.m_Vector_0x64.z);
+
+    if (headingDifference < -maxHeadingStep) {
+        headingDifference = -maxHeadingStep;
+    }
+
+    if (headingDifference > maxHeadingStep) {
+        headingDifference = maxHeadingStep;
+    }
+
+    g_Spyro.m_Vector_0x64.z += headingDifference;
+
+    // Reset the working movement vector and update the camera-relative state.
+    func_8001BDA0(&g_Spyro.m_Vector_0x184);
+    func_800308D4();
+
+    // Correct Spyro's pitch, keeping the adjustment within the allowed range.
+    angle = (-g_Spyro.m_Vector_0x64.y) & 0xFFF;
+
+    if (angle >= 0x801) {
+        angle -= 0x1000;
+    }
+
+    if (angle < -0x1E) {
+        angle = -0x1E;
+    }
+
+    if (angle >= 0x1F) {
+        angle = 0x1E;
+    }
+
+    g_Spyro.m_Vector_0x64.y += angle;
+
+    // Correct Spyro's roll, also applying a limited angular adjustment.
+    angle = ((-headingDifference << 3) - g_Spyro.m_Vector_0x64.x) & 0xFFF;
+
+    if (angle >= 0x801) {
+        angle -= 0x1000;
+    }
+
+    if (angle < -0x10) {
+        angle = -0x10;
+    }
+
+    if (angle >= 0x11) {
+        angle = 0x10;
+    }
+
+    g_Spyro.m_Vector_0x64.x += angle;
+
+    // Convert the working angles into Spyro's rotation fields.
+    g_Spyro.m_Rotation_0x0C.roll = g_Spyro.m_Vector_0x64.x >> 4;
+    g_Spyro.m_Rotation_0x0C.pitch = g_Spyro.m_Vector_0x64.y >> 4;
+    g_Spyro.m_Rotation_0x0C.yaw = g_Spyro.m_Vector_0x64.z >> 4;
+
+    // Rebuild the rotation matrix.
+    func_8001B6C8(
+        &g_Spyro.m_Rotation_0x0C,
+        &g_Spyro.m_RotationMatrix_0x30,
+        0
+    );
+
+    // Calculate the remaining distance to the target.
+    targetDistance = func_8001BA20(&offsetVector, 0);
+
+    if (targetDistance < 0x101) {
+        // Snap Spyro's position to the target when sufficiently close.
+        func_8001BDB0(&g_Spyro.m_Position, targetPosition);
+        return 0;
+    } else {
+        // Apply movement and advance Spyro towards the target.
+        g_Spyro.m_0xB8 = movementScale;
+
+        func_8002BDBC();
+
+        g_Spyro.m_Position.x += g_Spyro.m_Vector_0x88.x;
+        g_Spyro.m_Position.y += g_Spyro.m_Vector_0x88.y;
+        g_Spyro.m_Position.z += offsetVector.z * movementScale / targetDistance;
+
+        return targetDistance;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80031E4C);
 
