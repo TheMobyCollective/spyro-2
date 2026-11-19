@@ -1329,7 +1329,7 @@ void func_8001F524(int arg0, int arg1, int arg2, int arg3) {
     int var_s3;
     void* temp_a0;
 
-    if (g_Spyro.m_0x258 >= 0) {
+    if (g_Spyro.m_timer_0x258 >= 0) {
         var_s3 = 0;
         func_8001BDB0(&g_Spyro.m_Vector_0x22C, arg0);
         temp_a0 = &g_Camera.m_RequestedCameraMode;
@@ -2738,8 +2738,8 @@ int func_8001FA58(void)
                 &g_Spyro.m_Position
             );
 
-            if (g_Spyro.m_0x258 < 0) {
-                g_Spyro.m_0x258 = 0;
+            if (g_Spyro.m_timer_0x258 < 0) {
+                g_Spyro.m_timer_0x258 = 0;
             }
 
             g_Camera.m_0x6C = g_Spyro.m_Vector_0x64.z;

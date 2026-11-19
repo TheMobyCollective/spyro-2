@@ -197,7 +197,7 @@ void func_8002A4C8(void) {
         func_8002AAFC(g_Spyro.m_0x118, 2);
 
         // Select the state-dependent effect when the vertical trigger is active.
-        if ((g_Spyro.m_0xFC != 0) && (g_Spyro.m_0x258 >= 0)) {
+        if ((g_Spyro.m_0xFC != 0) && (g_Spyro.m_timer_0x258 >= 0)) {
             if (D_80069894 >= 0) {
                 if (g_Spyro.m_0x58 != 8) {
                     func_800351D8(0x37);
@@ -464,9 +464,9 @@ int func_8002AAFC(int commandIndex, int mode) {
             g_Spyro.m_0x25C = 0x5A;
 
             if (commandData[0] != 0) {
-                g_Spyro.m_0x258 = -1;
-            } else if (g_Spyro.m_0x258 >= 0) {
-                g_Spyro.m_0x258--;
+                g_Spyro.m_timer_0x258 = -1;
+            } else if (g_Spyro.m_timer_0x258 >= 0) {
+                g_Spyro.m_timer_0x258--;
             }
 
             func_800351D8(0x1E);
@@ -608,7 +608,7 @@ int func_8002AAFC(int commandIndex, int mode) {
 
             g_Spyro.m_0x25C = 0x5A;
 
-            if (g_Spyro.m_0x258 < 0 || --g_Spyro.m_0x258 < 0) {
+            if (g_Spyro.m_timer_0x258 < 0 || --g_Spyro.m_timer_0x258 < 0) {
                 if (*(int *)((unsigned char *)D_80068C94 + 0x124) != 0) {
                     func_800351D8(0x3A);
                 } else {
@@ -658,10 +658,10 @@ int func_8002AAFC(int commandIndex, int mode) {
 
             g_Spyro.m_0x25C = 0x5A;
 
-            if (g_Spyro.m_0x258 >= 0) {
-                g_Spyro.m_0x258--;
+            if (g_Spyro.m_timer_0x258 >= 0) {
+                g_Spyro.m_timer_0x258--;
 
-                if (g_Spyro.m_0x258 >= 0) {
+                if (g_Spyro.m_timer_0x258 >= 0) {
                     func_800351D8(0x1C);
                     return 1;
                 }
@@ -737,7 +737,74 @@ int func_8002AFDC(SHORTMATRIX *rotationMatrix, Vector3D *point1, Vector3D *point
 // https://decomp.me/scratch/FRUhP
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002B078);
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002B0B8);
+// https://decomp.me/scratch/ksfn1
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002B0B8);
+int func_8002B0B8(void) {
+    int flags;
+    int timer;
+    int event;
+
+    if (g_Spyro.m_0x25C != 0) {
+        return 0;
+    }
+
+    if (g_Spyro.m_0x1D4 != 0) {
+        return 0;
+    }
+
+    flags = g_Spyro.m_0x24;
+
+    if ((flags & 0x1F9) != 0) {
+        timer = g_Spyro.m_timer_0x258;
+        g_Spyro.m_0x25C = 0x5A;
+
+        if (timer >= 0) {
+            g_Spyro.m_timer_0x258 = timer - 1;
+        }
+
+        if (flags & 0x1) {
+            if (g_Spyro.m_0x58 == 0xB ||
+                g_Spyro.m_0x58 == 0xC) {
+                event = 0x39;
+            } else {
+                event = 0xF;
+            }
+        } else if (flags & 0x10) {
+            event = 0x1A;
+        } else if (flags & 0x20) {
+            event = 0x8;
+        } else if (flags & 0x80) {
+            event = 0x1D;
+        } else if (flags & 0x100) {
+            event = 0x17;
+        } else if (flags & 0x8) {
+            if (g_Spyro.m_timer_0x258 < 0) {
+                if (*(int *)((char *)D_80068C94 + 0x124) != 0) {
+                    event = 0x3A;
+                } else {
+                    event = 0x1F;
+                }
+            } else {
+                event = 0x1C;
+            }
+        } else if (flags & 0x40) {
+            if (g_Spyro.m_timer_0x258 >= 0 ||
+                *(int *)((char *)D_80068C94 + 0x128) == 0) {
+                event = 0x38;
+            } else {
+                event = 0x3B;
+            }
+        } else {
+            return 1;
+        }
+
+        func_800351D8(event);
+
+        return 1;
+    }
+
+    return 0;
+}
 
 // https://decomp.me/scratch/zWIn9
 //INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002B228);
@@ -2252,7 +2319,7 @@ void func_80030A6C(void) {
         &g_Spyro.m_Vector_0x64
     );
 
-    savedValue = g_Spyro.m_0x258;
+    savedValue = g_Spyro.m_timer_0x258;
 
     func_8001B3C8(&g_Spyro, 0, 0x2C4);
 
@@ -2295,7 +2362,7 @@ void func_80030A6C(void) {
         &g_Spyro.m_RotationMatrix_0x19C
     );
 
-    g_Spyro.m_0x258 = savedValue;
+    g_Spyro.m_timer_0x258 = savedValue;
 
     if (D_80069894 >= 0) {
         func_800351D8(0x21);
@@ -2739,7 +2806,7 @@ void func_80032E74(void) {
     if (status < 0) {
         countdown = D_8006712C - 1;
 
-        g_Spyro.m_0x258 = D_80061A8C;
+        g_Spyro.m_timer_0x258 = D_80061A8C;
         D_8006712C = countdown;
 
         if (countdown >= 0) {

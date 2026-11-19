@@ -241,7 +241,7 @@ typedef struct {
     int m_0x244;                       // 0x244–0x247; movement flags
     Vector3D m_Vector_0x248;           // 0x248–0x253
     int m_0x254;                       // 0x254–0x257; movement threshold
-    int m_0x258;                       // 0x258; negative values are cleared
+    int m_timer_0x258;                       // 0x258; negative values are cleared
     int m_0x25C;                       // 0x25C–0x25F
     int m_0x260;                       // 0x260
     int m_0x264;                       // 0x264
