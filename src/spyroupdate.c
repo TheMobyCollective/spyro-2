@@ -2522,7 +2522,20 @@ int func_80031B94(Vector3D *targetPosition) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80031E4C);
+// https://decomp.me/scratch/5xfUG
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80031E4C);
+void func_80031E4C(void) {
+    g_Spyro.m_0x274 = -1;
+    g_Spyro.m_0x24 = 0;
+
+    if (g_Spyro.m_0x58 != 7) {
+        g_Spyro.m_0x25C -= D_80067018;
+
+        if (g_Spyro.m_0x25C < 0) {
+            g_Spyro.m_0x25C = 0;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80031EAC);
 
