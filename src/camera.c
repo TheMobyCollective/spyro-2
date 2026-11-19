@@ -50,7 +50,7 @@ void func_8001D8A4(void) {
         g_Camera.m_0x1D4[2] = 0;
     }
     if (g_Camera.unk_0x5C != 0) {
-        var_s0 = ((g_Camera.m_CameraPositions[0].pos.azimuth - g_Spyro.m_0x6C) - 0x800) & 0xFFF;
+        var_s0 = ((g_Camera.m_CameraPositions[0].pos.azimuth - g_Spyro.m_Vector_0x64.z) - 0x800) & 0xFFF;
         if (var_s0 >= 0x801) {
             var_s0 -= 0x1000;
         }
@@ -538,7 +538,7 @@ void func_8001E2E4(CameraPosition *arg0) {
     // Build the camera reference position from Spyro's data.
     func_8001BDB0(&g_Camera.m_0x60, &g_Spyro);
 
-    angleOffset = g_Spyro.m_0x6C;
+    angleOffset = g_Spyro.m_Vector_0x64.z;
     g_Camera.m_0x6C = angleOffset;
 
     // Copy the supplied camera position, applying Spyro's angle offset.
@@ -793,7 +793,7 @@ int func_8001E808(void) {
         return;
     }
 
-    func_8001BDB0(&target, &g_Spyro.m_Vector_0x00);
+    func_8001BDB0(&target, &g_Spyro.m_Position);
     target.z -= 0x124;
 
     if (func_8001F618(&g_Camera.m_Position, &target, 1) == 0) {
@@ -1200,7 +1200,7 @@ void func_8001F2E4(int arg0) {
         if (arg0 != 0) {
             func_8001BDB0(
                 &g_Camera.m_0x184,
-                &g_Spyro.m_Vector_0x00
+                &g_Spyro.m_Position
             );
 
             func_8001ECCC(
@@ -1219,7 +1219,7 @@ void func_8001F2E4(int arg0) {
 
         func_8001BDB0(
             &g_Camera.m_0x60,
-            &g_Spyro.m_Vector_0x00
+            &g_Spyro.m_Position
         );
 
         g_Camera.m_SphericalFlipState = func_8001EE18(
@@ -1267,7 +1267,7 @@ void func_8001F2E4(int arg0) {
 
         func_8001BDB0(
             &g_Camera.m_0x60,
-            &g_Spyro.m_Vector_0x00
+            &g_Spyro.m_Position
         );
 
         g_Camera.m_SphericalFlipState = func_8001EE18(
@@ -1425,7 +1425,7 @@ void func_8001F814(void) {
         setting = &D_80061560;
 
         if (func_8001BEBC(
-                g_Spyro.m_0x6C,
+                g_Spyro.m_Vector_0x64.z,
                 g_Camera.m_CameraPositions[0].pos.azimuth) < 0x280) {
             setting = &D_80061574;
         }
@@ -1581,10 +1581,10 @@ int func_8001FA58(void)
 
         func_8001BDB0(
             &g_Camera.m_0x60,
-            &g_Spyro.m_Vector_0x00
+            &g_Spyro.m_Position
         );
 
-        g_Camera.m_0x6C = g_Spyro.m_0x6C;
+        g_Camera.m_0x6C = g_Spyro.m_Vector_0x64.z;
 
         func_8001ECCC(
             &g_Camera.m_CameraPositions[5],
@@ -1628,7 +1628,7 @@ int func_8001FA58(void)
         if (g_Camera.m_0x134 == 0) {
             if (g_Camera.unk_0x5C == 0 &&
                 func_8001BEBC(
-                    g_Spyro.m_0x6C,
+                    g_Spyro.m_Vector_0x64.z,
                     g_Camera.m_CameraPositions[0].pos.azimuth
                 ) < 0x280 &&
                 (
@@ -1657,7 +1657,7 @@ int func_8001FA58(void)
 
             func_8001BDCC(
                 &targetVector,
-                &g_Spyro.m_Vector_0x00,
+                &g_Spyro.m_Position,
                 &targetVector
             );
 
@@ -1697,10 +1697,10 @@ int func_8001FA58(void)
 
         func_8001BDB0(
             &g_Camera.m_0x60,
-            &g_Spyro.m_Vector_0x00
+            &g_Spyro.m_Position
         );
 
-        g_Camera.m_0x6C = g_Spyro.m_0x6C;
+        g_Camera.m_0x6C = g_Spyro.m_Vector_0x64.z;
 
         func_8001ECCC(
             &g_Camera.m_CameraPositions[5],
@@ -1745,10 +1745,10 @@ int func_8001FA58(void)
 
         func_8001BDB0(
             &g_Camera.m_0x60,
-            &g_Spyro.m_Vector_0x00
+            &g_Spyro.m_Position
         );
 
-        g_Camera.m_0x6C = g_Spyro.m_0x6C;
+        g_Camera.m_0x6C = g_Spyro.m_Vector_0x64.z;
 
         func_8001ECCC(
             &g_Camera.m_CameraPositions[5],
@@ -1795,10 +1795,10 @@ int func_8001FA58(void)
 
         func_8001BDB0(
             &g_Camera.m_0x60,
-            &g_Spyro.m_Vector_0x00
+            &g_Spyro.m_Position
         );
 
-        g_Camera.m_0x6C = g_Spyro.m_0x6C;
+        g_Camera.m_0x6C = g_Spyro.m_Vector_0x64.z;
 
         func_8001ECCC(
             &g_Camera.m_CameraPositions[5],
@@ -1990,7 +1990,7 @@ int func_8001FA58(void)
                     g_Spyro.m_Vector_0x184.y = 0x200;
                 }
 
-                if (g_Spyro.m_0x16C == 3 &&
+                if (g_Spyro.m_animationFrame_0x16C == 3 &&
                     g_Camera.m_CameraSubstate != 3 &&
                     g_Camera.m_CameraSubstate != 4) {
                     azimuthDifference = (
@@ -2013,7 +2013,7 @@ int func_8001FA58(void)
 
                     if (ABS(azimuthDifference) < 0x80 &&
                         ABS(elevationDifference) < 0x80) {
-                        g_Camera.m_CameraSubstate = g_Spyro.m_0x16C;
+                        g_Camera.m_CameraSubstate = g_Spyro.m_animationFrame_0x16C;
                     }
                 } else if (
                     (g_Spyro.m_0x1D8 != 0 ||
@@ -2053,10 +2053,10 @@ int func_8001FA58(void)
 
         func_8001BDB0(
             &g_Camera.m_0x60,
-            &g_Spyro.m_Vector_0x00
+            &g_Spyro.m_Position
         );
 
-        g_Camera.m_0x6C = g_Spyro.m_0x6C;
+        g_Camera.m_0x6C = g_Spyro.m_Vector_0x64.z;
 
         func_8001ECCC(
             &g_Camera.m_CameraPositions[5],
@@ -2097,10 +2097,10 @@ int func_8001FA58(void)
 
         func_8001BDB0(
             &g_Camera.m_0x60,
-            &g_Spyro.m_Vector_0x00
+            &g_Spyro.m_Position
         );
 
-        g_Camera.m_0x6C = g_Spyro.m_0x6C;
+        g_Camera.m_0x6C = g_Spyro.m_Vector_0x64.z;
 
         func_8001ECCC(
             &g_Camera.m_CameraPositions[5],
@@ -2572,7 +2572,7 @@ int func_8001FA58(void)
 
                 func_8001BDB0(
                     &g_Camera.m_0x60,
-                    &g_Spyro.m_Vector_0x00
+                    &g_Spyro.m_Position
                 );
 
                 func_8001ECCC(
@@ -2629,15 +2629,15 @@ int func_8001FA58(void)
 
             func_8001BDB0(
                 &g_Camera.m_0x60,
-                &g_Spyro.m_Vector_0x00
+                &g_Spyro.m_Position
             );
 
-            g_Camera.m_0x6C = g_Spyro.m_0x6C;
+            g_Camera.m_0x6C = g_Spyro.m_Vector_0x64.z;
 
             func_8001ECCC(
                 &g_Camera.m_CameraPositions[1],
                 &g_Camera.m_0x170,
-                g_Spyro.m_0x6C
+                g_Spyro.m_Vector_0x64.z
             );
 
             func_8001ECCC(
@@ -2697,7 +2697,7 @@ int func_8001FA58(void)
 
             if (g_Spyro.m_0x23C == 0x29) {
                 func_8001BDB0(
-                    &g_Spyro.m_Vector_0x00,
+                    &g_Spyro.m_Position,
                     &g_Spyro.m_Vector_0x22C
                 );
             } else {
@@ -2710,19 +2710,19 @@ int func_8001FA58(void)
                 adjustedPosition.z = func_8003EE84(&adjustedPosition, 0x800);
 
                 func_8001BDB0(
-                    &g_Spyro.m_Vector_0x00,
+                    &g_Spyro.m_Position,
                     &adjustedPosition
                 );
 
                 if (adjustedPosition.z == 0) {
-                    g_Spyro.m_Vector_0x00.z =
+                    g_Spyro.m_Position.z =
                         g_Spyro.m_Vector_0x22C.z;
                 } else {
-                    g_Spyro.m_Vector_0x00.z += 0x164;
+                    g_Spyro.m_Position.z += 0x164;
                 }
             }
 
-            g_Spyro.m_0x6C = g_Spyro.m_0x238;
+            g_Spyro.m_Vector_0x64.z = g_Spyro.m_0x238;
             g_Spyro.m_0x20C |= 0x10010480;
 
             if (g_Spyro.m_0x23C != 0x29) {
@@ -2735,14 +2735,14 @@ int func_8001FA58(void)
 
             func_8001BDB0(
                 cameraPosition,
-                &g_Spyro.m_Vector_0x00
+                &g_Spyro.m_Position
             );
 
             if (g_Spyro.m_0x258 < 0) {
                 g_Spyro.m_0x258 = 0;
             }
 
-            g_Camera.m_0x6C = g_Spyro.m_0x6C;
+            g_Camera.m_0x6C = g_Spyro.m_Vector_0x64.z;
             g_Camera.m_SphericalFlipState = 0;
 
             if (g_Camera.m_0x184.x != 0) {
@@ -2833,7 +2833,7 @@ int func_8001FA58(void)
 
         func_8001BDB0(
             &g_Camera.m_0x60,
-            &g_Spyro.m_Vector_0x00
+            &g_Spyro.m_Position
         );
 
         g_Camera.m_0x6C =
@@ -3017,10 +3017,10 @@ void func_800216D8(int mode)
 
         func_8001BDB0(
             &g_Camera.m_0x60,
-            &g_Spyro.m_Vector_0x00
+            &g_Spyro.m_Position
         );
 
-        g_Camera.m_0x6C = g_Spyro.m_0x6C;
+        g_Camera.m_0x6C = g_Spyro.m_Vector_0x64.z;
 
         func_8001EE18(
             &g_Camera.m_CameraPositions[0].pos,
@@ -3050,10 +3050,10 @@ void func_800216D8(int mode)
 
         func_8001BDB0(
             &g_Camera.m_0x60,
-            &g_Spyro.m_Vector_0x00
+            &g_Spyro.m_Position
         );
 
-        g_Camera.m_0x6C = g_Spyro.m_0x6C;
+        g_Camera.m_0x6C = g_Spyro.m_Vector_0x64.z;
 
         func_8001EE18(
             &g_Camera.m_CameraPositions[0].pos,
@@ -3085,10 +3085,10 @@ void func_800216D8(int mode)
 
         func_8001BDB0(
             &g_Camera.m_0x60,
-            &g_Spyro.m_Vector_0x00
+            &g_Spyro.m_Position
         );
 
-        g_Camera.m_0x6C = g_Spyro.m_0x6C;
+        g_Camera.m_0x6C = g_Spyro.m_Vector_0x64.z;
 
         func_8001EE18(
             &g_Camera.m_CameraPositions[0].pos,
@@ -3124,10 +3124,10 @@ void func_800216D8(int mode)
 
         func_8001BDB0(
             &g_Camera.m_0x60,
-            &g_Spyro.m_Vector_0x00
+            &g_Spyro.m_Position
         );
 
-        g_Camera.m_0x6C = g_Spyro.m_0x6C;
+        g_Camera.m_0x6C = g_Spyro.m_Vector_0x64.z;
 
         func_8001EE18(
             &g_Camera.m_CameraPositions[0].pos,
@@ -3214,13 +3214,13 @@ void func_800216D8(int mode)
         } else {
             func_8001BDB0(
                 &pathOffset,
-                &g_Spyro.m_Vector_0x00
+                &g_Spyro.m_Position
             );
         }
 
         func_8001BDB0(
             &playerPosition,
-            &g_Spyro.m_Vector_0x00
+            &g_Spyro.m_Position
         );
 
         playerPosition.z -= 0x124;
@@ -3284,10 +3284,10 @@ void func_800216D8(int mode)
 
         func_8001BDB0(
             &g_Camera.m_0x60,
-            &g_Spyro.m_Vector_0x00
+            &g_Spyro.m_Position
         );
 
-        g_Camera.m_0x6C = g_Spyro.m_0x6C;
+        g_Camera.m_0x6C = g_Spyro.m_Vector_0x64.z;
 
         func_8001ECCC(
             &g_Camera.m_0x170,
@@ -3495,7 +3495,7 @@ void func_80021DC0(void) {
                 }
 
                 if (*substate == 4) {
-                    if (g_Spyro.m_0x16C == *substate) {
+                    if (g_Spyro.m_animationFrame_0x16C == *substate) {
                         if (g_Camera.m_CameraModeTimer >= 0xE) {
                             g_Camera.m_CameraModeTimer = 0xD;
                         }
