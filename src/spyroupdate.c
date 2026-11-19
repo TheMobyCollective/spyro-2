@@ -238,7 +238,170 @@ void func_8002A4C8(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002A78C);
+// https://decomp.me/scratch/3OgO1
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002A78C);
+void func_8002A78C(void) {
+    Vector3D movementVector;
+    Vector3D adjustmentVector;
+    int movementProjection;
+    int projectionAngleY;
+    int projectionAngleZ;
+    int thresholdAngleY;
+    int thresholdAngleZ;
+    int movementMagnitude;
+    int adjustedMagnitude;
+    int magnitudeWithOffset;
+
+    // Check whether movement adjustment is enabled.
+    if (g_Spyro.m_0x244 & 1) {
+        func_8001BDA0(&adjustmentVector);
+
+        // Build a working vector from Spyro's current movement vector.
+        func_8001BDB0(&movementVector, &g_Spyro.m_Vector_0x7C);
+        func_8001BD48(&movementVector, 6);
+        func_8001BDCC(
+            &movementVector,
+            &movementVector,
+            &g_Spyro.m_Position
+        );
+        func_8001BE00(
+            &movementVector,
+            &g_Spyro.m_Vector_0x248,
+            &movementVector
+        );
+
+        // Calculate the magnitude, optionally including the Z component.
+        if (g_Spyro.m_0x244 & 4) {
+            movementMagnitude = func_8001BA20(&movementVector, 1);
+        } else {
+            movementMagnitude = func_8001BA20(&movementVector, 0);
+            movementVector.z = 0;
+        }
+
+        // Apply the directional projection adjustment.
+        if (g_Spyro.m_0x244 & 2) {
+            if (movementMagnitude >= g_Spyro.m_0x254) {
+                func_8001BD48(&movementVector, 6);
+                func_8001BB3C(&movementVector, 0x1000);
+
+                // Calculate the movement vector's projection onto
+                // Spyro's current movement vector (12-bit fixed point).
+                movementProjection = (int) (
+                    (movementVector.x * g_Spyro.m_Vector_0x7C.x) +
+                    (movementVector.y * g_Spyro.m_Vector_0x7C.y) +
+                    (movementVector.z * g_Spyro.m_Vector_0x7C.z)
+                ) >> 0xC;
+
+                if (movementProjection < 0) {
+                    // Calculate the Y angular difference when enabled.
+                    if (g_Spyro.m_0x244 & 4) {
+                        projectionAngleY = (func_8001B4B8(
+                            func_8001BA20(&movementVector, 0),
+                            movementVector.z,
+                            1
+                        ) - g_Spyro.m_Vector_0x64.y) & 0xFFF;
+
+                        adjustmentVector.y = projectionAngleY;
+
+                        // Convert the 12-bit angle to a signed difference.
+                        if (projectionAngleY >= 0x801) {
+                            adjustmentVector.y = projectionAngleY - 0x1000;
+                        }
+                    }
+
+                    // Calculate the Z angular difference.
+                    projectionAngleZ = (func_8001B4B8(
+                        movementVector.x,
+                        movementVector.y,
+                        1
+                    ) - g_Spyro.m_Vector_0x64.z) & 0xFFF;
+
+                    adjustmentVector.z = projectionAngleZ;
+
+                    if (projectionAngleZ >= 0x801) {
+                        adjustmentVector.z = projectionAngleZ - 0x1000;
+                    }
+
+                    func_8001BD48(&adjustmentVector, 5);
+
+                    // Apply the angular corrections.
+                    g_Spyro.m_Vector_0x64.y += adjustmentVector.y;
+                    g_Spyro.m_Vector_0x64.z += adjustmentVector.z;
+
+                    // Scale the movement vector and apply the correction.
+                    func_8001BCC4(
+                        &movementVector,
+                        0x1000,
+                        -movementProjection,
+                        adjustmentVector.y
+                    );
+
+                    func_8001BDCC(
+                        &g_Spyro.m_Vector_0x7C,
+                        &g_Spyro.m_Vector_0x7C,
+                        &movementVector
+                    );
+                }
+            }
+        } else if ((g_Spyro.m_0x254 - 0x2000) < movementMagnitude) {
+            // Calculate the amount of movement adjustment required.
+            magnitudeWithOffset = movementMagnitude + 0x2000;
+            adjustedMagnitude = magnitudeWithOffset - g_Spyro.m_0x254;
+
+            func_8001BCC4(
+                &movementVector,
+                movementMagnitude,
+                adjustedMagnitude
+            );
+
+            func_8001BDCC(
+                &g_Spyro.m_Vector_0x7C,
+                &g_Spyro.m_Vector_0x7C,
+                &movementVector
+            );
+
+            // Calculate the Y angular difference when enabled.
+            if (g_Spyro.m_0x244 & 4) {
+                thresholdAngleY = (func_8001B4B8(
+                    func_8001BA20(&movementVector, 0),
+                    movementVector.z,
+                    1
+                ) - g_Spyro.m_Vector_0x64.y) & 0xFFF;
+
+                adjustmentVector.y = thresholdAngleY;
+
+                if (thresholdAngleY >= 0x801) {
+                    adjustmentVector.y = thresholdAngleY - 0x1000;
+                }
+            }
+
+            // Calculate the Z angular difference.
+            thresholdAngleZ = (func_8001B4B8(
+                movementVector.x,
+                movementVector.y,
+                1
+            ) - g_Spyro.m_Vector_0x64.z) & 0xFFF;
+
+            adjustmentVector.z = thresholdAngleZ;
+
+            if (thresholdAngleZ >= 0x801) {
+                adjustmentVector.z = thresholdAngleZ - 0x1000;
+            }
+
+            // Limit the adjustment magnitude to 0x2000.
+            if (adjustedMagnitude >= 0x2001) {
+                adjustedMagnitude = 0x2000;
+            }
+
+            func_8001BCC4(&adjustmentVector, 0x2000, adjustedMagnitude);
+            func_8001BD48(&adjustmentVector, 3);
+
+            // Apply the angular corrections.
+            g_Spyro.m_Vector_0x64.y += adjustmentVector.y;
+            g_Spyro.m_Vector_0x64.z += adjustmentVector.z;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002AAFC);
 
