@@ -965,11 +965,61 @@ void func_8002B694(Vector3D *outputVector, Vector3D *controlVector, int forceCon
     }
 }
 
+// https://decomp.me/scratch/r0Tpr
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002B9A0);
 
+//
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002BB24);
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002BC68);
+// https://decomp.me/scratch/vFmXh
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002BC68);
+int func_8002BC68(void) {
+    Vector3D analogueInput;
+    int inputMagnitude;
+    int angleMagnitude;
+    int angleDifference;
+    int result;
+
+    result = 0;
+
+    if (D_8006839E != 0) {
+        if ((g_Spyro.m_0x20C & 0x40) == 0) {
+
+            // Ignore centred analogue input.
+            if ((*(unsigned int *)(D_80066F38 + 0xC) & 0xFFFF0000) != 0x7F7F0000) {
+                analogueInput.x = D_80066F38[0xE] - 0x7F;
+                analogueInput.y = D_80066F38[0xF] - 0x7F;
+                analogueInput.z = 0;
+
+                inputMagnitude = func_8001BA20(&analogueInput, 0);
+
+                if (inputMagnitude < 0x60) {
+                    // Calculate the shortest angular difference.
+                    angleDifference =
+                        (g_Spyro.m_0xAC - g_Spyro.m_Vector_0x64.z) & 0xFFF;
+
+                    if (angleDifference >= 0x801) {
+                        angleDifference -= 0x1000;
+                    }
+
+                    // Flag significant angular differences.
+                    angleMagnitude = ABS(angleDifference);
+
+                    if (angleMagnitude >= 0x101) {
+                        result = 1;
+                    }
+
+                    // Apply magnitude-scaled angular correction.
+                    g_Spyro.m_0xAC =
+                        (g_Spyro.m_Vector_0x64.z +
+                         ((inputMagnitude * angleDifference) >> 9)) & 0xFFF;
+                }
+            }
+        }
+    }
+
+    return result;
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002BD70);
 
