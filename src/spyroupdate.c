@@ -2133,28 +2133,79 @@ void func_8002E2BC(void) {
     g_Spyro.m_0xB8 = 0;
 }
 
+// https://decomp.me/scratch/O1eJr
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002E304);
 
 // https://decomp.me/scratch/oeHZZ
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002E3F8);
 
+// https://decomp.me/scratch/vYysm
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002E440);
 
+// https://decomp.me/scratch/U3nAH
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002E568);
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002E64C);
 
+// https://decomp.me/scratch/wYROl
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002EB00);
 
+// https://decomp.me/scratch/rSQuO
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002EBC8);
 
+// https://decomp.me/scratch/5Gqzq
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002F08C);
 
+// https://decomp.me/scratch/99rQu
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002F7A8);
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002FC20);
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800308D4);
+// https://decomp.me/scratch/ibqi2
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800308D4);
+void func_800308D4(void) {
+    int angle;
+
+    angle = (g_Spyro.m_Vector_0x184.x - g_Spyro.m_0x178) & 0xFFF;
+
+    if (angle >= 0x801) {
+        angle -= 0x1000;
+    }
+
+    g_Spyro.m_0x190 +=
+        ((angle << 7) - (g_Spyro.m_0x190 << 4)) >> 6;
+
+    g_Spyro.m_0x178 += g_Spyro.m_0x190 >> 6;
+
+
+    angle = (g_Spyro.m_Vector_0x184.y - g_Spyro.m_0x17C) & 0xFFF;
+
+    if (angle >= 0x801) {
+        angle -= 0x1000;
+    }
+
+    g_Spyro.m_0x194 +=
+        ((angle << 7) - (g_Spyro.m_0x194 << 4)) >> 6;
+
+    g_Spyro.m_0x17C += g_Spyro.m_0x194 >> 6;
+
+
+    angle = (g_Spyro.m_Vector_0x184.z - g_Spyro.m_0x180) & 0xFFF;
+
+    if (angle >= 0x801) {
+        angle -= 0x1000;
+    }
+
+    g_Spyro.m_0x198 +=
+        ((angle << 7) - (g_Spyro.m_0x198 << 4)) >> 6;
+
+    g_Spyro.m_0x180 += g_Spyro.m_0x198 >> 6;
+
+
+    g_Spyro.m_Rotation_0x10.roll = g_Spyro.m_0x178 >> 4;
+    g_Spyro.m_Rotation_0x10.pitch = g_Spyro.m_0x17C >> 4;
+    g_Spyro.m_Rotation_0x10.yaw = g_Spyro.m_0x180 >> 4;
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80030A14);
 
