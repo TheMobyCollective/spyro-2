@@ -134,7 +134,7 @@ typedef struct {
     char pad_0x1F[0x05];               // 0x1F–0x23
 
     int m_0x24;                        // 0x24–0x27; flag bits
-    char pad_0x28[0x04];               // 0x28–0x2B
+    int m_0x28;                        // 0x28–0x2B
     int m_0x2C;                        // 0x2C–0x2F
     SHORTMATRIX m_RotationMatrix_0x30;  // 0x30–0x43 First rotation matrix
     char pad_0x44[0x0C];               // 0x44–0x4F
@@ -188,8 +188,10 @@ typedef struct {
     int m_0x13C;                       // 0x13C; cached angle
     CollisionObject *m_CollisionObject_0x140; // 0x140; helper result
 
-    int m_0x144;                       // 0x144–0x147
-    char pad_0x148[0x24];              // 0x148–0x16B
+    int m_0x144;                       // 0x144
+    int m_0x148;                       // 0x148
+    int m_0x14C;                       // 0x14C
+    char pad_0x150[0x1C];              // 0x150–0x16B
 
     int m_animationFrame_0x16C;        // 0x16C
 
@@ -257,6 +259,7 @@ typedef struct {
     int m_0x29C;                       // 0x29C; reset to -1
     Vector3D m_Vector_0x2A0[3];        // 0x2A0–0x2C3; three source vectors
 } Spyro;
+
 
 extern Spyro g_Spyro;
 

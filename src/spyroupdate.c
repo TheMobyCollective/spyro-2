@@ -2896,7 +2896,261 @@ void func_8003305C(int frameIndex, Vector3D *outputVector) {
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80033300);
 
 // https://decomp.me/scratch/Ne6Jo
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800347A4);
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800347A4);
+void func_800347A4(void) {
+    int movementSpeed;
+    int vectorMagnitude;
+
+    if (g_Spyro.m_0x20C & 0x8000) {
+        return;
+    }
+
+    if (g_Spyro.m_0xC0 == 0) {
+        g_Spyro.m_0x128 = g_Spyro.m_0x114;
+    }
+
+    switch (g_Spyro.m_0x50) {
+    case 0:
+    case 14:
+        if (func_8002D9C4() == 0) {
+            func_8002D7F8();
+        }
+
+        func_8002C0F4();
+        g_Spyro.m_0xC4 = 0;
+        func_8002CC88();
+        g_Spyro.m_0x28 = 0;
+        break;
+
+    case 1:
+    case 22:
+        func_8002D9C4();
+        func_8002C0F4();
+        func_8002CC88();
+        func_8002BE04();
+        func_8002DB08(0xC00);
+
+        if (g_Spyro.m_0xBC != 0) {
+            movementSpeed = (g_Spyro.m_0xBC * 21) >> 8;
+        } else {
+            movementSpeed = g_Spyro.m_0xB0 << 2;
+        }
+
+        if (movementSpeed < 0x10) {
+            movementSpeed = 0x10;
+        }
+
+        if (movementSpeed >= 0x61) {
+            movementSpeed = 0x60;
+        }
+
+        func_8002E3F8(movementSpeed);
+        g_Spyro.m_0x28 = 0;
+        break;
+
+    case 2:
+        func_8002D9C4();
+        func_8002C0F4();
+        func_8002CC88();
+        func_8002BE04();
+        func_8002DB08(0xC00);
+        g_Spyro.m_0x28 = 0;
+        break;
+
+    case 3:
+        func_8002D9C4();
+        func_8002C0F4();
+        func_8002CC88();
+        func_8002BE04();
+        func_8002DB08(0xC00);
+
+        if (D_800670FC != nullptr) {
+            D_800670FC(1, 0x21, 0, 0);
+        }
+
+        g_Spyro.m_0x28 = 0;
+        break;
+
+    case 4:
+        func_8002D9C4();
+        func_8002C0F4();
+        func_8002CC88();
+        func_8002BE04();
+        func_8002DB08(0xC00);
+
+        if (D_800670FC != nullptr) {
+            D_800670FC(1, 0x21, 0, 0);
+        }
+
+        g_Spyro.m_0x28 = 0;
+        break;
+
+    case 5:
+        func_8002C0F4();
+        func_8002CC88();
+        func_8002BE04();
+
+        if (g_Spyro.m_0x58 == 0xD) {
+            func_8002D0F8();
+
+            if (g_Spyro.m_Vector_0xA0.z < 0 &&
+                g_Spyro.m_0x5C >= 4) {
+                g_Spyro.m_0x54 =
+                    (g_Spyro.m_0x54 & 0x80) | 1;
+            } else if ((g_Spyro.m_0x54 & 0x80) == 0) {
+                if ((D_800683A0 & 0x40) == 0) {
+                    g_Spyro.m_0x54 = 2;
+                }
+            }
+
+            if (g_Spyro.m_0x54 & 0x80) {
+                if (g_Spyro.m_Position.z <= g_Spyro.m_0x14C) {
+                    g_Spyro.m_0x54 &= ~0x80;
+                }
+            }
+        } else {
+            if (g_Spyro.m_Vector_0xA0.z < 0 &&
+                g_Spyro.m_0x5C >= 4) {
+                if ((unsigned int)(g_Spyro.m_0x54 - 3) < 2) {
+                    g_Spyro.m_0x54 = 4;
+                } else {
+                    g_Spyro.m_0x54 = 1;
+                }
+            } else if (g_Spyro.m_0x54 == 0) {
+                if ((D_800683A0 & 0x40) == 0 &&
+                    g_Spyro.m_0x14C == 0) {
+                    g_Spyro.m_0x54 = 2;
+                }
+            }
+        }
+
+        g_Spyro.m_0x28 = 0;
+        break;
+
+    case 12:
+        func_8002D9C4();
+        func_8002C0F4();
+        func_8002CC88();
+
+        if (g_Spyro.m_0xC0 != 0 && g_Spyro.m_0xC4 == 0) {
+            vectorMagnitude = func_8001BA20(&g_Spyro.m_Vector_0xC8, 0);
+
+            g_Spyro.m_0xEC = (signed char)func_8001B4B8(
+                g_Spyro.m_Vector_0xC8.z,
+                vectorMagnitude,
+                0
+            );
+        }
+
+        func_8002DB08(0xC00);
+        func_80032B94();
+
+        g_Spyro.m_0x28 = 0;
+
+        if (func_80050B20(D_80067020[0x21], g_Spyro.m_0x264) == 0) {
+            g_Spyro.m_0x264 = func_80050720(D_80067020[0x21], nullptr, 4);
+            g_Spyro.m_0x268 = D_80067020[0x21];
+        }
+        break;
+
+    case 6:
+    case 7:
+    case 13:
+    case 31:
+        func_8002C0F4();
+        func_8002CC88();
+        g_Spyro.m_0x28 = 0;
+        break;
+
+    case 15:
+        func_8002C0F4();
+        func_8002CC88();
+        func_8002DB08(0xC00);
+        g_Spyro.m_0x28 = 0;
+        break;
+
+    case 16:
+    case 17:
+    case 24:
+        func_8002C0F4();
+        func_8002CC88();
+        func_8002BE04();
+        g_Spyro.m_0x28 = 0;
+        break;
+
+    case 21:
+        func_8002C0F4();
+        func_8002CC88();
+        func_8002BE04();
+        func_80032B94();
+
+        if (g_Spyro.m_0x58 == 9 && D_800670FC != nullptr) {
+            D_800670FC(1, 9, 0, 0);
+        }
+
+        if (g_Spyro.m_Vector_0xA0.z < 0 &&
+            g_Spyro.m_0x5C >= 4) {
+            g_Spyro.m_0x54 = 1;
+        } else if (g_Spyro.m_0x54 == 0 &&
+                   (D_800683A0 & 0x40) == 0) {
+            g_Spyro.m_0x54 = 2;
+        }
+
+        g_Spyro.m_0x28 = 0;
+        break;
+
+    case 46:
+        func_8002C0F4();
+        func_8002CC88();
+
+        if (g_Spyro.m_0x54 == 1) {
+            func_80032AB4();
+        }
+
+        g_Spyro.m_0x28 = 0;
+        break;
+
+    case 8:
+    case 9:
+    case 10:
+    case 11:
+    case 18:
+    case 19:
+    case 20:
+    case 23:
+    case 25:
+    case 26:
+    case 27:
+    case 28:
+    case 29:
+    case 30:
+    case 32:
+    case 33:
+    case 34:
+    case 35:
+    case 36:
+    case 37:
+    case 38:
+    case 39:
+    case 40:
+    case 41:
+    case 42:
+    case 43:
+    case 44:
+    case 45:
+    default:
+        if (D_80067074 != nullptr) {
+            D_80067074();
+        }
+        break;
+    }
+
+    if (g_Spyro.m_0xC0 != 0) {
+        g_Spyro.m_0x114 = g_Spyro.m_0x128;
+    }
+
+    g_Spyro.m_0x105 = 0;
+}
 
 // https://decomp.me/scratch/dVZFf
 //INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80034E0C);
