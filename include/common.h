@@ -105,8 +105,10 @@ typedef struct Moby {
  * Used by func_8001E454 and func_8001F618.
  */
 typedef struct CollisionObject {
-    unsigned char pad_0x00[0x53];
-    unsigned char m_0x53;
+    unsigned char pad_0x00[0x0C];
+    Vector3D m_Vector_0x0C;       // 0x0C–0x17
+    unsigned char pad_0x18[0x3B]; // 0x18–0x52
+    unsigned char m_0x53;         // 0x53
 } CollisionObject;
 
 typedef struct {

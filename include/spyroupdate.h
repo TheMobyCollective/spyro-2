@@ -22,4 +22,7 @@ extern void *D_80068C94;
 
 extern int D_8006AB94;
 
+extern unsigned char *D_80066F38;
+extern unsigned char D_8006839E;
+
 #endif

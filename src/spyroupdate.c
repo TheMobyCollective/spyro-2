@@ -787,9 +787,55 @@ int func_8002B228(void) {
     }
 }
 
+// https://decomp.me/scratch/N666V
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002B36C);
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002B4E4);
+// https://decomp.me/scratch/Ozwac
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002B4E4);
+void func_8002B4E4(Vector3D *outputVector, int useCameraRotation) {
+    int inputComponents[2];
+    int relativeAngle;
+
+    if (D_8006839E != 0) {
+        inputComponents[0] = D_80066F38[0xE] - 0x7F;
+        inputComponents[1] = 0x7F - D_80066F38[0xF];
+    } else {
+        if ((*(unsigned int *)D_80066F38 & 0x1000) != 0) {
+            inputComponents[1] = 0x7F;
+        } else if ((*(unsigned int *)D_80066F38 & 0x4000) != 0) {
+            inputComponents[1] = -0x7F;
+        } else {
+            inputComponents[1] = 0;
+        }
+
+        if ((*(unsigned int *)D_80066F38 & 0x2000) != 0) {
+            inputComponents[0] = 0x7F;
+        } else if ((*(unsigned int *)D_80066F38 & 0x8000) != 0) {
+            inputComponents[0] = -0x7F;
+        } else {
+            inputComponents[0] = 0;
+        }
+    }
+
+    if (useCameraRotation != 0) {
+        relativeAngle = (
+            g_Spyro.m_Vector_0x64.z - g_Camera.m_Rotation.z
+        ) & 0xFFF;
+
+        outputVector->x = (
+            (-inputComponents[0] * func_8001B664(relativeAngle)) -
+            (inputComponents[1] * func_8001B61C(relativeAngle))
+        ) >> 12;
+
+        outputVector->y = (
+            (inputComponents[1] * func_8001B664(relativeAngle)) -
+            (inputComponents[0] * func_8001B61C(relativeAngle))
+        ) >> 12;
+    } else {
+        outputVector->x = inputComponents[0];
+        outputVector->y = inputComponents[1];
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002B694);
 
