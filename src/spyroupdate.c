@@ -697,7 +697,27 @@ int func_8002AAFC(int commandIndex, int mode) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002AFDC);
+// https://decomp.me/scratch/FvjTR
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002AFDC);
+int func_8002AFDC(SHORTMATRIX *rotationMatrix, Vector3D *point1, Vector3D *point2) {
+    int result;
+
+    // Transform the first point using the supplied rotation matrix.
+    func_8001B9A4(rotationMatrix, point1, point1);
+    func_8001BDCC(point1, point1, &g_Spyro.m_Position);
+
+    // Transform the second point using the currently loaded GTE matrix.
+    func_8001B9A4(nullptr, point2, point2);
+    func_8001BDCC(point2, point2, &g_Spyro.m_Position);
+
+    if (func_8003CE94(point1, point2) != 0) {
+        result = func_8002B078(D_8006AB94);
+    } else {
+        result = -1;
+    }
+
+    return result;
+}
 
 // https://decomp.me/scratch/FRUhP
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002B078);
