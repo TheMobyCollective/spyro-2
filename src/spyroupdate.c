@@ -2654,7 +2654,33 @@ void func_80032AB4(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80032B94);
+// https://decomp.me/scratch/jtWfK
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80032B94);
+void func_80032B94(void) {
+    int effectFlags;
+    Vector3D effectPosition;
+
+    // Select effect flags based on Spyro's state.
+    if (g_Spyro.m_0x138 & 0x40000) {
+        effectFlags = 0x600000;
+    } else if (g_Spyro.m_0x138 & 0x20000) {
+        effectFlags = 0x200000;
+    } else {
+        return;
+    }
+
+    // Calculate the effect position from Spyro's movement vector.
+    func_8001BDB0(&effectPosition, &g_Spyro.m_Vector_0x88);
+    func_8001BD48(&effectPosition, 3);
+    func_8001BDCC(
+        &effectPosition,
+        &effectPosition,
+        &g_Spyro.m_Position
+    );
+
+    // Apply the effect using the selected flags.
+    func_8003CE38(&g_Spyro, &effectPosition, 0, effectFlags, 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80032C34);
 
