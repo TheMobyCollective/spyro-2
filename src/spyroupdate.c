@@ -1040,7 +1040,19 @@ void func_8002BD70(int increaseAmount, int decreaseAmount) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002BDBC);
+// https://decomp.me/scratch/h7Esy
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002BDBC);
+void func_8002BDBC(void) {
+    g_Spyro.m_Vector_0x88.x = g_Spyro.m_0xB8;
+    g_Spyro.m_Vector_0x88.y = 0;
+    g_Spyro.m_Vector_0x88.z = 0;
+
+    func_8001B9A4(
+        &g_Spyro.m_RotationMatrix_0x30,
+        &g_Spyro.m_Vector_0x88,
+        &g_Spyro.m_Vector_0x88
+    );
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002BE04);
 
