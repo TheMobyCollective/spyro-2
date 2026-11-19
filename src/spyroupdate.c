@@ -3024,7 +3024,63 @@ void func_80034E0C(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800350D0);
+// https://decomp.me/scratch/lELxP
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800350D0);
+void func_800350D0(int arg0) {
+    
+    if (g_Spyro.m_0x20C & 0x8000) {
+        return;
+    }
+
+    D_80066F38 = &D_800683B0[arg0 << 4];
+
+    switch (g_Spyro.m_0x50) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 7:
+    case 12:
+    case 13:
+    case 14:
+    case 15:
+    case 22:
+    case 31:
+        func_8002DB8C(&g_Spyro.m_Vector_0xD4);
+        break;
+
+    case 5:
+        if (g_Spyro.m_0x58 == 0xD) {
+            func_8002E00C(&g_Spyro.m_Vector_0xE0);
+        } else {
+            func_8002DB8C(nullptr);
+        }
+        break;
+
+    case 6:
+    case 17:
+    case 46:
+        func_8002DB8C(nullptr);
+        break;
+
+    case 16:
+    case 24:
+        break;
+
+    case 21:
+        func_8002DED0(&g_Spyro.m_Vector_0x94);
+        break;
+
+    default:
+        if (D_80067070 != nullptr) {
+            D_80067070(arg0);
+        }
+        break;
+    }
+
+    g_Spyro.m_0x5C++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800351D8);
 

@@ -73,5 +73,9 @@ extern int D_800683A0;
 extern void (*D_80066FC4)(void);
 extern unsigned char D_800602B4[][4];
 
+extern void (*D_80067070)(int arg0);
+
+extern unsigned char D_800683B0[];
+
 
 #endif
