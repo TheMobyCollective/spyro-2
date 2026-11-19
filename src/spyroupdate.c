@@ -2330,7 +2330,76 @@ void func_800313E4(void) {
     g_Spyro.m_0x20C = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80031468);
+// https://decomp.me/scratch/z8lGX
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80031468);
+void func_80031468(unsigned char *sourceData) {
+    Vector3D workingVector;
+    int spyroState;
+    int directionAngle;
+    int tableValue;
+
+    spyroState = g_Spyro.m_0x58;
+
+    // Ignore invalid states.
+    if (spyroState < 0) {
+        return;
+    }
+
+    // States 10 and 11 use the source pointer without vector processing.
+    if (spyroState >= 2) {
+        if (spyroState >= 12) {
+            return;
+        }
+
+        if (spyroState < 10) {
+            return;
+        }
+
+        g_Spyro.m_0x218 = sourceData;
+        g_Spyro.m_0x20C |= 0x10000800;
+
+        return;
+    }
+
+    // Enable the vector-processing state flags.
+    g_Spyro.m_0x20C |= 0x10000040;
+
+    // Calculate the vector between Spyro's position and the reference position.
+    func_8001BE00(
+        &workingVector,
+        &g_Spyro.m_Position,
+        (Vector3D *)((char *)D_80066F78 + 0xC)
+    );
+
+    // Store the angle derived from the calculated vector.
+    directionAngle = func_8001B4B8(
+        -workingVector.x,
+        -workingVector.y,
+        0
+    );
+
+    g_Spyro.m_0x238 = directionAngle;
+
+    // Calculate the X component using the source's indexed table value.
+    tableValue = D_80061C58[((unsigned char *)sourceData)[0x46]];
+    workingVector.x = (tableValue * 13) >> 5;
+
+    // Calculate the Y component using the corresponding table.
+    tableValue = D_80061BD8[((unsigned char *)sourceData)[0x46]];
+    workingVector.y = (tableValue * 13) >> 5;
+
+    workingVector.z = 0;
+
+    // Transform the calculated vector using the source vector.
+    func_8001BDCC(
+        &g_Spyro.m_Vector_0x22C,
+        &workingVector,
+        (Vector3D *)((char *)sourceData + 0xC)
+    );
+
+    // Clear the temporary source pointer.
+    g_Spyro.m_0x218 = nullptr;
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800315BC);
 

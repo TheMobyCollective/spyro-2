@@ -42,4 +42,9 @@ extern int D_80069894;
 extern int D_80068238;
 extern int D_80068370;
 
+extern short D_80061BD8[];
+extern short D_80061C58[];
+
+extern unsigned char *D_80066F78;
+
 #endif
