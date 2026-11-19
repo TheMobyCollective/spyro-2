@@ -2629,8 +2629,30 @@ void func_80032A90(Vector3D *arg0) {
     func_8003305C(0xBB, arg0);
 }
 
+// https://decomp.me/scratch/9JfGE
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80032AB4);
+void func_80032AB4(void) {
+    Vector3D collisionPosition;
+    int collisionFlags = 0x80000;
+    int *currentStatePtr;
+    int *stateEntry;
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80032AB4);
+    // Start with Spyro's position and apply the vertical offset.
+    func_8001BDB0(&collisionPosition, &g_Spyro.m_Position);
+    collisionPosition.z -= g_Spyro.m_0x270;
+
+    // Perform the collision tests at the adjusted position.
+    func_8004055C(&collisionPosition, 0x80, 1, 0, collisionFlags, 0);
+
+    if (func_8003DC64(&collisionPosition, 0x80, 1, 0, collisionFlags, 0) != 0) {
+        currentStatePtr = &D_8006AB94;
+
+        if (func_8002B078(*currentStatePtr) == 3) {
+            stateEntry = D_800673E8[*currentStatePtr & 0x3F];
+            stateEntry[1] |= collisionFlags;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80032B94);
 
