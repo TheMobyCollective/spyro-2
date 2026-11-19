@@ -337,8 +337,7 @@ void func_8002A78C(void) {
                     func_8001BCC4(
                         &movementVector,
                         0x1000,
-                        -movementProjection,
-                        adjustmentVector.y
+                        -movementProjection
                     );
 
                     func_8001BDCC(
@@ -1621,9 +1620,130 @@ void func_8002D0F8(void) {
     }
 }
 
+// https://decomp.me/scratch/JzGQb
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002D328);
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002D7F8);
+// https://decomp.me/scratch/CViIK
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002D7F8);
+void func_8002D7F8(void) {
+    int componentMagnitude;
+    int *collisionData;
+
+    struct {
+        Vector3D offsetVector;          // 0x00–0x0B
+        char pad_0x0C[4];               // 0x0C–0x0F
+        int positiveOffsetMatrix[4];    // 0x10–0x1F
+        int negativeOffsetMatrix[4];    // 0x20–0x2F
+    } collisionScratch;
+
+    collisionScratch.offsetVector.x = 0;
+    collisionScratch.offsetVector.y = 0;
+    collisionScratch.offsetVector.z = -g_Spyro.m_0x270;
+
+    func_8001BDB0(
+        collisionScratch.negativeOffsetMatrix,
+        &collisionScratch.offsetVector
+    );
+
+    collisionScratch.negativeOffsetMatrix[2] -= 0x80;
+
+    func_8001BDB0(
+        collisionScratch.positiveOffsetMatrix,
+        &collisionScratch.offsetVector
+    );
+
+    collisionScratch.positiveOffsetMatrix[2] += 0x80;
+
+    func_8001B9A4(
+        &g_Spyro.m_RotationMatrix_0x30,
+        collisionScratch.negativeOffsetMatrix,
+        collisionScratch.negativeOffsetMatrix
+    );
+
+    func_8001BDCC(
+        collisionScratch.negativeOffsetMatrix,
+        &g_Spyro.m_Position,
+        collisionScratch.negativeOffsetMatrix
+    );
+
+    func_8001B9A4(
+        0,
+        collisionScratch.positiveOffsetMatrix,
+        collisionScratch.positiveOffsetMatrix
+    );
+
+    func_8001BDCC(
+        collisionScratch.positiveOffsetMatrix,
+        &g_Spyro.m_Position,
+        collisionScratch.positiveOffsetMatrix
+    );
+
+    func_8001B9A4(
+        0,
+        &collisionScratch.offsetVector,
+        &collisionScratch.offsetVector
+    );
+
+    func_8001BDCC(
+        &collisionScratch.offsetVector,
+        &g_Spyro.m_Position,
+        &collisionScratch.offsetVector
+    );
+
+    if (func_8003CE94(
+            collisionScratch.positiveOffsetMatrix,
+            collisionScratch.negativeOffsetMatrix
+        ) != 0 &&
+        (collisionData = &D_8006AB90,
+         *collisionData > 0)) {
+
+        func_8001BE00(
+            &collisionScratch.offsetVector,
+            collisionData - 8,
+            &collisionScratch.offsetVector
+        );
+
+        componentMagnitude = collisionScratch.offsetVector.x;
+        if (componentMagnitude < 0) {
+            componentMagnitude = -componentMagnitude;
+        }
+
+        if (componentMagnitude < 8) {
+            collisionScratch.offsetVector.x = 0;
+        }
+
+        componentMagnitude = collisionScratch.offsetVector.y;
+        if (componentMagnitude < 0) {
+            componentMagnitude = -componentMagnitude;
+        }
+
+        if (componentMagnitude < 8) {
+            collisionScratch.offsetVector.y = 0;
+        }
+
+        componentMagnitude = collisionScratch.offsetVector.z;
+        if (componentMagnitude < 0) {
+            componentMagnitude = -componentMagnitude;
+        }
+
+        if (componentMagnitude < 8) {
+            collisionScratch.offsetVector.z = 0;
+        }
+
+        func_8001BDCC(
+            &g_Spyro.m_Position,
+            &g_Spyro.m_Position,
+            &collisionScratch.offsetVector
+        );
+
+        g_Spyro.m_0xC0 = 0;
+        g_Spyro.m_0x114 = D_8006AB94;
+        return;
+    }
+
+    g_Spyro.m_0xC0++;
+}
+
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002D9C4);
 
