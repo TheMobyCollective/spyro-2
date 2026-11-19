@@ -1021,7 +1021,24 @@ int func_8002BC68(void) {
     return result;
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002BD70);
+// https://decomp.me/scratch/ARvzX
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002BD70);
+void func_8002BD70(int increaseAmount, int decreaseAmount) {
+    if (g_Spyro.m_0xB4 > g_Spyro.m_0xB8) {
+        g_Spyro.m_0xB8 += increaseAmount;
+
+        if (g_Spyro.m_0xB4 < g_Spyro.m_0xB8) {
+            g_Spyro.m_0xB8 = g_Spyro.m_0xB4;
+        }
+    }
+    else {
+        g_Spyro.m_0xB8 -= decreaseAmount;
+
+        if (g_Spyro.m_0xB8 < g_Spyro.m_0xB4) {
+            g_Spyro.m_0xB8 = g_Spyro.m_0xB4;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002BDBC);
 
