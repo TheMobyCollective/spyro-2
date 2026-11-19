@@ -1937,7 +1937,59 @@ void func_8002DB8C(Vector3D *inputVector) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002DED0);
+// https://decomp.me/scratch/eqtoS
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002DED0);
+void func_8002DED0(Vector3D *inputVector) {
+    int angularVelocityX;
+
+    Vector3D angleAdjustment;
+
+    angleAdjustment.x = 0;
+
+    angleAdjustment.z = func_8001BA20(inputVector, 0);
+
+    angleAdjustment.y =
+        func_8001B4B8(angleAdjustment.z, inputVector->z, 1) + 0x8E;
+
+    SUB_ANGLE(
+        angleAdjustment.x,
+        angleAdjustment.x,
+        g_Spyro.m_Vector_0x64.x
+    );
+
+    SUB_ANGLE(
+        angleAdjustment.y,
+        angleAdjustment.y,
+        g_Spyro.m_Vector_0x64.y
+    );
+
+    angularVelocityX = g_Spyro.m_Vector_0x70.x;
+
+    angularVelocityX +=
+        ((angleAdjustment.x << 2) >> 4) -
+        ((angularVelocityX << 4) >> 6);
+
+    g_Spyro.m_Vector_0x70.x = angularVelocityX;
+
+    g_Spyro.m_Vector_0x70.y +=
+        ((angleAdjustment.y << 2) >> 4) -
+        ((g_Spyro.m_Vector_0x70.y << 4) >> 6);
+
+    angleAdjustment.x = angularVelocityX >> 2;
+    angleAdjustment.y = g_Spyro.m_Vector_0x70.y >> 2;
+
+    ADD_ANGLE(
+        g_Spyro.m_Vector_0x64.x,
+        g_Spyro.m_Vector_0x64.x,
+        angleAdjustment.x
+    );
+
+    ADD_ANGLE(
+        g_Spyro.m_Vector_0x64.y,
+        g_Spyro.m_Vector_0x64.y,
+        angleAdjustment.y
+    );
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002E00C);
 
