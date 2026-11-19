@@ -2539,7 +2539,40 @@ void func_80031E4C(void) {
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80031EAC);
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800327F0);
+// https://decomp.me/scratch/YPqGB
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800327F0);
+void func_800327F0(void) {
+    Vector3D cameraTestPosition;
+    int angle;
+
+    func_8001BE00(
+        &cameraTestPosition,
+        &g_Camera.m_Position,
+        &g_Spyro.m_Position
+    );
+
+    angle = func_8001B4B8(
+        cameraTestPosition.x,
+        cameraTestPosition.y,
+        0
+    );
+
+    cameraTestPosition.x = (D_80061C58[angle] * 89) >> 10;
+    cameraTestPosition.y = (D_80061BD8[angle] * 89) >> 10;
+    cameraTestPosition.z = 0;
+
+    func_8001BDCC(
+        &cameraTestPosition,
+        &cameraTestPosition,
+        &g_Spyro.m_Position
+    );
+
+    if (func_8001F618(&g_Camera.m_Position, &cameraTestPosition, 0) == 0) {
+        g_Spyro.m_0x1E = 0;
+    } else {
+        g_Spyro.m_0x1E = 5;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800328E8);
 
