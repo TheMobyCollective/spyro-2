@@ -39,4 +39,7 @@ extern int D_80066F54;
 extern unsigned char *D_80067020;
 extern int D_80069894;
 
+extern int D_80068238;
+extern int D_80068370;
+
 #endif

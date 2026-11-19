@@ -2315,7 +2315,20 @@ void func_80030A6C(void) {
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80030C94);
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800313E4);
+// https://decomp.me/scratch/lXc34
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800313E4);
+void func_800313E4(void) {
+    if (g_Spyro.m_0x20C & 0x2C142) {
+        func_80012B1C(&D_80068238, &D_80068370);
+    } else {
+        g_Spyro.m_0x240 = 0;
+    }
+    if (!(g_Spyro.m_0x20C & 0x140)) {
+        g_Spyro.m_0x214 = 0;
+    }
+    g_Spyro.m_0x210 = g_Spyro.m_0x20C;
+    g_Spyro.m_0x20C = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80031468);
 
