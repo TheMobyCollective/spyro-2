@@ -1136,7 +1136,27 @@ void func_8002BE04(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002BFBC);
+// https://decomp.me/scratch/jXiWC
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002BFBC);
+void func_8002BFBC(void) {
+    Vector3D vectorDifference;
+
+    // Check the magnitude of the source vector, ignoring Z.
+    if (func_8001BA20(&g_Spyro.m_Vector_0x94, 0) >= 0x181) {
+
+        // Calculate the difference between the vectors at 0xA0 and 0x94.
+        func_8001BE00(&vectorDifference, &g_Spyro.m_Vector_0xA0, &g_Spyro.m_Vector_0x94);
+
+        // Check the magnitude of the resulting difference, ignoring Z.
+        if (func_8001BA20(&vectorDifference, 0) >= 0xC1) {
+            vectorDifference.z = 0;
+
+            func_8001BDB0(&g_Spyro.m_Vector_0xE0, &vectorDifference);
+
+            g_Spyro.m_0x106 = 1;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002C038);
 
