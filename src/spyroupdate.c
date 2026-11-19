@@ -2743,7 +2743,155 @@ void func_80032E74(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8003305C);
+// https://decomp.me/scratch/gVXoj
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8003305C);
+void func_8003305C(int frameIndex, Vector3D *outputVector) {
+    Vector3D blendVector;
+    Vector3D decodedVector;
+    Vector3D decodedSecondVector;
+    int frameCount;
+    int useSecondFrame;
+    int blendWeight;
+    int packedVector;
+
+    frameCount = D_80066F24[0][2];
+    useSecondFrame = 0;
+
+    if (frameIndex >= frameCount) {
+        useSecondFrame = 1;
+        frameIndex -= frameCount;
+    }
+
+    func_800418C8(
+        frameIndex,
+        outputVector,
+        g_Spyro.m_0x14,
+        g_Spyro.m_animationFrame_0x16,
+        useSecondFrame
+    );
+
+    blendWeight = D_80062868[g_Spyro.m_0x1C];
+
+    if (blendWeight != 0) {
+        func_800418C8(
+            frameIndex,
+            &blendVector,
+            g_Spyro.m_0x15,
+            g_Spyro.m_0x17,
+            useSecondFrame
+        );
+
+        blendWeight = D_80062868[g_Spyro.m_0x1C];
+
+        func_8001BE34(
+            outputVector,
+            outputVector,
+            0x100 - blendWeight
+        );
+
+        blendWeight = D_80062868[g_Spyro.m_0x1C];
+
+        func_8001BE34(
+            &blendVector,
+            &blendVector,
+            blendWeight
+        );
+
+        func_8001BDCC(
+            outputVector,
+            outputVector,
+            &blendVector
+        );
+
+        func_8001BD48(outputVector, 8);
+    }
+
+    if (useSecondFrame == 0) {
+        func_8001B9A4(
+            &g_Spyro.m_RotationMatrix_0x30,
+            outputVector,
+            outputVector
+        );
+
+        func_8001BDCC(
+            outputVector,
+            outputVector,
+            &g_Spyro.m_Position
+        );
+
+        return;
+    }
+
+    packedVector = *(int *)(
+        (((g_Spyro.m_animationFrame_0x16 * 5) << 2) +
+        D_80066F24[g_Spyro.m_0x14]) + 0x1C
+    );
+
+    decodedVector.x = packedVector >> 21;
+    decodedVector.y = (packedVector << 11) >> 21;
+    decodedVector.z = (packedVector << 22) >> 21;
+
+    blendWeight = D_80062868[g_Spyro.m_0x1C];
+
+    if (blendWeight != 0) {
+        packedVector = *(int *)(
+            (((g_Spyro.m_0x17 * 5) << 2) +
+            D_80066F24[g_Spyro.m_0x15]) + 0x1C
+        );
+
+        decodedSecondVector.x = packedVector >> 21;
+        decodedSecondVector.y = (packedVector << 11) >> 21;
+        decodedSecondVector.z = (packedVector << 22) >> 21;
+
+        blendWeight = D_80062868[g_Spyro.m_0x1C];
+
+        func_8001BE34(
+            &decodedVector,
+            &decodedVector,
+            0x100 - blendWeight
+        );
+
+        blendWeight = D_80062868[g_Spyro.m_0x1C];
+
+        func_8001BE34(
+            &decodedSecondVector,
+            &decodedSecondVector,
+            blendWeight
+        );
+
+        func_8001BDCC(
+            &decodedVector,
+            &decodedVector,
+            &decodedSecondVector
+        );
+
+        func_8001BD48(&decodedVector, 8);
+    }
+
+    func_8001B9A4(
+        &g_Spyro.m_RotationMatrix_0x30,
+        &decodedVector,
+        &decodedVector
+    );
+
+    func_8001B9A4(
+        &g_Spyro.m_RotationMatrix_0x19C,
+        outputVector,
+        outputVector
+    );
+
+    func_8001BDCC(
+        outputVector,
+        outputVector,
+        &g_Spyro.m_Position
+    );
+
+    func_8001BDCC(
+        outputVector,
+        outputVector,
+        &decodedVector
+    );
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80033300);
 

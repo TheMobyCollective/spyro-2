@@ -62,4 +62,7 @@ extern unsigned char D_80067414;
 extern int  D_80069894;
 extern int  D_800698F8;
 
+extern unsigned char **D_80066F24;
+extern unsigned char D_80062868[];
+
 #endif
