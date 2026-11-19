@@ -2,6 +2,11 @@
 #include "spyroupdate.h"
 #include "camera.h"
 
+extern void func_8001BB3C(Vector3D *arg0, int arg1);
+extern void func_8001BCC4(Vector3D *arg0, int arg1, int arg2);
+extern void func_8001BDB0(Vector3D *destination, Vector3D *source);
+extern void func_8001BDCC(Vector3D *destination, Vector3D *vector1, Vector3D *vector2);
+
 void func_8003305C(int frameIndex, Vector3D *outputVector);
 
 // https://decomp.me/scratch/ZlfJs
@@ -1158,7 +1163,43 @@ void func_8002BFBC(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002C038);
+// https://decomp.me/scratch/H9ldj
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002C038);
+void func_8002C038(void) {
+    int dotProduct;
+
+    func_8001BDB0(
+        &g_Spyro.m_Vector_0x94,
+        &g_Spyro.m_Vector_0x88
+    );
+
+    if (g_Spyro.m_0x106 != 0) {
+        g_Spyro.m_Vector_0xE0.z = 0;
+
+        func_8001BB3C(
+            &g_Spyro.m_Vector_0xE0,
+            0x1000
+        );
+
+        dotProduct =
+            ((-g_Spyro.m_Vector_0x94.x * g_Spyro.m_Vector_0xE0.x) -
+             (g_Spyro.m_Vector_0x94.y * g_Spyro.m_Vector_0xE0.y)) >> 12;
+
+        if (dotProduct > 0) {
+            func_8001BCC4(
+                &g_Spyro.m_Vector_0xE0,
+                0x1000,
+                dotProduct
+            );
+
+            func_8001BDCC(
+                &g_Spyro.m_Vector_0x94,
+                &g_Spyro.m_Vector_0x94,
+                &g_Spyro.m_Vector_0xE0
+            );
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002C0F4);
 
