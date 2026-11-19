@@ -5,9 +5,20 @@
 extern void func_8001BB3C(Vector3D *vector, int targetMagnitude);
 extern void func_8001BCC4(Vector3D *vector, int currentMagnitude, int targetMagnitude);
 extern void func_8001BDB0(Vector3D *destination, Vector3D *source);
-extern void func_8001BDCC(Vector3D *destination, Vector3D *vector1, Vector3D *vector2);
+extern void func_8001BDCC(Vector3D *destination, Vector3D *source, Vector3D *offset);
 
+
+void func_8002A164(void);
+void func_8002A4C8(void);
+void func_8002A78C(void);
+void func_800313E4(void);
+void func_80031E4C(void);
+void func_800327F0(void);
+void func_80032E74(void);
 void func_8003305C(int frameIndex, Vector3D *outputVector);
+void func_800347A4(void);
+void func_80034E0C(void);
+void func_800350D0(int arg0);
 
 // https://decomp.me/scratch/ZlfJs
 //INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002A07C);
@@ -2635,7 +2646,7 @@ void func_80032AB4(void) {
     Vector3D collisionPosition;
     int collisionFlags = 0x80000;
     int *currentStatePtr;
-    int *stateEntry;
+    unsigned char *stateEntry;
 
     // Start with Spyro's position and apply the vertical offset.
     func_8001BDB0(&collisionPosition, &g_Spyro.m_Position);
@@ -2649,7 +2660,7 @@ void func_80032AB4(void) {
 
         if (func_8002B078(*currentStatePtr) == 3) {
             stateEntry = D_800673E8[*currentStatePtr & 0x3F];
-            stateEntry[1] |= collisionFlags;
+            *(int *)(stateEntry + 4) |= collisionFlags;
         }
     }
 }
