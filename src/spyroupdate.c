@@ -1991,7 +1991,137 @@ void func_8002DED0(Vector3D *inputVector) {
     );
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002E00C);
+// https://decomp.me/scratch/uShQs
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002E00C);
+void func_8002E00C(Vector3D *inputVector) {
+    int angle;
+    int angularVelocityX;
+    int angleValue;
+
+    Vector3D angleAdjustment;
+    Vector3D translation;
+
+    struct {
+        int transformMatrix[4];     // 0x00–0x0F
+        char packedAngles[3];       // 0x10–0x12
+        char pad_0x13[5];           // 0x13–0x17
+        Vector3D localVector;       // 0x18–0x23
+        char pad_0x24[0x14];        // 0x24–0x37
+    } rotationScratch;
+
+    angleAdjustment.x = 0;
+
+    if (g_Spyro.m_0x106 != 0) {
+        angle = func_8001BA20(inputVector, 0);
+
+        angleAdjustment.y = func_8001B4B8(inputVector->z, angle, 1);
+        angleAdjustment.z = func_8001B4B8(-inputVector->x, -inputVector->y, 1);
+    } else {
+        angleAdjustment.y = g_Spyro.m_Vector_0x64.y + 0x400;
+        angleAdjustment.z = g_Spyro.m_Vector_0x64.z;
+    }
+
+    SUB_ANGLE(
+        angleAdjustment.x,
+        angleAdjustment.x,
+        g_Spyro.m_Vector_0x64.x
+    );
+
+    angleValue = g_Spyro.m_Vector_0x64.y + 0x400;
+
+    SUB_ANGLE(
+        angleAdjustment.y,
+        angleAdjustment.y,
+        angleValue
+    );
+
+    SUB_ANGLE(
+        angleAdjustment.z,
+        angleAdjustment.z,
+        g_Spyro.m_Vector_0x64.z
+    );
+
+    angleValue = angleAdjustment.x;
+    angularVelocityX = g_Spyro.m_Vector_0x70.x;
+
+    angularVelocityX +=
+        ((angleValue << 2) >> 4) -
+        ((angularVelocityX << 4) >> 6);
+
+    g_Spyro.m_Vector_0x70.x = angularVelocityX;
+
+    angle = angleAdjustment.y;
+
+    g_Spyro.m_Vector_0x70.y +=
+        ((angle << 2) >> 4) -
+        ((g_Spyro.m_Vector_0x70.y << 4) >> 6);
+
+    g_Spyro.m_Vector_0x70.z +=
+        ((angleAdjustment.z << 2) >> 4) -
+        ((g_Spyro.m_Vector_0x70.z << 4) >> 6);
+
+    angleAdjustment.x = angularVelocityX >> 2;
+    angleAdjustment.y = g_Spyro.m_Vector_0x70.y >> 2;
+    angleAdjustment.z = g_Spyro.m_Vector_0x70.z >> 2;
+
+    ADD_ANGLE(
+        g_Spyro.m_Vector_0x64.x,
+        g_Spyro.m_Vector_0x64.x,
+        angleAdjustment.x
+    );
+
+    ADD_ANGLE(
+        g_Spyro.m_Vector_0x64.y,
+        g_Spyro.m_Vector_0x64.y,
+        angleAdjustment.y
+    );
+
+    ADD_ANGLE(
+        g_Spyro.m_Vector_0x64.z,
+        g_Spyro.m_Vector_0x64.z,
+        angleAdjustment.z
+    );
+
+    translation.x = 0x164;
+    translation.z = 0;
+    translation.y = 0;
+
+    func_8001BDB0(rotationScratch.transformMatrix, &translation);
+
+    func_8001B9A4(
+        &g_Spyro.m_RotationMatrix_0x30,
+        &translation,
+        &translation
+    );
+
+    rotationScratch.packedAngles[0] = g_Spyro.m_Vector_0x64.x >> 4;
+    rotationScratch.packedAngles[1] = g_Spyro.m_Vector_0x64.y >> 4;
+    rotationScratch.packedAngles[2] = g_Spyro.m_Vector_0x64.z >> 4;
+
+    func_8001B6C8(
+        rotationScratch.packedAngles,
+        &rotationScratch.localVector,
+        0
+    );
+
+    func_8001B9A4(
+        &rotationScratch.localVector,
+        rotationScratch.transformMatrix,
+        rotationScratch.transformMatrix
+    );
+
+    func_8001BE00(
+        rotationScratch.transformMatrix,
+        rotationScratch.transformMatrix,
+        &translation
+    );
+
+    func_8001BE00(
+        &g_Spyro.m_Position,
+        &g_Spyro.m_Position,
+        rotationScratch.transformMatrix
+    );
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002E2BC);
 
