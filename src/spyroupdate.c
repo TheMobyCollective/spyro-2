@@ -165,7 +165,78 @@ void func_8002A164(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002A4C8);
+// https://decomp.me/scratch/rHWJ3
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002A4C8);
+void func_8002A4C8(void) {
+    int commandResult;
+
+    // Process the command entries in sequence.
+    commandResult = 0;
+    if (g_Spyro.m_0xC0 == 0) {
+        commandResult = func_8002AAFC(g_Spyro.m_0x114, 1);
+    }
+
+    if ((commandResult == 0) &&
+        (func_8002AAFC(g_Spyro.m_0x110, 0) == 0)) {
+        func_8002AAFC(g_Spyro.m_0x118, 2);
+
+        // Select the state-dependent effect when the vertical trigger is active.
+        if ((g_Spyro.m_0xFC != 0) && (g_Spyro.m_0x258 >= 0)) {
+            if (D_80069894 >= 0) {
+                if (g_Spyro.m_0x58 != 8) {
+                    func_800351D8(0x37);
+                }
+            } else if ((g_Spyro.m_0x58 == 0xB) ||
+                       (g_Spyro.m_0x50 == 0x39)) {
+                if (g_Spyro.m_Position.z >= g_Spyro.m_0xFC) {
+                    if (g_Spyro.m_0x50 == 0x28) {
+                        if (g_Spyro.m_0x54 != 1) {
+                            func_800351D8(0x2C);
+                        }
+                    } else {
+                        func_800351D8(0x2C);
+                    }
+                }
+            } else if (g_Spyro.m_0x58 == 0xC) {
+                if ((g_Spyro.m_Position.z >= g_Spyro.m_0xFC) &&
+                    (g_Spyro.m_0x54 != 1)) {
+                    func_800351D8(0x15);
+                }
+            } else if ((g_Spyro.m_Vector_0xA0.z <= 0) &&
+                       (g_Spyro.m_0x58 != 0xA) &&
+                       ((g_Spyro.m_0xFC + 0xB2) >= g_Spyro.m_Position.z)) {
+                if ((g_Spyro.m_0x50 == 0x15) ||
+                    (g_Spyro.m_0x50 == 0x2E)) {
+                    if (D_80064682 != 0) {
+                        if (func_8003EE3C(&g_Spyro.m_Position, 0x400, 1, 0) != 0) {
+                            func_800351D8(0x2C);
+                        } else {
+                            func_800351D8(0x2A);
+                        }
+                    } else {
+                        func_800351D8(0x2C);
+                    }
+                } else {
+                    func_800351D8(0x2C);
+                }
+            }
+        }
+    }
+
+    // Recalculate the vertical offset using Spyro's position first.
+    g_Spyro.m_0x2C = 0;
+    if ((func_8003EE84(&g_Spyro.m_Position, 0xC00) != 0) &&
+        (func_8002B078(D_8006AB94) == 4)) {
+        g_Spyro.m_0x2C = g_Spyro.m_Position.z - D_8006AB78;
+    }
+
+    // Fall back to the camera position if the Spyro check left the offset unset.
+    if ((g_Spyro.m_0x2C == 0) &&
+        (func_8003EE84(&g_Camera.m_Position, 0x1000) != 0) &&
+        (func_8002B078(D_8006AB94) == 4)) {
+        g_Spyro.m_0x2C = g_Spyro.m_Position.z - D_8006AB78;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002A78C);
 
