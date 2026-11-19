@@ -1744,8 +1744,62 @@ void func_8002D7F8(void) {
     g_Spyro.m_0xC0++;
 }
 
+// https://decomp.me/scratch/9LtW3
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002D9C4);
+int func_8002D9C4(void) {
+    int vectorIndex;
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002D9C4);
+    struct {
+        Vector3D transformedVectors[3];    // 0x00–0x23
+        char pad_0x24[4];                  // 0x24–0x27
+        Vector3D accumulatedVector;        // 0x28–0x33
+    } vectorScratch;
+
+    if (g_Spyro.m_0x29C >= 0) {
+        func_8001BDA0(&vectorScratch.accumulatedVector);
+
+        func_8001C214(
+            g_Spyro.m_0x29C,
+            vectorScratch.transformedVectors
+        );
+
+        vectorIndex = 0;
+
+        do {
+            func_8001BE00(
+                &vectorScratch.transformedVectors[vectorIndex],
+                &vectorScratch.transformedVectors[vectorIndex],
+                &g_Spyro.m_Vector_0x2A0[vectorIndex]
+            );
+
+            func_8001BDCC(
+                &vectorScratch.accumulatedVector,
+                &vectorScratch.accumulatedVector,
+                &vectorScratch.transformedVectors[vectorIndex]
+            );
+
+            vectorIndex++;
+        } while (vectorIndex < 3);
+
+        vectorScratch.accumulatedVector.x /= 3;
+        vectorScratch.accumulatedVector.y /= 3;
+        vectorScratch.accumulatedVector.z /= 3;
+
+        func_8001BD20(&vectorScratch.accumulatedVector, 6);
+
+        func_8001BDCC(
+            &g_Spyro.m_Vector_0x7C,
+            &g_Spyro.m_Vector_0x7C,
+            &vectorScratch.accumulatedVector
+        );
+
+        if (func_8001BA20(&vectorScratch.accumulatedVector, 1) >= 0x21) {
+            return 1;
+        }
+    }
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002DB08);
 
