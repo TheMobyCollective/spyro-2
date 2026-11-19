@@ -45,4 +45,21 @@ extern short D_80061C58[];
 
 extern unsigned char *D_80066F78;
 
+
+extern int D_80061A8C;
+extern int D_80061AAC;
+extern unsigned char D_80066E78;
+extern unsigned char D_80066E79;
+extern unsigned char D_80066E7A;
+extern unsigned char D_80066E7B;
+extern unsigned char D_80066E7C;
+extern void* D_80066F14;
+extern int  D_80066F90;
+extern int  D_80067024;
+extern int  D_8006712C;
+extern int  D_80067178;
+extern unsigned char D_80067414;
+extern int  D_80069894;
+extern int  D_800698F8;
+
 #endif
