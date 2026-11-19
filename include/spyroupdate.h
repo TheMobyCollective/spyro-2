@@ -34,4 +34,9 @@ extern int D_8006ABA4;
 
 extern int D_8006AB70;
 
+extern int D_800601B4[];
+extern int D_80066F54;
+extern unsigned char *D_80067020;
+extern int D_80069894;
+
 #endif
