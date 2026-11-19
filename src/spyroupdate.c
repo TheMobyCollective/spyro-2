@@ -1,7 +1,32 @@
 #include "common.h"
 #include "spyroupdate.h"
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002A07C);
+void func_8003305C(int frameIndex, Vector3D *outputVector);
+
+// https://decomp.me/scratch/ZlfJs
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002A07C);
+void func_8002A07C(void) {
+    func_8001BDA0(&g_Spyro.m_Vector_0x7C);
+    func_80031EAC();
+    func_80030C94();
+    func_8002A164();
+    func_8002A4C8();
+    func_80035D38();
+    func_8002FC20();
+    func_8002E304();
+    func_8002F08C();
+    func_8002F7A8();
+    func_80031E4C();
+    func_800327F0();
+    func_800313E4();
+    if (g_Spyro.m_0x58 == 6) {
+        func_8003305C(0x3F, &g_Spyro.m_Vector_0x284);
+        func_8003305C(0x3E, &g_Spyro.m_Vector_0x290);
+    }
+    if ((D_800698BE != 0) && (g_Spyro.m_Rotation_0x10.pitch == 0)) {
+        g_Spyro.m_Rotation_0x10.pitch = 1;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002A164);
 
@@ -113,7 +138,7 @@ INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800328E8);
 
 // https://decomp.me/scratch/zm8aX
 //INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80032A90);
-void func_80032A90(int arg0) {
+void func_80032A90(Vector3D *arg0) {
     func_8003305C(0xBB, arg0);
 }
 
