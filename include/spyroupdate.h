@@ -13,4 +13,10 @@ extern int D_80069894;
 extern int D_8006AB78;
 extern int D_8006AB94;
 
+extern unsigned char *(*D_800670B4)(int arg0, int arg1);
+
+extern unsigned char **D_800673E8;
+extern int D_80069894;
+extern void *D_80068C94;
+
 #endif

@@ -403,7 +403,299 @@ void func_8002A78C(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002AAFC);
+// https://decomp.me/scratch/VT80W
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002AAFC);
+int func_8002AAFC(int commandIndex, int mode) {
+    unsigned char *commandEntry;
+    unsigned char *effectObject;
+    int *commandData;
+    int *statusValuePtr;
+    unsigned char commandType;
+    int spyroState;
+    int effectAngle;
+
+    commandIndex &= 0x3F;
+
+    if (commandIndex == 0x3F) {
+        return 0;
+    }
+
+    commandEntry = D_800673E8[commandIndex];
+    commandType = commandEntry[0];
+    commandData = (int *)(commandEntry + 4);
+
+    if (commandType >= 0xB) {
+        return 0;
+    }
+
+    switch (commandType) {
+        case 0:
+            if (mode != 1) {
+                return 0;
+            }
+
+            if (g_Spyro.m_Vector_0xA0.z > 0) {
+                return 0;
+            }
+
+            if (g_Spyro.m_0x1D4 != 0) {
+                return 0;
+            }
+
+            if (g_Spyro.m_0x50 == 0x1E) {
+                return 1;
+            }
+
+            g_Spyro.m_0x25C = 0x5A;
+
+            if (commandData[0] != 0) {
+                g_Spyro.m_0x258 = -1;
+            } else if (g_Spyro.m_0x258 >= 0) {
+                g_Spyro.m_0x258--;
+            }
+
+            func_800351D8(0x1E);
+            return 1;
+
+        case 2:
+            if (g_Spyro.m_0x58 != 6) {
+                return 0;
+            }
+
+            if (D_80069894 < 0) {
+                return 0;
+            }
+
+            func_800351D8(0x3D);
+            return 1;
+
+        case 4:
+            if (mode != 1) {
+                return 0;
+            }
+
+            spyroState = g_Spyro.m_0x58;
+
+            if (spyroState == 0x10) {
+                return 0;
+            }
+
+            if (spyroState == 7 || spyroState == 8) {
+                return 0;
+            }
+
+            if (spyroState == 0) {
+                return 0;
+            }
+
+            if (g_Spyro.m_0x50 == 0xD) {
+                return 0;
+            }
+
+            func_800351D8(9);
+            return 1;
+
+        case 5:
+            if (mode == 2) {
+                if (g_Spyro.m_0x50 != 0xD) {
+                    func_800351D8(0xD);
+                }
+
+                func_8001BB3C(&g_Spyro.m_Vector_0xE0, 0x800);
+
+                func_8001BDB0(
+                    &g_Spyro.m_Vector_0x94,
+                    &g_Spyro.m_Vector_0xE0
+                );
+
+                func_8001BDB0(
+                    &g_Spyro.m_Vector_0x88,
+                    &g_Spyro.m_Vector_0xE0
+                );
+
+                effectObject = D_800670B4(0x2CC, 0);
+
+                if (effectObject != nullptr) {
+                    func_8001BDB0(
+                        (Vector3D *)(effectObject + 0xC),
+                        &g_Spyro.m_Position
+                    );
+
+                    effectAngle = func_8001B4B8(
+                        g_Spyro.m_Vector_0xE0.x,
+                        g_Spyro.m_Vector_0xE0.y,
+                        0
+                    );
+
+                    effectObject[0x46] = (unsigned char)effectAngle;
+                }
+
+                return 1;
+            } else if (mode == 0) {
+                if (g_Spyro.m_0x50 != 0xD) {
+                    func_800351D8(0xD);
+                }
+
+                func_8001BB3C(&g_Spyro.m_Vector_0x11C, 0x800);
+
+                func_8001BDB0(
+                    &g_Spyro.m_Vector_0x94,
+                    &g_Spyro.m_Vector_0x11C
+                );
+
+                func_8001BDB0(
+                    &g_Spyro.m_Vector_0x88,
+                    &g_Spyro.m_Vector_0x11C
+                );
+
+                effectObject = D_800670B4(0x2CC, 0);
+
+                if (effectObject != nullptr) {
+                    func_8001BDB0(
+                        (Vector3D *)(effectObject + 0xC),
+                        &g_Spyro.m_Position
+                    );
+
+                    effectAngle = func_8001B4B8(
+                        g_Spyro.m_Vector_0x11C.x,
+                        g_Spyro.m_Vector_0x11C.y,
+                        0
+                    );
+
+                    effectObject[0x46] = (unsigned char)effectAngle;
+                }
+
+                return 1;
+            }
+
+            return 0;
+
+        case 6:
+            func_80019928(commandData[0]);
+            return 0;
+
+        case 7:
+            if (mode != 1) {
+                return 0;
+            }
+
+            if (g_Spyro.m_Vector_0xA0.z > 0) {
+                return 0;
+            }
+
+            if (g_Spyro.m_0x1D4 != 0) {
+                return 0;
+            }
+
+            if (g_Spyro.m_0x58 == 8) {
+                return 0;
+            }
+
+            g_Spyro.m_0x25C = 0x5A;
+
+            if (g_Spyro.m_0x258 < 0 || --g_Spyro.m_0x258 < 0) {
+                if (*(int *)((unsigned char *)D_80068C94 + 0x124) != 0) {
+                    func_800351D8(0x3A);
+                } else {
+                    func_800351D8(0x1F);
+                }
+            } else {
+                func_800351D8(8);
+            }
+
+            return 1;
+
+        case 1:
+            if ((g_Spyro.m_0x20C & 0x40000) != 0) {
+                return 0;
+            }
+
+            if (mode != 1) {
+                return 0;
+            }
+
+            if (g_Spyro.m_0x1D4 != 0) {
+                return 0;
+            }
+
+            spyroState = g_Spyro.m_0x58;
+
+            if (spyroState == 8) {
+                return 0;
+            }
+
+            if (spyroState == 2 || spyroState == 7) {
+                if (g_Spyro.m_Vector_0xA0.z > 0) {
+                    return 0;
+                }
+            }
+
+            statusValuePtr = &D_80069894;
+
+            if (*statusValuePtr >= 0) {
+                if (g_Spyro.m_0x58 == 8) {
+                    return 1;
+                }
+
+                func_800351D8(0x3A);
+                return 1;
+            }
+
+            g_Spyro.m_0x25C = 0x5A;
+
+            if (g_Spyro.m_0x258 >= 0) {
+                g_Spyro.m_0x258--;
+
+                if (g_Spyro.m_0x258 >= 0) {
+                    func_800351D8(0x1C);
+                    return 1;
+                }
+            }
+
+            if (*(int *)((unsigned char *)D_80068C94 + 0x124) != 0) {
+                func_800351D8(0x3A);
+                return 1;
+            }
+
+            func_800351D8(0x1F);
+
+            if (*statusValuePtr < 0) {
+                return 1;
+            }
+
+            g_Spyro.m_0x54 = 1;
+            return 1;
+
+        case 9:
+            if (g_Spyro.m_0x50 != 0x3D) {
+                return 0;
+            }
+
+            g_Spyro.m_0x54 = 1;
+            return 0;
+
+        case 10:
+            if (mode != 1) {
+                return 0;
+            }
+
+            spyroState = g_Spyro.m_0x58;
+
+            if (spyroState == 0x11) {
+                return 0;
+            }
+
+            if (spyroState == 7 || spyroState == 8) {
+                return 0;
+            }
+
+            func_800351D8(0x31);
+            return 1;
+
+        default:
+            return 0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002AFDC);
 
