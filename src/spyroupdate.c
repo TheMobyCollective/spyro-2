@@ -1801,7 +1801,7 @@ int func_8002D9C4(void) {
     return 0;
 }
 
-//https://decomp.me/scratch/INMRv
+// https://decomp.me/scratch/INMRv
 //INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002DB08);
 void func_8002DB08(Vector3D *inputVector) {
     func_8001BDB0(&g_Spyro.m_Vector_0xF0,  &g_Spyro.m_Vector_0xD4);
@@ -1812,8 +1812,130 @@ void func_8002DB08(Vector3D *inputVector) {
     g_Spyro.m_Vector_0xF0.z = -g_Spyro.m_Vector_0xF0.z;
 }
 
+// https://decomp.me/scratch/WwOiV
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002DB8C);
+void func_8002DB8C(Vector3D *inputVector) {
+    int cosineX;
+    int sineX;
+    int cosineY;
+    int sineY;
+    int angularVelocityX;
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002DB8C);
+    struct {
+        Vector3D workingVector;     // 0x00–0x0B
+        char pad_0x0C[4];           // 0x0C–0x0F
+        Vector3D angleAdjustment;   // 0x10–0x1B
+        char pad_0x1C[4];           // 0x1C–0x1F
+    } rotationScratch;
+
+    if (g_Spyro.m_0xEC >= 0x17 && g_Spyro.m_0x58 != 0x11) {
+        inputVector = nullptr;
+    }
+
+    if (inputVector != nullptr) {
+        sineX = func_8001B664(g_Spyro.m_Vector_0x64.z);
+        cosineX = func_8001B61C(g_Spyro.m_Vector_0x64.z);
+
+        rotationScratch.workingVector.x =
+            ((inputVector->x * sineX) + (inputVector->y * cosineX)) >> 12;
+
+        sineY = func_8001B664(g_Spyro.m_Vector_0x64.z);
+        cosineY = func_8001B61C(g_Spyro.m_Vector_0x64.z);
+
+        rotationScratch.workingVector.y =
+            ((inputVector->y * sineY) - (inputVector->x * cosineY)) >> 12;
+
+        rotationScratch.workingVector.z = inputVector->z;
+
+        rotationScratch.angleAdjustment.x = -func_8001B4B8(
+            func_8001BFC0(
+                (rotationScratch.workingVector.x * rotationScratch.workingVector.x) +
+                (rotationScratch.workingVector.z * rotationScratch.workingVector.z)
+            ),
+            rotationScratch.workingVector.y,
+            1
+        );
+
+        rotationScratch.angleAdjustment.y = -func_8001B4B8(
+            rotationScratch.workingVector.z,
+            rotationScratch.workingVector.x,
+            1
+        );
+    } else {
+        rotationScratch.angleAdjustment.x = 0;
+        rotationScratch.angleAdjustment.y = 0;
+    }
+
+    SUB_ANGLE(
+        rotationScratch.angleAdjustment.x,
+        rotationScratch.angleAdjustment.x,
+        g_Spyro.m_Vector_0x64.x
+    );
+
+    SUB_ANGLE(
+        rotationScratch.angleAdjustment.y,
+        rotationScratch.angleAdjustment.y,
+        g_Spyro.m_Vector_0x64.y
+    );
+
+    angularVelocityX = g_Spyro.m_Vector_0x70.x;
+
+    angularVelocityX +=
+        ((rotationScratch.angleAdjustment.x << 2) >> 4) -
+        ((angularVelocityX << 4) >> 6);
+
+    g_Spyro.m_Vector_0x70.x = angularVelocityX;
+
+    g_Spyro.m_Vector_0x70.y +=
+        ((rotationScratch.angleAdjustment.y << 2) >> 4) -
+        ((g_Spyro.m_Vector_0x70.y << 4) >> 6);
+
+    rotationScratch.angleAdjustment.x = angularVelocityX >> 2;
+    rotationScratch.angleAdjustment.y = g_Spyro.m_Vector_0x70.y >> 2;
+
+    ADD_ANGLE(
+        g_Spyro.m_Vector_0x64.x,
+        g_Spyro.m_Vector_0x64.x,
+        rotationScratch.angleAdjustment.x
+    );
+
+    ADD_ANGLE(
+        g_Spyro.m_Vector_0x64.y,
+        g_Spyro.m_Vector_0x64.y,
+        rotationScratch.angleAdjustment.y
+    );
+
+    if (inputVector != nullptr &&
+        (unsigned char)(g_Spyro.m_Rotation_0x0C.roll - 0x20) >= 0xC1 &&
+        (unsigned char)(g_Spyro.m_Rotation_0x0C.pitch - 0x20) >= 0xC1) {
+
+        rotationScratch.workingVector.y =
+            ((-func_8001B61C(rotationScratch.angleAdjustment.x)) *
+             (g_Spyro.m_0x270 + 0x10)) >> 12;
+
+        rotationScratch.workingVector.x =
+            ((-func_8001B61C(rotationScratch.angleAdjustment.y)) *
+             (g_Spyro.m_0x270 + 0x10)) >> 12;
+
+        rotationScratch.workingVector.z =
+            ((0x2000
+              - func_8001B664(rotationScratch.angleAdjustment.x)
+              - func_8001B664(rotationScratch.angleAdjustment.y)) *
+             (g_Spyro.m_0x270 + 0x10)) >> 12;
+
+        func_8001B9A4(
+            &g_Spyro.m_RotationMatrix_0x30,
+            &rotationScratch.workingVector,
+            &rotationScratch.workingVector
+        );
+
+        func_8001BDCC(
+            &g_Spyro,
+            &g_Spyro,
+            &rotationScratch.workingVector
+        );
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002DED0);
 
