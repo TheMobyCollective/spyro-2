@@ -724,7 +724,68 @@ INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002B078);
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002B0B8);
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002B228);
+// https://decomp.me/scratch/zWIn9
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002B228);
+int func_8002B228(void) {
+    int spyroState;
+    int angleDifference;
+    Vector3D relativeVector;
+
+    spyroState = g_Spyro.m_0x58;
+
+    if (spyroState == 9) {
+        if ((g_Spyro.m_0x24 & 0x4000) == 0) {
+            return 0;
+        }
+
+        func_800351D8(0xD);
+        return 1;
+    }
+
+    switch (g_Spyro.m_0x24 & 0x6) {
+        case 2:
+            if (g_Spyro.m_CollisionObject_0x140 == nullptr) {
+                return 0;
+            }
+
+            if (spyroState == 0xC) {
+                return 0;
+            }
+
+            func_8001BE00(
+                &relativeVector,
+                &g_Spyro.m_CollisionObject_0x140->m_Vector_0x0C,
+                &g_Spyro.m_Position
+            );
+
+            SUB_ANGLE(
+                angleDifference,
+                func_8001B4B8(relativeVector.x, relativeVector.y, 1),
+                g_Spyro.m_Vector_0x64.z
+            );
+
+            if (ABS(angleDifference) > 0x1FF) {
+                return 0;
+            }
+
+            func_800351D8(0xD);
+            return 1;
+
+        case 4:
+            if (spyroState == 0xC) {
+                return 0;
+            }
+
+            func_800351D8(0xD);
+            return 1;
+
+        case 6:
+            return func_8002B0B8();
+
+        default:
+            return 0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002B36C);
 
