@@ -2,8 +2,8 @@
 #include "spyroupdate.h"
 #include "camera.h"
 
-extern void func_8001BB3C(Vector3D *arg0, int arg1);
-extern void func_8001BCC4(Vector3D *arg0, int arg1, int arg2);
+extern void func_8001BB3C(Vector3D *vector, int targetMagnitude);
+extern void func_8001BCC4(Vector3D *vector, int currentMagnitude, int targetMagnitude);
 extern void func_8001BDB0(Vector3D *destination, Vector3D *source);
 extern void func_8001BDCC(Vector3D *destination, Vector3D *vector1, Vector3D *vector2);
 
@@ -1244,31 +1244,31 @@ void func_8002CC88(void) {
 
         func_8001B9A4(
             &g_Spyro.m_RotationMatrix_0x30,
-            collisionScratch.firstCollisionOffset,
-            collisionScratch.firstCollisionOffset
+            (Vector3D *)collisionScratch.firstCollisionOffset,
+            (Vector3D *)collisionScratch.firstCollisionOffset
         );
 
         func_8001BDCC(
-            collisionScratch.firstCollisionOffset,
-            collisionScratch.firstCollisionOffset,
+            (Vector3D *)collisionScratch.firstCollisionOffset,
+            (Vector3D *)collisionScratch.firstCollisionOffset,
             &g_Spyro.m_Position
         );
 
         func_8001B9A4(
-            0,
-            collisionScratch.secondCollisionOffset,
-            collisionScratch.secondCollisionOffset
+            nullptr,
+            (Vector3D *)collisionScratch.secondCollisionOffset,
+            (Vector3D *)collisionScratch.secondCollisionOffset
         );
 
         func_8001BDCC(
-            collisionScratch.secondCollisionOffset,
-            collisionScratch.secondCollisionOffset,
+            (Vector3D *)collisionScratch.secondCollisionOffset,
+            (Vector3D *)collisionScratch.secondCollisionOffset,
             &g_Spyro.m_Position
         );
 
         collisionCheckResult = func_8003CE38(
-            collisionScratch.firstCollisionOffset,
-            collisionScratch.secondCollisionOffset,
+            (Vector3D *)collisionScratch.firstCollisionOffset,
+            (Vector3D *)collisionScratch.secondCollisionOffset,
             4,
             0,
             0
@@ -1331,31 +1331,31 @@ void func_8002CC88(void) {
 
                 func_8001B9A4(
                     &g_Spyro.m_RotationMatrix_0x30,
-                    collisionScratch.firstCollisionOffset,
-                    collisionScratch.firstCollisionOffset
+                    (Vector3D *)collisionScratch.firstCollisionOffset,
+                    (Vector3D *)collisionScratch.firstCollisionOffset
                 );
 
                 func_8001BDCC(
-                    collisionScratch.firstCollisionOffset,
-                    collisionScratch.firstCollisionOffset,
+                    (Vector3D *)collisionScratch.firstCollisionOffset,
+                    (Vector3D *)collisionScratch.firstCollisionOffset,
                     &g_Spyro.m_Position
                 );
 
                 func_8001B9A4(
                     0,
-                    collisionScratch.secondCollisionOffset,
-                    collisionScratch.secondCollisionOffset
+                    (Vector3D *)collisionScratch.secondCollisionOffset,
+                    (Vector3D *)collisionScratch.secondCollisionOffset
                 );
 
                 func_8001BDCC(
-                    collisionScratch.secondCollisionOffset,
-                    collisionScratch.secondCollisionOffset,
+                    (Vector3D *)collisionScratch.secondCollisionOffset,
+                    (Vector3D *)collisionScratch.secondCollisionOffset,
                     &g_Spyro.m_Position
                 );
 
                 if (func_8003CE94(
-                        collisionScratch.firstCollisionOffset,
-                        collisionScratch.secondCollisionOffset
+                        (Vector3D *)collisionScratch.firstCollisionOffset,
+                        (Vector3D *)collisionScratch.secondCollisionOffset
                     ) == 0) {
 
                     g_Spyro.m_0x104 = 1;
@@ -1383,20 +1383,20 @@ void func_8002CC88(void) {
                 -g_Spyro.m_0x270 - 0x60;
 
             func_8001BDCC(
-                collisionScratch.firstCollisionOffset,
-                collisionScratch.firstCollisionOffset,
+                (Vector3D *)collisionScratch.firstCollisionOffset,
+                (Vector3D *)collisionScratch.firstCollisionOffset,
                 &g_Spyro.m_Position
             );
 
             func_8001BDCC(
-                collisionScratch.secondCollisionOffset,
-                collisionScratch.secondCollisionOffset,
+                (Vector3D *)collisionScratch.secondCollisionOffset,
+                (Vector3D *)collisionScratch.secondCollisionOffset,
                 &g_Spyro.m_Position
             );
 
             collisionCheckResult = func_8003CE38(
-                collisionScratch.firstCollisionOffset,
-                collisionScratch.secondCollisionOffset,
+                (Vector3D *)collisionScratch.firstCollisionOffset,
+                (Vector3D *)collisionScratch.secondCollisionOffset,
                 4,
                 0,
                 0
@@ -1442,8 +1442,8 @@ void func_8002CC88(void) {
     }
 
     func_8001BDB0(
-        collisionScratch.effectQueryPosition,
-        &g_Spyro
+        (Vector3D *)collisionScratch.effectQueryPosition,
+        &g_Spyro.m_Position
     );
 
     collisionScratch.effectQueryPosition[2] += 0x264;
@@ -1517,7 +1517,7 @@ void func_8002D0F8(void) {
     func_8001B6C8(
         collisionScratch.angles,
         &collisionScratch.directionVector,
-        0
+        nullptr
     );
 
     collisionScratch.offsetVector.x = g_Spyro.m_0x270;
@@ -1525,14 +1525,14 @@ void func_8002D0F8(void) {
     collisionScratch.offsetVector.z = 0;
 
     func_8001BDB0(
-        collisionScratch.secondOffsetMatrix,
+        (Vector3D *)collisionScratch.secondOffsetMatrix,
         &collisionScratch.offsetVector
     );
 
     collisionScratch.secondOffsetMatrix[0] += 0xA0;
 
     func_8001BDB0(
-        collisionScratch.firstOffsetMatrix,
+        (Vector3D *)collisionScratch.firstOffsetMatrix,
         &collisionScratch.offsetVector
     );
 
@@ -1540,26 +1540,26 @@ void func_8002D0F8(void) {
 
     func_8001B9A4(
         &collisionScratch.directionVector,
-        collisionScratch.firstOffsetMatrix,
-        collisionScratch.firstOffsetMatrix
+        (Vector3D *)collisionScratch.firstOffsetMatrix,
+        (Vector3D *)collisionScratch.firstOffsetMatrix
     );
 
     func_8001BDCC(
-        collisionScratch.firstOffsetMatrix,
+        (Vector3D *)collisionScratch.firstOffsetMatrix,
         &g_Spyro.m_Position,
-        collisionScratch.firstOffsetMatrix
+        (Vector3D *)collisionScratch.firstOffsetMatrix
     );
 
     func_8001B9A4(
-        0,
-        collisionScratch.secondOffsetMatrix,
-        collisionScratch.secondOffsetMatrix
+        nullptr,
+        (Vector3D *)collisionScratch.secondOffsetMatrix,
+        (Vector3D *)collisionScratch.secondOffsetMatrix
     );
 
     func_8001BDCC(
-        collisionScratch.secondOffsetMatrix,
+        (Vector3D *)collisionScratch.secondOffsetMatrix,
         &g_Spyro.m_Position,
-        collisionScratch.secondOffsetMatrix
+        (Vector3D *)collisionScratch.secondOffsetMatrix
     );
 
     func_8001B9A4(
@@ -1575,8 +1575,8 @@ void func_8002D0F8(void) {
     );
 
     if (func_8003CE94(
-            collisionScratch.firstOffsetMatrix,
-            collisionScratch.secondOffsetMatrix
+            (Vector3D *)collisionScratch.firstOffsetMatrix,
+            (Vector3D *)collisionScratch.secondOffsetMatrix
         ) != 0) {
 
         func_8001BE00(
@@ -1641,14 +1641,14 @@ void func_8002D7F8(void) {
     collisionScratch.offsetVector.z = -g_Spyro.m_0x270;
 
     func_8001BDB0(
-        collisionScratch.negativeOffsetMatrix,
+        (Vector3D *)collisionScratch.negativeOffsetMatrix,
         &collisionScratch.offsetVector
     );
 
     collisionScratch.negativeOffsetMatrix[2] -= 0x80;
 
     func_8001BDB0(
-        collisionScratch.positiveOffsetMatrix,
+        (Vector3D *)collisionScratch.positiveOffsetMatrix,
         &collisionScratch.offsetVector
     );
 
@@ -1661,25 +1661,25 @@ void func_8002D7F8(void) {
     );
 
     func_8001BDCC(
-        collisionScratch.negativeOffsetMatrix,
+        (Vector3D *)collisionScratch.negativeOffsetMatrix,
         &g_Spyro.m_Position,
-        collisionScratch.negativeOffsetMatrix
+        (Vector3D *)collisionScratch.negativeOffsetMatrix
     );
 
     func_8001B9A4(
-        0,
-        collisionScratch.positiveOffsetMatrix,
-        collisionScratch.positiveOffsetMatrix
+        nullptr,
+        (Vector3D *)collisionScratch.positiveOffsetMatrix,
+        (Vector3D *)collisionScratch.positiveOffsetMatrix
     );
 
     func_8001BDCC(
-        collisionScratch.positiveOffsetMatrix,
+        (Vector3D *)collisionScratch.positiveOffsetMatrix,
         &g_Spyro.m_Position,
-        collisionScratch.positiveOffsetMatrix
+        (Vector3D *)collisionScratch.positiveOffsetMatrix
     );
 
     func_8001B9A4(
-        0,
+        nullptr,
         &collisionScratch.offsetVector,
         &collisionScratch.offsetVector
     );
@@ -1691,8 +1691,8 @@ void func_8002D7F8(void) {
     );
 
     if (func_8003CE94(
-            collisionScratch.positiveOffsetMatrix,
-            collisionScratch.negativeOffsetMatrix
+            (Vector3D *)collisionScratch.positiveOffsetMatrix,
+            (Vector3D *)collisionScratch.negativeOffsetMatrix
         ) != 0 &&
         (collisionData = &D_8006AB90,
          *collisionData > 0)) {
@@ -1803,9 +1803,9 @@ int func_8002D9C4(void) {
 
 // https://decomp.me/scratch/INMRv
 //INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002DB08);
-void func_8002DB08(Vector3D *inputVector) {
+void func_8002DB08(int targetMagnitude) {
     func_8001BDB0(&g_Spyro.m_Vector_0xF0,  &g_Spyro.m_Vector_0xD4);
-    func_8001BB3C(&g_Spyro.m_Vector_0xF0, inputVector);
+    func_8001BB3C(&g_Spyro.m_Vector_0xF0, targetMagnitude);
     
     g_Spyro.m_Vector_0xF0.x = -g_Spyro.m_Vector_0xF0.x;
     g_Spyro.m_Vector_0xF0.y = -g_Spyro.m_Vector_0xF0.y;
@@ -1930,8 +1930,8 @@ void func_8002DB8C(Vector3D *inputVector) {
         );
 
         func_8001BDCC(
-            &g_Spyro,
-            &g_Spyro,
+            &g_Spyro.m_Position,
+            &g_Spyro.m_Position,
             &rotationScratch.workingVector
         );
     }
@@ -2086,7 +2086,7 @@ void func_8002E00C(Vector3D *inputVector) {
     translation.z = 0;
     translation.y = 0;
 
-    func_8001BDB0(rotationScratch.transformMatrix, &translation);
+    func_8001BDB0((Vector3D *)rotationScratch.transformMatrix, &translation);
 
     func_8001B9A4(
         &g_Spyro.m_RotationMatrix_0x30,
@@ -2679,7 +2679,7 @@ void func_80032B94(void) {
     );
 
     // Apply the effect using the selected flags.
-    func_8003CE38(&g_Spyro, &effectPosition, 0, effectFlags, 0);
+    func_8003CE38(&g_Spyro.m_Position, &effectPosition, 0, effectFlags, 0);
 }
 
 // https://decomp.me/scratch/Mff3m
