@@ -3,4 +3,9 @@
 
 extern unsigned char D_800698BE;
 
+extern int D_80060234[];
+extern int D_80066F54;
+extern int D_80067018;
+extern unsigned char D_800698BE;
+
 #endif
