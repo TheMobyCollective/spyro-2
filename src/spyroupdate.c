@@ -837,7 +837,133 @@ void func_8002B4E4(Vector3D *outputVector, int useCameraRotation) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002B694);
+// https://decomp.me/scratch/9waFL
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002B694);
+void func_8002B694(Vector3D *outputVector, Vector3D *controlVector, int forceControlY) {
+    int adjustedComponents[2];
+    int centeringAdjustment;
+
+    if (D_8006839E != 0) {
+        adjustedComponents[0] = D_80066F38[0xE] - 0x7F;
+        adjustedComponents[1] = 0x7F - D_80066F38[0xF];
+
+        adjustedComponents[0] -= controlVector->z;
+
+        if (adjustedComponents[0] < -0x10) {
+            adjustedComponents[0] = -0x10;
+        }
+
+        if (adjustedComponents[0] > 0x10) {
+            adjustedComponents[0] = 0x10;
+        }
+
+        controlVector->z += adjustedComponents[0];
+
+        if (controlVector->z < -0x7F) {
+            controlVector->z = -0x7F;
+        }
+
+        if (controlVector->z >= 0x80) {
+            controlVector->z = 0x7F;
+        }
+
+        adjustedComponents[0] = controlVector->z;
+
+        adjustedComponents[1] -= controlVector->y;
+
+        if (adjustedComponents[1] < -0x10) {
+            adjustedComponents[1] = -0x10;
+        }
+
+        if (adjustedComponents[1] > 0x10) {
+            adjustedComponents[1] = 0x10;
+        }
+
+        controlVector->y += adjustedComponents[1];
+
+        if (controlVector->y < -0x7F) {
+            controlVector->y = -0x7F;
+        }
+
+        if (controlVector->y >= 0x80) {
+            controlVector->y = 0x7F;
+        }
+
+        adjustedComponents[1] = controlVector->y;
+    } else {
+        if ((*(unsigned int *)D_80066F38 & 0x1000) != 0) {
+            controlVector->y += 0x10;
+
+            if (controlVector->y >= 0x80) {
+                controlVector->y = 0x7F;
+            }
+        } else if ((*(unsigned int *)D_80066F38 & 0x4000) != 0) {
+            controlVector->y -= 0x10;
+
+            if (controlVector->y < -0x7F) {
+                controlVector->y = -0x7F;
+            }
+        } else {
+            centeringAdjustment = -controlVector->y;
+
+            if (centeringAdjustment >= 0x21) {
+                centeringAdjustment = 0x20;
+            }
+
+            if (centeringAdjustment < -0x20) {
+                centeringAdjustment = -0x20;
+            }
+
+            controlVector->y += centeringAdjustment;
+        }
+
+        adjustedComponents[1] = controlVector->y;
+
+        if ((*(unsigned int *)D_80066F38 & 0x2000) != 0) {
+            controlVector->z += 0x10;
+
+            if (controlVector->z >= 0x80) {
+                controlVector->z = 0x7F;
+            }
+        } else if ((*(unsigned int *)D_80066F38 & 0x8000) != 0) {
+            controlVector->z -= 0x10;
+
+            if (controlVector->z < -0x7F) {
+                controlVector->z = -0x7F;
+            }
+        } else {
+            centeringAdjustment = -controlVector->z;
+
+            if (centeringAdjustment >= 0x21) {
+                centeringAdjustment = 0x20;
+            }
+
+            if (centeringAdjustment < -0x20) {
+                centeringAdjustment = -0x20;
+            }
+
+            controlVector->z += centeringAdjustment;
+        }
+
+        adjustedComponents[0] = controlVector->z;
+    }
+
+    outputVector->x = -adjustedComponents[0];
+
+    if (adjustedComponents[1] != 0 || forceControlY != 0) {
+        outputVector->y = adjustedComponents[1];
+    } else {
+        outputVector->y = g_Spyro.m_Vector_0x64.y >> 3;
+
+        if (outputVector->y >= 0x80) {
+            outputVector->y = 0x7F;
+        }
+
+        if (outputVector->y < -0x7F) {
+            outputVector->y = -0x7F;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002B9A0);
 
