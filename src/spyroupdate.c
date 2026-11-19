@@ -1801,7 +1801,17 @@ int func_8002D9C4(void) {
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002DB08);
+//https://decomp.me/scratch/INMRv
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002DB08);
+void func_8002DB08(Vector3D *inputVector) {
+    func_8001BDB0(&g_Spyro.m_Vector_0xF0,  &g_Spyro.m_Vector_0xD4);
+    func_8001BB3C(&g_Spyro.m_Vector_0xF0, inputVector);
+    
+    g_Spyro.m_Vector_0xF0.x = -g_Spyro.m_Vector_0xF0.x;
+    g_Spyro.m_Vector_0xF0.y = -g_Spyro.m_Vector_0xF0.y;
+    g_Spyro.m_Vector_0xF0.z = -g_Spyro.m_Vector_0xF0.z;
+}
+
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002DB8C);
 
