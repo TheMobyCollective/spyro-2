@@ -1050,8 +1050,61 @@ void func_8002B694(Vector3D *outputVector, Vector3D *controlVector, int forceCon
 // https://decomp.me/scratch/r0Tpr
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002B9A0);
 
-//
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002BB24);
+// https://decomp.me/scratch/jRQZK
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002BB24);
+int func_8002BB24(int maxValue, int acceleration) {
+    int angleDifference;
+
+    // Calculate the shortest angular difference.
+    angleDifference = (g_Spyro.m_0xAC - g_Spyro.m_Vector_0x64.z) & 0xFFF;
+
+    if (angleDifference >= 0x801) {
+        angleDifference -= 0x1000;
+    }
+
+    if (angleDifference > 0) {
+        // Accelerate turning in the positive direction.
+        if (g_Spyro.m_0xB0 < 0) {
+            g_Spyro.m_0xB0 = 0;
+        }
+
+        g_Spyro.m_0xB0 += acceleration;
+
+        if (g_Spyro.m_0xB0 > maxValue) {
+            g_Spyro.m_0xB0 = maxValue;
+        }
+
+        // Prevent overshooting the target angle.
+        if (g_Spyro.m_0xB0 > angleDifference) {
+            g_Spyro.m_0xB0 = angleDifference;
+        }
+    }
+    else if (angleDifference < 0) {
+        // Accelerate turning in the negative direction.
+        if (g_Spyro.m_0xB0 > 0) {
+            g_Spyro.m_0xB0 = 0;
+        }
+
+        g_Spyro.m_0xB0 -= acceleration;
+
+        if (g_Spyro.m_0xB0 < -maxValue) {
+            g_Spyro.m_0xB0 = -maxValue;
+        }
+
+        // Prevent overshooting the target angle.
+        if (g_Spyro.m_0xB0 < angleDifference) {
+            g_Spyro.m_0xB0 = angleDifference;
+        }
+    }
+    else {
+        g_Spyro.m_0xB0 = 0;
+        return 0;
+    }
+
+    func_8002B9A0(g_Spyro.m_0xB0);
+
+    return angleDifference;
+}
 
 // https://decomp.me/scratch/vFmXh
 //INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002BC68);
@@ -2292,7 +2345,7 @@ INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80030A14);
 void func_80030A6C(void) {
     Vector3D savedPosition;
     Vector3D savedMovementVector;
-    int savedValue;
+    int timer;
 
     if (g_Spyro.m_0x264 >= 0) {
         if (func_80050B20(
@@ -2319,7 +2372,7 @@ void func_80030A6C(void) {
         &g_Spyro.m_Vector_0x64
     );
 
-    savedValue = g_Spyro.m_timer_0x258;
+    timer = g_Spyro.m_timer_0x258;
 
     func_8001B3C8(&g_Spyro, 0, 0x2C4);
 
@@ -2362,7 +2415,7 @@ void func_80030A6C(void) {
         &g_Spyro.m_RotationMatrix_0x19C
     );
 
-    g_Spyro.m_timer_0x258 = savedValue;
+    g_Spyro.m_timer_0x258 = timer;
 
     if (D_80069894 >= 0) {
         func_800351D8(0x21);
