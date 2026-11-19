@@ -11,6 +11,7 @@ extern unsigned char D_800698BE;
 extern short D_80064682;
 extern int D_80069894;
 extern int D_8006AB78;
+extern int D_8006AB90;
 extern int D_8006AB94;
 
 extern unsigned char *(*D_800670B4)(int arg0, int arg1);
@@ -24,5 +25,7 @@ extern int D_8006AB94;
 
 extern unsigned char *D_80066F38;
 extern unsigned char D_8006839E;
+
+extern Vector3D D_8006AB88;
 
 #endif

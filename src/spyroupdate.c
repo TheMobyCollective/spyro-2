@@ -1054,7 +1054,87 @@ void func_8002BDBC(void) {
     );
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002BE04);
+// https://decomp.me/scratch/pCZKb
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002BE04);
+void func_8002BE04(void) {
+    Vector3D rotatedPoint;
+    Vector3D unrotatedPoint;
+
+    if (g_Spyro.m_0x58 == 1 || g_Spyro.m_0x58 == 0x10) {        
+        rotatedPoint.y = 0;
+        rotatedPoint.x = 0;
+        rotatedPoint.z = -g_Spyro.m_0x270 + 0x20;
+        
+        unrotatedPoint.y = 0;
+        unrotatedPoint.x = g_Spyro.m_0x270 + 0x60;
+        unrotatedPoint.z = rotatedPoint.z;
+    } else if (g_Spyro.m_0x58 == 0xA) {        
+        rotatedPoint.y = 0;
+        rotatedPoint.x = 0;
+        rotatedPoint.z = 0;
+
+        unrotatedPoint.x = g_Spyro.m_0x270 + 0x60;
+        unrotatedPoint.y = 0;
+        unrotatedPoint.z = 0;
+    } else if (g_Spyro.m_0x58 == 0xD) {        
+        rotatedPoint.y = 0;
+        rotatedPoint.x = 0;
+        rotatedPoint.z = -g_Spyro.m_0x270;
+
+        unrotatedPoint.y = 0;
+        unrotatedPoint.x = g_Spyro.m_0x270 + 0xA0;
+        unrotatedPoint.z = -g_Spyro.m_0x270 - 0x40;
+    } else {       
+        rotatedPoint.y = 0;
+        rotatedPoint.x = 0;
+        rotatedPoint.z = -g_Spyro.m_0x270;
+
+        unrotatedPoint.y = 0;
+        unrotatedPoint.x = g_Spyro.m_0x270 + 0x60;
+        unrotatedPoint.z = -g_Spyro.m_0x270 - 0x40;
+    }
+
+    func_8001B9A4(
+        &g_Spyro.m_RotationMatrix_0x30,
+        &rotatedPoint,
+        &rotatedPoint
+    );
+
+    func_8001BDCC(
+        &rotatedPoint,
+        &rotatedPoint,
+        &g_Spyro.m_Position
+    );
+
+    func_8001B9A4(
+        nullptr,
+        &unrotatedPoint,
+        &unrotatedPoint
+    );
+
+    func_8001BDCC(
+        &unrotatedPoint,
+        &unrotatedPoint,
+        &g_Spyro.m_Position
+    );
+
+    if (func_8003CE94(&rotatedPoint, &unrotatedPoint) != 0) {
+        if ((signed char)func_8001B4B8(
+                D_8006AB90,
+                func_8001BA20(&D_8006AB88, 0),
+                0
+            ) >= 0x17) {
+            g_Spyro.m_0x106 = 1;
+
+            func_8001BDB0(
+                &g_Spyro.m_Vector_0xE0,
+                &D_8006AB88
+            );
+
+            g_Spyro.m_0x118 = D_8006AB94;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002BFBC);
 
