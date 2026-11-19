@@ -2123,7 +2123,15 @@ void func_8002E00C(Vector3D *inputVector) {
     );
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002E2BC);
+// https://decomp.me/scratch/oS4EW
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002E2BC);
+void func_8002E2BC(void) {
+    func_8001BDA0(&g_Spyro.m_Vector_0xA0);
+    func_8001BDA0(&g_Spyro.m_Vector_0x88);
+    func_8001BDA0(&g_Spyro.m_Vector_0x94);
+
+    g_Spyro.m_0xB8 = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002E304);
 
