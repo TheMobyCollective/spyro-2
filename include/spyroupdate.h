@@ -32,4 +32,6 @@ extern int D_8006AB9C;
 extern int D_8006ABA0;
 extern int D_8006ABA4;
 
+extern int D_8006AB70;
+
 #endif
