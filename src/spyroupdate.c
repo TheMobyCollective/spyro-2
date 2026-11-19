@@ -2895,9 +2895,134 @@ void func_8003305C(int frameIndex, Vector3D *outputVector) {
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80033300);
 
+// https://decomp.me/scratch/Ne6Jo
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800347A4);
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80034E0C);
+// https://decomp.me/scratch/dVZFf
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80034E0C);
+void func_80034E0C(void) {
+    int result;
+
+    if ((unsigned int)(g_Spyro.m_0x58 - 0xB) < 2) {
+        if (func_80050B20(D_80067020[6], g_Spyro.m_0x26C) == 0) {
+            g_Spyro.m_0x26C = func_80050720(
+                D_80067020[6],
+                nullptr,
+                4
+            );
+        }
+    } else {
+        if (func_80050B20(D_80067020[6], g_Spyro.m_0x26C) != 0) {
+            func_80050A40(g_Spyro.m_0x26C);
+            g_Spyro.m_0x26C = -1;
+        }
+    }
+
+    if (g_Spyro.m_0x278 != g_Spyro.m_animationFrame_0x16) {
+        switch (g_Spyro.m_0x14) {
+        case 1:
+            if (g_Spyro.m_animationFrame_0x16 == 5 || g_Spyro.m_animationFrame_0x16 == 13) {
+                int surface = g_Spyro.m_0x114 >> 6;
+
+                func_800506AC(nullptr, D_800602B4[D_80066F54][surface], 0);
+                g_Spyro.m_0x278 = g_Spyro.m_animationFrame_0x16;
+            }
+            break;
+
+        case 2:
+            if (g_Spyro.m_animationFrame_0x16 == 7 ||
+                g_Spyro.m_animationFrame_0x16 == 9 ||
+                g_Spyro.m_animationFrame_0x16 == 0x11 ||
+                g_Spyro.m_animationFrame_0x16 == 0) {
+                int surface = g_Spyro.m_0x114 >> 6;
+
+                func_800506AC(nullptr, D_800602B4[D_80066F54][surface], 0);
+                g_Spyro.m_0x278 = g_Spyro.m_animationFrame_0x16;
+            }
+            break;
+
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+        case 10:
+        case 11:
+        case 12:
+            if (D_80066FC4 != nullptr) {
+                D_80066FC4();
+            }
+            break;
+
+        case 13:
+            if (g_Spyro.m_animationFrame_0x16 == 2 || g_Spyro.m_animationFrame_0x16 == 5) {
+                result = func_80050720(
+                    D_80067020[0x12],
+                    nullptr,
+                    0
+                );
+
+                g_Spyro.m_0x278 = g_Spyro.m_animationFrame_0x16;
+
+                if (result >= 0 && g_Spyro.m_animationFrame_0x16 == 5) {
+                    func_80050CF4(result, 0xC00);
+                    func_80050C64(result, 0xE00);
+                }
+            }
+            break;
+
+        case 14:
+        case 15:
+        case 16:
+        case 17:
+        case 18:
+        case 19:
+        case 20:
+        case 21:
+            if (D_80066FC4 != nullptr) {
+                D_80066FC4();
+            }
+            break;
+
+        case 22:
+            if (g_Spyro.m_animationFrame_0x16 == 2 || g_Spyro.m_animationFrame_0x16 == 12) {
+                int surface = g_Spyro.m_0x114 >> 6;
+
+                func_800506AC(nullptr, D_800602B4[D_80066F54][surface], 0);
+                g_Spyro.m_0x278 = g_Spyro.m_animationFrame_0x16;
+            }
+            break;
+
+        case 23:
+        case 24:
+        case 25:
+        case 26:
+        case 27:
+        case 28:
+        case 29:
+        case 30:
+            if (D_80066FC4 != nullptr) {
+                D_80066FC4();
+            }
+            break;
+
+        case 31:
+            break;
+
+        default:
+            if (D_80066FC4 != nullptr) {
+                D_80066FC4();
+            }
+            break;
+        }
+    }
+
+    if (g_Spyro.m_animationFrame_0x16 != g_Spyro.m_0x278) {
+        g_Spyro.m_0x278 = -1;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800350D0);
 

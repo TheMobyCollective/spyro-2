@@ -65,4 +65,13 @@ extern int  D_800698F8;
 extern unsigned char **D_80066F24;
 extern unsigned char D_80062868[];
 
+extern void (*D_80067074)(void);
+extern void (*D_800670FC)(int, int, int, int);
+
+extern int D_800683A0;
+
+extern void (*D_80066FC4)(void);
+extern unsigned char D_800602B4[][4];
+
+
 #endif
