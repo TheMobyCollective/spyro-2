@@ -1257,7 +1257,7 @@ void func_8002BE04(void) {
 
     if (func_8003CE94(&rotatedPoint, &unrotatedPoint) != 0) {
         if ((signed char)func_8001B4B8(
-                D_8006AB90,
+                D_8006AB88.z,
                 func_8001BA20(&D_8006AB88, 0),
                 0
             ) >= 0x17) {
@@ -1416,7 +1416,7 @@ void func_8002CC88(void) {
             collisionAngle = func_8001BA20(&D_8006AB88, 0);
 
             collisionAngle = (signed char)func_8001B4B8(
-                D_8006AB90,
+                D_8006AB88.z,
                 collisionAngle,
                 0
             );
@@ -1827,7 +1827,7 @@ void func_8002D7F8(void) {
             (Vector3D *)collisionScratch.positiveOffsetMatrix,
             (Vector3D *)collisionScratch.negativeOffsetMatrix
         ) != 0 &&
-        (collisionData = &D_8006AB90,
+        (collisionData = &D_8006AB88.z,
          *collisionData > 0)) {
 
         func_8001BE00(
