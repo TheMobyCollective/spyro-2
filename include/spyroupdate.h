@@ -37,9 +37,6 @@ extern int D_80066F54;
 extern unsigned char *D_80067020;
 extern int D_80069894;
 
-extern int D_80068238;
-extern int D_80068370;
-
 extern short D_80061BD8[];
 extern short D_80061C58[];
 
@@ -77,5 +74,17 @@ extern void (*D_80067070)(int arg0);
 
 extern unsigned char D_800683B0[];
 
+extern unsigned char D_80068370;
+extern unsigned char D_80068238;
+
+extern short D_80061C58[];
+extern short D_80061BD8[];
+
+extern int D_800683A0;
+extern int D_800683A4;
+extern int D_8006826C;
+extern int D_8006827C[];
+
+extern int D_80067018;
 
 #endif

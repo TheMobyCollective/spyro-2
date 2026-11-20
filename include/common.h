@@ -189,13 +189,13 @@ typedef struct {
     CollisionObject *m_CollisionObject_0x140; // 0x140; helper result
 
     int m_0x144;                       // 0x144
-    int m_0x148;                       // 0x148
+    Moby *m_0x148;                       // 0x148
     int m_0x14C;                       // 0x14C
     char pad_0x150[0x1C];              // 0x150–0x16B
 
     int m_animationFrame_0x16C;        // 0x16C
-
-    char pad_0x170[0x08];              // 0x170–0x177
+    char pad_0x170[0x04];              // 0x170–0x173
+    int m_0x174;                       // 0x174
     int m_0x178;                       // 0x178
     int m_0x17C;                       // 0x17C
     int m_0x180;                       // 0x180
@@ -209,7 +209,8 @@ typedef struct {
     unsigned char m_0x1BD;             // 0x1BD
     char pad_0x1BE[3];                 // 0x1BE–0x1C0
     unsigned char m_0x1C1;             // 0x1C1
-    char pad_0x1C2[0x12];              // 0x1C2–0x1D3
+    unsigned char m_0x1C2;             // 0x1C2
+    char pad_0x1C3[0x11];              // 0x1C3–0x1D3
 
     int m_0x1D4;                       // 0x1D4
     int m_0x1D8;                       // 0x1D8
@@ -232,7 +233,11 @@ typedef struct {
     void *m_0x218;                     // 0x218–0x21B; temporary input pointer
     Vector3D m_Vector_0x21C;           // 0x21C–0x227; passed to func_8001BDA0
 
-    char pad_0x228[0x04];              // 0x228–0x22B
+    unsigned char m_0x228;             // 0x228
+    unsigned char m_0x229;             // 0x229
+    unsigned char m_0x22A;             // 0x22A
+    char pad_0x22B;                    // 0x22B
+    
     Vector3D m_Vector_0x22C;           // 0x22C–0x237; copied into the position at 0x00
 
     int m_0x238;                       // 0x238; copied to Camera + 0x6C
@@ -259,6 +264,7 @@ typedef struct {
     int m_0x29C;                       // 0x29C; reset to -1
     Vector3D m_Vector_0x2A0[3];        // 0x2A0–0x2C3; three source vectors
 } Spyro;
+
 
 
 extern Spyro g_Spyro;

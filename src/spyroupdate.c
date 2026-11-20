@@ -11,6 +11,7 @@ extern void func_8001BDCC(Vector3D *destination, Vector3D *source, Vector3D *off
 void func_8002A164(void);
 void func_8002A4C8(void);
 void func_8002A78C(void);
+void func_80030C94(void);
 void func_800313E4(void);
 void func_80031E4C(void);
 void func_800327F0(void);
@@ -19,6 +20,7 @@ void func_8003305C(int frameIndex, Vector3D *outputVector);
 void func_800347A4(void);
 void func_80034E0C(void);
 void func_800350D0(int arg0);
+
 
 // https://decomp.me/scratch/ZlfJs
 //INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002A07C);
@@ -2444,7 +2446,338 @@ void func_80030A6C(void) {
     g_Spyro.m_0x200 = 6;
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80030C94);
+// https://decomp.me/scratch/UyO4f
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80030C94);
+void func_80030C94(void) {
+    Vector3D movementAdjustment;
+    Vector3D movementDelta;
+    Vector3D targetDirection;
+    char pad[2]; // Required to preserve the matching stack-frame layout.
+
+    int headingDifference;
+    int headingTableIndex;
+    int distance;
+    int flagEntryIndex;
+    int currentSpyroState;
+
+    int sourceFlagWord;
+    int currentFlagWord;
+    int loopCount;
+
+    int flagEntryCount;
+    int *flagEntry;
+
+    int *destination;
+    int *end;
+    int sourceOffsetBytes;
+
+    unsigned char *inputFieldAddress;
+    Vector3D *inputVector;
+
+    // Process the flagged updates when the update mask is active.
+    if ((g_Spyro.m_0x20C & 0x10000000) != 0) {
+
+        if ((g_Spyro.m_0x20C & 0x2) != 0) {
+            func_80012B1C(&D_80068370, &D_80068238);
+
+            g_Spyro.m_0x240 = 1;
+            g_Spyro.m_0x1C1 = 0;
+        }
+
+        if ((g_Spyro.m_0x20C & 0x4000) != 0) {
+            func_80012B1C(&D_80068370, &D_80068238);
+        }
+
+        if ((g_Spyro.m_0x20C & 0x8) != 0) {
+            func_8001BDB0(
+                &movementAdjustment,
+                &g_Spyro.m_Vector_0x21C
+            );
+
+            func_8001BD20(&movementAdjustment, 6);
+
+            func_8001BDCC(
+                &g_Spyro.m_Vector_0x7C,
+                &g_Spyro.m_Vector_0x7C,
+                &movementAdjustment
+            );
+
+            g_Spyro.m_Vector_0x64.z =
+                (g_Spyro.m_Vector_0x64.z + (signed char)g_Spyro.m_0x22A) & 0xFFF;
+        }
+
+        if ((g_Spyro.m_0x20C & 0x10) != 0) {
+            if (g_Spyro.m_0x50 != 0x14) {
+                func_800351D8(0x14);
+            }
+        }
+
+        if ((g_Spyro.m_0x20C & 0x20) != 0) {
+            if (g_Spyro.m_0x58 != 0xE &&
+                g_Spyro.m_0x58 != 0x6 &&
+                g_Spyro.m_0x58 != 0x9) {
+                func_800351D8(0x12);
+            }
+        }
+
+        if ((g_Spyro.m_0x20C & 0x40) != 0) {
+            func_80012B1C(&D_80068370, &D_80068238);
+
+            if ((g_Spyro.m_0x210 & 0x40) == 0) {
+                func_8001BE00(
+                    &movementDelta,
+                    &g_Spyro.m_Position,
+                    &g_Spyro.m_Vector_0x22C
+                );
+
+                if (func_8001BA20(&movementDelta, 0) < 0x100 &&
+                    g_Spyro.m_0xBC < 0x640) {
+                    g_Spyro.m_0x214 = 1;
+                }
+            }
+
+            inputFieldAddress = (unsigned char *)&g_Spyro.m_0x218;
+            inputVector = *(Vector3D **)inputFieldAddress;
+
+            if (inputVector != nullptr) {
+                inputVector++;
+                inputFieldAddress += 0x14;
+
+                func_800315BC(
+                    (Vector3D *)inputFieldAddress,
+                    inputVector
+                );
+            } else {
+                inputFieldAddress += 0x14;
+
+                func_800315BC(
+                    (Vector3D *)inputFieldAddress,
+                    inputVector
+                );
+            }
+
+            g_Spyro.m_0x240 = 1;
+            g_Spyro.m_0x1C1 = 0;
+        }
+
+        if ((g_Spyro.m_0x20C & 0x80) != 0) {
+            if (g_Spyro.m_0x58 != 0x8 &&
+                g_Spyro.m_0x50 != g_Spyro.m_0x23C) {
+                func_800351D8(g_Spyro.m_0x23C);
+            }
+        }
+
+        if ((g_Spyro.m_0x20C & 0x100) != 0) {
+            func_80012B1C(&D_80068370, &D_80068238);
+
+            func_80031960(&g_Spyro.m_Vector_0x22C);
+
+            g_Spyro.m_0x240 = 1;
+            g_Spyro.m_0x1C1 = 0;
+        }
+
+        if ((g_Spyro.m_0x20C & 0x400) != 0) {
+            func_8001BDB0(
+                &g_Spyro.m_Vector_0x94,
+                &g_Spyro.m_Vector_0x21C
+            );
+
+            func_8001BD20(&g_Spyro.m_Vector_0x94, 6);
+
+            func_8001BDB0(
+                &g_Spyro.m_Vector_0x88,
+                &g_Spyro.m_Vector_0x94
+            );
+        }
+
+        // Adjust the heading using the secondary input vector.
+        if ((g_Spyro.m_0x20C & 0x800) != 0) {
+            func_8001BE00(
+                &targetDirection,
+                (Vector3D *)g_Spyro.m_0x218 + 1,
+                &g_Spyro.m_Position
+            );
+
+            headingDifference = func_8001B4B8(
+                targetDirection.x,
+                targetDirection.y,
+                1
+            );
+
+            headingDifference =
+                (headingDifference - g_Spyro.m_Vector_0x64.z) & 0xFFF;
+
+            headingTableIndex = headingDifference >> 4;
+
+            targetDirection.x = (D_80061C58[headingTableIndex] * 13) >> 5;
+            targetDirection.y = (D_80061BD8[headingTableIndex] * 13) >> 5;
+            targetDirection.z = 0x200;
+
+            func_8001BDCC(
+                &targetDirection,
+                &targetDirection,
+                (Vector3D *)g_Spyro.m_0x218 + 1
+            );
+
+            if (headingDifference >= 0x801) {
+                headingDifference -= 0x1000;
+            }
+
+            headingDifference >>= 3;
+
+            if (headingDifference >= 0x21) {
+                headingDifference = 0x20;
+            }
+
+            if (headingDifference < -0x20) {
+                headingDifference = -0x20;
+            }
+
+            g_Spyro.m_0x240 = 1;
+            g_Spyro.m_0x1C1 = 0;
+
+            g_Spyro.m_Vector_0x64.z += headingDifference;
+
+            func_8001BE00(
+                &targetDirection,
+                &targetDirection,
+                &g_Spyro.m_Position
+            );
+
+            distance = func_8001BA20(&targetDirection, 1);
+
+            if (distance >= 0x81) {
+                if (distance >= 0x1001) {
+                    func_8001BCC4(&targetDirection, distance, 0x1000);
+                }
+
+                func_8001BDCC(
+                    &g_Spyro.m_Vector_0x7C,
+                    &g_Spyro.m_Vector_0x7C,
+                    &targetDirection
+                );
+            }
+        }
+
+        if ((g_Spyro.m_0x20C & 0x2000) != 0) {
+            g_Spyro.m_0x260 = 1;
+        }
+
+        if ((g_Spyro.m_0x20C & 0x8000) != 0) {
+            func_80012B1C(&D_80068370, &D_80068238);
+
+            g_Spyro.m_0x240 = 1;
+            g_Spyro.m_0x1C1 = 0;
+
+            if (g_Spyro.m_0x50 != g_Spyro.m_0x23C) {
+                func_800351D8(g_Spyro.m_0x23C);
+            }
+
+            func_8001BDB0(
+                &g_Spyro.m_Position,
+                &g_Spyro.m_Vector_0x22C
+            );
+
+            g_Spyro.m_Vector_0x64.x = g_Spyro.m_0x228 << 4;
+            g_Spyro.m_Vector_0x64.y = g_Spyro.m_0x229 << 4;
+            g_Spyro.m_Vector_0x64.z = g_Spyro.m_0x22A << 4;
+        }
+
+        if ((g_Spyro.m_0x20C & 0x10000) != 0) {
+            g_Spyro.m_0x105 = 1;
+        }
+
+        if ((g_Spyro.m_0x20C & 0x20000) != 0) {
+            if (g_Spyro.m_0x58 != 0) {
+                func_800351D8(0);
+            }
+
+            flagEntryIndex = 0;
+
+            flagEntry = (int *)&D_800683A0;
+            flagEntryCount = D_80067018;
+
+            *flagEntry |= 0x10;
+
+            // Set the 0x10 flag in each 16-byte entry.
+            if (flagEntryCount > 0) {
+                do {
+                    flagEntry += 4;
+                    *flagEntry |= 0x10;
+                    flagEntryIndex++;
+                } while (flagEntryIndex < flagEntryCount);
+            }
+
+            func_80012B1C(&D_80068370, &D_80068238);
+
+            sourceFlagWord = D_8006826C;
+            currentFlagWord = D_800683A4;
+            loopCount = D_80067018;
+
+            D_800683A4 = currentFlagWord | (sourceFlagWord & 0x20);
+
+            // Copy the 0x20 flag from each source entry to its corresponding destination entry.
+            if (loopCount > 0) {
+                destination = (int *)((unsigned char *)&D_80068370 + 0x44);
+                sourceOffsetBytes = 0;
+                end = (int *)((unsigned char *)destination + (loopCount << 4));
+
+                do {
+                    *destination |=
+                        *(int *)((unsigned char *)&D_8006827C + sourceOffsetBytes) & 0x20;
+
+                    destination += 4;
+                    sourceOffsetBytes += 0x10;
+
+                } while ((int)destination < (int)end);
+            }
+
+            g_Spyro.m_0x1C1 = 1;
+            g_Spyro.m_0x240 = 1;
+        }
+
+    } else {
+        currentSpyroState = g_Spyro.m_0x50;
+
+        g_Spyro.m_0x20C = 0;
+        g_Spyro.m_0x214 = 0;
+        g_Spyro.m_0x240 = 0;
+
+        switch (currentSpyroState) {
+            case 0:
+            case 7:
+            case 14:
+            case 19:
+            case 37:
+            case 38:
+            case 39:
+            case 41:
+            case 44:
+            case 47:
+            case 53:
+            case 54:
+                if (g_Spyro.m_0x1C2 != 0) {
+                    if ((*(int *)&D_800683A0 & 0x10) == 0) {
+                        g_Spyro.m_0x1C2 = 0;
+                        g_Spyro.m_0x1C1 = 1;
+                    }
+                } else {
+                    g_Spyro.m_0x1C1 = 1;
+                }
+                break;
+
+            case 46:
+                g_Spyro.m_0x1C2 = 1;
+                g_Spyro.m_0x1C1 = 0;
+                break;
+
+            default:
+                g_Spyro.m_0x1C2 = 0;
+                g_Spyro.m_0x1C1 = 0;
+                break;
+        }
+    }
+}
 
 // https://decomp.me/scratch/lXc34
 //INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800313E4);
