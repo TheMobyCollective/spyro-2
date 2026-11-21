@@ -2292,6 +2292,7 @@ INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002F08C);
 // https://decomp.me/scratch/99rQu
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002F7A8);
 
+// https://decomp.me/scratch/GNcf0
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002FC20);
 
 // https://decomp.me/scratch/ibqi2
@@ -2340,7 +2341,15 @@ void func_800308D4(void) {
     g_Spyro.m_Rotation_0x10.yaw = g_Spyro.m_0x180 >> 4;
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80030A14);
+// https://decomp.me/scratch/pP1O7
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80030A14);
+void func_80030A14(void) {
+    g_Spyro.m_0x18 = g_Spyro.m_0x14;
+    g_Spyro.m_0x19 = g_Spyro.m_0x15;
+    g_Spyro.m_0x1A = g_Spyro.m_animationFrame_0x16;
+    g_Spyro.m_0x1B = g_Spyro.m_0x17;
+    g_Spyro.m_0x1D = g_Spyro.m_0x1C;
+}
 
 // https://decomp.me/scratch/2pBX2
 //INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80030A6C);
