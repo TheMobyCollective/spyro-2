@@ -280,7 +280,7 @@
 - [x] func_8002DED0
 - [x] func_8002E00C
 - [x] func_8002E2BC
-- [ ] func_8002E304
+- [x] func_8002E304
 - [ ] func_8002E3F8
 - [ ] func_8002E440
 - [ ] func_8002E568

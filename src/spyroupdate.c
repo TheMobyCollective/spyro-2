@@ -11,6 +11,9 @@ extern void func_8001BDCC(Vector3D *destination, Vector3D *source, Vector3D *off
 void func_8002A164(void);
 void func_8002A4C8(void);
 void func_8002A78C(void);
+void func_8002E304(void);
+void func_8002E64C(void);
+void func_80030A14(void);
 void func_80030C94(void);
 void func_800313E4(void);
 void func_80031E4C(void);
@@ -20,6 +23,7 @@ void func_8003305C(int frameIndex, Vector3D *outputVector);
 void func_800347A4(void);
 void func_80034E0C(void);
 void func_800350D0(int arg0);
+
 
 
 // https://decomp.me/scratch/ZlfJs
@@ -2267,7 +2271,38 @@ void func_8002E2BC(void) {
 }
 
 // https://decomp.me/scratch/O1eJr
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002E304);
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002E304);
+void func_8002E304(void) {
+    int stackPadding[2];
+    int i;
+
+    i = 0;
+
+    if (D_80067018 > 0) {
+        do {
+            if (g_Spyro.m_0x1F0 != 0 ||
+                g_Spyro.m_0x50 != g_Spyro.m_0x1EC) {
+                func_8002E64C();
+            } else {
+                func_8002E440();
+            }
+
+            if (g_Spyro.m_animationFrame_0x16C == g_Spyro.m_0x1FC) {
+                if (g_Spyro.m_0x200 == 0) {
+                    func_8002EB00();
+                } else if (g_Spyro.m_0x200 == 6) {
+                    func_80030A14();
+                } else {
+                    func_8002EBC8();
+                }
+            } else {
+                func_8002EBC8();
+            }
+
+            i++;
+        } while (i < D_80067018);
+    }
+}
 
 // https://decomp.me/scratch/oeHZZ
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002E3F8);
