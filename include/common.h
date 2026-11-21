@@ -143,8 +143,8 @@ typedef struct {
     int m_0x54;                        // 0x54
     int m_0x58;                        // 0x58
     int m_0x5C;                        // 0x5C
-
-    char pad_0x60[0x04];               // 0x60–0x63
+    int m_0x60;                        // 0x60–0x63
+    
     Vector3D m_Vector_0x64;            // 0x64–0x6F components shifted right 4 into 0x0C–0x0E
     Vector3D m_Vector_0x70;            // 0x70–0x7B; smoothed movement vector
     Vector3D m_Vector_0x7C;            // 0x7C–0x87; working movement vector
@@ -264,8 +264,6 @@ typedef struct {
     int m_0x29C;                       // 0x29C; reset to -1
     Vector3D m_Vector_0x2A0[3];        // 0x2A0–0x2C3; three source vectors
 } Spyro;
-
-
 
 extern Spyro g_Spyro;
 

@@ -2278,7 +2278,169 @@ INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002E440);
 // https://decomp.me/scratch/U3nAH
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002E568);
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002E64C);
+// https://decomp.me/scratch/vpz2D
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002E64C);
+void func_8002E64C(void) {
+    unsigned char action;
+    int previousState;
+    int currentState;
+
+    // Handle the special transition states.
+    if (g_Spyro.m_0x1F0 != 0) {
+        switch (g_Spyro.m_0x1F0) {
+            case 4:
+                previousState = g_Spyro.m_0x1EC;
+                currentState = g_Spyro.m_0x50;
+
+                action = D_8006042C[previousState][currentState];
+
+                if (action == 4 || action == 5 ||
+                    currentState == previousState) {
+                    func_8002E568();
+                    return;
+                }
+
+                break;
+
+            case 5:
+                if (D_80062868[g_Spyro.m_0x1C] >= 0x60) {
+                    g_Spyro.m_0x14 = g_Spyro.m_0x15;
+                    g_Spyro.m_animationFrame_0x16 = g_Spyro.m_0x17;
+                }
+
+                g_Spyro.m_0x1C = 0x71;
+                g_Spyro.m_0x17 = D_80060335[g_Spyro.m_0x14 * 4];
+                g_Spyro.m_0x1F0 = 4;
+
+                return;
+
+            default:
+                break;
+        }
+    }
+
+    // Handle the default transition.
+    if (g_Spyro.m_0x1EC == g_Spyro.m_0x50) {
+        return;
+    }
+
+    // Look up the action for the previous-to-current state transition.
+    action = D_8006042C[g_Spyro.m_0x1EC][g_Spyro.m_0x50];
+
+    switch (action) {
+        case 1: {
+            int currentState;
+
+            if (D_80062868[g_Spyro.m_0x1C] >= 0x60) {
+                g_Spyro.m_0x14 = g_Spyro.m_0x15;
+                g_Spyro.m_animationFrame_0x16 = g_Spyro.m_0x17;
+            }
+
+            currentState = g_Spyro.m_0x50;
+
+            g_Spyro.m_0x17 = 0;
+            g_Spyro.m_0x1C = 0x71;
+
+            g_Spyro.m_0x1F0 = 0;
+            g_Spyro.m_0x15 = currentState;
+            g_Spyro.m_0x1EC = currentState;
+
+            break;
+        }
+
+        case 2: {
+            int currentState;
+
+            currentState = g_Spyro.m_0x50;
+
+            g_Spyro.m_animationFrame_0x16 = 0;
+            g_Spyro.m_0x14 = currentState;
+            g_Spyro.m_0x15 = currentState;
+
+            if (currentState == 0x1A) {
+                g_Spyro.m_0x17 = 0;
+                g_Spyro.m_0x1C = 0;
+            } else {
+                g_Spyro.m_0x17 = 1;
+
+                g_Spyro.m_0x1C =
+                    (*(int *)(D_80066F24[(unsigned char)currentState] + 0x14) >> 14) & 0xF0;
+            }
+
+            g_Spyro.m_0x1F0 = 0;
+            g_Spyro.m_0x1EC = g_Spyro.m_0x50;
+
+            break;
+        }
+
+        case 3:
+            if (D_80062868[g_Spyro.m_0x1C] >= 0x60) {
+                g_Spyro.m_animationFrame_0x16 = g_Spyro.m_0x17;
+                g_Spyro.m_0x17++;
+
+                if (g_Spyro.m_0x17 >=
+                    D_80060335[g_Spyro.m_0x14 * 4]) {
+                    g_Spyro.m_0x17 = D_80060334[g_Spyro.m_0x14 * 4];
+                }
+            }
+
+            g_Spyro.m_0x1C = 0x31;
+            g_Spyro.m_0x1F0 = 0;
+            g_Spyro.m_0x15 = g_Spyro.m_0x50;
+            g_Spyro.m_0x1EC = g_Spyro.m_0x50;
+
+            break;
+
+        case 4:
+            g_Spyro.m_0x1F0 = 4;
+            func_8002E568();
+            break;
+
+        case 5:
+            if (D_80062868[g_Spyro.m_0x1C] >= 0x60) {
+                g_Spyro.m_0x14 = g_Spyro.m_0x15;
+                g_Spyro.m_animationFrame_0x16 = g_Spyro.m_0x17;
+            }
+
+            g_Spyro.m_0x1C = 0x71;
+
+            if (g_Spyro.m_0x1EC == 6 &&
+                g_Spyro.m_0x60 < 0x18) {
+                g_Spyro.m_0x17 = 1;
+                g_Spyro.m_0x1F0 = 0;
+                g_Spyro.m_0x15 = g_Spyro.m_0x50;
+                g_Spyro.m_0x1EC = g_Spyro.m_0x50;
+            } else {
+                g_Spyro.m_0x17 = D_80060335[g_Spyro.m_0x14 * 4];
+                g_Spyro.m_0x1F0 = 4;
+            }
+
+            break;
+
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+            break;
+
+        case 10:
+            if (D_80062868[g_Spyro.m_0x1C] >= 0x60) {
+                g_Spyro.m_0x14 = g_Spyro.m_0x15;
+                g_Spyro.m_animationFrame_0x16 = g_Spyro.m_0x17;
+            }
+
+            g_Spyro.m_0x15 = g_Spyro.m_0x50;
+            g_Spyro.m_0x17 = D_80060334[(g_Spyro.m_0x50 & 0xFF) * 4];
+            g_Spyro.m_0x1C = 0x71;
+            g_Spyro.m_0x1EC = g_Spyro.m_0x50;
+            g_Spyro.m_0x1F0 = 0;
+
+            break;
+
+        default:
+            break;
+    }
+}
 
 // https://decomp.me/scratch/wYROl
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002EB00);
