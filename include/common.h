@@ -100,57 +100,169 @@ typedef struct Moby {
     Colour colour;                   // 0x54
 } Moby;
 
+/*
+ * CollisionObject layout is provisional; only m_0x53 is currently identified.
+ * Used by func_8001E454 and func_8001F618.
+ */
+typedef struct CollisionObject {
+    unsigned char pad_0x00[0x0C];
+    Vector3D m_Vector_0x0C;       // 0x0C–0x17
+    unsigned char pad_0x18[0x3B]; // 0x18–0x52
+    unsigned char m_0x53;         // 0x53
+} CollisionObject;
+
 typedef struct {
-    Vector3D m_Vector_0x00;       // 0x00–0x0B
-    char pad_0x0C[0x44];          // 0x0C–0x4F
+    Vector3D m_Position;               // 0x00–0x0B
 
-    int m_0x50;                   // 0x50; tested against 6
-    int m_0x54;                   // 0x54; tested against 1
-    int m_0x58;                   // 0x58; tested against states 0xB and 0xA
+    Angle m_Rotation_0x0C;             // 0x0C–0x0E First Euler-angle rotation
+    char pad_0x0F[0x01];               // 0x0F
+    Angle m_Rotation_0x10;             // 0x10–0x12 Second Euler-angle rotation
+    char pad_0x13;                     // 0x13
 
-    char pad_0x5C[0x0C];          // 0x5C–0x67
-    int m_0x68;                   // 0x68
-    int m_0x6C;                   // 0x6C; copied to Camera and passed as an argument
+    unsigned char m_0x14;              // 0x14; state used by func_80034E0C
+    unsigned char m_0x15;              // 0x15; animation index
+    unsigned char m_animationFrame_0x16; // 0x16; byte state used by func_80034E0C
+    unsigned char m_0x17;              // 0x17; animation frame/index
 
-    char pad_0x70[0x24];          // 0x70–0x93
-    Vector3D m_Vector_0x94;       // 0x94–0x9F
-    Vector3D m_Vector_0xA0;       // 0xA0–0xAB
+    unsigned char m_0x18;              // 0x18; saved animation index
+    unsigned char m_0x19;              // 0x19; current animation index
+    unsigned char m_0x1A;              // 0x1A; saved animation frame
+    unsigned char m_0x1B;              // 0x1B; current animation frame
+    unsigned char m_0x1C;              // 0x1C; unknown
+    unsigned char m_0x1D;              // 0x1D; animation progress/state; indexes D_80062868
+    unsigned char m_0x1E;              // 0x1E
+    char pad_0x1F[0x05];               // 0x1F–0x23
 
-    char pad_0xAC[0xC0];          // 0xAC–0x16B
-    int m_0x16C;                  // 0x16C
+    int m_0x24;                        // 0x24–0x27; flag bits
+    int m_0x28;                        // 0x28–0x2B
+    int m_0x2C;                        // 0x2C–0x2F
+    SHORTMATRIX m_RotationMatrix_0x30;  // 0x30–0x43 First rotation matrix
+    char pad_0x44[0x0C];               // 0x44–0x4F
 
-    char pad_0x170[0x14];         // 0x170–0x183
-    Vector3D m_Vector_0x184;      // 0x184–0x18F; provisional grouping
-    char pad_0x190[0x31];         // 0x190–0x1C0
+    int m_0x50;                        // 0x50
+    int m_0x54;                        // 0x54
+    int m_0x58;                        // 0x58
+    int m_0x5C;                        // 0x5C
+    int m_0x60;                        // 0x60–0x63
+    
+    Vector3D m_Vector_0x64;            // 0x64–0x6F components shifted right 4 into 0x0C–0x0E
+    Vector3D m_Vector_0x70;            // 0x70–0x7B; smoothed movement vector
+    Vector3D m_Vector_0x7C;            // 0x7C–0x87; working movement vector
+    Vector3D m_Vector_0x88;            // 0x88–0x93
+    Vector3D m_Vector_0x94;            // 0x94–0x9F
+    Vector3D m_Vector_0xA0;            // 0xA0–0xAB
 
-    unsigned char m_0x1C1;        // 0x1C1
-    char pad_0x1C2[0x16];         // 0x1C2–0x1D7
+    int m_0xAC;                        // 0xAC; 12-bit camera-relative movement angle
+    int m_0xB0;                        // 0xB0; unknown
+    int m_0xB4;                        // 0xB4; scaled movement magnitude/speed
+    int m_0xB8;                        // 0xB8; current smoothed movement magnitude/speed
 
-    int m_0x1D8;                  // 0x1D8
-    int m_0x1DC;                  // 0x1DC
+    int m_0xBC;                        // 0xBC; calculated vector magnitude
+    int m_0xC0;                        // 0xC0; state/flag
+    int m_0xC4;                        // 0xC4; incremented each invocation
+    Vector3D m_Vector_0xC8;            // 0xC8–0xD3
+    Vector3D m_Vector_0xD4;            // 0xD4–0xDF
+    Vector3D m_Vector_0xE0;            // 0xE0–0xEB
 
-    char pad_0x1E0[0x04];         // 0x1E0–0x1E3
-    int m_0x1E4;                  // 0x1E4
+    int m_0xEC;                        // 0xEC–0xEF
+    Vector3D m_Vector_0xF0;            // 0xF0–0xFB
+    int m_0xFC;                        // 0xFC–0xFF
+    int m_0x100;                       // 0x100–0x103; loaded from D_800601B4
+    unsigned char m_0x104;             // 0x104
+    unsigned char m_0x105;             // 0x105
+    unsigned char m_0x106;             // 0x106; existing flag; set when vector magnitude thresholds are met
+    unsigned char m_0x107;             // 0x107
+    unsigned char m_0x108;             // 0x108
+    unsigned char m_0x109;             // 0x109; angular-state flag
+    char pad_0x10A[0x06];              // 0x10A–0x10F
 
-    char pad_0x1E8[0x24];         // 0x1E8–0x20B
-    int m_0x20C;                  // 0x20C; flag bits are tested and set
+    int m_0x110;                       // 0x110; initialised to -1
+    int m_0x114;                       // 0x114; initialised to -1
+    int m_0x118;                       // 0x118; initialised to -1
 
-    int m_0x210;                  // 0x210–0x213
-    char pad_0x214[0x08];         // 0x214–0x21B
-    Vector3D m_Vector_0x21C;      // 0x21C–0x227; passed to func_8001BDA0
+    Vector3D m_Vector_0x11C;           // 0x11C–0x127
+    int m_0x128;                       // 0x128–0x12B; backup of m_0x114
+    Vector3D m_Vector_0x12C;           // 0x12C–0x137
 
-    char pad_0x228[0x04];         // 0x228–0x22B
-    Vector3D m_Vector_0x22C;      // 0x22C–0x237; copied into the position at 0x00
+    int m_0x138;                       // 0x138
+    int m_0x13C;                       // 0x13C; cached angle
+    CollisionObject *m_CollisionObject_0x140; // 0x140; helper result
 
-    int m_0x238;                  // 0x238; copied to Camera + 0x6C
-    int m_0x23C;                  // 0x23C; tested against 0x29
-    int m_0x240;                  // 0x240
+    int m_0x144;                       // 0x144
+    Moby *m_0x148;                       // 0x148
+    int m_0x14C;                       // 0x14C
+    char pad_0x150[0x1C];              // 0x150–0x16B
 
-    char pad_0x244[0x14];         // 0x244–0x257
-    int m_0x258;                  // 0x258; negative values are cleared
-    char pad_0x25C[0x04];         // 0x25C–0x25F
+    int m_animationFrame_0x16C;        // 0x16C
+    char pad_0x170[0x04];              // 0x170–0x173
+    int m_0x174;                       // 0x174
+    int m_0x178;                       // 0x178
+    int m_0x17C;                       // 0x17C
+    int m_0x180;                       // 0x180
+    Vector3D m_Vector_0x184;           // 0x184–0x18F; provisional grouping
 
-    int m_0x260;                  // 0x260
+    int m_0x190;                       // 0x190
+    int m_0x194;                       // 0x194
+    int m_0x198;                       // 0x198
+    SHORTMATRIX m_RotationMatrix_0x19C; // 0x19C–0x1AF Second rotation matrix, overwritten with combined result
+    char pad_0x1B0[0xD];               // 0x1B0–0x1BC
+    unsigned char m_0x1BD;             // 0x1BD
+    char pad_0x1BE[3];                 // 0x1BE–0x1C0
+    unsigned char m_0x1C1;             // 0x1C1
+    unsigned char m_0x1C2;             // 0x1C2
+    char pad_0x1C3[0x11];              // 0x1C3–0x1D3
+
+    int m_0x1D4;                       // 0x1D4
+    int m_0x1D8;                       // 0x1D8
+    int m_0x1DC;                       // 0x1DC
+
+    char pad_0x1E0[0x04];              // 0x1E0–0x1E3
+    int m_0x1E4;                       // 0x1E4-0x1E7
+    int m_0x1E8;                       // 0x1E8–0x1EB
+    int m_0x1EC;                       // 0x1EC–0x1EF
+    int m_0x1F0;                       // 0x1F0–0x1F3
+    int m_0x1F4;                       // 0x1F4–0x1F7    
+    int m_0x1F8;                       // 0x1F8–0x1FB
+    
+    int m_0x1FC;                       // 0x1FC–0x1FF; animation transition index
+    int m_0x200;                       // 0x200–0x203; animation transition state
+    char pad_0x204[0x08];              // 0x204–0x20B
+    int m_0x20C;                       // 0x20C; flag bits are tested and set
+    int m_0x210;                       // 0x210–0x213
+    int m_0x214;                       // 0x214–0x217; state (values 0, 1, 2)
+    void *m_0x218;                     // 0x218–0x21B; temporary input pointer
+    Vector3D m_Vector_0x21C;           // 0x21C–0x227; passed to func_8001BDA0
+
+    unsigned char m_0x228;             // 0x228
+    unsigned char m_0x229;             // 0x229
+    unsigned char m_0x22A;             // 0x22A
+    char pad_0x22B;                    // 0x22B
+    
+    Vector3D m_Vector_0x22C;           // 0x22C–0x237; copied into the position at 0x00
+
+    int m_0x238;                       // 0x238; copied to Camera + 0x6C
+    int m_0x23C;                       // 0x23C; tested against 0x29
+    int m_0x240;                       // 0x240
+    int m_0x244;                       // 0x244–0x247; movement flags
+    Vector3D m_Vector_0x248;           // 0x248–0x253
+    int m_0x254;                       // 0x254–0x257; movement threshold
+    int m_timer_0x258;                       // 0x258; negative values are cleared
+    int m_0x25C;                       // 0x25C–0x25F
+    int m_0x260;                       // 0x260
+    int m_0x264;                       // 0x264
+    int m_0x268;                       // 0x268
+    int m_0x26C;                       // 0x26C
+    int m_0x270;                       // 0x270
+    int m_0x274;                       // 0x274; angular value/sentinel
+    int m_0x278;                       // 0x278
+
+    char pad_0x27C[0x08];              // 0x27C–0x283
+    
+    Vector3D m_Vector_0x284;           // 0x284–0x28F
+    Vector3D m_Vector_0x290;           // 0x290–0x29B
+    
+    int m_0x29C;                       // 0x29C; reset to -1
+    Vector3D m_Vector_0x2A0[3];        // 0x2A0–0x2C3; three source vectors
 } Spyro;
 
 extern Spyro g_Spyro;

@@ -544,7 +544,7 @@ void func_80051704(ActiveSound *sound, SpuVoiceAttr *voiceAttr)
 
     func_8001BE00(
         &relativeVector,
-        &g_Spyro.m_Vector_0x00,
+        &g_Spyro.m_Position,
         &sound->unk28->position
     );
 

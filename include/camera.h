@@ -102,15 +102,6 @@ typedef struct {
 
 extern Camera g_Camera;
 
-/*
- * CollisionObject layout is provisional; only m_0x53 is currently identified.
- * Used by func_8001E454 and func_8001F618.
- */
-typedef struct CollisionObject {
-    unsigned char pad_0x00[0x53];
-    unsigned char m_0x53;
-} CollisionObject;
-
 
 /* =========================================================================
  * Camera function prototypes
