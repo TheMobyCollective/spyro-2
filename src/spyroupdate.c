@@ -27,7 +27,7 @@ void func_800347A4(void);
 void func_80034E0C(void);
 void func_800350D0(int arg0);
 void func_800351D8(int state);
-
+void func_80035D38();
 
 // https://decomp.me/scratch/ZlfJs
 //INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002A07C);
@@ -4561,7 +4561,7 @@ void func_800351D8(int state) {
                     8,
                     0x21,
                     nullptr,
-                    callbackArgument);
+                    callbackArgument.value);
             }
 
             g_Spyro.m_0x58 = 1;
