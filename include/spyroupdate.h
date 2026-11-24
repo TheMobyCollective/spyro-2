@@ -7,8 +7,6 @@ extern unsigned char D_800602B4[][4];
 
 extern int D_80061A8C;
 extern int D_80061AAC;
-extern short D_80061BD8[];
-extern short D_80061C58[];
 
 extern unsigned char D_80062868[];
 
