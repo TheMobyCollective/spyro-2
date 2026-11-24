@@ -300,7 +300,7 @@
 - [ ] func_80031960
 - [x] func_80031B94
 - [x] func_80031E4C
-- [ ] func_80031EAC
+- [x] func_80031EAC
 - [x] func_800327F0
 - [x] func_800328E8
 - [x] func_80032A90
