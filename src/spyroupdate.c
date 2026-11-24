@@ -1,12 +1,14 @@
 #include "common.h"
 #include "spyroupdate.h"
 #include "camera.h"
+#include "tracers.h"
 
 extern void func_8001BB3C(Vector3D *vector, int targetMagnitude);
 extern void func_8001BCC4(Vector3D *vector, int currentMagnitude, int targetMagnitude);
 extern void func_8001BDB0(Vector3D *destination, Vector3D *source);
 extern void func_8001BDCC(Vector3D *destination, Vector3D *source, Vector3D *offset);
 
+extern Tracer *func_800502FC(void *arg0, int arg1, int arg2, int arg3);
 
 void func_8002A164(void);
 void func_8002A4C8(void);
@@ -3446,11 +3448,11 @@ void func_80031EAC(void) {
     // Maintain the two auxiliary effects while Spyro is in state 6.
     if (g_Spyro.m_0x58 == 6) {
         if (g_Spyro.m_0x27C == nullptr) {
-            g_Spyro.m_0x27C = (unsigned char *)func_800502FC(
+            g_Spyro.m_0x27C = func_800502FC(
                 &g_Spyro.m_Vector_0x284, -3, 6, 0x303030);
         }
         if (g_Spyro.m_0x280 == nullptr) {
-            g_Spyro.m_0x280 = (unsigned char *)func_800502FC(
+            g_Spyro.m_0x280 = func_800502FC(
                 &g_Spyro.m_Vector_0x290, -3, 6, 0x303030);
         }
 
