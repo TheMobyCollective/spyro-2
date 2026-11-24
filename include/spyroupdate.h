@@ -37,7 +37,12 @@ extern void (*D_80067070)(int arg0);
 extern void (*D_80067074)(void);
 
 extern unsigned char *(*D_800670B4)(int arg0, int arg1);
-extern void (*D_800670FC)(int, int, Vector3D *, Vector3D *);
+typedef union {
+    Vector3D *vector;
+    int value;
+} CallbackArgument;
+extern void (*D_800670FC)(int, int, Vector3D *, CallbackArgument);
+extern void (*D_800670A8)(int); 
 
 extern int D_8006712C;
 extern int D_80067178;
@@ -77,5 +82,15 @@ extern unsigned char D_80060334[];
 extern unsigned char D_800698B8;
 extern int D_800681C8; 
 extern unsigned char D_800698CC;
+
+extern void (*D_800670A8)(int); 
+
+extern unsigned char D_8006839D;
+
+extern int D_80068394;
+extern int D_80068398;
+
+extern int D_80068390;
+extern int D_8006838C;
 
 #endif
