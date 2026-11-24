@@ -17,6 +17,7 @@ void func_80030A14(void);
 void func_80030C94(void);
 void func_800313E4(void);
 void func_80031E4C(void);
+void func_80031EAC(void);
 void func_800327F0(void);
 void func_80032E74(void);
 void func_8003305C(int frameIndex, Vector3D *outputVector);
@@ -3207,7 +3208,288 @@ void func_80031E4C(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80031EAC);
+// https://decomp.me/scratch/F5uqV
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80031EAC);
+void func_80031EAC(void) {
+    int spyroState;
+    int waveTableIndex;
+    short waveSample;
+    int waveTableIndex2;
+    short waveSample2;
+    int colorComponent;
+    int spyroZ;
+    unsigned char *effectData;
+    int waveTimer;
+
+    // Enforce a minimum duration while the corresponding flag is active.
+    if (D_800698B8 != 0) {
+        if (g_Spyro.m_0x1D4 < 0x1E) {
+            g_Spyro.m_0x1D4 = 0x1E;
+        }
+    }
+
+    // Clear the timer if Spyro has moved beyond the stored Z threshold.
+    if (D_80069894 < 0) {
+        if (g_Spyro.m_0xC0 == 0) {
+            spyroZ = g_Spyro.m_Position.z;
+            if (g_Spyro.m_0x100 < spyroZ) {
+                g_Spyro.m_0x1C4 = 0;
+            }
+        }
+    }
+
+    // Decrement the active timers by the current frame step.
+    g_Spyro.m_0x1C4 -= D_80067018;
+    if (g_Spyro.m_0x1C4 < 0) g_Spyro.m_0x1C4 = 0;
+
+    g_Spyro.m_0x1D4 -= D_80067018;
+    if (g_Spyro.m_0x1D4 < 0) g_Spyro.m_0x1D4 = 0;
+
+    // On animation frame 6, keep these timers at 1 rather than allowing them to expire.
+    if (g_Spyro.m_0x1D8 != 0 &&
+        g_Spyro.m_animationFrame_0x16C == 6) {
+        g_Spyro.m_0x1D8 -= D_80067018;
+        if (g_Spyro.m_0x1D8 <= 0) g_Spyro.m_0x1D8 = 1;
+    } else {
+        g_Spyro.m_0x1D8 -= D_80067018;
+        if (g_Spyro.m_0x1D8 < 0) g_Spyro.m_0x1D8 = 0;
+    }
+
+    if (g_Spyro.m_0x1DC != 0 &&
+        g_Spyro.m_animationFrame_0x16C == 6) {
+        g_Spyro.m_0x1DC -= D_80067018;
+        if (g_Spyro.m_0x1DC <= 0) g_Spyro.m_0x1DC = 1;
+    } else {
+        g_Spyro.m_0x1DC -= D_80067018;
+        if (g_Spyro.m_0x1DC < 0) g_Spyro.m_0x1DC = 0;
+    }
+
+    if (g_Spyro.m_0x1E4 != 0 &&
+        g_Spyro.m_animationFrame_0x16C == 6) {
+        g_Spyro.m_0x1E4 -= D_80067018;
+        if (g_Spyro.m_0x1E4 <= 0) g_Spyro.m_0x1E4 = 1;
+    } else {
+        g_Spyro.m_0x1E4 -= D_80067018;
+        if (g_Spyro.m_0x1E4 < 0) g_Spyro.m_0x1E4 = 0;
+    }
+
+    g_Spyro.m_0x1E8 -= D_80067018;
+    if (g_Spyro.m_0x1E8 < 0) {
+        g_Spyro.m_0x1E8 = 0;
+    }
+
+    // Reset the active effects for this mode, except for effect 0x2A.
+    if (D_800681C8 == 1) {
+        g_Spyro.m_0x1C4 = 0;
+        if (D_80066F90 != 0x2A) {
+            g_Spyro.m_0x1D4 = 0;
+        }
+        g_Spyro.m_0x1D8 = 0;
+        g_Spyro.m_0x1DC = 0;
+        g_Spyro.m_0x1E4 = 0;
+        g_Spyro.m_0x1E8 = 0;
+    }
+
+    // Resolve the pending action according to Spyro's current state.
+    if (g_Spyro.m_0x1C8 != 0) {
+        spyroState = g_Spyro.m_0x58;
+        if (spyroState == 7 || spyroState == 8 || spyroState == 6 ||
+            g_Spyro.m_0x1C4 == 0) {
+            g_Spyro.m_0x1C8 = 0;
+        } else if (spyroState == 5 ||
+                   (spyroState == 2 && g_Spyro.m_Vector_0xA0.z < 0)) {
+            func_800351D8(0x21);
+            g_Spyro.m_0x1C8 = 0;
+        } else if (spyroState != 2) {
+            func_800351D8(5);
+            g_Spyro.m_0x14C = 1;
+        }
+    }
+
+    // Process and consume the one-shot effect request.
+    if (g_Spyro.m_0x1D0 != 0) {
+        func_800351D8(0x3D);
+        g_Spyro.m_0x54 = 2;
+    }
+
+    g_Spyro.m_0x1D0 = 0;
+    if (g_Spyro.m_0x1E0 != 0) {
+        func_800351D8(0x1B);
+    }
+
+    // Apply a minimum duration and enable the associated flag.
+    if (D_80069894 >= 0) {
+        if (g_Spyro.m_0x1C4 < 0x1E) g_Spyro.m_0x1C4 = 0x1E;
+        g_Spyro.m_0x1CC = 1;
+    }
+
+    // Select the colour values from the active timed effect or a fixed preset.
+    if (g_Spyro.m_0x1D4 != 0) {
+        if (g_Spyro.m_0x1D4 >= 0xB5 ||
+            (g_Spyro.m_0x1D4 != 0 &&
+             (g_Spyro.m_0x1D4 & 0x10) != 0)) {
+            g_Spyro.m_0x20 = 0x90;
+            g_Spyro.m_0x21 = 0x20;
+            g_Spyro.m_0x22 = 0x10;
+            g_Spyro.m_0x23 = 0xD8;
+        } else {
+            g_Spyro.m_0x23 = 0;
+        }
+    } else if ((waveTimer = g_Spyro.m_0x1D8) != 0) {
+        // Convert the timer into an 8-bit phase for the waveform lookup.
+        waveTableIndex2 = waveTimer << 1;
+        if (waveTimer < 0xB4) {
+            waveTableIndex2 += (0xB4 - waveTimer) << 3;
+        }
+
+        g_Spyro.m_0x20 = 0x90;
+
+        // Keep the colour component staged across the waveform lookup.
+        colorComponent = 0x10;
+        waveSample2 = D_80061C58[waveTableIndex2 & 0xFF];
+        g_Spyro.m_0x22 = colorComponent;
+        colorComponent = 0xD8;
+        g_Spyro.m_0x23 = colorComponent;
+
+        // Convert the table sample to a signed amplitude.
+        waveSample2 = (int)((unsigned int)waveSample2 << 16) >> 21;
+        g_Spyro.m_0x21 = ABS(waveSample2) + 0x20;
+
+    } else if ((waveTimer = g_Spyro.m_0x1DC) != 0) {
+        waveTableIndex2 = waveTimer << 1;
+        if (waveTimer < 0xB4) {
+            waveTableIndex2 += (0xB4 - waveTimer) << 3;
+        }
+
+        g_Spyro.m_0x20 = 0x10;
+        colorComponent = 0x90;
+        waveSample2 = D_80061C58[waveTableIndex2 & 0xFF];
+        g_Spyro.m_0x22 = colorComponent;
+        colorComponent = 0x80;
+        g_Spyro.m_0x23 = colorComponent;
+        waveSample2 = (int)((unsigned int)waveSample2 << 16) >> 21;
+        g_Spyro.m_0x21 = ABS(waveSample2) + 0x20;
+
+    } else if ((waveTimer = g_Spyro.m_0x1E8) != 0) {
+        waveTableIndex2 = waveTimer << 1;
+        if (waveTimer < 0xB4) {
+            waveTableIndex2 += (0xB4 - waveTimer) << 3;
+        }
+
+        g_Spyro.m_0x20 = 0x10;
+        colorComponent = 0x90;
+        waveSample2 = D_80061C58[waveTableIndex2 & 0xFF];
+        g_Spyro.m_0x22 = colorComponent;
+        colorComponent = 0xA0;
+        g_Spyro.m_0x23 = colorComponent;
+        waveSample2 = (int)((unsigned int)waveSample2 << 16) >> 21;
+        g_Spyro.m_0x21 = ABS(waveSample2) + 0x20;
+
+    } else if (g_Spyro.m_0x1E4 != 0) {
+        waveTableIndex = g_Spyro.m_0x1E4 << 1;
+        if (g_Spyro.m_0x1E4 < 0xB4) {
+            waveTableIndex += (0xB4 - g_Spyro.m_0x1E4) << 3;
+        }
+
+        waveSample = (short)D_80061C58[waveTableIndex & 0xFF];
+        waveSample /= 48;
+
+        g_Spyro.m_0x21 = 0xFF;
+        g_Spyro.m_0x22 = 0;
+        g_Spyro.m_0x23 = 0xA0;
+        g_Spyro.m_0x20 = ABS(waveSample) + 0x30;
+
+    } else if (D_800698CC != 0) {
+        // Use a fixed colour preset when no timed effect is active.
+        switch (D_800698CC - 1) {
+            case 0:
+                g_Spyro.m_0x20 = 0x90;
+                g_Spyro.m_0x21 = 0;
+                g_Spyro.m_0x22 = 0;
+                g_Spyro.m_0x23 = 0xA0;
+                break;
+            case 1:
+                g_Spyro.m_0x20 = 0x18;
+                g_Spyro.m_0x21 = 0x30;
+                g_Spyro.m_0x22 = 0xA0;
+                g_Spyro.m_0x23 = 0xA0;
+                break;
+            case 2:
+                g_Spyro.m_0x20 = 0xFF;
+                g_Spyro.m_0x21 = 0x80;
+                g_Spyro.m_0x22 = 0x80;
+                g_Spyro.m_0x23 = 0xA0;
+                break;
+            case 3:
+                g_Spyro.m_0x20 = 0x10;
+                g_Spyro.m_0x21 = 0x90;
+                g_Spyro.m_0x22 = 0;
+                g_Spyro.m_0x23 = 0xA0;
+                break;
+            case 4:
+                g_Spyro.m_0x20 = 0xFF;
+                g_Spyro.m_0x21 = 0xFF;
+                g_Spyro.m_0x22 = 0x80;
+                g_Spyro.m_0x23 = 0xFF;
+                break;
+            case 5:
+                g_Spyro.m_0x20 = 0x18;
+                g_Spyro.m_0x21 = 0x18;
+                g_Spyro.m_0x22 = 0x18;
+                g_Spyro.m_0x23 = 0xFF;
+                break;
+        }
+    } else {
+        g_Spyro.m_0x23 = 0;
+    }
+
+    // Maintain the two auxiliary effects while Spyro is in state 6.
+    if (g_Spyro.m_0x58 == 6) {
+        if (g_Spyro.m_0x27C == nullptr) {
+            g_Spyro.m_0x27C = (unsigned char *)func_800502FC(
+                &g_Spyro.m_Vector_0x284, -3, 6, 0x303030);
+        }
+        if (g_Spyro.m_0x280 == nullptr) {
+            g_Spyro.m_0x280 = (unsigned char *)func_800502FC(
+                &g_Spyro.m_Vector_0x290, -3, 6, 0x303030);
+        }
+
+        // Hold their parameter at 3 in mode 0x22; otherwise increment it up to 6.
+        if (g_Spyro.m_0x50 == 0x22) {
+            if (g_Spyro.m_0x27C != nullptr) {
+                effectData = g_Spyro.m_0x27C;
+                effectData[0x29] = 3;
+            }
+            if (g_Spyro.m_0x280 != nullptr) {
+                effectData = g_Spyro.m_0x280;
+                effectData[0x29] = 3;
+            }
+        } else {
+            if (g_Spyro.m_0x27C != nullptr) {
+                ((unsigned char *)g_Spyro.m_0x27C)[0x29]++;
+                if (((unsigned char *)g_Spyro.m_0x27C)[0x29] >= 7) {
+                    ((unsigned char *)g_Spyro.m_0x27C)[0x29] = 6;
+                }
+            }
+            if (g_Spyro.m_0x280 != nullptr) {
+                ((unsigned char *)g_Spyro.m_0x280)[0x29]++;
+                if (((unsigned char *)g_Spyro.m_0x280)[0x29] >= 7) {
+                    ((unsigned char *)g_Spyro.m_0x280)[0x29] = 6;
+                }
+            }
+        }
+    } else {
+        // Release the auxiliary effects when leaving state 6.
+        if (g_Spyro.m_0x27C != nullptr) {
+            func_800504A0(g_Spyro.m_0x27C);
+            g_Spyro.m_0x27C = nullptr;
+        }
+        if (g_Spyro.m_0x280 != nullptr) {
+            func_800504A0(g_Spyro.m_0x280);
+            g_Spyro.m_0x280 = nullptr;
+        }
+    }
+}
 
 // https://decomp.me/scratch/YPqGB
 //INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800327F0);

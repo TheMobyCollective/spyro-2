@@ -131,7 +131,12 @@ typedef struct {
     unsigned char m_0x1C;              // 0x1C; unknown
     unsigned char m_0x1D;              // 0x1D; animation progress/state; indexes D_80062868
     unsigned char m_0x1E;              // 0x1E
-    char pad_0x1F[0x05];               // 0x1F–0x23
+    char pad_0x1F;                     // 0x1F
+    
+    unsigned char m_0x20;              // 0x20
+    unsigned char m_0x21;              // 0x21
+    unsigned char m_0x22;              // 0x22
+    unsigned char m_0x23;              // 0x23
 
     int m_0x24;                        // 0x24–0x27; flag bits
     int m_0x28;                        // 0x28–0x2B
@@ -210,13 +215,17 @@ typedef struct {
     char pad_0x1BE[3];                 // 0x1BE–0x1C0
     unsigned char m_0x1C1;             // 0x1C1
     unsigned char m_0x1C2;             // 0x1C2
-    char pad_0x1C3[0x11];              // 0x1C3–0x1D3
+    unsigned char m_0x1C3;             // 0x1C3
 
+    int m_0x1C4;                       // 0x1C4 
+    int m_0x1C8;                       // 0x1C8 
+    int m_0x1CC;                       // 0x1CC 
+    int m_0x1D0;                       // 0x1D0 
     int m_0x1D4;                       // 0x1D4
     int m_0x1D8;                       // 0x1D8
     int m_0x1DC;                       // 0x1DC
 
-    char pad_0x1E0[0x04];              // 0x1E0–0x1E3
+    int m_0x1E0;                       // 0x1E0–0x1E3 32-bit flag/state
     int m_0x1E4;                       // 0x1E4-0x1E7
     int m_0x1E8;                       // 0x1E8–0x1EB
     int m_0x1EC;                       // 0x1EC–0x1EF
@@ -256,7 +265,8 @@ typedef struct {
     int m_0x274;                       // 0x274; angular value/sentinel
     int m_0x278;                       // 0x278
 
-    char pad_0x27C[0x08];              // 0x27C–0x283
+    void *m_0x27C;                     // 0x27C
+    void *m_0x280;                     // 0x280
     
     Vector3D m_Vector_0x284;           // 0x284–0x28F
     Vector3D m_Vector_0x290;           // 0x290–0x29B

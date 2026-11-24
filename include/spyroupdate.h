@@ -74,4 +74,8 @@ extern unsigned char D_8006042C[62][62];
 extern unsigned char D_80060335[];
 extern unsigned char D_80060334[];
 
+extern unsigned char D_800698B8;
+extern int D_800681C8; 
+extern unsigned char D_800698CC;
+
 #endif
