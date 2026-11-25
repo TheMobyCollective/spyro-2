@@ -3,12 +3,12 @@
 
 extern int D_800601B4[];
 extern int D_80060234[];
-extern unsigned char D_800602B4[][4];
+extern unsigned char D_800602B4[32][4];
 
 extern int D_80061A8C;
 extern int D_80061AAC;
 
-extern unsigned char D_80062868[];
+extern unsigned char D_80062868[256];
 
 extern short D_80064682;
 
@@ -90,5 +90,8 @@ extern int D_80068398;
 
 extern int D_80068390;
 extern int D_8006838C;
+
+extern void (*D_80067010)(void);
+extern short D_8006468A;
 
 #endif

@@ -223,9 +223,7 @@ typedef struct {
     unsigned char m_0x1C3;             // 0x1C3
 
     int m_0x1C4;                       // 0x1C4 
-    int m_0x1C8;                       // 0x1C8 
-    int m_0x1CC;                       // 0x1CC 
-    int m_0x1D0;                       // 0x1D0 
+    Vector3D m_Vector_0x1C8;           // 0x1C8–0x1D3 
     int m_0x1D4;                       // 0x1D4
     int m_0x1D8;                       // 0x1D8
     int m_0x1DC;                       // 0x1DC

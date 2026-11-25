@@ -314,7 +314,7 @@
 - [x] func_80034E0C
 - [x] func_800350D0
 - [x] func_800351D8
-- [ ] func_80035D38
+- [x] func_80035D38
 
 <!-- str.c -->
 - [x] func_80012B84
