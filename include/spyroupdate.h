@@ -1,12 +1,14 @@
 #ifndef __SPYROUPDATE_H
 #define __SPYROUPDATE_H
 
-extern int D_800601B4[];
-extern int D_80060234[];
+extern int D_800601B4[32];
+extern int D_80060234[32];
 extern unsigned char D_800602B4[32][4];
 
+/* Byte lookup tables accessed with a four-byte entry stride. */
 extern unsigned char D_80060334[];
 extern unsigned char D_80060335[];
+
 extern unsigned char D_8006042C[62][62];
 
 extern int D_80061A8C;
@@ -58,7 +60,7 @@ extern unsigned char D_80067414;
 extern int D_800681C8;
 extern unsigned char D_80068238;
 extern int D_8006826C;
-extern int D_8006827C[];
+extern int D_8006827C[15];
 
 // These globals could potentially be part of a structure.
 extern unsigned char D_80068370;
@@ -70,7 +72,7 @@ extern unsigned char D_8006839D;
 extern unsigned char D_8006839E;
 extern int D_800683A0;
 extern int D_800683A4;
-extern unsigned char D_800683B0[];
+extern unsigned char D_800683B0[4];
 
 extern void *D_80068C94;
 
