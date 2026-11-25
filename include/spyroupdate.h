@@ -62,18 +62,6 @@ extern unsigned char D_80068238;
 extern int D_8006826C;
 extern int D_8006827C[15];
 
-// These globals could potentially be part of a structure.
-extern unsigned char D_80068370;
-extern int D_8006838C;
-extern int D_80068390;
-extern int D_80068394;
-extern int D_80068398;
-extern unsigned char D_8006839D;
-extern unsigned char D_8006839E;
-extern int D_800683A0;
-extern int D_800683A4;
-extern unsigned char D_800683B0[4];
-
 extern void *D_80068C94;
 
 extern int D_80069894;

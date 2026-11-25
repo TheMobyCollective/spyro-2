@@ -2,6 +2,7 @@
 #include "spyroupdate.h"
 #include "camera.h"
 #include "tracers.h"
+#include "pad.h"
 
 extern void func_8001BB3C(Vector3D *vector, int targetMagnitude);
 extern void func_8001BCC4(Vector3D *vector, int currentMagnitude, int targetMagnitude);
@@ -888,7 +889,7 @@ void func_8002B4E4(Vector3D *outputVector, int useCameraRotation) {
     int inputComponents[2];
     int relativeAngle;
 
-    if (D_8006839E != 0) {
+    if (g_Pad.unk4 != 0) {
         inputComponents[0] = D_80066F38[0xE] - 0x7F;
         inputComponents[1] = 0x7F - D_80066F38[0xF];
     } else {
@@ -935,7 +936,7 @@ void func_8002B694(Vector3D *outputVector, Vector3D *controlVector, int forceCon
     int adjustedComponents[2];
     int centeringAdjustment;
 
-    if (D_8006839E != 0) {
+    if (g_Pad.unk4 != 0) {
         adjustedComponents[0] = D_80066F38[0xE] - 0x7F;
         adjustedComponents[1] = 0x7F - D_80066F38[0xF];
 
@@ -1127,7 +1128,7 @@ int func_8002BC68(void) {
 
     result = 0;
 
-    if (D_8006839E != 0) {
+    if (g_Pad.unk4 != 0) {
         if ((g_Spyro.m_0x20C & 0x40) == 0) {
 
             // Ignore centred analogue input.
@@ -2688,14 +2689,14 @@ void func_80030C94(void) {
     if ((g_Spyro.m_0x20C & 0x10000000) != 0) {
 
         if ((g_Spyro.m_0x20C & 0x2) != 0) {
-            func_80012B1C(&D_80068370, &D_80068238);
+            func_80012B1C(&g_Pad, &D_80068238);
 
             g_Spyro.m_0x240 = 1;
             g_Spyro.m_0x1C1 = 0;
         }
 
         if ((g_Spyro.m_0x20C & 0x4000) != 0) {
-            func_80012B1C(&D_80068370, &D_80068238);
+            func_80012B1C(&g_Pad, &D_80068238);
         }
 
         if ((g_Spyro.m_0x20C & 0x8) != 0) {
@@ -2731,7 +2732,7 @@ void func_80030C94(void) {
         }
 
         if ((g_Spyro.m_0x20C & 0x40) != 0) {
-            func_80012B1C(&D_80068370, &D_80068238);
+            func_80012B1C(&g_Pad, &D_80068238);
 
             if ((g_Spyro.m_0x210 & 0x40) == 0) {
                 func_8001BE00(
@@ -2778,7 +2779,7 @@ void func_80030C94(void) {
         }
 
         if ((g_Spyro.m_0x20C & 0x100) != 0) {
-            func_80012B1C(&D_80068370, &D_80068238);
+            func_80012B1C(&g_Pad, &D_80068238);
 
             func_80031960(&g_Spyro.m_Vector_0x22C);
 
@@ -2874,7 +2875,7 @@ void func_80030C94(void) {
         }
 
         if ((g_Spyro.m_0x20C & 0x8000) != 0) {
-            func_80012B1C(&D_80068370, &D_80068238);
+            func_80012B1C(&g_Pad, &D_80068238);
 
             g_Spyro.m_0x240 = 1;
             g_Spyro.m_0x1C1 = 0;
@@ -2904,7 +2905,7 @@ void func_80030C94(void) {
 
             flagEntryIndex = 0;
 
-            flagEntry = (int *)&D_800683A0;
+            flagEntry = (int *)&g_Pad.state.held;
             flagEntryCount = D_80067018;
 
             *flagEntry |= 0x10;
@@ -2918,17 +2919,17 @@ void func_80030C94(void) {
                 } while (flagEntryIndex < flagEntryCount);
             }
 
-            func_80012B1C(&D_80068370, &D_80068238);
+            func_80012B1C(&g_Pad, &D_80068238);
 
             sourceFlagWord = D_8006826C;
-            currentFlagWord = D_800683A4;
+            currentFlagWord = g_Pad.state.pressed;
             loopCount = D_80067018;
 
-            D_800683A4 = currentFlagWord | (sourceFlagWord & 0x20);
+            g_Pad.state.pressed = currentFlagWord | (sourceFlagWord & 0x20);
 
             // Copy the 0x20 flag from each source entry to its corresponding destination entry.
             if (loopCount > 0) {
-                destination = (int *)((unsigned char *)&D_80068370 + 0x44);
+                destination = (int *)&g_Pad.store[0].pressed;
                 sourceOffsetBytes = 0;
                 end = (int *)((unsigned char *)destination + (loopCount << 4));
 
@@ -2967,7 +2968,7 @@ void func_80030C94(void) {
             case 53:
             case 54:
                 if (g_Spyro.m_0x1C2 != 0) {
-                    if ((*(int *)&D_800683A0 & 0x10) == 0) {
+                    if ((*(int *)&g_Pad.state.held & 0x10) == 0) {
                         g_Spyro.m_0x1C2 = 0;
                         g_Spyro.m_0x1C1 = 1;
                     }
@@ -2993,7 +2994,7 @@ void func_80030C94(void) {
 //INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800313E4);
 void func_800313E4(void) {
     if (g_Spyro.m_0x20C & 0x2C142) {
-        func_80012B1C(&D_80068238, &D_80068370);
+        func_80012B1C(&D_80068238, &g_Pad);
     } else {
         g_Spyro.m_0x240 = 0;
     }
@@ -3954,7 +3955,7 @@ void func_800347A4(void) {
                 g_Spyro.m_0x54 =
                     (g_Spyro.m_0x54 & 0x80) | 1;
             } else if ((g_Spyro.m_0x54 & 0x80) == 0) {
-                if ((D_800683A0 & 0x40) == 0) {
+                if ((g_Pad.state.held & 0x40) == 0) {
                     g_Spyro.m_0x54 = 2;
                 }
             }
@@ -3973,7 +3974,7 @@ void func_800347A4(void) {
                     g_Spyro.m_0x54 = 1;
                 }
             } else if (g_Spyro.m_0x54 == 0) {
-                if ((D_800683A0 & 0x40) == 0 &&
+                if ((g_Pad.state.held & 0x40) == 0 &&
                     g_Spyro.m_0x14C == 0) {
                     g_Spyro.m_0x54 = 2;
                 }
@@ -4048,7 +4049,7 @@ void func_800347A4(void) {
             g_Spyro.m_0x5C >= 4) {
             g_Spyro.m_0x54 = 1;
         } else if (g_Spyro.m_0x54 == 0 &&
-                   (D_800683A0 & 0x40) == 0) {
+                   (g_Pad.state.held & 0x40) == 0) {
             g_Spyro.m_0x54 = 2;
         }
 
@@ -4242,7 +4243,7 @@ void func_800350D0(int arg0) {
         return;
     }
 
-    D_80066F38 = &D_800683B0[arg0 << 4];
+    D_80066F38 = (unsigned char *)&g_Pad.store[arg0];
 
     switch (g_Spyro.m_0x50) {
     case 0:
@@ -4433,7 +4434,7 @@ void func_800351D8(int state) {
             if (g_Spyro.m_0x58 == 0xD) {
                 g_Spyro.m_0x54 = 0;
 
-                if (D_8006839D != 0) {
+                if (g_Pad.dpadPressed != 0) {
                     stack.input.fields.horizontalInput = 0;
                     stack.input.fields.verticalInput = 0x7F;
                 } else {
@@ -4592,8 +4593,8 @@ void func_800351D8(int state) {
                 0,
                 0);
 
-            D_80068398 = 0x78;
-            D_80068394 = 0xF;
+            g_Pad.unk3[3] = 0x78;
+            g_Pad.unk3[2] = 0xF;
             break;
         }
 
@@ -4629,9 +4630,9 @@ void func_800351D8(int state) {
             g_Spyro.m_0x1BC = 1;
 
             if (state == 8) {
-                D_80068390 = 0x2D;
+                g_Pad.unk3[1] = 0x2D;
             } else {
-                D_8006838C = 0xF;
+                g_Pad.unk3[0] = 0xF;
             }
 
             if (D_800670FC != nullptr) {
@@ -4854,7 +4855,7 @@ void func_80035D38(void) {
             break;
         }
 
-        if ((D_800683A4 & 0x40) != 0) {
+        if ((g_Pad.state.pressed & 0x40) != 0) {
             if (D_80066F90 != 0x3E ||
                 func_8002B078(g_Spyro.m_0x114) != 4) {
 
@@ -4864,7 +4865,7 @@ void func_80035D38(void) {
         }
 
         if (func_8002B078(g_Spyro.m_0x114) == 4) {
-            if (D_8006839D != 0) {
+            if (g_Pad.dpadPressed != 0) {
                 break;
             }
 
@@ -4879,13 +4880,13 @@ void func_80035D38(void) {
             break;
         }
 
-        if ((D_800683A0 & 0x80) != 0) {
+        if ((g_Pad.state.held & 0x80) != 0) {
             func_800351D8(12);
             break;
         }
 
         if (ABS(g_Spyro.m_0xB0) >= 0x11 ||
-            ((D_800683A0 & 0xF) != 3 &&
+            ((g_Pad.state.held & 0xF) != 3 &&
              g_Spyro.m_0xB4 != 0)) {
 
             func_800351D8(1);
@@ -4931,7 +4932,7 @@ void func_80035D38(void) {
             break;
         }
 
-        if ((D_800683A4 & 0x40) != 0) {
+        if ((g_Pad.state.pressed & 0x40) != 0) {
             func_800351D8(5);
             break;
         }
@@ -4943,7 +4944,7 @@ void func_80035D38(void) {
             break;
         }
 
-        if ((D_800683A0 & 0x80) != 0) {
+        if ((g_Pad.state.held & 0x80) != 0) {
             func_800351D8(12);
             break;
         }
@@ -4952,12 +4953,12 @@ void func_80035D38(void) {
             break;
         }
 
-        if (D_8006839D != 0 && g_Spyro.m_0xB8 == 0) {
+        if (g_Pad.dpadPressed != 0 && g_Spyro.m_0xB8 == 0) {
             func_800351D8(0);
             break;
         }
 
-        if ((D_800683A0 & 0xF) == 3 &&
+        if ((g_Pad.state.held & 0xF) == 3 &&
             g_Spyro.m_0x14C >= 0x10) {
 
             func_800351D8(0);
@@ -4984,7 +4985,7 @@ void func_80035D38(void) {
             break;
         }
 
-        if ((D_800683A4 & 0x40) != 0) {
+        if ((g_Pad.state.pressed & 0x40) != 0) {
             func_800351D8(5);
             break;
         }
@@ -4996,7 +4997,7 @@ void func_80035D38(void) {
             break;
         }
 
-        if ((D_800683A0 & 0x80) != 0) {
+        if ((g_Pad.state.held & 0x80) != 0) {
             func_800351D8(12);
             break;
         }
@@ -5035,7 +5036,7 @@ void func_80035D38(void) {
             break;
         }
 
-        if ((D_800683A4 & 0x40) != 0) {
+        if ((g_Pad.state.pressed & 0x40) != 0) {
             func_800351D8(5);
             break;
         }
@@ -5050,7 +5051,7 @@ void func_80035D38(void) {
             break;
         }
 
-        if ((D_800683A0 & 0x80) != 0) {
+        if ((g_Pad.state.held & 0x80) != 0) {
             func_800351D8(0xC);
             break;
         }
@@ -5089,7 +5090,7 @@ void func_80035D38(void) {
             break;
         }
 
-        if ((D_800683A4 & 0x40) != 0) {
+        if ((g_Pad.state.pressed & 0x40) != 0) {
             func_800351D8(5);
             break;
         }
@@ -5101,7 +5102,7 @@ void func_80035D38(void) {
             break;
         }
 
-        if ((D_800683A0 & 0x80) != 0) {
+        if ((g_Pad.state.held & 0x80) != 0) {
             func_800351D8(12);
             break;
         }
@@ -5110,7 +5111,7 @@ void func_80035D38(void) {
             break;
         }
 
-        if (D_8006839D != 0) {
+        if (g_Pad.dpadPressed != 0) {
             func_800351D8(0);
             break;
         }
@@ -5132,7 +5133,7 @@ void func_80035D38(void) {
         }
 
         if (g_Spyro.m_0x58 == 0xD) {
-            if ((D_800683A4 & 0x40) != 0) {
+            if ((g_Pad.state.pressed & 0x40) != 0) {
                 g_Spyro.m_0x1BE = 1;
             }
 
@@ -5170,7 +5171,7 @@ void func_80035D38(void) {
         }
 
         if (g_Spyro.m_0x1BD != 0 &&
-            (D_800683A4 & 0x40) != 0) {
+            (g_Pad.state.pressed & 0x40) != 0) {
 
             g_Spyro.m_0x1BE = 1;
         }
@@ -5210,14 +5211,14 @@ void func_80035D38(void) {
             break;
         }
 
-        if ((D_800683A0 & 0x80) != 0) {
+        if ((g_Pad.state.held & 0x80) != 0) {
             if (g_Spyro.m_Vector_0xA0.z > 0) {
                 g_Spyro.m_Vector_0xA0.z = 0;
             }
 
             func_800351D8(0x15);
 
-        } else if ((D_800683A4 & 0x10) != 0 &&
+        } else if ((g_Pad.state.pressed & 0x10) != 0 &&
                    D_8006468A != 0) {
 
             collisionResult = func_8003EE84(
@@ -5270,7 +5271,7 @@ void func_80035D38(void) {
             break;
         }
 
-        if ((D_800683A4 & 0x40) != 0 &&
+        if ((g_Pad.state.pressed & 0x40) != 0 &&
             g_Spyro.m_0x1BD != 0) {
 
             g_Spyro.m_0x1BE = 1;
@@ -5305,8 +5306,8 @@ void func_80035D38(void) {
                 0);
 
             if (g_Spyro.m_0x60 >= 0x18) {
-                D_80068398 = 0x78;
-                D_80068394 = 0xF;
+                g_Pad.unk3[3] = 0x78;
+                g_Pad.unk3[2] = 0xF;
             }
 
             break;
@@ -5347,7 +5348,7 @@ void func_80035D38(void) {
             break;
         }
 
-        if ((D_800683A0 & 0xC0) == 0xC0) {
+        if ((g_Pad.state.held & 0xC0) == 0xC0) {
             if (g_Spyro.m_0xEC >= 0xC) {
                 /* First two-dimensional dot product. */
                 firstProduct =
@@ -5410,7 +5411,7 @@ void func_80035D38(void) {
         }
 
         if (g_Spyro.m_0x5C >= 0xD &&
-            (D_800683A0 & 0x80) == 0) {
+            (g_Pad.state.held & 0x80) == 0) {
 
             func_800351D8(2);
             break;
@@ -5457,7 +5458,7 @@ void func_80035D38(void) {
             break;
         }
 
-        if ((D_800683A4 & 0x40) != 0) {
+        if ((g_Pad.state.pressed & 0x40) != 0) {
             func_800351D8(5);
             break;
         }
@@ -5469,7 +5470,7 @@ void func_80035D38(void) {
             break;
         }
 
-        if ((D_800683A0 & 0x80) != 0) {
+        if ((g_Pad.state.held & 0x80) != 0) {
             func_800351D8(12);
             break;
         }
@@ -5479,7 +5480,7 @@ void func_80035D38(void) {
             break;
         }
 
-        if (D_8006839D == 0) {
+        if (g_Pad.dpadPressed == 0) {
             func_800351D8(1);
             break;
         }
@@ -5558,7 +5559,7 @@ void func_80035D38(void) {
             break;
         }
 
-        if ((D_800683A0 & 0x80) != 0) {
+        if ((g_Pad.state.held & 0x80) != 0) {
             func_800351D8(0x15);
             break;
         }
@@ -5575,7 +5576,7 @@ void func_80035D38(void) {
             break;
         }
 
-        if ((D_800683A4 & 0x10) != 0) {
+        if ((g_Pad.state.pressed & 0x10) != 0) {
             func_800351D8(0x11);
             break;
         }
@@ -5638,7 +5639,7 @@ void func_80035D38(void) {
             }
         }
 
-        if ((D_800683A4 & 0x10) != 0 &&
+        if ((g_Pad.state.pressed & 0x10) != 0 &&
             D_8006468A != 0) {
 
             func_800351D8(0x2E);
@@ -5666,7 +5667,7 @@ void func_80035D38(void) {
         }
 
         if (g_Spyro.m_0x1BD != 0 &&
-            (D_800683A4 & 0x40) != 0) {
+            (g_Pad.state.pressed & 0x40) != 0) {
 
             g_Spyro.m_0x1BE = 1;
         }
@@ -5740,7 +5741,7 @@ void func_80035D38(void) {
             break;
         }
 
-        if ((D_800683A4 & 0x40) != 0) {
+        if ((g_Pad.state.pressed & 0x40) != 0) {
             func_800351D8(5);
             break;
         }
@@ -5752,7 +5753,7 @@ void func_80035D38(void) {
             break;
         }
 
-        if ((D_800683A0 & 0x80) != 0) {
+        if ((g_Pad.state.held & 0x80) != 0) {
             func_800351D8(12);
             break;
         }
@@ -5819,7 +5820,7 @@ void func_80035D38(void) {
             break;
         }
 
-        if ((D_800683A0 & 0x80) != 0) {
+        if ((g_Pad.state.held & 0x80) != 0) {
             func_800351D8(0x15);
             break;
         }
@@ -5836,7 +5837,7 @@ void func_80035D38(void) {
             break;
         }
 
-        if ((D_800683A4 & 0x10) != 0) {
+        if ((g_Pad.state.pressed & 0x10) != 0) {
             func_800351D8(0x11);
             break;
         }
