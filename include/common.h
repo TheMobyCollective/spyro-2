@@ -131,7 +131,12 @@ typedef struct {
     unsigned char m_0x1C;              // 0x1C; unknown
     unsigned char m_0x1D;              // 0x1D; animation progress/state; indexes D_80062868
     unsigned char m_0x1E;              // 0x1E
-    char pad_0x1F[0x05];               // 0x1F–0x23
+    char pad_0x1F;                     // 0x1F
+    
+    unsigned char m_0x20;              // 0x20
+    unsigned char m_0x21;              // 0x21
+    unsigned char m_0x22;              // 0x22
+    unsigned char m_0x23;              // 0x23
 
     int m_0x24;                        // 0x24–0x27; flag bits
     int m_0x28;                        // 0x28–0x2B
@@ -191,7 +196,9 @@ typedef struct {
     int m_0x144;                       // 0x144
     Moby *m_0x148;                       // 0x148
     int m_0x14C;                       // 0x14C
-    char pad_0x150[0x1C];              // 0x150–0x16B
+    int m_0x150;                       // 0x150
+
+    char pad_0x154[0x18];              // 0x154–0x16B
 
     int m_animationFrame_0x16C;        // 0x16C
     char pad_0x170[0x04];              // 0x170–0x173
@@ -205,18 +212,23 @@ typedef struct {
     int m_0x194;                       // 0x194
     int m_0x198;                       // 0x198
     SHORTMATRIX m_RotationMatrix_0x19C; // 0x19C–0x1AF Second rotation matrix, overwritten with combined result
-    char pad_0x1B0[0xD];               // 0x1B0–0x1BC
+    char pad_0x1B0[0xC];                // 0x1B0–0x1BB
+    unsigned char m_0x1BC;             // 0x1BC
     unsigned char m_0x1BD;             // 0x1BD
-    char pad_0x1BE[3];                 // 0x1BE–0x1C0
+    unsigned char m_0x1BE;             // 0x1BE
+    char pad_0x1BF;                    // 0x1BF
+    unsigned char m_0x1C0;             // 0x1C0
     unsigned char m_0x1C1;             // 0x1C1
     unsigned char m_0x1C2;             // 0x1C2
-    char pad_0x1C3[0x11];              // 0x1C3–0x1D3
+    unsigned char m_0x1C3;             // 0x1C3
 
+    int m_0x1C4;                       // 0x1C4 
+    Vector3D m_Vector_0x1C8;           // 0x1C8–0x1D3 
     int m_0x1D4;                       // 0x1D4
     int m_0x1D8;                       // 0x1D8
     int m_0x1DC;                       // 0x1DC
 
-    char pad_0x1E0[0x04];              // 0x1E0–0x1E3
+    int m_0x1E0;                       // 0x1E0–0x1E3 32-bit flag/state
     int m_0x1E4;                       // 0x1E4-0x1E7
     int m_0x1E8;                       // 0x1E8–0x1EB
     int m_0x1EC;                       // 0x1EC–0x1EF
@@ -246,7 +258,7 @@ typedef struct {
     int m_0x244;                       // 0x244–0x247; movement flags
     Vector3D m_Vector_0x248;           // 0x248–0x253
     int m_0x254;                       // 0x254–0x257; movement threshold
-    int m_timer_0x258;                       // 0x258; negative values are cleared
+    int m_timer_0x258;                 // 0x258; negative values are cleared
     int m_0x25C;                       // 0x25C–0x25F
     int m_0x260;                       // 0x260
     int m_0x264;                       // 0x264
@@ -256,7 +268,8 @@ typedef struct {
     int m_0x274;                       // 0x274; angular value/sentinel
     int m_0x278;                       // 0x278
 
-    char pad_0x27C[0x08];              // 0x27C–0x283
+    void *m_0x27C;                     // 0x27C
+    void *m_0x280;                     // 0x280
     
     Vector3D m_Vector_0x284;           // 0x284–0x28F
     Vector3D m_Vector_0x290;           // 0x290–0x29B

@@ -1,12 +1,15 @@
 #include "common.h"
 #include "spyroupdate.h"
 #include "camera.h"
+#include "tracers.h"
+#include "pad.h"
 
 extern void func_8001BB3C(Vector3D *vector, int targetMagnitude);
 extern void func_8001BCC4(Vector3D *vector, int currentMagnitude, int targetMagnitude);
 extern void func_8001BDB0(Vector3D *destination, Vector3D *source);
 extern void func_8001BDCC(Vector3D *destination, Vector3D *source, Vector3D *offset);
 
+extern Tracer *func_800502FC(void *arg0, int arg1, int arg2, int arg3);
 
 void func_8002A164(void);
 void func_8002A4C8(void);
@@ -17,14 +20,15 @@ void func_80030A14(void);
 void func_80030C94(void);
 void func_800313E4(void);
 void func_80031E4C(void);
+void func_80031EAC(void);
 void func_800327F0(void);
 void func_80032E74(void);
 void func_8003305C(int frameIndex, Vector3D *outputVector);
 void func_800347A4(void);
 void func_80034E0C(void);
 void func_800350D0(int arg0);
-
-
+void func_800351D8(int state);
+void func_80035D38();
 
 // https://decomp.me/scratch/ZlfJs
 //INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_8002A07C);
@@ -42,6 +46,7 @@ void func_8002A07C(void) {
     func_80031E4C();
     func_800327F0();
     func_800313E4();
+    
     if (g_Spyro.m_0x58 == 6) {
         func_8003305C(0x3F, &g_Spyro.m_Vector_0x284);
         func_8003305C(0x3E, &g_Spyro.m_Vector_0x290);
@@ -884,7 +889,7 @@ void func_8002B4E4(Vector3D *outputVector, int useCameraRotation) {
     int inputComponents[2];
     int relativeAngle;
 
-    if (D_8006839E != 0) {
+    if (g_Pad.unk4 != 0) {
         inputComponents[0] = D_80066F38[0xE] - 0x7F;
         inputComponents[1] = 0x7F - D_80066F38[0xF];
     } else {
@@ -931,7 +936,7 @@ void func_8002B694(Vector3D *outputVector, Vector3D *controlVector, int forceCon
     int adjustedComponents[2];
     int centeringAdjustment;
 
-    if (D_8006839E != 0) {
+    if (g_Pad.unk4 != 0) {
         adjustedComponents[0] = D_80066F38[0xE] - 0x7F;
         adjustedComponents[1] = 0x7F - D_80066F38[0xF];
 
@@ -1123,7 +1128,7 @@ int func_8002BC68(void) {
 
     result = 0;
 
-    if (D_8006839E != 0) {
+    if (g_Pad.unk4 != 0) {
         if ((g_Spyro.m_0x20C & 0x40) == 0) {
 
             // Ignore centred analogue input.
@@ -2684,14 +2689,14 @@ void func_80030C94(void) {
     if ((g_Spyro.m_0x20C & 0x10000000) != 0) {
 
         if ((g_Spyro.m_0x20C & 0x2) != 0) {
-            func_80012B1C(&D_80068370, &D_80068238);
+            func_80012B1C(&g_Pad, &D_80068238);
 
             g_Spyro.m_0x240 = 1;
             g_Spyro.m_0x1C1 = 0;
         }
 
         if ((g_Spyro.m_0x20C & 0x4000) != 0) {
-            func_80012B1C(&D_80068370, &D_80068238);
+            func_80012B1C(&g_Pad, &D_80068238);
         }
 
         if ((g_Spyro.m_0x20C & 0x8) != 0) {
@@ -2727,7 +2732,7 @@ void func_80030C94(void) {
         }
 
         if ((g_Spyro.m_0x20C & 0x40) != 0) {
-            func_80012B1C(&D_80068370, &D_80068238);
+            func_80012B1C(&g_Pad, &D_80068238);
 
             if ((g_Spyro.m_0x210 & 0x40) == 0) {
                 func_8001BE00(
@@ -2774,7 +2779,7 @@ void func_80030C94(void) {
         }
 
         if ((g_Spyro.m_0x20C & 0x100) != 0) {
-            func_80012B1C(&D_80068370, &D_80068238);
+            func_80012B1C(&g_Pad, &D_80068238);
 
             func_80031960(&g_Spyro.m_Vector_0x22C);
 
@@ -2870,7 +2875,7 @@ void func_80030C94(void) {
         }
 
         if ((g_Spyro.m_0x20C & 0x8000) != 0) {
-            func_80012B1C(&D_80068370, &D_80068238);
+            func_80012B1C(&g_Pad, &D_80068238);
 
             g_Spyro.m_0x240 = 1;
             g_Spyro.m_0x1C1 = 0;
@@ -2900,7 +2905,7 @@ void func_80030C94(void) {
 
             flagEntryIndex = 0;
 
-            flagEntry = (int *)&D_800683A0;
+            flagEntry = (int *)&g_Pad.state.held;
             flagEntryCount = D_80067018;
 
             *flagEntry |= 0x10;
@@ -2914,17 +2919,17 @@ void func_80030C94(void) {
                 } while (flagEntryIndex < flagEntryCount);
             }
 
-            func_80012B1C(&D_80068370, &D_80068238);
+            func_80012B1C(&g_Pad, &D_80068238);
 
             sourceFlagWord = D_8006826C;
-            currentFlagWord = D_800683A4;
+            currentFlagWord = g_Pad.state.pressed;
             loopCount = D_80067018;
 
-            D_800683A4 = currentFlagWord | (sourceFlagWord & 0x20);
+            g_Pad.state.pressed = currentFlagWord | (sourceFlagWord & 0x20);
 
             // Copy the 0x20 flag from each source entry to its corresponding destination entry.
             if (loopCount > 0) {
-                destination = (int *)((unsigned char *)&D_80068370 + 0x44);
+                destination = (int *)&g_Pad.store[0].pressed;
                 sourceOffsetBytes = 0;
                 end = (int *)((unsigned char *)destination + (loopCount << 4));
 
@@ -2963,7 +2968,7 @@ void func_80030C94(void) {
             case 53:
             case 54:
                 if (g_Spyro.m_0x1C2 != 0) {
-                    if ((*(int *)&D_800683A0 & 0x10) == 0) {
+                    if ((*(int *)&g_Pad.state.held & 0x10) == 0) {
                         g_Spyro.m_0x1C2 = 0;
                         g_Spyro.m_0x1C1 = 1;
                     }
@@ -2989,7 +2994,7 @@ void func_80030C94(void) {
 //INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800313E4);
 void func_800313E4(void) {
     if (g_Spyro.m_0x20C & 0x2C142) {
-        func_80012B1C(&D_80068238, &D_80068370);
+        func_80012B1C(&D_80068238, &g_Pad);
     } else {
         g_Spyro.m_0x240 = 0;
     }
@@ -3207,7 +3212,288 @@ void func_80031E4C(void) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80031EAC);
+// https://decomp.me/scratch/F5uqV
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80031EAC);
+void func_80031EAC(void) {
+    int spyroState;
+    int waveTableIndex;
+    short waveSample;
+    int waveTableIndex2;
+    short waveSample2;
+    int colorComponent;
+    int spyroZ;
+    unsigned char *effectData;
+    int waveTimer;
+
+    // Enforce a minimum duration while the corresponding flag is active.
+    if (D_800698B8 != 0) {
+        if (g_Spyro.m_0x1D4 < 0x1E) {
+            g_Spyro.m_0x1D4 = 0x1E;
+        }
+    }
+
+    // Clear the timer if Spyro has moved beyond the stored Z threshold.
+    if (D_80069894 < 0) {
+        if (g_Spyro.m_0xC0 == 0) {
+            spyroZ = g_Spyro.m_Position.z;
+            if (g_Spyro.m_0x100 < spyroZ) {
+                g_Spyro.m_0x1C4 = 0;
+            }
+        }
+    }
+
+    // Decrement the active timers by the current frame step.
+    g_Spyro.m_0x1C4 -= D_80067018;
+    if (g_Spyro.m_0x1C4 < 0) g_Spyro.m_0x1C4 = 0;
+
+    g_Spyro.m_0x1D4 -= D_80067018;
+    if (g_Spyro.m_0x1D4 < 0) g_Spyro.m_0x1D4 = 0;
+
+    // On animation frame 6, keep these timers at 1 rather than allowing them to expire.
+    if (g_Spyro.m_0x1D8 != 0 &&
+        g_Spyro.m_animationFrame_0x16C == 6) {
+        g_Spyro.m_0x1D8 -= D_80067018;
+        if (g_Spyro.m_0x1D8 <= 0) g_Spyro.m_0x1D8 = 1;
+    } else {
+        g_Spyro.m_0x1D8 -= D_80067018;
+        if (g_Spyro.m_0x1D8 < 0) g_Spyro.m_0x1D8 = 0;
+    }
+
+    if (g_Spyro.m_0x1DC != 0 &&
+        g_Spyro.m_animationFrame_0x16C == 6) {
+        g_Spyro.m_0x1DC -= D_80067018;
+        if (g_Spyro.m_0x1DC <= 0) g_Spyro.m_0x1DC = 1;
+    } else {
+        g_Spyro.m_0x1DC -= D_80067018;
+        if (g_Spyro.m_0x1DC < 0) g_Spyro.m_0x1DC = 0;
+    }
+
+    if (g_Spyro.m_0x1E4 != 0 &&
+        g_Spyro.m_animationFrame_0x16C == 6) {
+        g_Spyro.m_0x1E4 -= D_80067018;
+        if (g_Spyro.m_0x1E4 <= 0) g_Spyro.m_0x1E4 = 1;
+    } else {
+        g_Spyro.m_0x1E4 -= D_80067018;
+        if (g_Spyro.m_0x1E4 < 0) g_Spyro.m_0x1E4 = 0;
+    }
+
+    g_Spyro.m_0x1E8 -= D_80067018;
+    if (g_Spyro.m_0x1E8 < 0) {
+        g_Spyro.m_0x1E8 = 0;
+    }
+
+    // Reset the active effects for this mode, except for effect 0x2A.
+    if (D_800681C8 == 1) {
+        g_Spyro.m_0x1C4 = 0;
+        if (D_80066F90 != 0x2A) {
+            g_Spyro.m_0x1D4 = 0;
+        }
+        g_Spyro.m_0x1D8 = 0;
+        g_Spyro.m_0x1DC = 0;
+        g_Spyro.m_0x1E4 = 0;
+        g_Spyro.m_0x1E8 = 0;
+    }
+
+    // Resolve the pending action according to Spyro's current state.
+    if (g_Spyro.m_Vector_0x1C8.x != 0) {
+        spyroState = g_Spyro.m_0x58;
+        if (spyroState == 7 || spyroState == 8 || spyroState == 6 ||
+            g_Spyro.m_0x1C4 == 0) {
+            g_Spyro.m_Vector_0x1C8.x = 0;
+        } else if (spyroState == 5 ||
+                   (spyroState == 2 && g_Spyro.m_Vector_0xA0.z < 0)) {
+            func_800351D8(0x21);
+            g_Spyro.m_Vector_0x1C8.x = 0;
+        } else if (spyroState != 2) {
+            func_800351D8(5);
+            g_Spyro.m_0x14C = 1;
+        }
+    }
+
+    // Process and consume the one-shot effect request.
+    if (g_Spyro.m_Vector_0x1C8.z != 0) {
+        func_800351D8(0x3D);
+        g_Spyro.m_0x54 = 2;
+    }
+
+    g_Spyro.m_Vector_0x1C8.z = 0;
+    if (g_Spyro.m_0x1E0 != 0) {
+        func_800351D8(0x1B);
+    }
+
+    // Apply a minimum duration and enable the associated flag.
+    if (D_80069894 >= 0) {
+        if (g_Spyro.m_0x1C4 < 0x1E) g_Spyro.m_0x1C4 = 0x1E;
+        g_Spyro.m_Vector_0x1C8.y = 1;
+    }
+
+    // Select the colour values from the active timed effect or a fixed preset.
+    if (g_Spyro.m_0x1D4 != 0) {
+        if (g_Spyro.m_0x1D4 >= 0xB5 ||
+            (g_Spyro.m_0x1D4 != 0 &&
+             (g_Spyro.m_0x1D4 & 0x10) != 0)) {
+            g_Spyro.m_0x20 = 0x90;
+            g_Spyro.m_0x21 = 0x20;
+            g_Spyro.m_0x22 = 0x10;
+            g_Spyro.m_0x23 = 0xD8;
+        } else {
+            g_Spyro.m_0x23 = 0;
+        }
+    } else if ((waveTimer = g_Spyro.m_0x1D8) != 0) {
+        // Convert the timer into an 8-bit phase for the waveform lookup.
+        waveTableIndex2 = waveTimer << 1;
+        if (waveTimer < 0xB4) {
+            waveTableIndex2 += (0xB4 - waveTimer) << 3;
+        }
+
+        g_Spyro.m_0x20 = 0x90;
+
+        // Keep the colour component staged across the waveform lookup.
+        colorComponent = 0x10;
+        waveSample2 = D_80061C58[waveTableIndex2 & 0xFF];
+        g_Spyro.m_0x22 = colorComponent;
+        colorComponent = 0xD8;
+        g_Spyro.m_0x23 = colorComponent;
+
+        // Convert the table sample to a signed amplitude.
+        waveSample2 = (int)((unsigned int)waveSample2 << 16) >> 21;
+        g_Spyro.m_0x21 = ABS(waveSample2) + 0x20;
+
+    } else if ((waveTimer = g_Spyro.m_0x1DC) != 0) {
+        waveTableIndex2 = waveTimer << 1;
+        if (waveTimer < 0xB4) {
+            waveTableIndex2 += (0xB4 - waveTimer) << 3;
+        }
+
+        g_Spyro.m_0x20 = 0x10;
+        colorComponent = 0x90;
+        waveSample2 = D_80061C58[waveTableIndex2 & 0xFF];
+        g_Spyro.m_0x22 = colorComponent;
+        colorComponent = 0x80;
+        g_Spyro.m_0x23 = colorComponent;
+        waveSample2 = (int)((unsigned int)waveSample2 << 16) >> 21;
+        g_Spyro.m_0x21 = ABS(waveSample2) + 0x20;
+
+    } else if ((waveTimer = g_Spyro.m_0x1E8) != 0) {
+        waveTableIndex2 = waveTimer << 1;
+        if (waveTimer < 0xB4) {
+            waveTableIndex2 += (0xB4 - waveTimer) << 3;
+        }
+
+        g_Spyro.m_0x20 = 0x10;
+        colorComponent = 0x90;
+        waveSample2 = D_80061C58[waveTableIndex2 & 0xFF];
+        g_Spyro.m_0x22 = colorComponent;
+        colorComponent = 0xA0;
+        g_Spyro.m_0x23 = colorComponent;
+        waveSample2 = (int)((unsigned int)waveSample2 << 16) >> 21;
+        g_Spyro.m_0x21 = ABS(waveSample2) + 0x20;
+
+    } else if (g_Spyro.m_0x1E4 != 0) {
+        waveTableIndex = g_Spyro.m_0x1E4 << 1;
+        if (g_Spyro.m_0x1E4 < 0xB4) {
+            waveTableIndex += (0xB4 - g_Spyro.m_0x1E4) << 3;
+        }
+
+        waveSample = (short)D_80061C58[waveTableIndex & 0xFF];
+        waveSample /= 48;
+
+        g_Spyro.m_0x21 = 0xFF;
+        g_Spyro.m_0x22 = 0;
+        g_Spyro.m_0x23 = 0xA0;
+        g_Spyro.m_0x20 = ABS(waveSample) + 0x30;
+
+    } else if (D_800698CC != 0) {
+        // Use a fixed colour preset when no timed effect is active.
+        switch (D_800698CC - 1) {
+            case 0:
+                g_Spyro.m_0x20 = 0x90;
+                g_Spyro.m_0x21 = 0;
+                g_Spyro.m_0x22 = 0;
+                g_Spyro.m_0x23 = 0xA0;
+                break;
+            case 1:
+                g_Spyro.m_0x20 = 0x18;
+                g_Spyro.m_0x21 = 0x30;
+                g_Spyro.m_0x22 = 0xA0;
+                g_Spyro.m_0x23 = 0xA0;
+                break;
+            case 2:
+                g_Spyro.m_0x20 = 0xFF;
+                g_Spyro.m_0x21 = 0x80;
+                g_Spyro.m_0x22 = 0x80;
+                g_Spyro.m_0x23 = 0xA0;
+                break;
+            case 3:
+                g_Spyro.m_0x20 = 0x10;
+                g_Spyro.m_0x21 = 0x90;
+                g_Spyro.m_0x22 = 0;
+                g_Spyro.m_0x23 = 0xA0;
+                break;
+            case 4:
+                g_Spyro.m_0x20 = 0xFF;
+                g_Spyro.m_0x21 = 0xFF;
+                g_Spyro.m_0x22 = 0x80;
+                g_Spyro.m_0x23 = 0xFF;
+                break;
+            case 5:
+                g_Spyro.m_0x20 = 0x18;
+                g_Spyro.m_0x21 = 0x18;
+                g_Spyro.m_0x22 = 0x18;
+                g_Spyro.m_0x23 = 0xFF;
+                break;
+        }
+    } else {
+        g_Spyro.m_0x23 = 0;
+    }
+
+    // Maintain the two auxiliary effects while Spyro is in state 6.
+    if (g_Spyro.m_0x58 == 6) {
+        if (g_Spyro.m_0x27C == nullptr) {
+            g_Spyro.m_0x27C = func_800502FC(
+                &g_Spyro.m_Vector_0x284, -3, 6, 0x303030);
+        }
+        if (g_Spyro.m_0x280 == nullptr) {
+            g_Spyro.m_0x280 = func_800502FC(
+                &g_Spyro.m_Vector_0x290, -3, 6, 0x303030);
+        }
+
+        // Hold their parameter at 3 in mode 0x22; otherwise increment it up to 6.
+        if (g_Spyro.m_0x50 == 0x22) {
+            if (g_Spyro.m_0x27C != nullptr) {
+                effectData = g_Spyro.m_0x27C;
+                effectData[0x29] = 3;
+            }
+            if (g_Spyro.m_0x280 != nullptr) {
+                effectData = g_Spyro.m_0x280;
+                effectData[0x29] = 3;
+            }
+        } else {
+            if (g_Spyro.m_0x27C != nullptr) {
+                ((unsigned char *)g_Spyro.m_0x27C)[0x29]++;
+                if (((unsigned char *)g_Spyro.m_0x27C)[0x29] >= 7) {
+                    ((unsigned char *)g_Spyro.m_0x27C)[0x29] = 6;
+                }
+            }
+            if (g_Spyro.m_0x280 != nullptr) {
+                ((unsigned char *)g_Spyro.m_0x280)[0x29]++;
+                if (((unsigned char *)g_Spyro.m_0x280)[0x29] >= 7) {
+                    ((unsigned char *)g_Spyro.m_0x280)[0x29] = 6;
+                }
+            }
+        }
+    } else {
+        // Release the auxiliary effects when leaving state 6.
+        if (g_Spyro.m_0x27C != nullptr) {
+            func_800504A0(g_Spyro.m_0x27C);
+            g_Spyro.m_0x27C = nullptr;
+        }
+        if (g_Spyro.m_0x280 != nullptr) {
+            func_800504A0(g_Spyro.m_0x280);
+            g_Spyro.m_0x280 = nullptr;
+        }
+    }
+}
 
 // https://decomp.me/scratch/YPqGB
 //INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800327F0);
@@ -3563,6 +3849,7 @@ void func_8003305C(int frameIndex, Vector3D *outputVector) {
     );
 }
 
+// https://decomp.me/scratch/eNnPQ
 INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80033300);
 
 // https://decomp.me/scratch/Ne6Jo
@@ -3668,7 +3955,7 @@ void func_800347A4(void) {
                 g_Spyro.m_0x54 =
                     (g_Spyro.m_0x54 & 0x80) | 1;
             } else if ((g_Spyro.m_0x54 & 0x80) == 0) {
-                if ((D_800683A0 & 0x40) == 0) {
+                if ((g_Pad.state.held & 0x40) == 0) {
                     g_Spyro.m_0x54 = 2;
                 }
             }
@@ -3687,7 +3974,7 @@ void func_800347A4(void) {
                     g_Spyro.m_0x54 = 1;
                 }
             } else if (g_Spyro.m_0x54 == 0) {
-                if ((D_800683A0 & 0x40) == 0 &&
+                if ((g_Pad.state.held & 0x40) == 0 &&
                     g_Spyro.m_0x14C == 0) {
                     g_Spyro.m_0x54 = 2;
                 }
@@ -3762,7 +4049,7 @@ void func_800347A4(void) {
             g_Spyro.m_0x5C >= 4) {
             g_Spyro.m_0x54 = 1;
         } else if (g_Spyro.m_0x54 == 0 &&
-                   (D_800683A0 & 0x40) == 0) {
+                   (g_Pad.state.held & 0x40) == 0) {
             g_Spyro.m_0x54 = 2;
         }
 
@@ -3956,7 +4243,7 @@ void func_800350D0(int arg0) {
         return;
     }
 
-    D_80066F38 = &D_800683B0[arg0 << 4];
+    D_80066F38 = (unsigned char *)&g_Pad.store[arg0];
 
     switch (g_Spyro.m_0x50) {
     case 0:
@@ -4006,6 +4293,1606 @@ void func_800350D0(int arg0) {
     g_Spyro.m_0x5C++;
 }
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800351D8);
+// https://decomp.me/scratch/2Uy9T
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_800351D8);
+void func_800351D8(int state) {
+    struct {
+        Vector3D callbackPosition;  // 0x00
+        int pad_0x0C;
 
-INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80035D38);
+        union {
+            Vector3D inputVector;   // 0x10
+            struct {
+                int horizontalInput;    // 0x10
+                int verticalInput;      // 0x14
+                Vector3D referenceVector; // 0x18
+            } fields;
+        } input;
+
+        int pad_0x24;
+        Vector3D collisionPosition; // 0x28
+    } stack;
+
+    CallbackArgument callbackArgument;
+    int previousFrame;
+
+    // Clear any pending target before processing the new state.
+    if (g_Spyro.m_0x264 >= 0) {
+        if (func_80050B20(g_Spyro.m_0x268, g_Spyro.m_0x264) != 0) {
+            func_80050A40(g_Spyro.m_0x264);
+        }
+
+        g_Spyro.m_0x264 = -1;
+    }
+
+    g_Spyro.m_0x278 = -1;
+
+    // Redirect this transition when the associated flag is set.
+    if (state == 0x10 && g_Spyro.m_0x1C4 != 0) {
+        state = 0x21;
+    }
+
+    g_Spyro.m_0x270 = 0x164;
+    g_Spyro.m_0x138 = 0;
+
+    switch (state) {
+        case 0:
+        case 14:
+        {
+            g_Spyro.m_0x58 = 0;
+            g_Spyro.m_0x54 = 0;
+
+            func_8002E2BC();
+
+            g_Spyro.m_0x1BC = 1;
+
+            if (state == 0x25) {
+                g_Spyro.m_0x14C = func_8003891C(5, 8);
+            } else {
+                g_Spyro.m_0x14C = func_8003891C(1, 3);
+            }
+
+            g_Spyro.m_0x150 = 0;
+
+            if (D_800670B4 != nullptr) {
+                if (state == 0x25) {
+                    D_800670B4(0x1F1, 0);
+                } else if (state == 0x27) {
+                    D_800670B4(0x1DB, 0);
+                }
+            }
+            break;
+        }
+
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 22:
+        {
+            g_Spyro.m_0x58 = 1;
+            g_Spyro.m_0x54 = 0;
+
+            g_Spyro.m_0xB8 = func_8001BA20(
+                &g_Spyro.m_Vector_0xA0, 0);
+
+            if (state == 3) {
+                if (g_Spyro.m_0xB8 >= 0x1401) {
+                    g_Spyro.m_0xB8 = 0x1400;
+                }
+
+                if (g_Spyro.m_0x50 != 0x14) {
+                    func_80050720(
+                        ((unsigned char *)D_80067020)[0x10],
+                        0,
+                        0);
+                }
+            } else if (state == 4) {
+                if (g_Spyro.m_0xB0 < 0) {
+                    g_Spyro.m_0xB0 = 0;
+                }
+
+                func_80050720(
+                    ((unsigned char *)D_80067020)[0x10],
+                    0,
+                    0);
+            }
+
+            func_8002DB08(0xC00);
+
+            g_Spyro.m_0x14C = 0;
+            g_Spyro.m_0x1BC = 1;
+            break;
+        }
+
+        case 5:
+        {
+            if (g_Spyro.m_0x58 == 0xA &&
+                D_800670FC != nullptr &&
+                g_Spyro.m_0x28 < 0) {
+
+                func_8001BDB0(
+                    &stack.callbackPosition,
+                    &g_Spyro.m_Position);
+
+                stack.callbackPosition.z = -g_Spyro.m_0x28;
+                callbackArgument.value = 0;
+
+                D_800670FC(
+                    6,
+                    0x2E,
+                    &stack.callbackPosition,
+                    callbackArgument.value);
+
+                D_800670FC(
+                    4,
+                    0x29,
+                    &stack.callbackPosition,
+                    callbackArgument.value);
+            }
+
+            if (g_Spyro.m_0x58 == 0xD) {
+                g_Spyro.m_0x54 = 0;
+
+                if (g_Pad.dpadPressed != 0) {
+                    stack.input.fields.horizontalInput = 0;
+                    stack.input.fields.verticalInput = 0x7F;
+                } else {
+                    func_8002B4E4(&stack.input.inputVector, 0);
+
+                    if (ABS(stack.input.fields.horizontalInput) >
+                        ABS(stack.input.fields.verticalInput)) {
+
+                        g_Spyro.m_0x54 |= 0x80;
+                        g_Spyro.m_0x14C = g_Spyro.m_Position.z;
+                    }
+
+                    // Scale the horizontal input into movement units.
+                    stack.input.fields.horizontalInput =
+                        (((((stack.input.fields.horizontalInput << 3) -
+                            stack.input.fields.horizontalInput) << 3) -
+                          stack.input.fields.horizontalInput) << 6) >> 7;
+                }
+
+                g_Spyro.m_Vector_0x94.x =
+                    (stack.input.fields.horizontalInput *
+                     func_8001B61C(g_Spyro.m_Vector_0x64.z)) >> 12;
+
+                g_Spyro.m_Vector_0x94.y =
+                    (-stack.input.fields.horizontalInput *
+                     func_8001B664(g_Spyro.m_Vector_0x64.z)) >> 12;
+
+                {
+                    int adjustedVerticalInput =
+                        stack.input.fields.verticalInput + 0x40;
+
+                    g_Spyro.m_Vector_0x94.z =
+                        (((((adjustedVerticalInput << 3) -
+                            adjustedVerticalInput) << 3) -
+                          adjustedVerticalInput) << 6) >> 7;
+                }
+
+                if (g_Spyro.m_Vector_0x94.z >= 0xDC1) {
+                    g_Spyro.m_Vector_0x94.z = 0xDC0;
+                }
+
+                g_Spyro.m_0xB8 = func_8001BA20(
+                    &g_Spyro.m_Vector_0x94, 0);
+            } else {
+                g_Spyro.m_0x58 = 2;
+
+                func_8001BDB0(
+                    &g_Spyro.m_Vector_0x94,
+                    &g_Spyro.m_Vector_0xA0);
+
+                g_Spyro.m_0xB8 = func_8001BA20(
+                    &g_Spyro.m_Vector_0xA0, 0);
+
+                g_Spyro.m_Vector_0x94.z = 0xDC0;
+                g_Spyro.m_0x54 = 0;
+
+                if (g_Spyro.m_0x50 == 0x1E) {
+                    g_Spyro.m_0x14C = 1;
+                } else {
+                    g_Spyro.m_0x14C = 0;
+                }
+            }
+
+            g_Spyro.m_0x1BC = 0;
+
+            func_80050720(
+                ((unsigned char *)D_80067020)[0x22],
+                0,
+                0);
+            break;
+        }
+
+        case 6:
+        {
+            if (g_Spyro.m_0x50 == 0xD) {
+                g_Spyro.m_0x54 = 2;
+            } else {
+                g_Spyro.m_0x54 = 0;
+            }
+
+            g_Spyro.m_0x58 = 3;
+
+            g_Spyro.m_0xB8 = func_8001BA20(
+                &g_Spyro.m_Vector_0xA0, 0);
+
+            g_Spyro.m_0x1BC = 0;
+            g_Spyro.m_0x1BD = 1;
+            break;
+        }
+
+        case 7:
+        {
+            g_Spyro.m_0x58 = 0;
+            g_Spyro.m_0x54 = 0;
+
+            func_8002E2BC();
+
+            g_Spyro.m_0x1BC = 1;
+            break;
+        }
+
+        case 12:
+        {
+            g_Spyro.m_0x58 = 4;
+            g_Spyro.m_0x54 = 0;
+
+            g_Spyro.m_0xB8 = func_8001BA20(
+                &g_Spyro.m_Vector_0xA0, 0);
+
+            g_Spyro.m_0xB4 = 0x1E80;
+
+            func_8002DB08(0xC00);
+
+            g_Spyro.m_0x1BC = 1;
+            g_Spyro.m_0x138 = 0x20000;
+            break;
+        }
+
+        case 13:
+        {
+            if (D_800670FC != nullptr) {
+                callbackArgument.value = 1;
+
+                D_800670FC(
+                    8,
+                    0x21,
+                    nullptr,
+                    callbackArgument.value);
+            }
+
+            g_Spyro.m_0x58 = 1;
+            g_Spyro.m_0x54 = 0;
+
+            func_8001BDA0(&stack.input.fields.referenceVector);
+
+            func_8001BE00(
+                &g_Spyro.m_Vector_0x94,
+                &stack.input.fields.referenceVector,
+                &g_Spyro.m_Vector_0x88);
+
+            func_8001BD48(
+                &g_Spyro.m_Vector_0x94, 2);
+
+            func_8001BDB0(
+                &g_Spyro.m_Vector_0x88,
+                &g_Spyro.m_Vector_0x94);
+
+            if (g_Spyro.m_Vector_0x94.z < 0) {
+                g_Spyro.m_Vector_0x94.z = 0;
+            }
+
+            g_Spyro.m_0x1BC = 1;
+
+            func_80050720(
+                ((unsigned char *)D_80067020)[2],
+                0,
+                0);
+
+            g_Pad.unk3[3] = 0x78;
+            g_Pad.unk3[2] = 0xF;
+            break;
+        }
+
+        case 15:
+        {
+            int cosineValue;
+            int sineValue;
+
+            g_Spyro.m_0x14C = g_Spyro.m_0x58;
+
+            g_Spyro.m_0x58 = 7;
+            g_Spyro.m_0x54 = 0;
+
+            if (g_Spyro.m_0x274 >= 0) {
+                // Preserve the signed 16-bit lookup value before halving it.
+                cosineValue = D_80061C58[g_Spyro.m_0x274];
+                g_Spyro.m_Vector_0x94.x = (short)cosineValue >> 1;
+
+                sineValue = D_80061BD8[g_Spyro.m_0x274];
+                g_Spyro.m_Vector_0x94.y = (short)sineValue >> 1;
+
+                g_Spyro.m_Vector_0x94.z = 0;
+            } else {
+                func_8001BDA0(&g_Spyro.m_Vector_0x94);
+            }
+
+            func_8001BDB0(
+                &g_Spyro.m_Vector_0x88,
+                &g_Spyro.m_Vector_0x94);
+
+            func_8002DB08(0xC00);
+
+            g_Spyro.m_0x1BC = 1;
+
+            if (state == 8) {
+                g_Pad.unk3[1] = 0x2D;
+            } else {
+                g_Pad.unk3[0] = 0xF;
+            }
+
+            if (D_800670FC != nullptr) {
+                callbackArgument.value = 0;
+
+                D_800670FC(
+                    5,
+                    0xA,
+                    nullptr,
+                    callbackArgument.value);
+            }
+
+            if (state == 0x38) {
+                func_80050720(
+                    ((unsigned char *)D_80067020)[0x13],
+                    0,
+                    0);
+            }
+
+            break;
+        }
+
+        case 16:
+        case 24:
+        {
+            if (g_Spyro.m_0x58 != 5) {
+                g_Spyro.m_0x58 = 5;
+                g_Spyro.m_0x54 = 0;
+
+                func_8001BDB0(
+                    &g_Spyro.m_Vector_0x94,
+                    &g_Spyro.m_Vector_0xA0);
+
+                if (g_Spyro.m_Vector_0x94.z > 0) {
+                    g_Spyro.m_Vector_0x94.z = 0;
+                }
+
+                g_Spyro.m_0xB8 = func_8001BA20(
+                    &g_Spyro.m_Vector_0xA0, 0);
+
+                if (g_Spyro.m_0xB8 < 0x780) {
+                    g_Spyro.m_0xB8 = 0x780;
+                }
+
+                if (g_Spyro.m_0xB8 > 0x1900) {
+                    g_Spyro.m_0xB8 = 0x1900;
+                }
+
+                g_Spyro.m_0x1BC = 0;
+                g_Spyro.m_0x1BD = 0;
+                g_Spyro.m_0x150 = g_Spyro.m_Position.z;
+            }
+            break;
+        }
+
+        case 17:
+        {
+            if (g_Spyro.m_0x58 != 5) {
+                g_Spyro.m_0x150 =
+                    g_Spyro.m_Position.z + 0x400;
+            }
+
+            g_Spyro.m_0x58 = 2;
+            g_Spyro.m_0x54 = 0;
+
+            func_8001BDB0(
+                &g_Spyro.m_Vector_0x94,
+                &g_Spyro.m_Vector_0xA0);
+
+            g_Spyro.m_0xB8 = func_8001BA20(
+                &g_Spyro.m_Vector_0xA0, 0);
+
+            g_Spyro.m_Vector_0x94.z = 0xC00;
+
+            g_Spyro.m_0x1BC = 0;
+            break;
+        }
+
+        case 21:
+        {
+            int cosineValue;
+            int sineValue;
+
+            if (g_Spyro.m_0x58 != 9) {
+                if (g_Spyro.m_0x58 == 11 ||
+                    g_Spyro.m_0x58 == 12) {
+
+                    func_80050720(
+                        ((unsigned char *)D_80067020)[7],
+                        0,
+                        0);
+
+                    func_8001BDB0(
+                        &stack.collisionPosition,
+                        &g_Spyro.m_Position);
+
+                    stack.collisionPosition.z += 0x400;
+
+                    stack.collisionPosition.z = func_8003EE84(
+                        &stack.collisionPosition, 0x800);
+
+                    if (stack.collisionPosition.z != 0 &&
+                        D_8006ABA4 != 0 &&
+                        D_800670FC != nullptr) {
+
+                        callbackArgument.value = 0;
+
+                        D_800670FC(
+                            6,
+                            0x2E,
+                            &stack.collisionPosition,
+                            callbackArgument.value);
+
+                        D_800670FC(
+                            4,
+                            0x29,
+                            &stack.collisionPosition,
+                            callbackArgument.value);
+                    }
+
+                    g_Spyro.m_0x54 = 3;
+                } else {
+                    g_Spyro.m_0x54 = 0;
+                }
+
+                g_Spyro.m_0x58 = 4;
+                g_Spyro.m_0x138 = 0x20000;
+
+                g_Spyro.m_0xB8 = func_8001BA20(
+                    &g_Spyro.m_Vector_0xA0, 0);
+
+                if (g_Spyro.m_0xB8 < 0x800) {
+                    g_Spyro.m_0xB8 = 0x800;
+
+                    // Preserve the signed 16-bit lookup value before halving it.
+                    cosineValue = D_80061C58[g_Spyro.m_Rotation_0x0C.yaw];
+                    g_Spyro.m_Vector_0x94.x = (short)cosineValue >> 1;
+
+                    sineValue = D_80061BD8[g_Spyro.m_Rotation_0x0C.yaw];
+                    g_Spyro.m_Vector_0x94.y = (short)sineValue >> 1;
+                } else {
+                    func_8001BDB0(
+                        &g_Spyro.m_Vector_0x94,
+                        &g_Spyro.m_Vector_0xA0);
+                }
+
+                g_Spyro.m_0xB4 = 0x1800;
+                g_Spyro.m_0x1BC = 0;
+                g_Spyro.m_0x14C = 0;
+
+                break;
+            }
+
+            g_Spyro.m_0x138 = 0x60000;
+            g_Spyro.m_0x54 = 0;
+
+            g_Spyro.m_0x1BC = 0;
+            g_Spyro.m_0x14C = 0;
+            break;
+        }
+
+        case 31:
+        {
+            g_Spyro.m_0x58 = 8;
+            g_Spyro.m_0x54 = 0;
+
+            func_8002DB08(0xC00);
+
+            g_Spyro.m_0x1BC = 1;
+            break;
+        }
+
+        case 46:
+        {
+            g_Spyro.m_0x58 = 0xF;
+            g_Spyro.m_0x54 = 0;
+
+            func_8001BDA0(&g_Spyro.m_Vector_0x94);
+
+            g_Spyro.m_Vector_0x94.z = 0x800;
+            g_Spyro.m_0x1BC = 0;
+            g_Spyro.m_0x138 = 0x20000;
+            break;
+        }
+
+        default:
+            if (D_800670A8 != nullptr) {
+                D_800670A8(state);
+            }
+            break;
+    }
+
+    // Clear per-update fields and record the selected state.
+    g_Spyro.m_0x1BE = 0;
+    g_Spyro.m_0x1C0 = 0;
+    g_Spyro.m_Vector_0x1C8.y = 0;
+
+    g_Spyro.m_0x50 = state;
+
+    previousFrame = g_Spyro.m_0x5C;
+    g_Spyro.m_0x5C = 0;
+    g_Spyro.m_0x60 = previousFrame;
+}
+
+// https://decomp.me/scratch/ZnGK7
+//INCLUDE_ASM("asm/nonmatchings/spyroupdate", func_80035D38);
+void func_80035D38(void) {
+    CallbackArgument callbackArgument;
+
+    if ((g_Spyro.m_0x20C & 0x8000) != 0) {
+        return;
+    }
+
+    switch (g_Spyro.m_0x50) {
+    case 0:
+    {
+        unsigned int currentState;
+
+        if (func_8002B0B8() != 0) {
+            break;
+        }
+
+        if ((g_Pad.state.pressed & 0x40) != 0) {
+            if (D_80066F90 != 0x3E ||
+                func_8002B078(g_Spyro.m_0x114) != 4) {
+
+                func_800351D8(5);
+                break;
+            }
+        }
+
+        if (func_8002B078(g_Spyro.m_0x114) == 4) {
+            if (g_Pad.dpadPressed != 0) {
+                break;
+            }
+
+            func_800351D8(9);
+            break;
+        }
+
+        if (g_Spyro.m_0xC0 >= 4 ||
+            g_Spyro.m_0xEC >= 0x17) {
+
+            func_800351D8(6);
+            break;
+        }
+
+        if ((g_Pad.state.held & 0x80) != 0) {
+            func_800351D8(12);
+            break;
+        }
+
+        if (ABS(g_Spyro.m_0xB0) >= 0x11 ||
+            ((g_Pad.state.held & 0xF) != 3 &&
+             g_Spyro.m_0xB4 != 0)) {
+
+            func_800351D8(1);
+            break;
+        }
+
+        if (g_Camera.m_CameraMode == 7 ||
+            g_Spyro.m_0x240 != 0) {
+
+            if (g_Spyro.m_0x50 == 0) {
+                break;
+            }
+
+            func_800351D8(0);
+
+            if (D_80062868[g_Spyro.m_0x1C] >= 0x60) {
+                g_Spyro.m_0x14 = g_Spyro.m_0x15;
+                g_Spyro.m_animationFrame_0x16 = g_Spyro.m_0x17;
+            }
+
+            /* Preserve the current state before updating its related fields. */
+            g_Spyro.m_0x17 = 0;
+            currentState = g_Spyro.m_0x50;
+            g_Spyro.m_0x1C = 0x71;
+            g_Spyro.m_0x1F0 = 0;
+            g_Spyro.m_0x15 = currentState;
+            g_Spyro.m_0x1EC = currentState;
+
+        } else if (g_Spyro.m_0x104 != 0) {
+            func_800351D8(14);
+        } else {
+            func_80032C34();
+        }
+
+        break;
+    }
+
+    case 1:
+    {
+        int columnIndex;
+
+        if (func_8002B0B8() != 0) {
+            break;
+        }
+
+        if ((g_Pad.state.pressed & 0x40) != 0) {
+            func_800351D8(5);
+            break;
+        }
+
+        if (g_Spyro.m_0xC0 >= 4 ||
+            g_Spyro.m_0xEC >= 0x17) {
+
+            func_800351D8(6);
+            break;
+        }
+
+        if ((g_Pad.state.held & 0x80) != 0) {
+            func_800351D8(12);
+            break;
+        }
+
+        if (g_Spyro.m_0x5C < 0x10) {
+            break;
+        }
+
+        if (g_Pad.dpadPressed != 0 && g_Spyro.m_0xB8 == 0) {
+            func_800351D8(0);
+            break;
+        }
+
+        if ((g_Pad.state.held & 0xF) == 3 &&
+            g_Spyro.m_0x14C >= 0x10) {
+
+            func_800351D8(0);
+            break;
+        }
+
+        if (g_Spyro.m_0xBC < 0x781) {
+            break;
+        }
+
+        columnIndex = g_Spyro.m_0x114 >> 6;
+        func_800506AC(0, D_800602B4[D_80066F54][columnIndex], 0);
+
+        g_Spyro.m_0x278 = g_Spyro.m_animationFrame_0x16;
+        func_800351D8(0x16);
+        break;
+    }
+
+    case 2:
+    {
+        int columnIndex;
+
+        if (func_8002B0B8() != 0) {
+            break;
+        }
+
+        if ((g_Pad.state.pressed & 0x40) != 0) {
+            func_800351D8(5);
+            break;
+        }
+
+        if (g_Spyro.m_0xC0 >= 4 ||
+            g_Spyro.m_0xEC >= 0x17) {
+
+            func_800351D8(6);
+            break;
+        }
+
+        if ((g_Pad.state.held & 0x80) != 0) {
+            func_800351D8(12);
+            break;
+        }
+
+        if (g_Spyro.m_0xB4 == 0) {
+            func_800351D8(3);
+            break;
+        }
+
+        if (func_8001BEBC(
+                g_Spyro.m_0xAC,
+                g_Spyro.m_Vector_0x64.z) >= 0x501) {
+
+            func_800351D8(4);
+            break;
+        }
+
+        if (g_Spyro.m_0xBC >= 0xC80) {
+            break;
+        }
+
+        columnIndex = g_Spyro.m_0x114 >> 6;
+
+        func_800506AC(
+            0,
+            D_800602B4[D_80066F54][columnIndex],
+            0);
+
+        g_Spyro.m_0x278 = g_Spyro.m_animationFrame_0x16;
+        func_800351D8(0x16);
+        break;
+    }
+
+    case 3:
+        if (func_8002B0B8() != 0) {
+            break;
+        }
+
+        if ((g_Pad.state.pressed & 0x40) != 0) {
+            func_800351D8(5);
+            break;
+        }
+
+        if (g_Spyro.m_0xC0 >= 4) {
+            func_800351D8(6);
+            break;
+        }
+
+        if (g_Spyro.m_0xEC >= 0x17) {
+            func_800351D8(6);
+            break;
+        }
+
+        if ((g_Pad.state.held & 0x80) != 0) {
+            func_800351D8(0xC);
+            break;
+        }
+
+        if (g_Spyro.m_0xB4 != 0) {
+            if (g_Spyro.m_0x5C < 0x12) {
+                if (func_8001BEBC(
+                        g_Spyro.m_0xAC,
+                        g_Spyro.m_Vector_0x64.z) >= 0x501) {
+
+                    func_800351D8(4);
+                    break;
+                }
+            }
+
+            /* Select the next state using the B8 thresholds. */
+            if (g_Spyro.m_0xB8 >= 0xF01) {
+                func_800351D8(2);
+            } else if (g_Spyro.m_0xB8 >= 0x781) {
+                func_800351D8(0x16);
+            } else {
+                func_800351D8(1);
+            }
+
+        } else {
+            if (g_Spyro.m_0xB8 == 0) {
+                func_800351D8(0);
+            }
+        }
+
+        break;
+
+    case 4:
+    {
+        if (func_8002B0B8() != 0) {
+            break;
+        }
+
+        if ((g_Pad.state.pressed & 0x40) != 0) {
+            func_800351D8(5);
+            break;
+        }
+
+        if (g_Spyro.m_0xC0 >= 4 ||
+            g_Spyro.m_0xEC >= 0x17) {
+
+            func_800351D8(6);
+            break;
+        }
+
+        if ((g_Pad.state.held & 0x80) != 0) {
+            func_800351D8(12);
+            break;
+        }
+
+        if (g_Spyro.m_0x5C < 0x25) {
+            break;
+        }
+
+        if (g_Pad.dpadPressed != 0) {
+            func_800351D8(0);
+            break;
+        }
+
+        func_800351D8(1);
+
+        g_Spyro.m_0xB8 = 0x780;
+        g_Spyro.m_0xB0 = 0;
+        break;
+    }
+
+    case 5:
+    {
+        int collisionResult;
+        int initialState;
+
+        if (func_8002B0B8() != 0) {
+            break;
+        }
+
+        if (g_Spyro.m_0x58 == 0xD) {
+            if ((g_Pad.state.pressed & 0x40) != 0) {
+                g_Spyro.m_0x1BE = 1;
+            }
+
+            /* Check the three-dimensional movement dot product. */
+            if (g_Spyro.m_0xC0 == 0 &&
+                g_Spyro.m_0x5C >= 0x10 &&
+                g_Spyro.m_0xEC < 0x17 &&
+                (g_Spyro.m_Vector_0xD4.x * g_Spyro.m_Vector_0x94.x +
+                 g_Spyro.m_Vector_0xD4.y * g_Spyro.m_Vector_0x94.y +
+                 g_Spyro.m_Vector_0xD4.z * g_Spyro.m_Vector_0x94.z) < 0) {
+
+                func_800351D8(0);
+                break;
+            }
+
+            if (g_Spyro.m_0x54 != 1) {
+                break;
+            }
+
+            if (func_8002D328(4) != 0) {
+                func_800351D8(0x2F);
+                break;
+            }
+
+            if (g_Spyro.m_0x1BE != 0) {
+                func_800351D8(0x10);
+                break;
+            }
+
+            if (g_Spyro.m_0x5C >= 0x41) {
+                func_800351D8(6);
+            }
+
+            break;
+        }
+
+        if (g_Spyro.m_0x1BD != 0 &&
+            (g_Pad.state.pressed & 0x40) != 0) {
+
+            g_Spyro.m_0x1BE = 1;
+        }
+
+        /* Check the three-dimensional movement dot product. */
+        if (g_Spyro.m_0xC0 == 0 &&
+            g_Spyro.m_0x5C >= 0x10 &&
+            g_Spyro.m_0xEC < 0x17 &&
+            (g_Spyro.m_Vector_0xD4.x * g_Spyro.m_Vector_0x94.x +
+             g_Spyro.m_Vector_0xD4.y * g_Spyro.m_Vector_0x94.y +
+             g_Spyro.m_Vector_0xD4.z * g_Spyro.m_Vector_0x94.z) < 0) {
+
+            if (g_Spyro.m_0xB4 != 0) {
+                if (g_Spyro.m_0xB8 >= 0xF01) {
+                    func_800351D8(2);
+                } else if (g_Spyro.m_0xB8 >= 0x781) {
+                    func_800351D8(0x16);
+                } else {
+                    func_800351D8(1);
+                }
+
+            } else if (g_Spyro.m_0xB8 >= 0x780) {
+                func_800351D8(3);
+            } else {
+                func_800351D8(0);
+            }
+
+            func_80050720(
+                ((unsigned char *)D_80067020)[0x12],
+                0,
+                0);
+
+            break;
+        }
+
+        if (g_Spyro.m_Vector_0x1C8.x != 0) {
+            break;
+        }
+
+        if ((g_Pad.state.held & 0x80) != 0) {
+            if (g_Spyro.m_Vector_0xA0.z > 0) {
+                g_Spyro.m_Vector_0xA0.z = 0;
+            }
+
+            func_800351D8(0x15);
+
+        } else if ((g_Pad.state.pressed & 0x10) != 0 &&
+                   D_8006468A != 0) {
+
+            collisionResult = func_8003EE84(
+                &g_Spyro.m_Position,
+                0x364);
+
+            if (collisionResult == 0) {
+                func_800351D8(0x2E);
+            }
+        }
+
+        if (g_Spyro.m_0x1BD != 0 &&
+            g_Spyro.m_0x1BE != 0) {
+
+            if (g_Spyro.m_0x54 == 1) {
+                func_800351D8(0x10);
+            }
+
+            break;
+        }
+
+        /* Save the state before the function that may change it. */
+        initialState = g_Spyro.m_0x54;
+
+        if (initialState != 1) {
+            break;
+        }
+
+        if (func_8002D328(4) != 0) {
+            func_800351D8(0x2F);
+            break;
+        }
+
+        if (g_Spyro.m_0x54 != initialState) {
+            break;
+        }
+
+        if (g_Spyro.m_Vector_0xA0.z < -0x1900 ||
+            g_Spyro.m_0x5C >= 0x79) {
+
+            func_800351D8(6);
+        }
+
+        break;
+    }
+
+    case 6:
+    {
+        if (func_8002B0B8() != 0) {
+            break;
+        }
+
+        if ((g_Pad.state.pressed & 0x40) != 0 &&
+            g_Spyro.m_0x1BD != 0) {
+
+            g_Spyro.m_0x1BE = 1;
+        }
+
+        if (g_Spyro.m_0xC0 == 0 &&
+            g_Spyro.m_0xEC < 0x17) {
+
+            if (g_Spyro.m_0xB4 != 0) {
+                if (g_Spyro.m_0xB8 >= 0xF01) {
+                    func_800351D8(2);
+                } else if (g_Spyro.m_0xB8 >= 0x781) {
+                    func_800351D8(0x16);
+                } else {
+                    func_800351D8(1);
+                }
+
+            } else if (g_Spyro.m_0xB8 >= 0x780) {
+                func_800351D8(3);
+            } else {
+                func_800351D8(0);
+            }
+
+            if (D_800670FC != nullptr) {
+                callbackArgument.value = 2;
+                D_800670FC(8, 0x21, nullptr, callbackArgument);
+            }
+
+            func_80050720(
+                ((unsigned char *)D_80067020)[0x12],
+                0,
+                0);
+
+            if (g_Spyro.m_0x60 >= 0x18) {
+                g_Pad.unk3[3] = 0x78;
+                g_Pad.unk3[2] = 0xF;
+            }
+
+            break;
+        }
+
+        if (g_Spyro.m_0x54 != 3 &&
+            func_8002D328(4) != 0) {
+
+            func_800351D8(0x2F);
+            break;
+        }
+
+        if (g_Spyro.m_0x1BE != 0 &&
+            g_Spyro.m_0x5C >= 0x1F) {
+
+            func_800351D8(0x10);
+        }
+
+        break;
+    }
+
+    case 7:
+    {
+        if (func_8002B0B8() == 0) {
+            func_800351D8(0);
+        }
+
+        break;
+    }
+
+    case 12:
+    {
+        int firstProduct;
+        int secondProduct;
+        int dotProduct;
+
+        if (func_8002B228() != 0) {
+            break;
+        }
+
+        if ((g_Pad.state.held & 0xC0) == 0xC0) {
+            if (g_Spyro.m_0xEC >= 0xC) {
+                /* First two-dimensional dot product. */
+                firstProduct =
+                    g_Spyro.m_Vector_0xD4.x *
+                    g_Spyro.m_Vector_0x94.x;
+
+                secondProduct =
+                    g_Spyro.m_Vector_0xD4.y *
+                    g_Spyro.m_Vector_0x94.y;
+
+                dotProduct = firstProduct + secondProduct;
+
+                if (dotProduct >= 0) {
+                    func_800351D8(0x15);
+
+                    func_80050720(
+                        ((unsigned char *)D_80067020)[0x22],
+                        0,
+                        0);
+
+                    g_Spyro.m_0xC0++;
+                    g_Spyro.m_Vector_0x94.z = 0xDC0;
+                    break;
+                }
+
+            } else {
+                func_800351D8(0x15);
+
+                func_80050720(
+                    ((unsigned char *)D_80067020)[0x22],
+                    0,
+                    0);
+
+                g_Spyro.m_0xC0++;
+                g_Spyro.m_Vector_0x94.z = 0xDC0;
+                break;
+            }
+        }
+
+        if (g_Spyro.m_0xC0 >= 4) {
+            func_800351D8(0x15);
+        } else {
+            if (g_Spyro.m_0xEC >= 0x17) {
+                /* Second two-dimensional dot product. */
+                firstProduct =
+                    g_Spyro.m_Vector_0xC8.x *
+                    g_Spyro.m_Vector_0x94.x;
+
+                secondProduct =
+                    g_Spyro.m_Vector_0xC8.y *
+                    g_Spyro.m_Vector_0x94.y;
+
+                dotProduct = firstProduct + secondProduct;
+
+                if (dotProduct < 0) {
+                    func_800351D8(6);
+                    break;
+                }
+            }
+        }
+
+        if (g_Spyro.m_0x5C >= 0xD &&
+            (g_Pad.state.held & 0x80) == 0) {
+
+            func_800351D8(2);
+            break;
+        }
+
+        if (g_Spyro.m_0xB8 >= 0xC81 &&
+            (g_Spyro.m_0xBC << 1) < g_Spyro.m_0xB8) {
+
+            func_800351D8(0xD);
+            break;
+        }
+
+        if (g_Spyro.m_Vector_0x1C8.y != 0) {
+            func_800351D8(0x3D);
+        }
+
+        break;
+    }
+
+    case 13:
+    {
+        if (func_8002B0B8() != 0) {
+            break;
+        }
+
+        if (g_Spyro.m_0x5C >= 0x11 &&
+            (g_Spyro.m_0xC0 != 0 ||
+             g_Spyro.m_0xEC >= 0x17)) {
+
+            func_800351D8(6);
+            break;
+        }
+
+        if (g_Spyro.m_0x5C >= 0x29) {
+            func_800351D8(0);
+        }
+
+        break;
+    }
+
+    case 14:
+    {
+        if (func_8002B0B8() != 0) {
+            break;
+        }
+
+        if ((g_Pad.state.pressed & 0x40) != 0) {
+            func_800351D8(5);
+            break;
+        }
+
+        if (g_Spyro.m_0xC0 >= 4 ||
+            g_Spyro.m_0xEC >= 0x17) {
+
+            func_800351D8(6);
+            break;
+        }
+
+        if ((g_Pad.state.held & 0x80) != 0) {
+            func_800351D8(12);
+            break;
+        }
+
+        if (g_Camera.m_CameraMode == 7) {
+            func_800351D8(0);
+            break;
+        }
+
+        if (g_Pad.dpadPressed == 0) {
+            func_800351D8(1);
+            break;
+        }
+
+        if (g_Spyro.m_0x104 != 0) {
+            break;
+        }
+
+        if (g_Spyro.m_0x5C >= 0x1F) {
+            func_800351D8(0);
+        }
+
+        break;
+    }
+
+    case 15:
+    {
+        if (g_Spyro.m_0x5C < 0x19) {
+            break;
+        }
+
+        if (g_Spyro.m_timer_0x258 < 0) {
+            func_800351D8(0x1F);
+            break;
+        }
+
+        if (g_Spyro.m_0x14C == 0xA) {
+            func_800351D8(0x2C);
+            break;
+        }
+
+        if ((unsigned int)(g_Spyro.m_0x14C - 0xB) < 2) {
+            func_800351D8(0x29);
+            break;
+        }
+
+        if (g_Spyro.m_0xC0 == 0) {
+            func_800351D8(0);
+        } else {
+            func_800351D8(6);
+        }
+
+        break;
+    }
+
+    case 16:
+    {
+        if (func_8002B0B8() != 0) {
+            break;
+        }
+
+        if (g_Spyro.m_0xC0 == 0) {
+            if (g_Spyro.m_0xEC >= 0x17) {
+                func_800351D8(6);
+                break;
+            }
+
+            if (g_Spyro.m_0xB4 > 0) {
+                /* Select the next state using the B8 thresholds. */
+                if (g_Spyro.m_0xB8 >= 0xF01) {
+                    func_800351D8(2);
+                } else if (g_Spyro.m_0xB8 >= 0x781) {
+                    func_800351D8(0x16);
+                } else {
+                    func_800351D8(1);
+                }
+
+            } else if (g_Spyro.m_0xB8 >= 0x780) {
+                func_800351D8(3);
+                break;
+            } else {
+                func_800351D8(0);
+                break;
+            }
+
+            break;
+        }
+
+        if ((g_Pad.state.held & 0x80) != 0) {
+            func_800351D8(0x15);
+            break;
+        }
+
+        if (func_8002D328(4) != 0) {
+            func_800351D8(0x2F);
+            break;
+        }
+
+        if (g_Spyro.m_0xC4 == 0 ||
+            g_Spyro.m_0xBC < 0x400) {
+
+            func_800351D8(6);
+            break;
+        }
+
+        if ((g_Pad.state.pressed & 0x10) != 0) {
+            func_800351D8(0x11);
+            break;
+        }
+
+        if (g_Spyro.m_0x1C4 != 0) {
+            func_800351D8(0x21);
+            break;
+        }
+
+        if (g_Spyro.m_Vector_0xA0.z > 0 &&
+            g_Spyro.m_0x5C >= 0x11) {
+
+            func_800351D8(6);
+            break;
+        }
+
+        if (g_Spyro.m_0xB8 >= 0xC80 ||
+            g_Spyro.m_0x5C < 0x11) {
+
+            break;
+        }
+
+        func_800351D8(0x18);
+        break;
+    }
+
+    case 17:
+    {
+        if (func_8002B0B8() != 0) {
+            break;
+        }
+
+        /* Check the three-dimensional movement dot product. */
+        if (g_Spyro.m_0xC0 == 0 &&
+            g_Spyro.m_0x5C >= 0x10 &&
+            g_Spyro.m_0xEC < 0x17 &&
+            (g_Spyro.m_Vector_0xD4.x * g_Spyro.m_Vector_0x94.x +
+             g_Spyro.m_Vector_0xD4.y * g_Spyro.m_Vector_0x94.y +
+             g_Spyro.m_Vector_0xD4.z * g_Spyro.m_Vector_0x94.z) < 0) {
+
+            if (g_Spyro.m_0xB4 == 0) {
+                if (g_Spyro.m_0xB8 >= 0x780) {
+                    func_800351D8(3);
+                    break;
+                } else {
+                    func_800351D8(0);
+                    break;
+                }
+
+            } else {
+                if (g_Spyro.m_0xB8 >= 0xF01) {
+                    func_800351D8(2);
+                } else if (g_Spyro.m_0xB8 >= 0x781) {
+                    func_800351D8(0x16);
+                } else {
+                    func_800351D8(1);
+                }
+
+                break;
+            }
+        }
+
+        if ((g_Pad.state.pressed & 0x10) != 0 &&
+            D_8006468A != 0) {
+
+            func_800351D8(0x2E);
+            break;
+        }
+
+        if (func_8002D328(4) != 0) {
+            func_800351D8(0x2F);
+            break;
+        }
+
+        if (g_Spyro.m_Vector_0xA0.z < -0x1900 ||
+            g_Spyro.m_0x5C >= 0x79) {
+
+            func_800351D8(6);
+        }
+
+        break;
+    }
+
+    case 21:
+    {
+        if (func_8002B228() != 0) {
+            break;
+        }
+
+        if (g_Spyro.m_0x1BD != 0 &&
+            (g_Pad.state.pressed & 0x40) != 0) {
+
+            g_Spyro.m_0x1BE = 1;
+        }
+
+        if (g_Spyro.m_0x54 != 3) {
+            /* Check the two-dimensional dot product. */
+            if (g_Spyro.m_0xEC >= 0x17 &&
+                (g_Spyro.m_Vector_0x94.x * g_Spyro.m_Vector_0xD4.x +
+                 g_Spyro.m_Vector_0x94.y * g_Spyro.m_Vector_0xD4.y) < 0) {
+
+                func_800351D8(0xD);
+                break;
+            }
+
+            if (g_Spyro.m_0x54 != 3 &&
+                g_Spyro.m_0xB8 >= 0xC81 &&
+                (g_Spyro.m_0xBC << 1) < g_Spyro.m_0xB8) {
+
+                func_800351D8(0xD);
+                break;
+            }
+        }
+
+        if (g_Spyro.m_0xC0 == 0 &&
+            g_Spyro.m_0x5C >= 5) {
+
+            if (g_Spyro.m_0x58 == 9) {
+                func_800351D8(0x3D);
+                break;
+            } else {
+                func_800351D8(0xC);
+                break;
+            }
+        }
+
+        if (g_Spyro.m_0x1BE != 0 &&
+            g_Spyro.m_Vector_0x94.z < 0) {
+
+            func_800351D8(0x10);
+            break;
+        }
+
+        if (g_Spyro.m_0x14C >= 9 &&
+            g_Spyro.m_0x58 == 4) {
+
+            if (g_Spyro.m_0x1BE != 0) {
+                func_800351D8(0x10);
+            } else {
+                func_800351D8(6);
+                g_Spyro.m_0x5C = 0x1F;
+            }
+
+            break;
+        }
+
+        if (g_Spyro.m_0x58 != 9 &&
+            g_Spyro.m_Vector_0x1C8.y != 0) {
+
+            func_800351D8(0x19);
+        }
+
+        break;
+    }
+
+    case 22:
+    {
+        int firstColumnIndex;
+        int secondColumnIndex;
+
+        if (func_8002B0B8() != 0) {
+            break;
+        }
+
+        if ((g_Pad.state.pressed & 0x40) != 0) {
+            func_800351D8(5);
+            break;
+        }
+
+        if (g_Spyro.m_0xC0 >= 4 ||
+            g_Spyro.m_0xEC >= 0x17) {
+
+            func_800351D8(6);
+            break;
+        }
+
+        if ((g_Pad.state.held & 0x80) != 0) {
+            func_800351D8(12);
+            break;
+        }
+
+        if (g_Spyro.m_0xBC >= 0xF01 &&
+            g_Spyro.m_0x5C >= 0x10) {
+
+            firstColumnIndex = g_Spyro.m_0x114 >> 6;
+
+            func_800506AC(
+                0,
+                D_800602B4[D_80066F54][firstColumnIndex],
+                0);
+
+            g_Spyro.m_0x278 = g_Spyro.m_animationFrame_0x16;
+            func_800351D8(2);
+            break;
+        }
+
+        if (g_Spyro.m_0xBC < 0x640) {
+            if (g_Spyro.m_0x5C >= 0x10) {
+                secondColumnIndex = g_Spyro.m_0x114 >> 6;
+
+                func_800506AC(
+                    0,
+                    D_800602B4[D_80066F54][secondColumnIndex],
+                    0);
+
+                g_Spyro.m_0x278 = g_Spyro.m_animationFrame_0x16;
+                func_800351D8(1);
+            }
+        }
+
+        break;
+    }
+
+    case 24:
+    {
+        if (func_8002B0B8() != 0) {
+            break;
+        }
+
+        if (g_Spyro.m_0xC0 == 0) {
+            if (g_Spyro.m_0xEC >= 0x17) {
+                func_800351D8(6);
+                break;
+            }
+
+            if (g_Spyro.m_0xB4 > 0) {
+                if (g_Spyro.m_0xB8 >= 0xF01) {
+                    func_800351D8(2);
+                } else if (g_Spyro.m_0xB8 >= 0x781) {
+                    func_800351D8(0x16);
+                } else {
+                    func_800351D8(0x1);
+                }
+
+            } else if (g_Spyro.m_0xB8 < 0x780) {
+                func_800351D8(0);
+            } else {
+                func_800351D8(3);
+            }
+
+            break;
+        }
+
+        if ((g_Pad.state.held & 0x80) != 0) {
+            func_800351D8(0x15);
+            break;
+        }
+
+        if (func_8002D328(4) != 0) {
+            func_800351D8(0x2F);
+            break;
+        }
+
+        if (g_Spyro.m_0xC4 == 0 ||
+            g_Spyro.m_0xBC < 0x400) {
+
+            func_800351D8(6);
+            break;
+        }
+
+        if ((g_Pad.state.pressed & 0x10) != 0) {
+            func_800351D8(0x11);
+            break;
+        }
+
+        if (g_Spyro.m_0x1C4 != 0) {
+            func_800351D8(0x21);
+            break;
+        }
+
+        if (g_Spyro.m_Vector_0xA0.z > 0 &&
+            g_Spyro.m_0x5C >= 0x11) {
+
+            func_800351D8(6);
+            break;
+        }
+
+        if (g_Spyro.m_0xB8 >= 0xF01) {
+            func_800351D8(0x10);
+        }
+
+        break;
+    }
+
+    case 31:
+    {
+        if (g_Spyro.m_0x5C >= 0x65) {
+            func_80032E74();
+        }
+
+        break;
+    }
+
+    case 46:
+    {
+        if (func_8002B0B8() != 0) {
+            break;
+        }
+
+        if (g_Spyro.m_0x54 == 2) {
+            func_800351D8(0);
+            break;
+        }
+
+        if (g_Spyro.m_0x5C >= 0x3D) {
+            func_800351D8(6);
+        }
+
+        break;
+    }
+
+    default:
+        if (D_80067010 != nullptr) {
+            D_80067010();
+        }
+
+        break;
+    }
+}
