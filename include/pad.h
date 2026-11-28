@@ -79,21 +79,21 @@ typedef struct {
 // note that any padding updates here will need checks for any ptr arithmetic, as the demo inputs in WADs are only 2 ints wide
 
 typedef struct {
-	unsigned char controllerType; //  0 - ControllerType enum
-	unsigned char unk1b;          //  1
-	unsigned char unk1c;          //  2
-	unsigned char unk1d;          //  3
-	unsigned char vibrationMode;  //  4
-	char unk2[3];                 //  5,  6,  7
-	StickState unk2a;             //  8
-    StickState unk2b[4];          //  C, 10, 14, 18
-	int unk3[4];                  // 1C, 20, 24, 28
-	char buttonPressed;           // 2C
-	char dpadPressed;             // 2D
-	char unk4;                    // 2E
-	char unk4a;                   // 2F
-	PadState state;               // 30
-	PadState store[4];            // 40, 50, 60, 70
+	unsigned char controllerType; //  0 - ControllerType enum  0x80068370
+	unsigned char unk1b;          //  1                        0x80068371
+	unsigned char unk1c;          //  2                        0x80068372
+	unsigned char unk1d;          //  3                        0x80068373
+	unsigned char vibrationMode;  //  4                        0x80068374
+	char unk2[3];                 //  5,  6,  7                0x80068375 0x80068376 0x80068377
+	StickState unk2a;             //  8                        0x80068378
+    StickState unk2b[4];          //  C, 10, 14, 18            0x8006837C 0x80068380 0x80068384 0x80068388
+	int unk3[4];                  // 1C, 20, 24, 28            0x8006838C 0x80068390 0x80068394 0x80068398
+	char buttonPressed;           // 2C                        0x8006839C
+	char dpadPressed;             // 2D                        0x8006839D
+	char unk4;                    // 2E                        0x8006839E
+	char unk4a;                   // 2F                        0x8006839F
+	PadState state;               // 30                        0x800683A0
+	PadState store[4];            // 40, 50, 60, 70            0x800683B0 0x800683C0 0x800683D0 0x800683E0
 } Pad;
 
 // bss
@@ -101,16 +101,7 @@ extern Pad g_Pad; // D_80068370
 
 extern void func_8001B40C(void*, void*, int);                         /* extern */
 
-extern char D_80068371;
-extern char D_80068372;
-extern char D_80068373;
-extern char D_80068375;
-
 extern int D_80067024; // isDemoMode
-extern char D_8006837C;
-extern char D_80068380;
-extern char D_80068384;
-extern char D_80068388;
 
 extern int D_8006700C;
 extern char D_8006710C;
