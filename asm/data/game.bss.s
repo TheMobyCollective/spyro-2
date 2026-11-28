@@ -1689,30 +1689,10 @@ nonmatching D_8006A958, 0x4
 dlabel D_8006A958
     /* 8006A958 */ .space 0x04
 
-nonmatching g_PsyqPad, 0x1
+nonmatching g_PsyqPad, 0x24
 
 dlabel g_PsyqPad
-    /* 8006A95C */ .space 0x01
-
-nonmatching D_8006A95D, 0x1
-
-dlabel D_8006A95D
-    /* 8006A95D */ .space 0x01
-
-nonmatching D_8006A95E, 0x1
-
-dlabel D_8006A95E
-    /* 8006A95E */ .space 0x01
-
-nonmatching D_8006A95F, 0x1
-
-dlabel D_8006A95F
-    /* 8006A95F */ .space 0x01
-
-nonmatching D_8006A960, 0x20
-
-dlabel D_8006A960
-    /* 8006A960 */ .space 0x20
+    /* 8006A95C */ .space 0x24
 
 nonmatching D_8006A980, 0x1C
 
