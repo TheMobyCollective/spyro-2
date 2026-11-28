@@ -1537,10 +1537,9 @@ nonmatching D_80069A0C, 0x4
 dlabel D_80069A0C
     /* 80069A0C */ .space 0x04
 
-nonmatching D_80069A10, 0x1
+nonmatching g_ActiveSounds, 0x1
 
 dlabel g_ActiveSounds
-dlabel D_80069A10
     /* 80069A10 */ .space 0x01
 
 nonmatching D_80069A11, 0x1
@@ -1678,10 +1677,9 @@ nonmatching D_8006A8CC, 0x50
 dlabel D_8006A8CC
     /* 8006A8CC */ .space 0x50
 
-nonmatching D_8006A91C, 0x3C
+nonmatching recordedInputs, 0x3C
 
 dlabel recordedInputs
-dlabel D_8006A91C
     /* 8006A91C */ .space 0x3C
 
 nonmatching D_8006A958, 0x4

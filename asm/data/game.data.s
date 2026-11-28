@@ -9958,10 +9958,9 @@ dlabel D_80064EEA
 enddlabel D_80064EEA
 
 .align 2
-nonmatching D_80064F14
+nonmatching g_CheatCodes
 
 dlabel g_CheatCodes
-dlabel D_80064F14
     /* 55714 80064F14 */ .asciz " "
     /* 20000000 */
 .align 2
@@ -10069,4 +10068,4 @@ dlabel D_80064F14
     /* 55888 80065088 00000000 */ .word 0x00000000
     /* 5588C 8006508C 00000000 */ .word 0x00000000
     /* 55890 80065090 00000000 */ .word 0x00000000
-enddlabel D_80064F14
+enddlabel g_CheatCodes

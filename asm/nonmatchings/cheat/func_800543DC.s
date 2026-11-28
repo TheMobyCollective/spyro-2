@@ -10,17 +10,17 @@ glabel func_800543DC
     /* 44BE8 800543E8 4700A010 */  beqz       $a1, .L80054508
     /* 44BEC 800543EC 2000BFAF */   sw        $ra, 0x20($sp)
     /* 44BF0 800543F0 21200000 */  addu       $a0, $zero, $zero
-    /* 44BF4 800543F4 07800B3C */  lui        $t3, %hi(D_8006A91C)
-    /* 44BF8 800543F8 1CA96B25 */  addiu      $t3, $t3, %lo(D_8006A91C)
+    /* 44BF4 800543F4 07800B3C */  lui        $t3, %hi(recordedInputs)
+    /* 44BF8 800543F8 1CA96B25 */  addiu      $t3, $t3, %lo(recordedInputs)
     /* 44BFC 800543FC 0680023C */  lui        $v0, %hi(D_80066F98)
     /* 44C00 80054400 986F428C */  lw         $v0, %lo(D_80066F98)($v0)
-    /* 44C04 80054404 06800A3C */  lui        $t2, %hi(D_80064F14)
-    /* 44C08 80054408 144F4A25 */  addiu      $t2, $t2, %lo(D_80064F14)
+    /* 44C04 80054404 06800A3C */  lui        $t2, %hi(g_CheatCodes)
+    /* 44C08 80054408 144F4A25 */  addiu      $t2, $t2, %lo(g_CheatCodes)
     /* 44C0C 8005440C 80180200 */  sll        $v1, $v0, 2
     /* 44C10 80054410 01004224 */  addiu      $v0, $v0, 0x1
-    /* 44C14 80054414 0780013C */  lui        $at, %hi(D_8006A91C)
+    /* 44C14 80054414 0780013C */  lui        $at, %hi(recordedInputs)
     /* 44C18 80054418 21082300 */  addu       $at, $at, $v1
-    /* 44C1C 8005441C 1CA925AC */  sw         $a1, %lo(D_8006A91C)($at)
+    /* 44C1C 8005441C 1CA925AC */  sw         $a1, %lo(recordedInputs)($at)
     /* 44C20 80054420 0680013C */  lui        $at, %hi(D_80066F98)
     /* 44C24 80054424 986F22AC */  sw         $v0, %lo(D_80066F98)($at)
   .L80054428:

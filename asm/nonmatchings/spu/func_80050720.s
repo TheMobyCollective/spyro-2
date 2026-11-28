@@ -55,9 +55,9 @@ glabel func_80050720
   .L800507D8:
     /* 40FD8 800507D8 21180000 */  addu       $v1, $zero, $zero
   .L800507DC:
-    /* 40FDC 800507DC 0780013C */  lui        $at, %hi(D_80069A10)
+    /* 40FDC 800507DC 0780013C */  lui        $at, %hi(g_ActiveSounds)
     /* 40FE0 800507E0 21082300 */  addu       $at, $at, $v1
-    /* 40FE4 800507E4 109A2290 */  lbu        $v0, %lo(D_80069A10)($at)
+    /* 40FE4 800507E4 109A2290 */  lbu        $v0, %lo(g_ActiveSounds)($at)
     /* 40FE8 800507E8 00000000 */  nop
     /* 40FEC 800507EC 06004010 */  beqz       $v0, .L80050808
     /* 40FF0 800507F0 18000224 */   addiu     $v0, $zero, 0x18
@@ -114,9 +114,9 @@ glabel func_80050720
     /* 410A4 800508A4 80201200 */  sll        $a0, $s2, 2
     /* 410A8 800508A8 21209200 */  addu       $a0, $a0, $s2
     /* 410AC 800508AC 80200400 */  sll        $a0, $a0, 2
-    /* 410B0 800508B0 0780013C */  lui        $at, %hi(D_80069A10)
+    /* 410B0 800508B0 0780013C */  lui        $at, %hi(g_ActiveSounds)
     /* 410B4 800508B4 21083100 */  addu       $at, $at, $s1
-    /* 410B8 800508B8 109A22A0 */  sb         $v0, %lo(D_80069A10)($at)
+    /* 410B8 800508B8 109A22A0 */  sb         $v0, %lo(g_ActiveSounds)($at)
     /* 410BC 800508BC 0780013C */  lui        $at, %hi(D_80069A11)
     /* 410C0 800508C0 21083100 */  addu       $at, $at, $s1
     /* 410C4 800508C4 119A32A0 */  sb         $s2, %lo(D_80069A11)($at)

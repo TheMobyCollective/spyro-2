@@ -14,9 +14,9 @@ glabel func_80050AAC
     /* 412C8 80050AC8 0680013C */  lui        $at, %hi(D_80066FF8)
     /* 412CC 80050ACC F86F22AC */  sw         $v0, %lo(D_80066FF8)($at)
   .L80050AD0:
-    /* 412D0 80050AD0 0780013C */  lui        $at, %hi(D_80069A10)
+    /* 412D0 80050AD0 0780013C */  lui        $at, %hi(g_ActiveSounds)
     /* 412D4 80050AD4 21083100 */  addu       $at, $at, $s1
-    /* 412D8 80050AD8 109A2290 */  lbu        $v0, %lo(D_80069A10)($at)
+    /* 412D8 80050AD8 109A2290 */  lbu        $v0, %lo(g_ActiveSounds)($at)
     /* 412DC 80050ADC 00000000 */  nop
     /* 412E0 80050AE0 FFFF4224 */  addiu      $v0, $v0, -0x1
     /* 412E4 80050AE4 0200422C */  sltiu      $v0, $v0, 0x2
