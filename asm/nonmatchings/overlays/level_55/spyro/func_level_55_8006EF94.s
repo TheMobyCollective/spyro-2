@@ -163,8 +163,8 @@ glabel func_level_55_8006EF94
     /* 3D1F6A8 8006F10C 0F000224 */  addiu      $v0, $zero, 0xF
     /* 3D1F6AC 8006F110 0780013C */  lui        $at, %hi((g_Spyro + 0x1BC))
     /* 3D1F6B0 8006F114 ACA120A0 */  sb         $zero, %lo((g_Spyro + 0x1BC))($at)
-    /* 3D1F6B4 8006F118 0780013C */  lui        $at, %hi(D_8006838C)
-    /* 3D1F6B8 8006F11C 8C8322AC */  sw         $v0, %lo(D_8006838C)($at)
+    /* 3D1F6B4 8006F118 0780013C */  lui        $at, %hi(g_Pad + 0x1C)
+    /* 3D1F6B8 8006F11C 8C8322AC */  sw         $v0, %lo(g_Pad + 0x1C)($at)
     /* 3D1F6BC 8006F120 14006010 */  beqz       $v1, .Llevel_55_8006F174
     /* 3D1F6C0 8006F124 05000424 */   addiu     $a0, $zero, 0x5
     /* 3D1F6C4 8006F128 0A000524 */  addiu      $a1, $zero, 0xA

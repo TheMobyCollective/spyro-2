@@ -240,7 +240,9 @@ extern int D_80067114;
 extern int D_800681C8;
 
 /* Camera control flags. */
+/* g_Pad + 0x30 */
 extern int D_800683A0;
+/* g_Pad + 0x34 */
 extern int D_800683A4;
 
 /* Byte-sized camera state. */

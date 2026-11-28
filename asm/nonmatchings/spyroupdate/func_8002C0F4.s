@@ -220,11 +220,11 @@ glabel func_8002C0F4
     /* 1CC00 8002C400 21800000 */  addu       $s0, $zero, $zero
     /* 1CC04 8002C404 78000224 */  addiu      $v0, $zero, 0x78
   .L8002C408:
-    /* 1CC08 8002C408 0780013C */  lui        $at, %hi(D_80068398)
-    /* 1CC0C 8002C40C 988322AC */  sw         $v0, %lo(D_80068398)($at)
+    /* 1CC08 8002C408 0780013C */  lui        $at, %hi(g_Pad + 0x28)
+    /* 1CC0C 8002C40C 988322AC */  sw         $v0, %lo(g_Pad + 0x28)($at)
     /* 1CC10 8002C410 0F000224 */  addiu      $v0, $zero, 0xF
-    /* 1CC14 8002C414 0780013C */  lui        $at, %hi(D_80068394)
-    /* 1CC18 8002C418 948322AC */  sw         $v0, %lo(D_80068394)($at)
+    /* 1CC14 8002C414 0780013C */  lui        $at, %hi(g_Pad + 0x24)
+    /* 1CC18 8002C418 948322AC */  sw         $v0, %lo(g_Pad + 0x24)($at)
     /* 1CC1C 8002C41C 43B10008 */  j          .L8002C50C
     /* 1CC20 8002C420 00000000 */   nop
   .L8002C424:

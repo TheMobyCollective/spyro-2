@@ -218,8 +218,8 @@ glabel func_level_62_8006F874
     /* 40B3834 8006FA98 0680033C */  lui        $v1, %hi(D_800670FC)
     /* 40B3838 8006FA9C FC70638C */  lw         $v1, %lo(D_800670FC)($v1)
     /* 40B383C 8006FAA0 2D000224 */  addiu      $v0, $zero, 0x2D
-    /* 40B3840 8006FAA4 0780013C */  lui        $at, %hi(D_80068390)
-    /* 40B3844 8006FAA8 908322AC */  sw         $v0, %lo(D_80068390)($at)
+    /* 40B3840 8006FAA4 0780013C */  lui        $at, %hi(g_Pad + 0x20)
+    /* 40B3844 8006FAA8 908322AC */  sw         $v0, %lo(g_Pad + 0x20)($at)
     /* 40B3848 8006FAAC E4BE0108 */  j          .Llevel_62_8006FB90
     /* 40B384C 8006FAB0 00000000 */   nop
   .Llevel_62_8006FAB4:
@@ -278,8 +278,8 @@ glabel func_level_62_8006F874
     /* 40B3918 8006FB7C 0780013C */  lui        $at, %hi((g_Spyro + 0x1BC))
     /* 40B391C 8006FB80 ACA122A0 */  sb         $v0, %lo((g_Spyro + 0x1BC))($at)
     /* 40B3920 8006FB84 0F000224 */  addiu      $v0, $zero, 0xF
-    /* 40B3924 8006FB88 0780013C */  lui        $at, %hi(D_8006838C)
-    /* 40B3928 8006FB8C 8C8322AC */  sw         $v0, %lo(D_8006838C)($at)
+    /* 40B3924 8006FB88 0780013C */  lui        $at, %hi(g_Pad + 0x1C)
+    /* 40B3928 8006FB8C 8C8322AC */  sw         $v0, %lo(g_Pad + 0x1C)($at)
   .Llevel_62_8006FB90:
     /* 40B392C 8006FB90 8B006010 */  beqz       $v1, .Llevel_62_8006FDC0
     /* 40B3930 8006FB94 05000424 */   addiu     $a0, $zero, 0x5
@@ -317,8 +317,8 @@ glabel func_level_62_8006F874
     /* 40B39AC 8006FC10 0F000224 */  addiu      $v0, $zero, 0xF
     /* 40B39B0 8006FC14 0780013C */  lui        $at, %hi((g_Spyro + 0x1BC))
     /* 40B39B4 8006FC18 ACA120A0 */  sb         $zero, %lo((g_Spyro + 0x1BC))($at)
-    /* 40B39B8 8006FC1C 0780013C */  lui        $at, %hi(D_8006838C)
-    /* 40B39BC 8006FC20 8C8322AC */  sw         $v0, %lo(D_8006838C)($at)
+    /* 40B39B8 8006FC1C 0780013C */  lui        $at, %hi(g_Pad + 0x1C)
+    /* 40B39BC 8006FC20 8C8322AC */  sw         $v0, %lo(g_Pad + 0x1C)($at)
     /* 40B39C0 8006FC24 14006010 */  beqz       $v1, .Llevel_62_8006FC78
     /* 40B39C4 8006FC28 05000424 */   addiu     $a0, $zero, 0x5
     /* 40B39C8 8006FC2C 0A000524 */  addiu      $a1, $zero, 0xA

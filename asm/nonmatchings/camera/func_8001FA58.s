@@ -200,8 +200,8 @@ glabel func_8001FA58
     /* 104BC 8001FCBC 80024228 */  slti       $v0, $v0, 0x280
     /* 104C0 8001FCC0 0F004010 */  beqz       $v0, .L8001FD00
     /* 104C4 8001FCC4 00000000 */   nop
-    /* 104C8 8001FCC8 0780033C */  lui        $v1, %hi(D_800683A0)
-    /* 104CC 8001FCCC A083638C */  lw         $v1, %lo(D_800683A0)($v1)
+    /* 104C8 8001FCC8 0780033C */  lui        $v1, %hi(g_Pad + 0x30)
+    /* 104CC 8001FCCC A083638C */  lw         $v1, %lo(g_Pad + 0x30)($v1)
     /* 104D0 8001FCD0 00000000 */  nop
     /* 104D4 8001FCD4 0A006230 */  andi       $v0, $v1, 0xA
     /* 104D8 8001FCD8 03004010 */  beqz       $v0, .L8001FCE8

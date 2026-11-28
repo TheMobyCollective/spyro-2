@@ -224,8 +224,8 @@ glabel func_level_50_8006EFAC
     /* 370F7C8 8006F22C 0780013C */  lui        $at, %hi((g_Spyro + 0x1BC))
     /* 370F7CC 8006F230 ACA122A0 */  sb         $v0, %lo((g_Spyro + 0x1BC))($at)
     /* 370F7D0 8006F234 0F000224 */  addiu      $v0, $zero, 0xF
-    /* 370F7D4 8006F238 0780013C */  lui        $at, %hi(D_8006838C)
-    /* 370F7D8 8006F23C 8C8322AC */  sw         $v0, %lo(D_8006838C)($at)
+    /* 370F7D4 8006F238 0780013C */  lui        $at, %hi(g_Pad + 0x1C)
+    /* 370F7D8 8006F23C 8C8322AC */  sw         $v0, %lo(g_Pad + 0x1C)($at)
     /* 370F7DC 8006F240 3B016010 */  beqz       $v1, .Llevel_50_8006F730
     /* 370F7E0 8006F244 05000424 */   addiu     $a0, $zero, 0x5
     /* 370F7E4 8006F248 0A000524 */  addiu      $a1, $zero, 0xA

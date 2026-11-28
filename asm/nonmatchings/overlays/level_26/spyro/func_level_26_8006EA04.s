@@ -177,8 +177,8 @@ glabel func_level_26_8006EA04
     /* 1DB1934 8006EB98 0680033C */  lui        $v1, %hi(D_800670FC)
     /* 1DB1938 8006EB9C FC70638C */  lw         $v1, %lo(D_800670FC)($v1)
     /* 1DB193C 8006EBA0 2D000224 */  addiu      $v0, $zero, 0x2D
-    /* 1DB1940 8006EBA4 0780013C */  lui        $at, %hi(D_80068390)
-    /* 1DB1944 8006EBA8 908322AC */  sw         $v0, %lo(D_80068390)($at)
+    /* 1DB1940 8006EBA4 0780013C */  lui        $at, %hi(g_Pad + 0x20)
+    /* 1DB1944 8006EBA8 908322AC */  sw         $v0, %lo(g_Pad + 0x20)($at)
     /* 1DB1948 8006EBAC 86006010 */  beqz       $v1, .Llevel_26_8006EDC8
     /* 1DB194C 8006EBB0 05000424 */   addiu     $a0, $zero, 0x5
     /* 1DB1950 8006EBB4 0A000524 */  addiu      $a1, $zero, 0xA
@@ -206,8 +206,8 @@ glabel func_level_26_8006EA04
     /* 1DB19A4 8006EC08 0780013C */  lui        $at, %hi((g_Spyro + 0x1BC))
     /* 1DB19A8 8006EC0C ACA122A0 */  sb         $v0, %lo((g_Spyro + 0x1BC))($at)
     /* 1DB19AC 8006EC10 0F000224 */  addiu      $v0, $zero, 0xF
-    /* 1DB19B0 8006EC14 0780013C */  lui        $at, %hi(D_8006838C)
-    /* 1DB19B4 8006EC18 8C8322AC */  sw         $v0, %lo(D_8006838C)($at)
+    /* 1DB19B0 8006EC14 0780013C */  lui        $at, %hi(g_Pad + 0x1C)
+    /* 1DB19B4 8006EC18 8C8322AC */  sw         $v0, %lo(g_Pad + 0x1C)($at)
     /* 1DB19B8 8006EC1C 05006010 */  beqz       $v1, .Llevel_26_8006EC34
     /* 1DB19BC 8006EC20 05000424 */   addiu     $a0, $zero, 0x5
     /* 1DB19C0 8006EC24 0A000524 */  addiu      $a1, $zero, 0xA
@@ -249,8 +249,8 @@ glabel func_level_26_8006EA04
     /* 1DB1A48 8006ECAC 0F000224 */  addiu      $v0, $zero, 0xF
     /* 1DB1A4C 8006ECB0 0780013C */  lui        $at, %hi((g_Spyro + 0x1BC))
     /* 1DB1A50 8006ECB4 ACA120A0 */  sb         $zero, %lo((g_Spyro + 0x1BC))($at)
-    /* 1DB1A54 8006ECB8 0780013C */  lui        $at, %hi(D_8006838C)
-    /* 1DB1A58 8006ECBC 8C8322AC */  sw         $v0, %lo(D_8006838C)($at)
+    /* 1DB1A54 8006ECB8 0780013C */  lui        $at, %hi(g_Pad + 0x1C)
+    /* 1DB1A58 8006ECBC 8C8322AC */  sw         $v0, %lo(g_Pad + 0x1C)($at)
     /* 1DB1A5C 8006ECC0 14006010 */  beqz       $v1, .Llevel_26_8006ED14
     /* 1DB1A60 8006ECC4 05000424 */   addiu     $a0, $zero, 0x5
     /* 1DB1A64 8006ECC8 0A000524 */  addiu      $a1, $zero, 0xA

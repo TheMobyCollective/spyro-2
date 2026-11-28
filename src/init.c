@@ -85,6 +85,7 @@ void func_80011D78(void) {
     func_80054F1C(&D_8006A95C, &D_8006AB4C);
     func_80058408();
     func_80012B58();
+    // g_Pad + 0x4
     D_80068374 = 1;
     func_80054934(&func_800125C8);
 }

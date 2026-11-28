@@ -16,8 +16,8 @@ glabel func_level_26_8006FC84
     /* 1DB2A44 8006FCA8 71BF0108 */  j          .Llevel_26_8006FDC4
     /* 1DB2A48 8006FCAC 00000000 */   nop
   .Llevel_26_8006FCB0:
-    /* 1DB2A4C 8006FCB0 0780023C */  lui        $v0, %hi(D_800683A0)
-    /* 1DB2A50 8006FCB4 A083428C */  lw         $v0, %lo(D_800683A0)($v0)
+    /* 1DB2A4C 8006FCB0 0780023C */  lui        $v0, %hi(g_Pad + 0x30)
+    /* 1DB2A50 8006FCB4 A083428C */  lw         $v0, %lo(g_Pad + 0x30)($v0)
     /* 1DB2A54 8006FCB8 00000000 */  nop
     /* 1DB2A58 8006FCBC 10004230 */  andi       $v0, $v0, 0x10
     /* 1DB2A5C 8006FCC0 06004010 */  beqz       $v0, .Llevel_26_8006FCDC
@@ -34,8 +34,8 @@ glabel func_level_26_8006FC84
     /* 1DB2A84 8006FCE8 0F004230 */  andi       $v0, $v0, 0xF
     /* 1DB2A88 8006FCEC 0E004010 */  beqz       $v0, .Llevel_26_8006FD28
     /* 1DB2A8C 8006FCF0 00000000 */   nop
-    /* 1DB2A90 8006FCF4 0780033C */  lui        $v1, %hi(D_800683A0)
-    /* 1DB2A94 8006FCF8 A083638C */  lw         $v1, %lo(D_800683A0)($v1)
+    /* 1DB2A90 8006FCF4 0780033C */  lui        $v1, %hi(g_Pad + 0x30)
+    /* 1DB2A94 8006FCF8 A083638C */  lw         $v1, %lo(g_Pad + 0x30)($v1)
     /* 1DB2A98 8006FCFC 00000000 */  nop
     /* 1DB2A9C 8006FD00 0A006230 */  andi       $v0, $v1, 0xA
     /* 1DB2AA0 8006FD04 08004010 */  beqz       $v0, .Llevel_26_8006FD28

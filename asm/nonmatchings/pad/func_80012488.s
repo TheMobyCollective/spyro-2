@@ -11,12 +11,12 @@ glabel func_80012488
     /* 2C98 80012498 1800BFAF */  sw         $ra, 0x18($sp)
     /* 2C9C 8001249C 1400B1AF */  sw         $s1, 0x14($sp)
     /* 2CA0 800124A0 1000B0AF */  sw         $s0, 0x10($sp)
-    /* 2CA4 800124A4 0780013C */  lui        $at, %hi(D_8006838C)
-    /* 2CA8 800124A8 8C8320AC */  sw         $zero, %lo(D_8006838C)($at)
-    /* 2CAC 800124AC 0780013C */  lui        $at, %hi(D_80068390)
-    /* 2CB0 800124B0 908320AC */  sw         $zero, %lo(D_80068390)($at)
-    /* 2CB4 800124B4 0780013C */  lui        $at, %hi(D_80068394)
-    /* 2CB8 800124B8 948320AC */  sw         $zero, %lo(D_80068394)($at)
+    /* 2CA4 800124A4 0780013C */  lui        $at, %hi(g_Pad + 0x1C)
+    /* 2CA8 800124A8 8C8320AC */  sw         $zero, %lo(g_Pad + 0x1C)($at)
+    /* 2CAC 800124AC 0780013C */  lui        $at, %hi(g_Pad + 0x20)
+    /* 2CB0 800124B0 908320AC */  sw         $zero, %lo(g_Pad + 0x20)($at)
+    /* 2CB4 800124B4 0780013C */  lui        $at, %hi(g_Pad + 0x24)
+    /* 2CB8 800124B8 948320AC */  sw         $zero, %lo(g_Pad + 0x24)($at)
     /* 2CBC 800124BC 15006214 */  bne        $v1, $v0, .L80012514
     /* 2CC0 800124C0 21800000 */   addu      $s0, $zero, $zero
     /* 2CC4 800124C4 0680033C */  lui        $v1, %hi(D_80066F04)

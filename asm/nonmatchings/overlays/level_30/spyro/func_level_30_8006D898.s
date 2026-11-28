@@ -55,8 +55,8 @@ glabel func_level_30_8006D898
     /* 1F2B638 8006D89C B800B2AF */  sw         $s2, 0xB8($sp)
     /* 1F2B63C 8006D8A0 21908000 */  addu       $s2, $a0, $zero
     /* 1F2B640 8006D8A4 00111200 */  sll        $v0, $s2, 4
-    /* 1F2B644 8006D8A8 0780033C */  lui        $v1, %hi(D_800683B0)
-    /* 1F2B648 8006D8AC B0836324 */  addiu      $v1, $v1, %lo(D_800683B0)
+    /* 1F2B644 8006D8A8 0780033C */  lui        $v1, %hi(g_Pad + 0x40)
+    /* 1F2B648 8006D8AC B0836324 */  addiu      $v1, $v1, %lo(g_Pad + 0x40)
     /* 1F2B64C 8006D8B0 0780043C */  lui        $a0, %hi((g_Spyro + 0x50))
     /* 1F2B650 8006D8B4 40A0848C */  lw         $a0, %lo((g_Spyro + 0x50))($a0)
     /* 1F2B654 8006D8B8 21104300 */  addu       $v0, $v0, $v1

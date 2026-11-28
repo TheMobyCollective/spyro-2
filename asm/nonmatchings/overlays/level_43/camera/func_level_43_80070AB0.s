@@ -31,8 +31,8 @@ glabel func_level_43_80070AB0
     /* 2FC80A4 80070B08 00000000 */  nop
     /* 2FC80A8 80070B0C 5D008014 */  bnez       $a0, .Llevel_43_80070C84
     /* 2FC80AC 80070B10 00000000 */   nop
-    /* 2FC80B0 80070B14 0780023C */  lui        $v0, %hi(D_800683A0)
-    /* 2FC80B4 80070B18 A083428C */  lw         $v0, %lo(D_800683A0)($v0)
+    /* 2FC80B0 80070B14 0780023C */  lui        $v0, %hi(g_Pad + 0x30)
+    /* 2FC80B4 80070B18 A083428C */  lw         $v0, %lo(g_Pad + 0x30)($v0)
     /* 2FC80B8 80070B1C 00000000 */  nop
     /* 2FC80BC 80070B20 10004230 */  andi       $v0, $v0, 0x10
     /* 2FC80C0 80070B24 06004010 */  beqz       $v0, .Llevel_43_80070B40
@@ -49,8 +49,8 @@ glabel func_level_43_80070AB0
     /* 2FC80E8 80070B4C 0F004230 */  andi       $v0, $v0, 0xF
     /* 2FC80EC 80070B50 0E004010 */  beqz       $v0, .Llevel_43_80070B8C
     /* 2FC80F0 80070B54 00000000 */   nop
-    /* 2FC80F4 80070B58 0780033C */  lui        $v1, %hi(D_800683A0)
-    /* 2FC80F8 80070B5C A083638C */  lw         $v1, %lo(D_800683A0)($v1)
+    /* 2FC80F4 80070B58 0780033C */  lui        $v1, %hi(g_Pad + 0x30)
+    /* 2FC80F8 80070B5C A083638C */  lw         $v1, %lo(g_Pad + 0x30)($v1)
     /* 2FC80FC 80070B60 00000000 */  nop
     /* 2FC8100 80070B64 0A006230 */  andi       $v0, $v1, 0xA
     /* 2FC8104 80070B68 08004010 */  beqz       $v0, .Llevel_43_80070B8C
@@ -88,8 +88,8 @@ glabel func_level_43_80070AB0
   .Llevel_43_80070BDC:
     /* 2FC8178 80070BDC 29008314 */  bne        $a0, $v1, .Llevel_43_80070C84
     /* 2FC817C 80070BE0 00000000 */   nop
-    /* 2FC8180 80070BE4 0780023C */  lui        $v0, %hi(D_800683A0)
-    /* 2FC8184 80070BE8 A083428C */  lw         $v0, %lo(D_800683A0)($v0)
+    /* 2FC8180 80070BE4 0780023C */  lui        $v0, %hi(g_Pad + 0x30)
+    /* 2FC8184 80070BE8 A083428C */  lw         $v0, %lo(g_Pad + 0x30)($v0)
     /* 2FC8188 80070BEC 00000000 */  nop
     /* 2FC818C 80070BF0 10004230 */  andi       $v0, $v0, 0x10
     /* 2FC8190 80070BF4 25004010 */  beqz       $v0, .Llevel_43_80070C8C

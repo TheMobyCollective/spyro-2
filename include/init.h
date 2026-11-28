@@ -45,6 +45,7 @@ extern void func_80012B58();                                  /* extern */
 extern void func_80054934(void*);                                /* extern */
 extern void func_80054F1C(char*, char*);                            /* extern */
 extern void func_80058408();                                  /* extern */
+// g_Pad + 0x4
 extern unsigned char D_80068374;
 extern char D_8006A95C;
 extern char D_8006AB4C;

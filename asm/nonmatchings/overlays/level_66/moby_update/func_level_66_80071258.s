@@ -1522,8 +1522,8 @@ glabel func_level_66_80071258
     /* 44BCF64 800721C8 00000000 */   nop
     /* 44BCF68 800721CC 000060A6 */  sh         $zero, 0x0($s3)
   .Llevel_66_800721D0:
-    /* 44BCF6C 800721D0 0780033C */  lui        $v1, %hi(D_800683A0)
-    /* 44BCF70 800721D4 A083638C */  lw         $v1, %lo(D_800683A0)($v1)
+    /* 44BCF6C 800721D0 0780033C */  lui        $v1, %hi(g_Pad + 0x30)
+    /* 44BCF70 800721D4 A083638C */  lw         $v1, %lo(g_Pad + 0x30)($v1)
     /* 44BCF74 800721D8 0E000224 */  addiu      $v0, $zero, 0xE
     /* 44BCF78 800721DC 0680013C */  lui        $at, %hi(D_80061AB0)
     /* 44BCF7C 800721E0 B01A20AC */  sw         $zero, %lo(D_80061AB0)($at)
@@ -2081,8 +2081,8 @@ glabel func_level_66_80071258
     /* 44BD784 800729E8 08004230 */  andi       $v0, $v0, 0x8
     /* 44BD788 800729EC 05004014 */  bnez       $v0, .Llevel_66_80072A04
     /* 44BD78C 800729F0 00000000 */   nop
-    /* 44BD790 800729F4 0780023C */  lui        $v0, %hi(D_8006839C)
-    /* 44BD794 800729F8 9C834290 */  lbu        $v0, %lo(D_8006839C)($v0)
+    /* 44BD790 800729F4 0780023C */  lui        $v0, %hi(g_Pad + 0x2C)
+    /* 44BD794 800729F8 9C834290 */  lbu        $v0, %lo(g_Pad + 0x2C)($v0)
     /* 44BD798 800729FC 00000000 */  nop
     /* 44BD79C 80072A00 2B280200 */  sltu       $a1, $zero, $v0
   .Llevel_66_80072A04:

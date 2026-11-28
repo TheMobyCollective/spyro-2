@@ -220,8 +220,8 @@ glabel func_level_61_8006ECE8
     /* 3EB9CA8 8006EF0C 0680033C */  lui        $v1, %hi(D_800670FC)
     /* 3EB9CAC 8006EF10 FC70638C */  lw         $v1, %lo(D_800670FC)($v1)
     /* 3EB9CB0 8006EF14 2D000224 */  addiu      $v0, $zero, 0x2D
-    /* 3EB9CB4 8006EF18 0780013C */  lui        $at, %hi(D_80068390)
-    /* 3EB9CB8 8006EF1C 908322AC */  sw         $v0, %lo(D_80068390)($at)
+    /* 3EB9CB4 8006EF18 0780013C */  lui        $at, %hi(g_Pad + 0x20)
+    /* 3EB9CB8 8006EF1C 908322AC */  sw         $v0, %lo(g_Pad + 0x20)($at)
     /* 3EB9CBC 8006EF20 27BC0108 */  j          .Llevel_61_8006F09C
     /* 3EB9CC0 8006EF24 00000000 */   nop
   .Llevel_61_8006EF28:
@@ -319,8 +319,8 @@ glabel func_level_61_8006ECE8
     /* 3EB9E24 8006F088 0780013C */  lui        $at, %hi((g_Spyro + 0x1BC))
     /* 3EB9E28 8006F08C ACA122A0 */  sb         $v0, %lo((g_Spyro + 0x1BC))($at)
     /* 3EB9E2C 8006F090 0F000224 */  addiu      $v0, $zero, 0xF
-    /* 3EB9E30 8006F094 0780013C */  lui        $at, %hi(D_8006838C)
-    /* 3EB9E34 8006F098 8C8322AC */  sw         $v0, %lo(D_8006838C)($at)
+    /* 3EB9E30 8006F094 0780013C */  lui        $at, %hi(g_Pad + 0x1C)
+    /* 3EB9E34 8006F098 8C8322AC */  sw         $v0, %lo(g_Pad + 0x1C)($at)
   .Llevel_61_8006F09C:
     /* 3EB9E38 8006F09C 93006010 */  beqz       $v1, .Llevel_61_8006F2EC
     /* 3EB9E3C 8006F0A0 05000424 */   addiu     $a0, $zero, 0x5
@@ -370,8 +370,8 @@ glabel func_level_61_8006ECE8
     /* 3EB9EE4 8006F148 0780013C */  lui        $at, %hi((g_Spyro + 0x1BC))
     /* 3EB9EE8 8006F14C ACA122A0 */  sb         $v0, %lo((g_Spyro + 0x1BC))($at)
     /* 3EB9EEC 8006F150 0F000224 */  addiu      $v0, $zero, 0xF
-    /* 3EB9EF0 8006F154 0780013C */  lui        $at, %hi(D_8006838C)
-    /* 3EB9EF4 8006F158 8C8322AC */  sw         $v0, %lo(D_8006838C)($at)
+    /* 3EB9EF0 8006F154 0780013C */  lui        $at, %hi(g_Pad + 0x1C)
+    /* 3EB9EF4 8006F158 8C8322AC */  sw         $v0, %lo(g_Pad + 0x1C)($at)
     /* 3EB9EF8 8006F15C 05006010 */  beqz       $v1, .Llevel_61_8006F174
     /* 3EB9EFC 8006F160 05000424 */   addiu     $a0, $zero, 0x5
     /* 3EB9F00 8006F164 0A000524 */  addiu      $a1, $zero, 0xA

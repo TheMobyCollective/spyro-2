@@ -4,8 +4,8 @@
 nonmatching func_8002B4E4, 0x1B0
 
 glabel func_8002B4E4
-    /* 1BCE4 8002B4E4 0780023C */  lui        $v0, %hi(D_8006839E)
-    /* 1BCE8 8002B4E8 9E834290 */  lbu        $v0, %lo(D_8006839E)($v0)
+    /* 1BCE4 8002B4E4 0780023C */  lui        $v0, %hi(g_Pad + 0x2E)
+    /* 1BCE8 8002B4E8 9E834290 */  lbu        $v0, %lo(g_Pad + 0x2E)($v0)
     /* 1BCEC 8002B4EC D8FFBD27 */  addiu      $sp, $sp, -0x28
     /* 1BCF0 8002B4F0 2000B2AF */  sw         $s2, 0x20($sp)
     /* 1BCF4 8002B4F4 21908000 */  addu       $s2, $a0, $zero

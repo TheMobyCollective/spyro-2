@@ -59,8 +59,8 @@ nonmatching func_level_33_8006F594, 0x7C
 glabel func_level_33_8006F594
     /* 2587330 8006F594 E8FFBD27 */  addiu      $sp, $sp, -0x18
     /* 2587334 8006F598 00210400 */  sll        $a0, $a0, 4
-    /* 2587338 8006F59C 0780023C */  lui        $v0, %hi(D_800683B0)
-    /* 258733C 8006F5A0 B0834224 */  addiu      $v0, $v0, %lo(D_800683B0)
+    /* 2587338 8006F59C 0780023C */  lui        $v0, %hi(g_Pad + 0x40)
+    /* 258733C 8006F5A0 B0834224 */  addiu      $v0, $v0, %lo(g_Pad + 0x40)
     /* 2587340 8006F5A4 0780033C */  lui        $v1, %hi((g_Spyro + 0x50))
     /* 2587344 8006F5A8 40A0638C */  lw         $v1, %lo((g_Spyro + 0x50))($v1)
     /* 2587348 8006F5AC 21208200 */  addu       $a0, $a0, $v0

@@ -293,8 +293,8 @@ glabel .Ltitlescreen_and_loading_80079E80
     /* 2FF30 8007A194 48034228 */  slti       $v0, $v0, 0x348
     /* 2FF34 8007A198 6A074014 */  bnez       $v0, .Ltitlescreen_and_loading_8007BF44
     /* 2FF38 8007A19C 86000224 */   addiu     $v0, $zero, 0x86
-    /* 2FF3C 8007A1A0 0780033C */  lui        $v1, %hi(D_800683A0)
-    /* 2FF40 8007A1A4 A083638C */  lw         $v1, %lo(D_800683A0)($v1)
+    /* 2FF3C 8007A1A0 0780033C */  lui        $v1, %hi(g_Pad + 0x30)
+    /* 2FF40 8007A1A4 A083638C */  lw         $v1, %lo(g_Pad + 0x30)($v1)
     /* 2FF44 8007A1A8 00000000 */  nop
     /* 2FF48 8007A1AC 0B006214 */  bne        $v1, $v0, .Ltitlescreen_and_loading_8007A1DC
     /* 2FF4C 8007A1B0 00000000 */   nop

@@ -881,10 +881,9 @@ nonmatching D_8006836C, 0x4
 dlabel D_8006836C
     /* 8006836C */ .space 0x04
 
-nonmatching D_80068370, 0x1
+nonmatching g_Pad, 0x1
 
 dlabel g_Pad
-dlabel D_80068370
     /* 80068370 */ .space 0x01
 
 nonmatching D_80068371, 0x1

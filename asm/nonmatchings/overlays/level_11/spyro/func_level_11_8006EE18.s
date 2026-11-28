@@ -185,8 +185,8 @@ glabel func_level_11_8006EE18
     /* F2A598 8006EFFC 0780013C */  lui        $at, %hi((g_Spyro + 0x1BC))
     /* F2A59C 8006F000 ACA122A0 */  sb         $v0, %lo((g_Spyro + 0x1BC))($at)
     /* F2A5A0 8006F004 0F000224 */  addiu      $v0, $zero, 0xF
-    /* F2A5A4 8006F008 0780013C */  lui        $at, %hi(D_8006838C)
-    /* F2A5A8 8006F00C 8C8322AC */  sw         $v0, %lo(D_8006838C)($at)
+    /* F2A5A4 8006F008 0780013C */  lui        $at, %hi(g_Pad + 0x1C)
+    /* F2A5A8 8006F00C 8C8322AC */  sw         $v0, %lo(g_Pad + 0x1C)($at)
     /* F2A5AC 8006F010 05006010 */  beqz       $v1, .Llevel_11_8006F028
     /* F2A5B0 8006F014 05000424 */   addiu     $a0, $zero, 0x5
     /* F2A5B4 8006F018 0A000524 */  addiu      $a1, $zero, 0xA

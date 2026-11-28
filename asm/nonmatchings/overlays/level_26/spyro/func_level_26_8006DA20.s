@@ -68,8 +68,8 @@ nonmatching func_level_26_8006DA20, 0xCF4
 
 glabel func_level_26_8006DA20
     /* 1DB07BC 8006DA20 00110400 */  sll        $v0, $a0, 4
-    /* 1DB07C0 8006DA24 0780033C */  lui        $v1, %hi(D_800683B0)
-    /* 1DB07C4 8006DA28 B0836324 */  addiu      $v1, $v1, %lo(D_800683B0)
+    /* 1DB07C0 8006DA24 0780033C */  lui        $v1, %hi(g_Pad + 0x40)
+    /* 1DB07C4 8006DA28 B0836324 */  addiu      $v1, $v1, %lo(g_Pad + 0x40)
     /* 1DB07C8 8006DA2C 21104300 */  addu       $v0, $v0, $v1
     /* 1DB07CC 8006DA30 0680013C */  lui        $at, %hi(D_80066F38)
     /* 1DB07D0 8006DA34 386F22AC */  sw         $v0, %lo(D_80066F38)($at)

@@ -4,8 +4,8 @@
 nonmatching func_8002B36C, 0x178
 
 glabel func_8002B36C
-    /* 1BB6C 8002B36C 0780023C */  lui        $v0, %hi(D_8006839E)
-    /* 1BB70 8002B370 9E834290 */  lbu        $v0, %lo(D_8006839E)($v0)
+    /* 1BB6C 8002B36C 0780023C */  lui        $v0, %hi(g_Pad + 0x2E)
+    /* 1BB70 8002B370 9E834290 */  lbu        $v0, %lo(g_Pad + 0x2E)($v0)
     /* 1BB74 8002B374 D8FFBD27 */  addiu      $sp, $sp, -0x28
     /* 1BB78 8002B378 2000B0AF */  sw         $s0, 0x20($sp)
     /* 1BB7C 8002B37C 21808000 */  addu       $s0, $a0, $zero

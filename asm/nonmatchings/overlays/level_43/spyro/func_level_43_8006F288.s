@@ -207,8 +207,8 @@ glabel func_level_43_8006F288
     /* 2FC6A4C 8006F4B0 0780013C */  lui        $at, %hi((g_Spyro + 0x1BC))
     /* 2FC6A50 8006F4B4 ACA122A0 */  sb         $v0, %lo((g_Spyro + 0x1BC))($at)
     /* 2FC6A54 8006F4B8 0F000224 */  addiu      $v0, $zero, 0xF
-    /* 2FC6A58 8006F4BC 0780013C */  lui        $at, %hi(D_8006838C)
-    /* 2FC6A5C 8006F4C0 8C8322AC */  sw         $v0, %lo(D_8006838C)($at)
+    /* 2FC6A58 8006F4BC 0780013C */  lui        $at, %hi(g_Pad + 0x1C)
+    /* 2FC6A5C 8006F4C0 8C8322AC */  sw         $v0, %lo(g_Pad + 0x1C)($at)
     /* 2FC6A60 8006F4C4 AB006010 */  beqz       $v1, .Llevel_43_8006F774
     /* 2FC6A64 8006F4C8 05000424 */   addiu     $a0, $zero, 0x5
     /* 2FC6A68 8006F4CC 0A000524 */  addiu      $a1, $zero, 0xA
@@ -236,8 +236,8 @@ glabel func_level_43_8006F288
     /* 2FC6ABC 8006F520 0780013C */  lui        $at, %hi((g_Spyro + 0x1BC))
     /* 2FC6AC0 8006F524 ACA122A0 */  sb         $v0, %lo((g_Spyro + 0x1BC))($at)
     /* 2FC6AC4 8006F528 0F000224 */  addiu      $v0, $zero, 0xF
-    /* 2FC6AC8 8006F52C 0780013C */  lui        $at, %hi(D_8006838C)
-    /* 2FC6ACC 8006F530 8C8322AC */  sw         $v0, %lo(D_8006838C)($at)
+    /* 2FC6AC8 8006F52C 0780013C */  lui        $at, %hi(g_Pad + 0x1C)
+    /* 2FC6ACC 8006F530 8C8322AC */  sw         $v0, %lo(g_Pad + 0x1C)($at)
     /* 2FC6AD0 8006F534 05006010 */  beqz       $v1, .Llevel_43_8006F54C
     /* 2FC6AD4 8006F538 05000424 */   addiu     $a0, $zero, 0x5
     /* 2FC6AD8 8006F53C 0A000524 */  addiu      $a1, $zero, 0xA
@@ -279,8 +279,8 @@ glabel func_level_43_8006F288
     /* 2FC6B60 8006F5C4 0F000224 */  addiu      $v0, $zero, 0xF
     /* 2FC6B64 8006F5C8 0780013C */  lui        $at, %hi((g_Spyro + 0x1BC))
     /* 2FC6B68 8006F5CC ACA120A0 */  sb         $zero, %lo((g_Spyro + 0x1BC))($at)
-    /* 2FC6B6C 8006F5D0 0780013C */  lui        $at, %hi(D_8006838C)
-    /* 2FC6B70 8006F5D4 8C8322AC */  sw         $v0, %lo(D_8006838C)($at)
+    /* 2FC6B6C 8006F5D0 0780013C */  lui        $at, %hi(g_Pad + 0x1C)
+    /* 2FC6B70 8006F5D4 8C8322AC */  sw         $v0, %lo(g_Pad + 0x1C)($at)
     /* 2FC6B74 8006F5D8 14006010 */  beqz       $v1, .Llevel_43_8006F62C
     /* 2FC6B78 8006F5DC 05000424 */   addiu     $a0, $zero, 0x5
     /* 2FC6B7C 8006F5E0 0A000524 */  addiu      $a1, $zero, 0xA

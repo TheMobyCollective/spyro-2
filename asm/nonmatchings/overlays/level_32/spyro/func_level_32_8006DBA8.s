@@ -39,8 +39,8 @@ nonmatching func_level_32_8006DBA8, 0xBC4
 glabel func_level_32_8006DBA8
     /* 235F944 8006DBA8 A0FFBD27 */  addiu      $sp, $sp, -0x60
     /* 235F948 8006DBAC 00210400 */  sll        $a0, $a0, 4
-    /* 235F94C 8006DBB0 0780023C */  lui        $v0, %hi(D_800683B0)
-    /* 235F950 8006DBB4 B0834224 */  addiu      $v0, $v0, %lo(D_800683B0)
+    /* 235F94C 8006DBB0 0780023C */  lui        $v0, %hi(g_Pad + 0x40)
+    /* 235F950 8006DBB4 B0834224 */  addiu      $v0, $v0, %lo(g_Pad + 0x40)
     /* 235F954 8006DBB8 0780033C */  lui        $v1, %hi((g_Spyro + 0x50))
     /* 235F958 8006DBBC 40A0638C */  lw         $v1, %lo((g_Spyro + 0x50))($v1)
     /* 235F95C 8006DBC0 21208200 */  addu       $a0, $a0, $v0

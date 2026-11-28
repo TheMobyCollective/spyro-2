@@ -45,8 +45,8 @@ glabel func_8002FC20
     /* 2046C 8002FC6C 44FE7526 */  addiu      $s5, $s3, -0x1BC
     /* 20470 8002FC70 68FF7626 */  addiu      $s6, $s3, -0x98
   .L8002FC74:
-    /* 20474 8002FC74 0780033C */  lui        $v1, %hi(D_800683B0)
-    /* 20478 8002FC78 B0836324 */  addiu      $v1, $v1, %lo(D_800683B0)
+    /* 20474 8002FC74 0780033C */  lui        $v1, %hi(g_Pad + 0x40)
+    /* 20478 8002FC78 B0836324 */  addiu      $v1, $v1, %lo(g_Pad + 0x40)
     /* 2047C 8002FC7C 6000A98F */  lw         $t1, 0x60($sp)
     /* 20480 8002FC80 0780043C */  lui        $a0, %hi((g_Spyro + 0x16C))
     /* 20484 8002FC84 5CA1848C */  lw         $a0, %lo((g_Spyro + 0x16C))($a0)
