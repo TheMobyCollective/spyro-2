@@ -260,8 +260,8 @@ glabel func_titlescreen_and_loading_80072B90
   .Ltitlescreen_and_loading_80072F44:
     /* 28CE0 80072F44 21280000 */  addu       $a1, $zero, $zero
   .Ltitlescreen_and_loading_80072F48:
-    /* 28CE4 80072F48 0680043C */  lui        $a0, %hi(D_80067034)
-    /* 28CE8 80072F4C 3470848C */  lw         $a0, %lo(D_80067034)($a0)
+    /* 28CE4 80072F48 0680043C */  lui        $a0, %hi(g_SoundTablePtr + 0x14)
+    /* 28CE8 80072F4C 3470848C */  lw         $a0, %lo(g_SoundTablePtr + 0x14)($a0)
     /* 28CEC 80072F50 000C0624 */  addiu      $a2, $zero, 0xC00
     /* 28CF0 80072F54 F96C000C */  jal        func_8001B3E4
     /* 28CF4 80072F58 00D08424 */   addiu     $a0, $a0, -0x3000

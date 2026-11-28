@@ -200,13 +200,13 @@ glabel func_titlescreen_and_loading_80073E48
   .Ltitlescreen_and_loading_80074128:
     /* 29EC4 80074128 0780043C */  lui        $a0, %hi(D_80068C80)
     /* 29EC8 8007412C 808C8424 */  addiu      $a0, $a0, %lo(D_80068C80)
-    /* 29ECC 80074130 0680053C */  lui        $a1, %hi(D_80067068)
-    /* 29ED0 80074134 6870A58C */  lw         $a1, %lo(D_80067068)($a1)
+    /* 29ECC 80074130 0680053C */  lui        $a1, %hi(g_SpuDefinitionsPtr)
+    /* 29ED0 80074134 6870A58C */  lw         $a1, %lo(g_SpuDefinitionsPtr)($a1)
     /* 29ED4 80074138 036D000C */  jal        func_8001B40C
     /* 29ED8 8007413C 14000624 */   addiu     $a2, $zero, 0x14
     /* 29EDC 80074140 01000224 */  addiu      $v0, $zero, 0x1
-    /* 29EE0 80074144 0680043C */  lui        $a0, %hi(D_80067068)
-    /* 29EE4 80074148 6870848C */  lw         $a0, %lo(D_80067068)($a0)
+    /* 29EE0 80074144 0680043C */  lui        $a0, %hi(g_SpuDefinitionsPtr)
+    /* 29EE4 80074148 6870848C */  lw         $a0, %lo(g_SpuDefinitionsPtr)($a0)
     /* 29EE8 8007414C 10100324 */  addiu      $v1, $zero, 0x1010
     /* 29EEC 80074150 000083AC */  sw         $v1, 0x0($a0)
     /* 29EF0 80074154 FF2F0324 */  addiu      $v1, $zero, 0x2FFF

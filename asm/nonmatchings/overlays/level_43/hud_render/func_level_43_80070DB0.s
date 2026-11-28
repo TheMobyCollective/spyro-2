@@ -22,13 +22,13 @@ glabel func_level_43_80070DB0
     /* 2FC8388 80070DEC 21104300 */  addu       $v0, $v0, $v1
     /* 2FC838C 80070DF0 11008214 */  bne        $a0, $v0, .Llevel_43_80070E38
     /* 2FC8390 80070DF4 00000000 */   nop
-    /* 2FC8394 80070DF8 0680023C */  lui        $v0, %hi(D_80067038)
-    /* 2FC8398 80070DFC 38704290 */  lbu        $v0, %lo(D_80067038)($v0)
+    /* 2FC8394 80070DF8 0680023C */  lui        $v0, %hi(g_SoundTablePtr + 0x18)
+    /* 2FC8398 80070DFC 38704290 */  lbu        $v0, %lo(g_SoundTablePtr + 0x18)($v0)
     /* 2FC839C 80070E00 00000000 */  nop
     /* 2FC83A0 80070E04 05004010 */  beqz       $v0, .Llevel_43_80070E1C
     /* 2FC83A4 80070E08 00000000 */   nop
-    /* 2FC83A8 80070E0C 0680013C */  lui        $at, %hi(D_80067038)
-    /* 2FC83AC 80070E10 387020A0 */  sb         $zero, %lo(D_80067038)($at)
+    /* 2FC83A8 80070E0C 0680013C */  lui        $at, %hi(g_SoundTablePtr + 0x18)
+    /* 2FC83AC 80070E10 387020A0 */  sb         $zero, %lo(g_SoundTablePtr + 0x18)($at)
     /* 2FC83B0 80070E14 8EC30108 */  j          .Llevel_43_80070E38
     /* 2FC83B4 80070E18 00000000 */   nop
   .Llevel_43_80070E1C:
@@ -37,11 +37,11 @@ glabel func_level_43_80070DB0
     /* 2FC83C0 80070E24 0F004230 */  andi       $v0, $v0, 0xF
     /* 2FC83C4 80070E28 03004014 */  bnez       $v0, .Llevel_43_80070E38
     /* 2FC83C8 80070E2C 01000224 */   addiu     $v0, $zero, 0x1
-    /* 2FC83CC 80070E30 0680013C */  lui        $at, %hi(D_80067038)
-    /* 2FC83D0 80070E34 387022A0 */  sb         $v0, %lo(D_80067038)($at)
+    /* 2FC83CC 80070E30 0680013C */  lui        $at, %hi(g_SoundTablePtr + 0x18)
+    /* 2FC83D0 80070E34 387022A0 */  sb         $v0, %lo(g_SoundTablePtr + 0x18)($at)
   .Llevel_43_80070E38:
-    /* 2FC83D4 80070E38 0680023C */  lui        $v0, %hi(D_80067038)
-    /* 2FC83D8 80070E3C 38704290 */  lbu        $v0, %lo(D_80067038)($v0)
+    /* 2FC83D4 80070E38 0680023C */  lui        $v0, %hi(g_SoundTablePtr + 0x18)
+    /* 2FC83D8 80070E3C 38704290 */  lbu        $v0, %lo(g_SoundTablePtr + 0x18)($v0)
     /* 2FC83DC 80070E40 00000000 */  nop
     /* 2FC83E0 80070E44 12004010 */  beqz       $v0, .Llevel_43_80070E90
     /* 2FC83E4 80070E48 6666023C */   lui       $v0, (0x66666667 >> 16)

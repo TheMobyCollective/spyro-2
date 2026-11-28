@@ -25,8 +25,8 @@ glabel func_80043858
     /* 34084 80043884 24003DAC */  sw         $sp, 0x24($at)
     /* 34088 80043888 28003EAC */  sw         $fp, 0x28($at)
     /* 3408C 8004388C 2C003FAC */  sw         $ra, 0x2C($at)
-    /* 34090 80043890 0680013C */  lui        $at, %hi(D_80067034)
-    /* 34094 80043894 34702124 */  addiu      $at, $at, %lo(D_80067034)
+    /* 34090 80043890 0680013C */  lui        $at, %hi(g_SoundTablePtr + 0x14)
+    /* 34094 80043894 34702124 */  addiu      $at, $at, %lo(g_SoundTablePtr + 0x14)
     /* 34098 80043898 0000218C */  lw         $at, 0x0($at)
     /* 3409C 8004389C 06801F3C */  lui        $ra, %hi(D_80066F14)
     /* 340A0 800438A0 146FFF27 */  addiu      $ra, $ra, %lo(D_80066F14)
@@ -1464,8 +1464,8 @@ glabel func_80044504
     /* 35594 80044D94 D8012014 */  bnez       $at, .L800454F8
     /* 35598 80044D98 10100000 */   mfhi      $v0
   .L80044D9C:
-    /* 3559C 80044D9C 0680183C */  lui        $t8, %hi(D_80067030)
-    /* 355A0 80044DA0 30701827 */  addiu      $t8, $t8, %lo(D_80067030)
+    /* 3559C 80044D9C 0680183C */  lui        $t8, %hi((g_SoundTablePtr + 0x10))
+    /* 355A0 80044DA0 30701827 */  addiu      $t8, $t8, %lo((g_SoundTablePtr + 0x10))
     /* 355A4 80044DA4 1800428C */  lw         $v0, 0x18($v0)
     /* 355A8 80044DA8 0000188F */  lw         $t8, 0x0($t8)
     /* 355AC 80044DAC FFFF4130 */  andi       $at, $v0, 0xFFFF
@@ -1955,8 +1955,8 @@ glabel func_80044504
     /* 35C84 80045484 00150108 */  j          .L80045400
     /* 35C88 80045488 08002120 */   addi      $at, $at, 0x8 /* handwritten instruction */
   .L8004548C:
-    /* 35C8C 8004548C 0680013C */  lui        $at, %hi(D_80067030)
-    /* 35C90 80045490 30702124 */  addiu      $at, $at, %lo(D_80067030)
+    /* 35C8C 8004548C 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0x10))
+    /* 35C90 80045490 30702124 */  addiu      $at, $at, %lo((g_SoundTablePtr + 0x10))
     /* 35C94 80045494 000038AC */  sw         $t8, 0x0($at)
   .L80045498:
     /* 35C98 80045498 00100248 */  mfc2       $v0, $2 /* handwritten instruction */
@@ -2700,8 +2700,8 @@ glabel func_80044504
     /* 36748 80045F48 FC0388AC */  sw         $t0, 0x3FC($a0)
     /* 3674C 80045F4C F6FF8514 */  bne        $a0, $a1, .L80045F28
     /* 36750 80045F50 04008420 */   addi      $a0, $a0, 0x4 /* handwritten instruction */
-    /* 36754 80045F54 0680183C */  lui        $t8, %hi(D_80067030)
-    /* 36758 80045F58 30701827 */  addiu      $t8, $t8, %lo(D_80067030)
+    /* 36754 80045F54 0680183C */  lui        $t8, %hi((g_SoundTablePtr + 0x10))
+    /* 36758 80045F58 30701827 */  addiu      $t8, $t8, %lo((g_SoundTablePtr + 0x10))
     /* 3675C 80045F5C 1800428C */  lw         $v0, 0x18($v0)
     /* 36760 80045F60 0000188F */  lw         $t8, 0x0($t8)
     /* 36764 80045F64 FFFF4130 */  andi       $at, $v0, 0xFFFF
@@ -3891,8 +3891,8 @@ glabel func_80046FD8
     /* 37894 80047094 C80384AF */  sw         $a0, 0x3C8($gp) /* Failed to symbolize address 0x1F8003C8 for %gp_rel. Make sure this address is within the recognized valid address space. */
     /* 37898 80047098 CC0385AF */  sw         $a1, 0x3CC($gp) /* Failed to symbolize address 0x1F8003CC for %gp_rel. Make sure this address is within the recognized valid address space. */
     /* 3789C 8004709C D00386AF */  sw         $a2, 0x3D0($gp) /* Failed to symbolize address 0x1F8003D0 for %gp_rel. Make sure this address is within the recognized valid address space. */
-    /* 378A0 800470A0 0680013C */  lui        $at, %hi(D_80067030)
-    /* 378A4 800470A4 30702124 */  addiu      $at, $at, %lo(D_80067030)
+    /* 378A0 800470A0 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0x10))
+    /* 378A4 800470A4 30702124 */  addiu      $at, $at, %lo((g_SoundTablePtr + 0x10))
     /* 378A8 800470A8 0000218C */  lw         $at, 0x0($at)
     /* 378AC 800470AC 0680023C */  lui        $v0, %hi(D_80066FFC)
     /* 378B0 800470B0 FC6F4224 */  addiu      $v0, $v0, %lo(D_80066FFC)
@@ -5026,8 +5026,8 @@ glabel func_80046FD8
     /* 388D0 800480D0 0C822124 */  addiu      $at, $at, %lo(D_8006820C)
     /* 388D4 800480D4 080022AC */  sw         $v0, 0x8($at)
     /* 388D8 800480D8 D803828F */  lw         $v0, 0x3D8($gp) /* Failed to symbolize address 0x1F8003D8 for %gp_rel. Make sure this address is within the recognized valid address space. */
-    /* 388DC 800480DC 0680013C */  lui        $at, %hi(D_80067030)
-    /* 388E0 800480E0 30702124 */  addiu      $at, $at, %lo(D_80067030)
+    /* 388DC 800480DC 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0x10))
+    /* 388E0 800480E0 30702124 */  addiu      $at, $at, %lo((g_SoundTablePtr + 0x10))
     /* 388E4 800480E4 000022AC */  sw         $v0, 0x0($at)
     /* 388E8 800480E8 0780013C */  lui        $at, %hi(D_8006A9EC)
     /* 388EC 800480EC ECA92124 */  addiu      $at, $at, %lo(D_8006A9EC)

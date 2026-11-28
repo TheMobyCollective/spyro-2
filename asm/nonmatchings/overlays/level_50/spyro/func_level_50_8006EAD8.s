@@ -122,8 +122,8 @@ glabel func_level_50_8006EAD8
     /* 370F164 8006EBC8 00000000 */   nop
     /* 370F168 8006EBCC 0780103C */  lui        $s0, %hi((g_Spyro + 0x264))
     /* 370F16C 8006EBD0 54A21026 */  addiu      $s0, $s0, %lo((g_Spyro + 0x264))
-    /* 370F170 8006EBD4 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 370F174 8006EBD8 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 370F170 8006EBD4 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 370F174 8006EBD8 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 370F178 8006EBDC 0000058E */  lw         $a1, 0x0($s0)
     /* 370F17C 8006EBE0 06004490 */  lbu        $a0, 0x6($v0)
     /* 370F180 8006EBE4 C842010C */  jal        func_80050B20
@@ -174,16 +174,16 @@ glabel func_level_50_8006EAD8
     /* 370F22C 8006EC90 00000000 */   nop
     /* 370F230 8006EC94 0780103C */  lui        $s0, %hi((g_Spyro + 0x264))
     /* 370F234 8006EC98 54A21026 */  addiu      $s0, $s0, %lo((g_Spyro + 0x264))
-    /* 370F238 8006EC9C 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 370F23C 8006ECA0 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 370F238 8006EC9C 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 370F23C 8006ECA0 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 370F240 8006ECA4 0000058E */  lw         $a1, 0x0($s0)
     /* 370F244 8006ECA8 06004490 */  lbu        $a0, 0x6($v0)
     /* 370F248 8006ECAC C842010C */  jal        func_80050B20
     /* 370F24C 8006ECB0 00000000 */   nop
     /* 370F250 8006ECB4 17004014 */  bnez       $v0, .Llevel_50_8006ED14
     /* 370F254 8006ECB8 21280000 */   addu      $a1, $zero, $zero
-    /* 370F258 8006ECBC 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 370F25C 8006ECC0 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 370F258 8006ECBC 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 370F25C 8006ECC0 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 370F260 8006ECC4 00000000 */  nop
     /* 370F264 8006ECC8 06004490 */  lbu        $a0, 0x6($v0)
     /* 370F268 8006ECCC C841010C */  jal        func_80050720
@@ -197,8 +197,8 @@ glabel func_level_50_8006EAD8
     /* 370F288 8006ECEC 3D43010C */  jal        func_80050CF4
     /* 370F28C 8006ECF0 90010524 */   addiu     $a1, $zero, 0x190
   .Llevel_50_8006ECF4:
-    /* 370F290 8006ECF4 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 370F294 8006ECF8 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 370F290 8006ECF4 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 370F294 8006ECF8 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 370F298 8006ECFC 00000000 */  nop
     /* 370F29C 8006ED00 06004290 */  lbu        $v0, 0x6($v0)
     /* 370F2A0 8006ED04 0780013C */  lui        $at, %hi((g_Spyro + 0x268))
@@ -206,8 +206,8 @@ glabel func_level_50_8006EAD8
     /* 370F2A8 8006ED0C 0780103C */  lui        $s0, %hi((g_Spyro + 0x264))
     /* 370F2AC 8006ED10 54A21026 */  addiu      $s0, $s0, %lo((g_Spyro + 0x264))
   .Llevel_50_8006ED14:
-    /* 370F2B0 8006ED14 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 370F2B4 8006ED18 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 370F2B0 8006ED14 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 370F2B4 8006ED18 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 370F2B8 8006ED1C 0000058E */  lw         $a1, 0x0($s0)
     /* 370F2BC 8006ED20 06004490 */  lbu        $a0, 0x6($v0)
     /* 370F2C0 8006ED24 C842010C */  jal        func_80050B20

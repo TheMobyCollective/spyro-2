@@ -16,8 +16,8 @@ glabel func_titlescreen_and_loading_80079878
     /* 2F638 8007989C 2C00B5AF */  sw         $s5, 0x2C($sp)
     /* 2F63C 800798A0 10001524 */  addiu      $s5, $zero, 0x10
     /* 2F640 800798A4 1C00B1AF */  sw         $s1, 0x1C($sp)
-    /* 2F644 800798A8 0680113C */  lui        $s1, %hi(D_80067030)
-    /* 2F648 800798AC 3070318E */  lw         $s1, %lo(D_80067030)($s1)
+    /* 2F644 800798A8 0680113C */  lui        $s1, %hi((g_SoundTablePtr + 0x10))
+    /* 2F648 800798AC 3070318E */  lw         $s1, %lo((g_SoundTablePtr + 0x10))($s1)
     /* 2F64C 800798B0 2000622A */  slti       $v0, $s3, 0x20
     /* 2F650 800798B4 3800BFAF */  sw         $ra, 0x38($sp)
     /* 2F654 800798B8 2000B2AF */  sw         $s2, 0x20($sp)
@@ -60,8 +60,8 @@ glabel func_titlescreen_and_loading_80079878
     /* 2F6E0 80079944 0C002326 */  addiu      $v1, $s1, 0xC
     /* 2F6E4 80079948 0004023C */  lui        $v0, (0x4000000 >> 16)
     /* 2F6E8 8007994C 21806000 */  addu       $s0, $v1, $zero
-    /* 2F6EC 80079950 0680013C */  lui        $at, %hi(D_80067030)
-    /* 2F6F0 80079954 307023AC */  sw         $v1, %lo(D_80067030)($at)
+    /* 2F6EC 80079950 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0x10))
+    /* 2F6F0 80079954 307023AC */  sw         $v1, %lo((g_SoundTablePtr + 0x10))($at)
     /* 2F6F4 80079958 04008016 */  bnez       $s4, .Ltitlescreen_and_loading_8007996C
     /* 2F6F8 8007995C 0C0022AE */   sw        $v0, 0xC($s1)
     /* 2F6FC 80079960 8064023C */  lui        $v0, (0x64808080 >> 16)
@@ -119,8 +119,8 @@ glabel func_titlescreen_and_loading_80079878
     /* 2F7B0 80079A14 D56C000C */  jal        func_8001B354
     /* 2F7B4 80079A18 0D0002A2 */   sb        $v0, 0xD($s0)
     /* 2F7B8 80079A1C 14000226 */  addiu      $v0, $s0, 0x14
-    /* 2F7BC 80079A20 0680013C */  lui        $at, %hi(D_80067030)
-    /* 2F7C0 80079A24 307022AC */  sw         $v0, %lo(D_80067030)($at)
+    /* 2F7BC 80079A20 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0x10))
+    /* 2F7C0 80079A24 307022AC */  sw         $v0, %lo((g_SoundTablePtr + 0x10))($at)
     /* 2F7C4 80079A28 3800BF8F */  lw         $ra, 0x38($sp)
     /* 2F7C8 80079A2C 3400B78F */  lw         $s7, 0x34($sp)
     /* 2F7CC 80079A30 3000B68F */  lw         $s6, 0x30($sp)

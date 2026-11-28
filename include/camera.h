@@ -205,6 +205,7 @@ extern short D_80061C58[];  /* Cosine lookup table. */
 extern void (*D_80067014)(void);
 
 /* Callback used by func_80021558. */
+/* g_SoundTablePtr + 0x20? */
 extern void (*D_80067040)(void);
 
 /* Callback used by func_8001FA58. */

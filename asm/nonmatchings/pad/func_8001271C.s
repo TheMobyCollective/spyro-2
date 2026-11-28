@@ -4,8 +4,8 @@
 nonmatching func_8001271C, 0x3A4
 
 glabel func_8001271C
-    /* 2F1C 8001271C 0680023C */  lui        $v0, %hi(D_80067024)
-    /* 2F20 80012720 2470428C */  lw         $v0, %lo(D_80067024)($v0)
+    /* 2F1C 8001271C 0680023C */  lui        $v0, %hi((g_SoundTablePtr + 0x4))
+    /* 2F20 80012720 2470428C */  lw         $v0, %lo((g_SoundTablePtr + 0x4))($v0)
     /* 2F24 80012724 C8FFBD27 */  addiu      $sp, $sp, -0x38
     /* 2F28 80012728 3000BFAF */  sw         $ra, 0x30($sp)
     /* 2F2C 8001272C 2C00B5AF */  sw         $s5, 0x2C($sp)

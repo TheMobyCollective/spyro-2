@@ -101,6 +101,7 @@ extern Pad g_Pad; // D_80068370
 
 extern void func_8001B40C(void*, void*, int);                         /* extern */
 
+// (g_SoundTablePtr + 0x4)
 extern int D_80067024; // isDemoMode
 
 extern int D_8006700C;

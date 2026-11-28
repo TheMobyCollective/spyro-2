@@ -11,8 +11,8 @@ glabel func_titlescreen_and_loading_800733B0
     /* 2915C 800733C0 B6CC010C */  jal        func_titlescreen_and_loading_800732D8
     /* 29160 800733C4 1800B0AF */   sw        $s0, 0x18($sp)
     /* 29164 800733C8 21280000 */  addu       $a1, $zero, $zero
-    /* 29168 800733CC 0680043C */  lui        $a0, %hi(D_80067034)
-    /* 2916C 800733D0 3470848C */  lw         $a0, %lo(D_80067034)($a0)
+    /* 29168 800733CC 0680043C */  lui        $a0, %hi(g_SoundTablePtr + 0x14)
+    /* 2916C 800733D0 3470848C */  lw         $a0, %lo(g_SoundTablePtr + 0x14)($a0)
     /* 29170 800733D4 000C0624 */  addiu      $a2, $zero, 0xC00
     /* 29174 800733D8 F96C000C */  jal        func_8001B3E4
     /* 29178 800733DC 00D08424 */   addiu     $a0, $a0, -0x3000
@@ -32,8 +32,8 @@ glabel func_titlescreen_and_loading_800733B0
     /* 291B0 80073414 30004014 */  bnez       $v0, .Ltitlescreen_and_loading_800734D8
     /* 291B4 80073418 01000524 */   addiu     $a1, $zero, 0x1
     /* 291B8 8007341C 21300000 */  addu       $a2, $zero, $zero
-    /* 291BC 80073420 0680113C */  lui        $s1, %hi(D_80067030)
-    /* 291C0 80073424 3070318E */  lw         $s1, %lo(D_80067030)($s1)
+    /* 291BC 80073420 0680113C */  lui        $s1, %hi((g_SoundTablePtr + 0x10))
+    /* 291C0 80073424 3070318E */  lw         $s1, %lo((g_SoundTablePtr + 0x10))($s1)
     /* 291C4 80073428 18010724 */  addiu      $a3, $zero, 0x118
     /* 291C8 8007342C 1000A0AF */  sw         $zero, 0x10($sp)
     /* 291CC 80073430 0768010C */  jal        func_8005A01C
@@ -78,8 +78,8 @@ glabel func_titlescreen_and_loading_800733B0
     /* 29260 800734C4 E46C000C */  jal        func_8001B390
     /* 29264 800734C8 0A0002A6 */   sh        $v0, 0xA($s0)
     /* 29268 800734CC 14000226 */  addiu      $v0, $s0, 0x14
-    /* 2926C 800734D0 0680013C */  lui        $at, %hi(D_80067030)
-    /* 29270 800734D4 307022AC */  sw         $v0, %lo(D_80067030)($at)
+    /* 2926C 800734D0 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0x10))
+    /* 29270 800734D4 307022AC */  sw         $v0, %lo((g_SoundTablePtr + 0x10))($at)
   .Ltitlescreen_and_loading_800734D8:
     /* 29274 800734D8 0680053C */  lui        $a1, %hi(D_80066F68)
     /* 29278 800734DC 686FA58C */  lw         $a1, %lo(D_80066F68)($a1)

@@ -249,14 +249,14 @@ glabel func_level_32_8006E9FC
     /* 2360AB0 8006ED14 09F80001 */  jalr       $t0
     /* 2360AB4 8006ED18 21380000 */   addu      $a3, $zero, $zero
   .Llevel_32_8006ED1C:
-    /* 2360AB8 8006ED1C 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 2360ABC 8006ED20 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 2360AB8 8006ED1C 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 2360ABC 8006ED20 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 2360AC0 8006ED24 21280000 */  addu       $a1, $zero, $zero
     /* 2360AC4 8006ED28 0E004490 */  lbu        $a0, 0xE($v0)
     /* 2360AC8 8006ED2C C841010C */  jal        func_80050720
     /* 2360ACC 8006ED30 21300000 */   addu      $a2, $zero, $zero
-    /* 2360AD0 8006ED34 0680033C */  lui        $v1, %hi(D_80067020)
-    /* 2360AD4 8006ED38 2070638C */  lw         $v1, %lo(D_80067020)($v1)
+    /* 2360AD0 8006ED34 0680033C */  lui        $v1, %hi(g_SoundTablePtr)
+    /* 2360AD4 8006ED38 2070638C */  lw         $v1, %lo(g_SoundTablePtr)($v1)
     /* 2360AD8 8006ED3C 0780013C */  lui        $at, %hi((g_Spyro + 0x264))
     /* 2360ADC 8006ED40 54A222AC */  sw         $v0, %lo((g_Spyro + 0x264))($at)
     /* 2360AE0 8006ED44 0E006290 */  lbu        $v0, 0xE($v1)

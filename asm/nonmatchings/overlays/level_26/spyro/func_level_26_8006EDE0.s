@@ -289,8 +289,8 @@ glabel func_level_26_8006EDE0
     /* 1DB1EC0 8006F124 E4BD0108 */  j          .Llevel_26_8006F790
     /* 1DB1EC4 8006F128 00000000 */   nop
   .Llevel_26_8006F12C:
-    /* 1DB1EC8 8006F12C 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 1DB1ECC 8006F130 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 1DB1EC8 8006F12C 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 1DB1ECC 8006F130 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 1DB1ED0 8006F134 00000000 */  nop
     /* 1DB1ED4 8006F138 0F004490 */  lbu        $a0, 0xF($v0)
     /* 1DB1ED8 8006F13C C841010C */  jal        func_80050720

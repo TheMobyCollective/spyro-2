@@ -62,8 +62,8 @@ glabel func_80013A14
   .L80013AEC:
     /* 42EC 80013AEC 6855000C */  jal        func_800155A0
     /* 42F0 80013AF0 3D000424 */   addiu     $a0, $zero, 0x3D
-    /* 42F4 80013AF4 0680043C */  lui        $a0, %hi(D_80067024)
-    /* 42F8 80013AF8 2470848C */  lw         $a0, %lo(D_80067024)($a0)
+    /* 42F4 80013AF4 0680043C */  lui        $a0, %hi((g_SoundTablePtr + 0x4))
+    /* 42F8 80013AF8 2470848C */  lw         $a0, %lo((g_SoundTablePtr + 0x4))($a0)
     /* 42FC 80013AFC 01000224 */  addiu      $v0, $zero, 0x1
     /* 4300 80013B00 2C008214 */  bne        $a0, $v0, .L80013BB4
     /* 4304 80013B04 00000000 */   nop

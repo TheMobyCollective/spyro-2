@@ -5,8 +5,8 @@ nonmatching func_80032E74, 0x1E8
 
 glabel func_80032E74
     /* 23674 80032E74 E8FFBD27 */  addiu      $sp, $sp, -0x18
-    /* 23678 80032E78 0680033C */  lui        $v1, %hi(D_80067024)
-    /* 2367C 80032E7C 2470638C */  lw         $v1, %lo(D_80067024)($v1)
+    /* 23678 80032E78 0680033C */  lui        $v1, %hi((g_SoundTablePtr + 0x4))
+    /* 2367C 80032E7C 2470638C */  lw         $v1, %lo((g_SoundTablePtr + 0x4))($v1)
     /* 23680 80032E80 01000224 */  addiu      $v0, $zero, 0x1
     /* 23684 80032E84 05006214 */  bne        $v1, $v0, .L80032E9C
     /* 23688 80032E88 1000BFAF */   sw        $ra, 0x10($sp)

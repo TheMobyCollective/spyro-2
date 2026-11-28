@@ -257,8 +257,8 @@ glabel func_level_61_8006E918
     /* 3EB9958 8006EBBC 948322AC */  sw         $v0, %lo(D_80068394)($at)
     /* 3EB995C 8006EBC0 17006014 */  bnez       $v1, .Llevel_61_8006EC20
     /* 3EB9960 8006EBC4 00000000 */   nop
-    /* 3EB9964 8006EBC8 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 3EB9968 8006EBCC 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 3EB9964 8006EBC8 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 3EB9968 8006EBCC 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 3EB996C 8006EBD0 0780053C */  lui        $a1, %hi((g_Spyro + 0x264))
     /* 3EB9970 8006EBD4 54A2A58C */  lw         $a1, %lo((g_Spyro + 0x264))($a1)
     /* 3EB9974 8006EBD8 1A004490 */  lbu        $a0, 0x1A($v0)
@@ -266,14 +266,14 @@ glabel func_level_61_8006E918
     /* 3EB997C 8006EBE0 00000000 */   nop
     /* 3EB9980 8006EBE4 0E004014 */  bnez       $v0, .Llevel_61_8006EC20
     /* 3EB9984 8006EBE8 21280000 */   addu      $a1, $zero, $zero
-    /* 3EB9988 8006EBEC 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 3EB998C 8006EBF0 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 3EB9988 8006EBEC 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 3EB998C 8006EBF0 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 3EB9990 8006EBF4 00000000 */  nop
     /* 3EB9994 8006EBF8 1A004490 */  lbu        $a0, 0x1A($v0)
     /* 3EB9998 8006EBFC C841010C */  jal        func_80050720
     /* 3EB999C 8006EC00 04000624 */   addiu     $a2, $zero, 0x4
-    /* 3EB99A0 8006EC04 0680033C */  lui        $v1, %hi(D_80067020)
-    /* 3EB99A4 8006EC08 2070638C */  lw         $v1, %lo(D_80067020)($v1)
+    /* 3EB99A0 8006EC04 0680033C */  lui        $v1, %hi(g_SoundTablePtr)
+    /* 3EB99A4 8006EC08 2070638C */  lw         $v1, %lo(g_SoundTablePtr)($v1)
     /* 3EB99A8 8006EC0C 0780013C */  lui        $at, %hi((g_Spyro + 0x264))
     /* 3EB99AC 8006EC10 54A222AC */  sw         $v0, %lo((g_Spyro + 0x264))($at)
     /* 3EB99B0 8006EC14 1A006290 */  lbu        $v0, 0x1A($v1)

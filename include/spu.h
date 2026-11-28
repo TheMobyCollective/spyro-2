@@ -76,9 +76,7 @@ typedef struct {
 
 // sbss
 extern SoundTable* g_SoundTablePtr; // 80067020
-extern SoundTable* D_80067020; // 80067020
 extern SoundDefinition* g_SpuDefinitionsPtr; // 80067068
-extern SoundDefinition* D_80067068; // 80067068
 
 extern unsigned char *D_800670C0;
 

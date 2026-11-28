@@ -222,8 +222,8 @@ glabel .Ltitlescreen_and_loading_80079E80
     /* 2FE24 8007A088 702D6334 */  ori        $v1, $v1, (0x42D70 & 0xFFFF)
     /* 2FE28 8007A08C 21200000 */  addu       $a0, $zero, $zero
     /* 2FE2C 8007A090 21280000 */  addu       $a1, $zero, $zero
-    /* 2FE30 8007A094 0680023C */  lui        $v0, %hi(D_80067068)
-    /* 2FE34 8007A098 6870428C */  lw         $v0, %lo(D_80067068)($v0)
+    /* 2FE30 8007A094 0680023C */  lui        $v0, %hi(g_SpuDefinitionsPtr)
+    /* 2FE34 8007A098 6870428C */  lw         $v0, %lo(g_SpuDefinitionsPtr)($v0)
     /* 2FE38 8007A09C 40000624 */  addiu      $a2, $zero, 0x40
     /* 2FE3C 8007A0A0 C841010C */  jal        func_80050720
     /* 2FE40 8007A0A4 000043AC */   sw        $v1, 0x0($v0)
@@ -282,8 +282,8 @@ glabel .Ltitlescreen_and_loading_80079E80
     /* 2FF08 8007A16C 00000000 */   nop
     /* 2FF0C 8007A170 AB42010C */  jal        func_80050AAC
     /* 2FF10 8007A174 00000000 */   nop
-    /* 2FF14 8007A178 0680043C */  lui        $a0, %hi(D_80067068)
-    /* 2FF18 8007A17C 6870848C */  lw         $a0, %lo(D_80067068)($a0)
+    /* 2FF14 8007A178 0680043C */  lui        $a0, %hi(g_SpuDefinitionsPtr)
+    /* 2FF18 8007A17C 6870848C */  lw         $a0, %lo(g_SpuDefinitionsPtr)($a0)
     /* 2FF1C 8007A180 3C000526 */  addiu      $a1, $s0, 0x3C
     /* 2FF20 8007A184 036D000C */  jal        func_8001B40C
     /* 2FF24 8007A188 14000624 */   addiu     $a2, $zero, 0x14
@@ -475,8 +475,8 @@ glabel .Ltitlescreen_and_loading_80079E80
   .Ltitlescreen_and_loading_8007A444:
     /* 301E0 8007A444 04006334 */  ori        $v1, $v1, (0x80100004 & 0xFFFF)
     /* 301E4 8007A448 1080023C */  lui        $v0, (0x80100000 >> 16)
-    /* 301E8 8007A44C 0680013C */  lui        $at, %hi(D_80067024)
-    /* 301EC 8007A450 247031AC */  sw         $s1, %lo(D_80067024)($at)
+    /* 301E8 8007A44C 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0x4))
+    /* 301EC 8007A450 247031AC */  sw         $s1, %lo((g_SoundTablePtr + 0x4))($at)
     /* 301F0 8007A454 0680013C */  lui        $at, %hi(D_80066F28)
     /* 301F4 8007A458 286F22AC */  sw         $v0, %lo(D_80066F28)($at)
     /* 301F8 8007A45C 0680013C */  lui        $at, %hi(D_80066F04)

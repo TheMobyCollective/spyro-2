@@ -268,8 +268,8 @@ glabel func_level_13_8006EEEC
     /* 133B78C 8006F1F0 09F86000 */  jalr       $v1
     /* 133B790 8006F1F4 21380000 */   addu      $a3, $zero, $zero
   .Llevel_13_8006F1F8:
-    /* 133B794 8006F1F8 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 133B798 8006F1FC 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 133B794 8006F1F8 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 133B798 8006F1FC 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 133B79C 8006F200 00000000 */  nop
     /* 133B7A0 8006F204 09004490 */  lbu        $a0, 0x9($v0)
     /* 133B7A4 8006F208 B8BC0108 */  j          .Llevel_13_8006F2E0
@@ -300,8 +300,8 @@ glabel func_level_13_8006EEEC
     /* 133B800 8006F264 0780013C */  lui        $at, %hi((g_Spyro + 0x9C))
     /* 133B804 8006F268 8CA022AC */  sw         $v0, %lo((g_Spyro + 0x9C))($at)
   .Llevel_13_8006F26C:
-    /* 133B808 8006F26C 0680033C */  lui        $v1, %hi(D_80067020)
-    /* 133B80C 8006F270 2070638C */  lw         $v1, %lo(D_80067020)($v1)
+    /* 133B808 8006F26C 0680033C */  lui        $v1, %hi(g_SoundTablePtr)
+    /* 133B80C 8006F270 2070638C */  lw         $v1, %lo(g_SoundTablePtr)($v1)
     /* 133B810 8006F274 03000224 */  addiu      $v0, $zero, 0x3
     /* 133B814 8006F278 0780013C */  lui        $at, %hi((g_Spyro + 0x54))
     /* 133B818 8006F27C 44A022AC */  sw         $v0, %lo((g_Spyro + 0x54))($at)
@@ -326,8 +326,8 @@ glabel func_level_13_8006EEEC
     /* 133B860 8006F2C4 3A000224 */  addiu      $v0, $zero, 0x3A
     /* 133B864 8006F2C8 3F000216 */  bne        $s0, $v0, .Llevel_13_8006F3C8
     /* 133B868 8006F2CC 21280000 */   addu      $a1, $zero, $zero
-    /* 133B86C 8006F2D0 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 133B870 8006F2D4 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 133B86C 8006F2D0 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 133B870 8006F2D4 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 133B874 8006F2D8 00000000 */  nop
     /* 133B878 8006F2DC 0C004490 */  lbu        $a0, 0xC($v0)
   .Llevel_13_8006F2E0:

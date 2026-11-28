@@ -2951,6 +2951,7 @@ int func_80021558(void)
 
     default:
         /* Use the registered callback when one is available. */
+        /* g_SoundTablePtr + 0x20? */
         if (D_80067040 != nullptr) {
             D_80067040();
             return;

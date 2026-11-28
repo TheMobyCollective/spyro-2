@@ -17,8 +17,8 @@ glabel func_titlescreen_and_loading_800732D8
   .Ltitlescreen_and_loading_80073300:
     /* 2909C 80073300 21384002 */  addu       $a3, $s2, $zero
     /* 290A0 80073304 02005226 */  addiu      $s2, $s2, 0x2
-    /* 290A4 80073308 0680103C */  lui        $s0, %hi(D_80067030)
-    /* 290A8 8007330C 3070108E */  lw         $s0, %lo(D_80067030)($s0)
+    /* 290A4 80073308 0680103C */  lui        $s0, %hi((g_SoundTablePtr + 0x10))
+    /* 290A8 8007330C 3070108E */  lw         $s0, %lo((g_SoundTablePtr + 0x10))($s0)
     /* 290AC 80073310 21300000 */  addu       $a2, $zero, $zero
     /* 290B0 80073314 1000A0AF */  sw         $zero, 0x10($sp)
     /* 290B4 80073318 0768010C */  jal        func_8005A01C
@@ -47,8 +47,8 @@ glabel func_titlescreen_and_loading_800732D8
     /* 29110 80073374 01003126 */  addiu      $s1, $s1, 0x1
     /* 29114 80073378 20001026 */  addiu      $s0, $s0, 0x20
     /* 29118 8007337C 0400222A */  slti       $v0, $s1, 0x4
-    /* 2911C 80073380 0680013C */  lui        $at, %hi(D_80067030)
-    /* 29120 80073384 307030AC */  sw         $s0, %lo(D_80067030)($at)
+    /* 2911C 80073380 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0x10))
+    /* 29120 80073384 307030AC */  sw         $s0, %lo((g_SoundTablePtr + 0x10))($at)
     /* 29124 80073388 DDFF4014 */  bnez       $v0, .Ltitlescreen_and_loading_80073300
     /* 29128 8007338C 01000524 */   addiu     $a1, $zero, 0x1
     /* 2912C 80073390 2800BF8F */  lw         $ra, 0x28($sp)

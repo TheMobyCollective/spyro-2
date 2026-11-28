@@ -15,8 +15,8 @@ glabel func_level_66_8006F22C
     /* 44B9FE8 8006F24C 0D000224 */  addiu      $v0, $zero, 0xD
     /* 44B9FEC 8006F250 0B006214 */  bne        $v1, $v0, .Llevel_66_8006F280
     /* 44B9FF0 8006F254 21280000 */   addu      $a1, $zero, $zero
-    /* 44B9FF4 8006F258 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 44B9FF8 8006F25C 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 44B9FF4 8006F258 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 44B9FF8 8006F25C 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 44B9FFC 8006F260 00000000 */  nop
     /* 44BA000 8006F264 0D004490 */  lbu        $a0, 0xD($v0)
     /* 44BA004 8006F268 C841010C */  jal        func_80050720

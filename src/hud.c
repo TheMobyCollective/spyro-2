@@ -86,21 +86,21 @@ void func_800540B0(void) {
 // https://decomp.me/scratch/urcn8
 //INCLUDE_ASM("asm/nonmatchings/hud", func_80054170);
 void func_80054170(void) {
-    func_80050720(D_80067020->pauseSubPageEntry, 0, 0);
+    func_80050720(g_SoundTablePtr->pauseSubPageEntry, 0, 0);
 }
 
 // Plays the sound when closing anything in the pause menu, including itself
 // https://decomp.me/scratch/CnzzI
 //INCLUDE_ASM("asm/nonmatchings/hud", func_800541A0);
 void func_800541A0(void) {
-    func_80050720(D_80067020->pauseExit, 0, 0);
+    func_80050720(g_SoundTablePtr->pauseExit, 0, 0);
 }
 
 // Plays the sound when moving up and down in the pause menu
 // https://decomp.me/scratch/C3wBx
 //INCLUDE_ASM("asm/nonmatchings/hud", func_800541D0);
 void func_800541D0(void) {
-    int sound = func_80050720(D_80067020->pauseMove, 0, 0);
+    int sound = func_80050720(g_SoundTablePtr->pauseMove, 0, 0);
     if (sound >= 0) {
         func_80050CF4(sound, 0x640);
     }
@@ -110,7 +110,7 @@ void func_800541D0(void) {
 // https://decomp.me/scratch/ZoTFQ
 //INCLUDE_ASM("asm/nonmatchings/hud", func_80054210);
 void func_80054210(void) {
-    int sound = func_80050720(D_80067020->changeOption, 0, 0);
+    int sound = func_80050720(g_SoundTablePtr->changeOption, 0, 0);
     if (sound >= 0) {
         func_80050CF4(sound, 0xC00);
     }
@@ -119,13 +119,13 @@ void func_80054210(void) {
 // https://decomp.me/scratch/i6oJ6
 //INCLUDE_ASM("asm/nonmatchings/hud", func_80054250);
 void func_80054250(void) {
-    func_80050720(D_80067020->gemCollect, 0, 0);
+    func_80050720(g_SoundTablePtr->gemCollect, 0, 0);
 }
 
 // https://decomp.me/scratch/44uL7
 //INCLUDE_ASM("asm/nonmatchings/hud", func_80054280);
 void func_80054280(void) {
-    int sound = func_80050720(D_80067020->changeOption, 0, 0);
+    int sound = func_80050720(g_SoundTablePtr->changeOption, 0, 0);
     if (sound >= 0) {
         func_80050CF4(sound, 0x2000);
         func_80050C64(sound, 0x600);
@@ -135,7 +135,7 @@ void func_80054280(void) {
 // https://decomp.me/scratch/80Txx
 //INCLUDE_ASM("asm/nonmatchings/hud", func_800542D8);
 void func_800542D8(void) {
-    int sound = func_80050720(D_80067020->gemChime, 0, 0);
+    int sound = func_80050720(g_SoundTablePtr->gemChime, 0, 0);
     if (sound >= 0) {
         func_80050CF4(sound, 0x2000);
     }
@@ -145,7 +145,7 @@ void func_800542D8(void) {
 // https://decomp.me/scratch/DQDpd
 //INCLUDE_ASM("asm/nonmatchings/hud", func_80054318);
 void func_80054318(void) {
-    int sound = func_80050720(D_80067020->guidebookPageTurn, 0, 0);
+    int sound = func_80050720(g_SoundTablePtr->guidebookPageTurn, 0, 0);
     if (sound >= 0) {
         func_80050CF4(sound, 0xC00);
         func_80050C64(sound, 0x1200 - ((func_80059D2C() % 5) << 7));

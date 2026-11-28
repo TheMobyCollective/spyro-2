@@ -115,8 +115,8 @@ glabel func_level_45_8006ED2C
     /* 33F9388 8006EDEC 5BBC0108 */  j          .Llevel_45_8006F16C
     /* 33F938C 8006EDF0 00000000 */   nop
   .Llevel_45_8006EDF4:
-    /* 33F9390 8006EDF4 0680033C */  lui        $v1, %hi(D_80067020)
-    /* 33F9394 8006EDF8 2070638C */  lw         $v1, %lo(D_80067020)($v1)
+    /* 33F9390 8006EDF4 0680033C */  lui        $v1, %hi(g_SoundTablePtr)
+    /* 33F9394 8006EDF8 2070638C */  lw         $v1, %lo(g_SoundTablePtr)($v1)
     /* 33F9398 8006EDFC 09000224 */  addiu      $v0, $zero, 0x9
     /* 33F939C 8006EE00 0780013C */  lui        $at, %hi((g_Spyro + 0x58))
     /* 33F93A0 8006EE04 48A022AC */  sw         $v0, %lo((g_Spyro + 0x58))($at)
@@ -183,8 +183,8 @@ glabel func_level_45_8006ED2C
     /* 33F9484 8006EEE8 0A000224 */  addiu      $v0, $zero, 0xA
     /* 33F9488 8006EEEC 9F006210 */  beq        $v1, $v0, .Llevel_45_8006F16C
     /* 33F948C 8006EEF0 21280000 */   addu      $a1, $zero, $zero
-    /* 33F9490 8006EEF4 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 33F9494 8006EEF8 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 33F9490 8006EEF4 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 33F9494 8006EEF8 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 33F9498 8006EEFC 00000000 */  nop
     /* 33F949C 8006EF00 07004490 */  lbu        $a0, 0x7($v0)
     /* 33F94A0 8006EF04 C841010C */  jal        func_80050720
@@ -263,8 +263,8 @@ glabel func_level_45_8006ED2C
     /* 33F95BC 8006F020 01000324 */  addiu      $v1, $zero, 0x1
     /* 33F95C0 8006F024 0780013C */  lui        $at, %hi((g_Spyro + 0x1BD))
     /* 33F95C4 8006F028 ADA123A0 */  sb         $v1, %lo((g_Spyro + 0x1BD))($at)
-    /* 33F95C8 8006F02C 0680033C */  lui        $v1, %hi(D_80067020)
-    /* 33F95CC 8006F030 2070638C */  lw         $v1, %lo(D_80067020)($v1)
+    /* 33F95C8 8006F02C 0680033C */  lui        $v1, %hi(g_SoundTablePtr)
+    /* 33F95CC 8006F030 2070638C */  lw         $v1, %lo(g_SoundTablePtr)($v1)
     /* 33F95D0 8006F034 21280000 */  addu       $a1, $zero, $zero
     /* 33F95D4 8006F038 0780013C */  lui        $at, %hi((g_Spyro + 0x150))
     /* 33F95D8 8006F03C 40A120AC */  sw         $zero, %lo((g_Spyro + 0x150))($at)

@@ -7,8 +7,8 @@ glabel func_titlescreen_and_loading_800741A0
     /* 29F3C 800741A0 E0FFBD27 */  addiu      $sp, $sp, -0x20
     /* 29F40 800741A4 0780053C */  lui        $a1, %hi(D_80068C80)
     /* 29F44 800741A8 808CA524 */  addiu      $a1, $a1, %lo(D_80068C80)
-    /* 29F48 800741AC 0680043C */  lui        $a0, %hi(D_80067068)
-    /* 29F4C 800741B0 6870848C */  lw         $a0, %lo(D_80067068)($a0)
+    /* 29F48 800741AC 0680043C */  lui        $a0, %hi(g_SpuDefinitionsPtr)
+    /* 29F4C 800741B0 6870848C */  lw         $a0, %lo(g_SpuDefinitionsPtr)($a0)
     /* 29F50 800741B4 14000624 */  addiu      $a2, $zero, 0x14
     /* 29F54 800741B8 1800BFAF */  sw         $ra, 0x18($sp)
     /* 29F58 800741BC 1400B1AF */  sw         $s1, 0x14($sp)

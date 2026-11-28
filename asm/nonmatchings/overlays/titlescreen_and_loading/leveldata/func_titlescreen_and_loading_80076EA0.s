@@ -25,8 +25,8 @@ glabel func_titlescreen_and_loading_80076EA0
     /* 2CC80 80076EE4 1D008228 */  slti       $v0, $a0, 0x1D
     /* 2CC84 80076EE8 F2FF4014 */  bnez       $v0, .Ltitlescreen_and_loading_80076EB4
     /* 2CC88 80076EEC 0400C624 */   addiu     $a2, $a2, 0x4
-    /* 2CC8C 80076EF0 0680033C */  lui        $v1, %hi(D_8006702C)
-    /* 2CC90 80076EF4 2C70638C */  lw         $v1, %lo(D_8006702C)($v1)
+    /* 2CC8C 80076EF0 0680033C */  lui        $v1, %hi((g_SoundTablePtr + 0xC))
+    /* 2CC90 80076EF4 2C70638C */  lw         $v1, %lo((g_SoundTablePtr + 0xC))($v1)
     /* 2CC94 80076EF8 584DE724 */  addiu      $a3, $a3, 0x4D58
     /* 2CC98 80076EFC 40100300 */  sll        $v0, $v1, 1
     /* 2CC9C 80076F00 21104300 */  addu       $v0, $v0, $v1

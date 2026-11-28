@@ -2571,7 +2571,7 @@ void func_80030A6C(void) {
 
     if (g_Spyro.m_0x26C >= 0) {
         if (func_80050B20(
-                D_80067020[6],
+                g_SoundTablePtr[6],
                 g_Spyro.m_0x26C
             ) != 0) {
             func_80050A40(g_Spyro.m_0x26C);
@@ -4004,9 +4004,9 @@ void func_800347A4(void) {
 
         g_Spyro.m_0x28 = 0;
 
-        if (func_80050B20(D_80067020[0x21], g_Spyro.m_0x264) == 0) {
-            g_Spyro.m_0x264 = func_80050720(D_80067020[0x21], nullptr, 4);
-            g_Spyro.m_0x268 = D_80067020[0x21];
+        if (func_80050B20(g_SoundTablePtr[0x21], g_Spyro.m_0x264) == 0) {
+            g_Spyro.m_0x264 = func_80050720(g_SoundTablePtr[0x21], nullptr, 4);
+            g_Spyro.m_0x268 = g_SoundTablePtr[0x21];
         }
         break;
 
@@ -4115,15 +4115,15 @@ void func_80034E0C(void) {
     int result;
 
     if ((unsigned int)(g_Spyro.m_0x58 - 0xB) < 2) {
-        if (func_80050B20(D_80067020[6], g_Spyro.m_0x26C) == 0) {
+        if (func_80050B20(g_SoundTablePtr[6], g_Spyro.m_0x26C) == 0) {
             g_Spyro.m_0x26C = func_80050720(
-                D_80067020[6],
+                g_SoundTablePtr[6],
                 nullptr,
                 4
             );
         }
     } else {
-        if (func_80050B20(D_80067020[6], g_Spyro.m_0x26C) != 0) {
+        if (func_80050B20(g_SoundTablePtr[6], g_Spyro.m_0x26C) != 0) {
             func_80050A40(g_Spyro.m_0x26C);
             g_Spyro.m_0x26C = -1;
         }
@@ -4170,7 +4170,7 @@ void func_80034E0C(void) {
         case 13:
             if (g_Spyro.m_animationFrame_0x16 == 2 || g_Spyro.m_animationFrame_0x16 == 5) {
                 result = func_80050720(
-                    D_80067020[0x12],
+                    g_SoundTablePtr[0x12],
                     nullptr,
                     0
                 );
@@ -4383,7 +4383,7 @@ void func_800351D8(int state) {
 
                 if (g_Spyro.m_0x50 != 0x14) {
                     func_80050720(
-                        ((unsigned char *)D_80067020)[0x10],
+                        ((unsigned char *)g_SoundTablePtr)[0x10],
                         0,
                         0);
                 }
@@ -4393,7 +4393,7 @@ void func_800351D8(int state) {
                 }
 
                 func_80050720(
-                    ((unsigned char *)D_80067020)[0x10],
+                    ((unsigned char *)g_SoundTablePtr)[0x10],
                     0,
                     0);
             }
@@ -4501,7 +4501,7 @@ void func_800351D8(int state) {
             g_Spyro.m_0x1BC = 0;
 
             func_80050720(
-                ((unsigned char *)D_80067020)[0x22],
+                ((unsigned char *)g_SoundTablePtr)[0x22],
                 0,
                 0);
             break;
@@ -4589,7 +4589,7 @@ void func_800351D8(int state) {
             g_Spyro.m_0x1BC = 1;
 
             func_80050720(
-                ((unsigned char *)D_80067020)[2],
+                ((unsigned char *)g_SoundTablePtr)[2],
                 0,
                 0);
 
@@ -4647,7 +4647,7 @@ void func_800351D8(int state) {
 
             if (state == 0x38) {
                 func_80050720(
-                    ((unsigned char *)D_80067020)[0x13],
+                    ((unsigned char *)g_SoundTablePtr)[0x13],
                     0,
                     0);
             }
@@ -4721,7 +4721,7 @@ void func_800351D8(int state) {
                     g_Spyro.m_0x58 == 12) {
 
                     func_80050720(
-                        ((unsigned char *)D_80067020)[7],
+                        ((unsigned char *)g_SoundTablePtr)[7],
                         0,
                         0);
 
@@ -5200,7 +5200,7 @@ void func_80035D38(void) {
             }
 
             func_80050720(
-                ((unsigned char *)D_80067020)[0x12],
+                ((unsigned char *)g_SoundTablePtr)[0x12],
                 0,
                 0);
 
@@ -5301,7 +5301,7 @@ void func_80035D38(void) {
             }
 
             func_80050720(
-                ((unsigned char *)D_80067020)[0x12],
+                ((unsigned char *)g_SoundTablePtr)[0x12],
                 0,
                 0);
 
@@ -5365,7 +5365,7 @@ void func_80035D38(void) {
                     func_800351D8(0x15);
 
                     func_80050720(
-                        ((unsigned char *)D_80067020)[0x22],
+                        ((unsigned char *)g_SoundTablePtr)[0x22],
                         0,
                         0);
 
@@ -5378,7 +5378,7 @@ void func_80035D38(void) {
                 func_800351D8(0x15);
 
                 func_80050720(
-                    ((unsigned char *)D_80067020)[0x22],
+                    ((unsigned char *)g_SoundTablePtr)[0x22],
                     0,
                     0);
 

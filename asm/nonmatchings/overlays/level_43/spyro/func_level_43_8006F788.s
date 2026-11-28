@@ -288,8 +288,8 @@ glabel func_level_43_8006F788
     /* 2FC707C 8006FAE0 D4C00108 */  j          .Llevel_43_80070350
     /* 2FC7080 8006FAE4 00000000 */   nop
   .Llevel_43_8006FAE8:
-    /* 2FC7084 8006FAE8 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 2FC7088 8006FAEC 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 2FC7084 8006FAE8 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 2FC7088 8006FAEC 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 2FC708C 8006FAF0 00000000 */  nop
     /* 2FC7090 8006FAF4 0F004490 */  lbu        $a0, 0xF($v0)
     /* 2FC7094 8006FAF8 C841010C */  jal        func_80050720

@@ -36,7 +36,8 @@ extern void (*D_80066FC4)(void);
 
 extern void (*D_80067010)(void);
 extern int D_80067018;
-extern unsigned char *D_80067020;
+extern unsigned char *g_SoundTablePtr;
+// (g_SoundTablePtr + 0x4)
 extern int D_80067024;
 
 extern void (*D_80067070)(int arg0);

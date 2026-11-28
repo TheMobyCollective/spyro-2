@@ -50,11 +50,11 @@ glabel func_80029170
     /* 19A00 80029200 801F1E3C */  lui        $fp, (0x1F8003C0 >> 16)
     /* 19A04 80029204 C003DE23 */  addi       $fp, $fp, (0x1F8003C0 & 0xFFFF) /* handwritten instruction */
     /* 19A08 80029208 20F8FE03 */  add        $ra, $ra, $fp /* handwritten instruction */
-    /* 19A0C 8002920C 0680113C */  lui        $s1, %hi(D_80067030)
-    /* 19A10 80029210 30703126 */  addiu      $s1, $s1, %lo(D_80067030)
+    /* 19A0C 8002920C 0680113C */  lui        $s1, %hi((g_SoundTablePtr + 0x10))
+    /* 19A10 80029210 30703126 */  addiu      $s1, $s1, %lo((g_SoundTablePtr + 0x10))
     /* 19A14 80029214 0000318E */  lw         $s1, 0x0($s1)
-    /* 19A18 80029218 0680123C */  lui        $s2, %hi(D_80067034)
-    /* 19A1C 8002921C 34705226 */  addiu      $s2, $s2, %lo(D_80067034)
+    /* 19A18 80029218 0680123C */  lui        $s2, %hi(g_SoundTablePtr + 0x14)
+    /* 19A1C 8002921C 34705226 */  addiu      $s2, $s2, %lo(g_SoundTablePtr + 0x14)
     /* 19A20 80029220 0000528E */  lw         $s2, 0x0($s2)
     /* 19A24 80029224 04003122 */  addi       $s1, $s1, 0x4 /* handwritten instruction */
     /* 19A28 80029228 00002F22 */  addi       $t7, $s1, 0x0 /* handwritten instruction */
@@ -332,8 +332,8 @@ glabel func_80029170
     /* 19E28 80029628 07A50008 */  j          .L8002941C
     /* 19E2C 8002962C 1C003122 */   addi      $s1, $s1, 0x1C /* handwritten instruction */
   .L80029630:
-    /* 19E30 80029630 0680013C */  lui        $at, %hi(D_80067030)
-    /* 19E34 80029634 30702124 */  addiu      $at, $at, %lo(D_80067030)
+    /* 19E30 80029630 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0x10))
+    /* 19E34 80029634 30702124 */  addiu      $at, $at, %lo((g_SoundTablePtr + 0x10))
     /* 19E38 80029638 0F002F12 */  beq        $s1, $t7, .L80029678
     /* 19E3C 8002963C 000031AC */   sw        $s1, 0x0($at)
     /* 19E40 80029640 0680013C */  lui        $at, %hi(D_80067168)
@@ -548,11 +548,11 @@ glabel func_800296D0
     /* 1A130 80029930 20B0DF02 */  add        $s6, $s6, $ra /* handwritten instruction */
     /* 1A134 80029934 C0C81900 */  sll        $t9, $t9, 3
     /* 1A138 80029938 20C83803 */  add        $t9, $t9, $t8 /* handwritten instruction */
-    /* 1A13C 8002993C 0680013C */  lui        $at, %hi(D_80067034)
-    /* 1A140 80029940 34702124 */  addiu      $at, $at, %lo(D_80067034)
+    /* 1A13C 8002993C 0680013C */  lui        $at, %hi(g_SoundTablePtr + 0x14)
+    /* 1A140 80029940 34702124 */  addiu      $at, $at, %lo(g_SoundTablePtr + 0x14)
     /* 1A144 80029944 0000218C */  lw         $at, 0x0($at)
-    /* 1A148 80029948 06801E3C */  lui        $fp, %hi(D_80067030)
-    /* 1A14C 8002994C 3070DE27 */  addiu      $fp, $fp, %lo(D_80067030)
+    /* 1A148 80029948 06801E3C */  lui        $fp, %hi((g_SoundTablePtr + 0x10))
+    /* 1A14C 8002994C 3070DE27 */  addiu      $fp, $fp, %lo((g_SoundTablePtr + 0x10))
     /* 1A150 80029950 0000DE8F */  lw         $fp, 0x0($fp)
     /* 1A154 80029954 00FC2120 */  addi       $at, $at, -0x400 /* handwritten instruction */
     /* 1A158 80029958 0050C148 */  ctc2       $at, $10 /* handwritten instruction */
@@ -674,8 +674,8 @@ glabel func_800296D0
     /* 1A30C 80029B0C 6969013C */  lui        $at, (0x69690000 >> 16)
   .L80029B10:
     /* 1A310 80029B10 00485F48 */  cfc2       $ra, $9 /* handwritten instruction */
-    /* 1A314 80029B14 0680013C */  lui        $at, %hi(D_80067030)
-    /* 1A318 80029B18 30702124 */  addiu      $at, $at, %lo(D_80067030)
+    /* 1A314 80029B14 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0x10))
+    /* 1A318 80029B18 30702124 */  addiu      $at, $at, %lo((g_SoundTablePtr + 0x10))
     /* 1A31C 80029B1C 1600DF13 */  beq        $fp, $ra, .L80029B78
     /* 1A320 80029B20 00003EAC */   sw        $fp, 0x0($at)
     /* 1A324 80029B24 0680023C */  lui        $v0, %hi(D_80066FFC)

@@ -259,8 +259,8 @@ glabel func_level_10_8006F0A0
     /* D38138 8006F39C 3CA120AC */  sw         $zero, %lo((g_Spyro + 0x14C))($at)
     /* D3813C 8006F3A0 886E000C */  jal        func_8001BA20
     /* D38140 8006F3A4 21280000 */   addu      $a1, $zero, $zero
-    /* D38144 8006F3A8 0680033C */  lui        $v1, %hi(D_80067020)
-    /* D38148 8006F3AC 2070638C */  lw         $v1, %lo(D_80067020)($v1)
+    /* D38144 8006F3A8 0680033C */  lui        $v1, %hi(g_SoundTablePtr)
+    /* D38148 8006F3AC 2070638C */  lw         $v1, %lo(g_SoundTablePtr)($v1)
     /* D3814C 8006F3B0 21280000 */  addu       $a1, $zero, $zero
     /* D38150 8006F3B4 0780013C */  lui        $at, %hi((g_Spyro + 0xB8))
     /* D38154 8006F3B8 A8A022AC */  sw         $v0, %lo((g_Spyro + 0xB8))($at)
@@ -397,8 +397,8 @@ glabel func_level_10_8006F0A0
     /* D38338 8006F59C 3CA120AC */  sw         $zero, %lo((g_Spyro + 0x14C))($at)
     /* D3833C 8006F5A0 886E000C */  jal        func_8001BA20
     /* D38340 8006F5A4 21280000 */   addu      $a1, $zero, $zero
-    /* D38344 8006F5A8 0680033C */  lui        $v1, %hi(D_80067020)
-    /* D38348 8006F5AC 2070638C */  lw         $v1, %lo(D_80067020)($v1)
+    /* D38344 8006F5A8 0680033C */  lui        $v1, %hi(g_SoundTablePtr)
+    /* D38348 8006F5AC 2070638C */  lw         $v1, %lo(g_SoundTablePtr)($v1)
     /* D3834C 8006F5B0 21280000 */  addu       $a1, $zero, $zero
     /* D38350 8006F5B4 0780013C */  lui        $at, %hi((g_Spyro + 0xB8))
     /* D38354 8006F5B8 A8A022AC */  sw         $v0, %lo((g_Spyro + 0xB8))($at)
@@ -423,8 +423,8 @@ glabel func_level_10_8006F0A0
     /* D38398 8006F5FC 0A000224 */  addiu      $v0, $zero, 0xA
     /* D3839C 8006F600 56006210 */  beq        $v1, $v0, .Llevel_10_8006F75C
     /* D383A0 8006F604 21280000 */   addu      $a1, $zero, $zero
-    /* D383A4 8006F608 0680023C */  lui        $v0, %hi(D_80067020)
-    /* D383A8 8006F60C 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* D383A4 8006F608 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* D383A8 8006F60C 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* D383AC 8006F610 00000000 */  nop
     /* D383B0 8006F614 07004490 */  lbu        $a0, 0x7($v0)
     /* D383B4 8006F618 C841010C */  jal        func_80050720

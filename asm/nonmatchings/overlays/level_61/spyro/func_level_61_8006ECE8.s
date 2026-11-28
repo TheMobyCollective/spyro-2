@@ -331,8 +331,8 @@ glabel func_level_61_8006ECE8
     /* 3EB9E50 8006F0B4 BBBC0108 */  j          .Llevel_61_8006F2EC
     /* 3EB9E54 8006F0B8 00000000 */   nop
   .Llevel_61_8006F0BC:
-    /* 3EB9E58 8006F0BC 0680033C */  lui        $v1, %hi(D_80067020)
-    /* 3EB9E5C 8006F0C0 2070638C */  lw         $v1, %lo(D_80067020)($v1)
+    /* 3EB9E58 8006F0BC 0680033C */  lui        $v1, %hi(g_SoundTablePtr)
+    /* 3EB9E5C 8006F0C0 2070638C */  lw         $v1, %lo(g_SoundTablePtr)($v1)
     /* 3EB9E60 8006F0C4 09000224 */  addiu      $v0, $zero, 0x9
     /* 3EB9E64 8006F0C8 0780013C */  lui        $at, %hi((g_Spyro + 0x58))
     /* 3EB9E68 8006F0CC 48A022AC */  sw         $v0, %lo((g_Spyro + 0x58))($at)
@@ -379,8 +379,8 @@ glabel func_level_61_8006ECE8
     /* 3EB9F08 8006F16C 09F86000 */  jalr       $v1
     /* 3EB9F0C 8006F170 21380000 */   addu      $a3, $zero, $zero
   .Llevel_61_8006F174:
-    /* 3EB9F10 8006F174 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 3EB9F14 8006F178 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 3EB9F10 8006F174 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 3EB9F14 8006F178 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 3EB9F18 8006F17C 00000000 */  nop
     /* 3EB9F1C 8006F180 09004490 */  lbu        $a0, 0x9($v0)
     /* 3EB9F20 8006F184 74BC0108 */  j          .Llevel_61_8006F1D0
@@ -399,8 +399,8 @@ glabel func_level_61_8006ECE8
     /* 3EB9F50 8006F1B4 3A000224 */  addiu      $v0, $zero, 0x3A
     /* 3EB9F54 8006F1B8 4C000216 */  bne        $s0, $v0, .Llevel_61_8006F2EC
     /* 3EB9F58 8006F1BC 21280000 */   addu      $a1, $zero, $zero
-    /* 3EB9F5C 8006F1C0 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 3EB9F60 8006F1C4 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 3EB9F5C 8006F1C0 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 3EB9F60 8006F1C4 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 3EB9F64 8006F1C8 00000000 */  nop
     /* 3EB9F68 8006F1CC 0C004490 */  lbu        $a0, 0xC($v0)
   .Llevel_61_8006F1D0:

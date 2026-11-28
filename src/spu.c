@@ -47,7 +47,7 @@ int func_80050720(int soundId, Moby *pMoby, int flags) {
     return -1;
   }
 
-  if (D_80067068[soundId].unk10 != 0 && (flags & 0x4) == 0) {
+  if (g_SpuDefinitionsPtr[soundId].unk10 != 0 && (flags & 0x4) == 0) {
     return -1;
   }
 
@@ -86,7 +86,7 @@ int func_80050720(int soundId, Moby *pMoby, int flags) {
       return -1;
     }
 
-    if (lowestPriority >= D_80067068[soundId].unk11) {
+    if (lowestPriority >= g_SpuDefinitionsPtr[soundId].unk11) {
       return -1;
     }
 
@@ -95,19 +95,19 @@ int func_80050720(int soundId, Moby *pMoby, int flags) {
   g_ActiveSounds[slot].unk0 = 1;
   g_ActiveSounds[slot].unk1 = soundId;
   g_ActiveSounds[slot].unk2 = flags;
-  g_ActiveSounds[slot].unk8 = D_80067068[soundId].unk6 * D_80066D48 / 10;
+  g_ActiveSounds[slot].unk8 = g_SpuDefinitionsPtr[soundId].unk6 * D_80066D48 / 10;
   g_ActiveSounds[slot].unkC = 0x1000;
-  g_ActiveSounds[slot].unk10 = D_80067068[soundId].unk6 * D_80066D48 / 10;
-  g_ActiveSounds[slot].unk14 = D_80067068[soundId].unk6 * D_80066D48 / 10;
+  g_ActiveSounds[slot].unk10 = g_SpuDefinitionsPtr[soundId].unk6 * D_80066D48 / 10;
+  g_ActiveSounds[slot].unk14 = g_SpuDefinitionsPtr[soundId].unk6 * D_80066D48 / 10;
   g_ActiveSounds[slot].unk28 = pMoby;
-  g_ActiveSounds[slot].unk3 = D_80067068[soundId].unk10;
-  g_ActiveSounds[slot].unk4 = D_80067068[soundId].unk11;
+  g_ActiveSounds[slot].unk3 = g_SpuDefinitionsPtr[soundId].unk10;
+  g_ActiveSounds[slot].unk4 = g_SpuDefinitionsPtr[soundId].unk11;
     
-  if (D_80067068[soundId].unkC == D_80067068[soundId].unkE) {
-    g_ActiveSounds[slot].unk18 = D_80067068[soundId].unkE;
+  if (g_SpuDefinitionsPtr[soundId].unkC == g_SpuDefinitionsPtr[soundId].unkE) {
+    g_ActiveSounds[slot].unk18 = g_SpuDefinitionsPtr[soundId].unkE;
   } else {
     g_ActiveSounds[slot].unk18 =
-        func_8003891C(D_80067068[soundId].unkC, D_80067068[soundId].unkE);
+        func_8003891C(g_SpuDefinitionsPtr[soundId].unkC, g_SpuDefinitionsPtr[soundId].unkE);
   }
 
   return slot;
@@ -187,8 +187,8 @@ void func_80050C64(int voiceIndex, int pitchScale) {
     int pitchProduct;
 
     pitchProduct = pitchScale *
-        ((D_80067068[soundId].unkC +
-          D_80067068[soundId].unkE) >> 1);
+        ((g_SpuDefinitionsPtr[soundId].unkC +
+          g_SpuDefinitionsPtr[soundId].unkE) >> 1);
 
     g_ActiveSounds[voiceIndex].unk2 |= 8;
     g_ActiveSounds[voiceIndex].unk18 = pitchProduct >> 12;
@@ -354,7 +354,7 @@ void func_80050FDC(int voiceIndex) {
 
   if (g_ActiveSounds[voiceIndex].unk0 == 1) {
     voiceAttr.mask |= 0x93;
-    voiceAttr.addr = D_80067068[g_ActiveSounds[voiceIndex].unk1].m_Addr;
+    voiceAttr.addr = g_SpuDefinitionsPtr[g_ActiveSounds[voiceIndex].unk1].m_Addr;
     voiceAttr.pitch = g_ActiveSounds[voiceIndex].unk18;
   }
 
@@ -490,8 +490,8 @@ int func_80051548(int soundId, Vector3D *position) {
 
   if (distance >= 0x2000) {
     // High-distance attenuation, with an explicit zero-volume path.
-    if (D_80067068[soundId].unk4 != 0 && distance < 0x2400) {
-      volume = ((0x2400 - distance) * D_80067068[soundId].unk4) >> 10;
+    if (g_SpuDefinitionsPtr[soundId].unk4 != 0 && distance < 0x2400) {
+      volume = ((0x2400 - distance) * g_SpuDefinitionsPtr[soundId].unk4) >> 10;
     } else {
       volume = 0;
     }
@@ -499,7 +499,7 @@ int func_80051548(int soundId, Vector3D *position) {
     // SoundDefinition entries are 0x14 bytes:
     // soundId * 5 words, then scale the word index by four.
     int definitionIndex = soundId * 5;
-    unsigned int tableBase = (unsigned int)D_80067068;
+    unsigned int tableBase = (unsigned int)g_SpuDefinitionsPtr;
 
     SoundDefinition *definition =
         (SoundDefinition *)((definitionIndex << 2) + tableBase);

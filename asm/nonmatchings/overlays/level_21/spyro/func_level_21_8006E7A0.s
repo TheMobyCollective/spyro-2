@@ -220,8 +220,8 @@ glabel func_level_21_8006E7A0
     /* 1566790 8006E9F4 0BBB0108 */  j          .Llevel_21_8006EC2C
     /* 1566794 8006E9F8 00000000 */   nop
   .Llevel_21_8006E9FC:
-    /* 1566798 8006E9FC 0680033C */  lui        $v1, %hi(D_80067020)
-    /* 156679C 8006EA00 2070638C */  lw         $v1, %lo(D_80067020)($v1)
+    /* 1566798 8006E9FC 0680033C */  lui        $v1, %hi(g_SoundTablePtr)
+    /* 156679C 8006EA00 2070638C */  lw         $v1, %lo(g_SoundTablePtr)($v1)
     /* 15667A0 8006EA04 09000224 */  addiu      $v0, $zero, 0x9
     /* 15667A4 8006EA08 0780013C */  lui        $at, %hi((g_Spyro + 0x58))
     /* 15667A8 8006EA0C 48A022AC */  sw         $v0, %lo((g_Spyro + 0x58))($at)
@@ -268,8 +268,8 @@ glabel func_level_21_8006E7A0
     /* 1566848 8006EAAC 09F86000 */  jalr       $v1
     /* 156684C 8006EAB0 21380000 */   addu      $a3, $zero, $zero
   .Llevel_21_8006EAB4:
-    /* 1566850 8006EAB4 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 1566854 8006EAB8 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 1566850 8006EAB4 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 1566854 8006EAB8 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 1566858 8006EABC 00000000 */  nop
     /* 156685C 8006EAC0 09004490 */  lbu        $a0, 0x9($v0)
     /* 1566860 8006EAC4 C4BA0108 */  j          .Llevel_21_8006EB10
@@ -288,8 +288,8 @@ glabel func_level_21_8006E7A0
     /* 1566890 8006EAF4 3A000224 */  addiu      $v0, $zero, 0x3A
     /* 1566894 8006EAF8 4C000216 */  bne        $s0, $v0, .Llevel_21_8006EC2C
     /* 1566898 8006EAFC 21280000 */   addu      $a1, $zero, $zero
-    /* 156689C 8006EB00 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 15668A0 8006EB04 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 156689C 8006EB00 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 15668A0 8006EB04 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 15668A4 8006EB08 00000000 */  nop
     /* 15668A8 8006EB0C 0C004490 */  lbu        $a0, 0xC($v0)
   .Llevel_21_8006EB10:

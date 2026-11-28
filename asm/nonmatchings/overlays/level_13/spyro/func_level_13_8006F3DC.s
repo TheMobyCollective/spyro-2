@@ -320,8 +320,8 @@ glabel func_level_13_8006F3DC
     /* 133BD3C 8006F7A0 A0BE0108 */  j          .Llevel_13_8006FA80
     /* 133BD40 8006F7A4 20000424 */   addiu     $a0, $zero, 0x20
   .Llevel_13_8006F7A8:
-    /* 133BD44 8006F7A8 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 133BD48 8006F7AC 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 133BD44 8006F7A8 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 133BD48 8006F7AC 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 133BD4C 8006F7B0 00000000 */  nop
     /* 133BD50 8006F7B4 0F004490 */  lbu        $a0, 0xF($v0)
     /* 133BD54 8006F7B8 C841010C */  jal        func_80050720

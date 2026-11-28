@@ -32,8 +32,8 @@ glabel func_80030A6C
     /* 212CC 80030ACC 00000000 */  nop
     /* 212D0 80030AD0 0D00A004 */  bltz       $a1, .L80030B08
     /* 212D4 80030AD4 1000A427 */   addiu     $a0, $sp, 0x10
-    /* 212D8 80030AD8 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 212DC 80030ADC 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 212D8 80030AD8 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 212DC 80030ADC 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 212E0 80030AE0 00000000 */  nop
     /* 212E4 80030AE4 06004490 */  lbu        $a0, 0x6($v0)
     /* 212E8 80030AE8 C842010C */  jal        func_80050B20

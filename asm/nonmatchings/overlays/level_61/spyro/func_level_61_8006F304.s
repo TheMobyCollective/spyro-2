@@ -571,8 +571,8 @@ glabel func_level_61_8006F304
     /* 3EBA7E8 8006FA4C 2ABF0108 */  j          .Llevel_61_8006FCA8
     /* 3EBA7EC 8006FA50 20000424 */   addiu     $a0, $zero, 0x20
   .Llevel_61_8006FA54:
-    /* 3EBA7F0 8006FA54 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 3EBA7F4 8006FA58 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 3EBA7F0 8006FA54 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 3EBA7F4 8006FA58 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 3EBA7F8 8006FA5C 00000000 */  nop
     /* 3EBA7FC 8006FA60 0F004490 */  lbu        $a0, 0xF($v0)
     /* 3EBA800 8006FA64 C841010C */  jal        func_80050720

@@ -1556,8 +1556,8 @@ glabel func_80023BB4
     /* 143E0 80023BE0 24003DAC */  sw         $sp, 0x24($at)
     /* 143E4 80023BE4 28003EAC */  sw         $fp, 0x28($at)
     /* 143E8 80023BE8 2C003FAC */  sw         $ra, 0x2C($at)
-    /* 143EC 80023BEC 0680013C */  lui        $at, %hi(D_80067034)
-    /* 143F0 80023BF0 34702124 */  addiu      $at, $at, %lo(D_80067034)
+    /* 143EC 80023BEC 0680013C */  lui        $at, %hi(g_SoundTablePtr + 0x14)
+    /* 143F0 80023BF0 34702124 */  addiu      $at, $at, %lo(g_SoundTablePtr + 0x14)
     /* 143F4 80023BF4 0000218C */  lw         $at, 0x0($at)
     /* 143F8 80023BF8 00000000 */  nop
     /* 143FC 80023BFC 00D02120 */  addi       $at, $at, -0x3000 /* handwritten instruction */
@@ -2196,8 +2196,8 @@ glabel func_80023BB4
     /* 14D60 80024560 0018CD48 */  ctc2       $t5, $3 /* handwritten instruction */
     /* 14D64 80024564 0020CE48 */  ctc2       $t6, $4 /* handwritten instruction */
     /* 14D68 80024568 0058CF48 */  ctc2       $t7, $11 /* handwritten instruction */
-    /* 14D6C 8002456C 06801E3C */  lui        $fp, %hi(D_80067030)
-    /* 14D70 80024570 3070DE27 */  addiu      $fp, $fp, %lo(D_80067030)
+    /* 14D6C 8002456C 06801E3C */  lui        $fp, %hi((g_SoundTablePtr + 0x10))
+    /* 14D70 80024570 3070DE27 */  addiu      $fp, $fp, %lo((g_SoundTablePtr + 0x10))
     /* 14D74 80024574 0000DE8F */  lw         $fp, 0x0($fp)
     /* 14D78 80024578 0680013C */  lui        $at, %hi(D_80066FFC)
     /* 14D7C 8002457C FC6F2124 */  addiu      $at, $at, %lo(D_80066FFC)
@@ -7333,8 +7333,8 @@ glabel func_80023BB4
     /* 19918 80029118 0680013C */  lui        $at, %hi(D_80067168)
     /* 1991C 8002911C 68712124 */  addiu      $at, $at, %lo(D_80067168)
     /* 19920 80029120 000033AC */  sw         $s3, 0x0($at)
-    /* 19924 80029124 0680013C */  lui        $at, %hi(D_80067030)
-    /* 19928 80029128 30702124 */  addiu      $at, $at, %lo(D_80067030)
+    /* 19924 80029124 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0x10))
+    /* 19928 80029128 30702124 */  addiu      $at, $at, %lo((g_SoundTablePtr + 0x10))
     /* 1992C 8002912C 00003EAC */  sw         $fp, 0x0($at)
     /* 19930 80029130 0780013C */  lui        $at, %hi(D_8006A9EC)
     /* 19934 80029134 ECA92124 */  addiu      $at, $at, %lo(D_8006A9EC)

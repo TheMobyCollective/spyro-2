@@ -8,8 +8,8 @@ glabel func_8004D2D8
     /* 3DADC 8004D2DC 082A033C */  lui        $v1, (0x2A080808 >> 16)
     /* 3DAE0 8004D2E0 08086334 */  ori        $v1, $v1, (0x2A080808 & 0xFFFF)
     /* 3DAE4 8004D2E4 1000B0AF */  sw         $s0, 0x10($sp)
-    /* 3DAE8 8004D2E8 0680103C */  lui        $s0, %hi(D_80067030)
-    /* 3DAEC 8004D2EC 3070108E */  lw         $s0, %lo(D_80067030)($s0)
+    /* 3DAE8 8004D2E8 0680103C */  lui        $s0, %hi((g_SoundTablePtr + 0x10))
+    /* 3DAEC 8004D2EC 3070108E */  lw         $s0, %lo((g_SoundTablePtr + 0x10))($s0)
     /* 3DAF0 8004D2F0 0005023C */  lui        $v0, (0x5000000 >> 16)
     /* 3DAF4 8004D2F4 1400BFAF */  sw         $ra, 0x14($sp)
     /* 3DAF8 8004D2F8 080004A6 */  sh         $a0, 0x8($s0)
@@ -25,8 +25,8 @@ glabel func_8004D2D8
     /* 3DB20 8004D320 E46C000C */  jal        func_8001B390
     /* 3DB24 8004D324 160007A6 */   sh        $a3, 0x16($s0)
     /* 3DB28 8004D328 18001026 */  addiu      $s0, $s0, 0x18
-    /* 3DB2C 8004D32C 0680013C */  lui        $at, %hi(D_80067030)
-    /* 3DB30 8004D330 307030AC */  sw         $s0, %lo(D_80067030)($at)
+    /* 3DB2C 8004D32C 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0x10))
+    /* 3DB30 8004D330 307030AC */  sw         $s0, %lo((g_SoundTablePtr + 0x10))($at)
     /* 3DB34 8004D334 1400BF8F */  lw         $ra, 0x14($sp)
     /* 3DB38 8004D338 1000B08F */  lw         $s0, 0x10($sp)
     /* 3DB3C 8004D33C 1800BD27 */  addiu      $sp, $sp, 0x18

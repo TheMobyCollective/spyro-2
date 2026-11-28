@@ -115,8 +115,8 @@ glabel func_level_55_8006EF94
     /* 3D1F5F0 8006F054 03BD0108 */  j          .Llevel_55_8006F40C
     /* 3D1F5F4 8006F058 00000000 */   nop
   .Llevel_55_8006F05C:
-    /* 3D1F5F8 8006F05C 0680033C */  lui        $v1, %hi(D_80067020)
-    /* 3D1F5FC 8006F060 2070638C */  lw         $v1, %lo(D_80067020)($v1)
+    /* 3D1F5F8 8006F05C 0680033C */  lui        $v1, %hi(g_SoundTablePtr)
+    /* 3D1F5FC 8006F060 2070638C */  lw         $v1, %lo(g_SoundTablePtr)($v1)
     /* 3D1F600 8006F064 09000224 */  addiu      $v0, $zero, 0x9
     /* 3D1F604 8006F068 0780013C */  lui        $at, %hi((g_Spyro + 0x58))
     /* 3D1F608 8006F06C 48A022AC */  sw         $v0, %lo((g_Spyro + 0x58))($at)
@@ -188,8 +188,8 @@ glabel func_level_55_8006EF94
     /* 3D1F708 8006F16C A7000216 */  bne        $s0, $v0, .Llevel_55_8006F40C
     /* 3D1F70C 8006F170 00000000 */   nop
   .Llevel_55_8006F174:
-    /* 3D1F710 8006F174 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 3D1F714 8006F178 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 3D1F710 8006F174 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 3D1F714 8006F178 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 3D1F718 8006F17C 21280000 */  addu       $a1, $zero, $zero
     /* 3D1F71C 8006F180 0C004490 */  lbu        $a0, 0xC($v0)
   .Llevel_55_8006F184:
@@ -245,8 +245,8 @@ glabel func_level_55_8006EF94
     /* 3D1F7D4 8006F238 0A000224 */  addiu      $v0, $zero, 0xA
     /* 3D1F7D8 8006F23C 73006210 */  beq        $v1, $v0, .Llevel_55_8006F40C
     /* 3D1F7DC 8006F240 21280000 */   addu      $a1, $zero, $zero
-    /* 3D1F7E0 8006F244 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 3D1F7E4 8006F248 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 3D1F7E0 8006F244 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 3D1F7E4 8006F248 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 3D1F7E8 8006F24C 00000000 */  nop
     /* 3D1F7EC 8006F250 07004490 */  lbu        $a0, 0x7($v0)
     /* 3D1F7F0 8006F254 C841010C */  jal        func_80050720

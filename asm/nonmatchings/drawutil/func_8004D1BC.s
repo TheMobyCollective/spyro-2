@@ -20,8 +20,8 @@ glabel func_8004D1BC
     /* 3D9F0 8004D1F0 B4000524 */  addiu      $a1, $zero, 0xB4
     /* 3D9F4 8004D1F4 9A000324 */  addiu      $v1, $zero, 0x9A
     /* 3D9F8 8004D1F8 1000B0AF */  sw         $s0, 0x10($sp)
-    /* 3D9FC 8004D1FC 0680103C */  lui        $s0, %hi(D_80067030)
-    /* 3DA00 8004D200 3070108E */  lw         $s0, %lo(D_80067030)($s0)
+    /* 3D9FC 8004D1FC 0680103C */  lui        $s0, %hi((g_SoundTablePtr + 0x10))
+    /* 3DA00 8004D200 3070108E */  lw         $s0, %lo((g_SoundTablePtr + 0x10))($s0)
     /* 3DA04 8004D204 11000224 */  addiu      $v0, $zero, 0x11
     /* 3DA08 8004D208 2C00BFAF */  sw         $ra, 0x2C($sp)
     /* 3DA0C 8004D20C 21200002 */  addu       $a0, $s0, $zero
@@ -46,8 +46,8 @@ glabel func_8004D1BC
     /* 3DA58 8004D258 01009426 */  addiu      $s4, $s4, 0x1
     /* 3DA5C 8004D25C 80000324 */  addiu      $v1, $zero, 0x80
     /* 3DA60 8004D260 52000224 */  addiu      $v0, $zero, 0x52
-    /* 3DA64 8004D264 0680013C */  lui        $at, %hi(D_80067030)
-    /* 3DA68 8004D268 307030AC */  sw         $s0, %lo(D_80067030)($at)
+    /* 3DA64 8004D264 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0x10))
+    /* 3DA68 8004D268 307030AC */  sw         $s0, %lo((g_SoundTablePtr + 0x10))($at)
     /* 3DA6C 8004D26C 000016AE */  sw         $s6, 0x0($s0)
     /* 3DA70 8004D270 070015A2 */  sb         $s5, 0x7($s0)
     /* 3DA74 8004D274 080011A6 */  sh         $s1, 0x8($s0)
@@ -62,8 +62,8 @@ glabel func_8004D1BC
     /* 3DA98 8004D298 E46C000C */  jal        func_8001B390
     /* 3DA9C 8004D29C 0E0000A2 */   sb        $zero, 0xE($s0)
     /* 3DAA0 8004D2A0 14001026 */  addiu      $s0, $s0, 0x14
-    /* 3DAA4 8004D2A4 0680013C */  lui        $at, %hi(D_80067030)
-    /* 3DAA8 8004D2A8 307030AC */  sw         $s0, %lo(D_80067030)($at)
+    /* 3DAA4 8004D2A4 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0x10))
+    /* 3DAA8 8004D2A8 307030AC */  sw         $s0, %lo((g_SoundTablePtr + 0x10))($at)
     /* 3DAAC 8004D2AC 2C00BF8F */  lw         $ra, 0x2C($sp)
     /* 3DAB0 8004D2B0 2800B68F */  lw         $s6, 0x28($sp)
     /* 3DAB4 8004D2B4 2400B58F */  lw         $s5, 0x24($sp)

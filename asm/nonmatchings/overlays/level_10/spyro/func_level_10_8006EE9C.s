@@ -27,8 +27,8 @@ glabel func_level_10_8006EE9C
     /* D37C84 8006EEE8 01000224 */  addiu      $v0, $zero, 0x1
     /* D37C88 8006EEEC 40006214 */  bne        $v1, $v0, .Llevel_10_8006EFF0
     /* D37C8C 8006EEF0 21280000 */   addu      $a1, $zero, $zero
-    /* D37C90 8006EEF4 0680023C */  lui        $v0, %hi(D_80067020)
-    /* D37C94 8006EEF8 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* D37C90 8006EEF4 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* D37C94 8006EEF8 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* D37C98 8006EEFC 00000000 */  nop
     /* D37C9C 8006EF00 0A004490 */  lbu        $a0, 0xA($v0)
     /* D37CA0 8006EF04 C841010C */  jal        func_80050720
@@ -48,8 +48,8 @@ glabel func_level_10_8006EE9C
     /* D37CD4 8006EF38 2D006214 */  bne        $v1, $v0, .Llevel_10_8006EFF0
     /* D37CD8 8006EF3C 00000000 */   nop
   .Llevel_10_8006EF40:
-    /* D37CDC 8006EF40 0680023C */  lui        $v0, %hi(D_80067020)
-    /* D37CE0 8006EF44 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* D37CDC 8006EF40 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* D37CE0 8006EF44 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* D37CE4 8006EF48 21280000 */  addu       $a1, $zero, $zero
     /* D37CE8 8006EF4C 11004490 */  lbu        $a0, 0x11($v0)
     /* D37CEC 8006EF50 C841010C */  jal        func_80050720
@@ -74,8 +74,8 @@ glabel func_level_10_8006EE9C
     /* D37D34 8006EF98 15006214 */  bne        $v1, $v0, .Llevel_10_8006EFF0
     /* D37D38 8006EF9C 00000000 */   nop
   .Llevel_10_8006EFA0:
-    /* D37D3C 8006EFA0 0680023C */  lui        $v0, %hi(D_80067020)
-    /* D37D40 8006EFA4 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* D37D3C 8006EFA0 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* D37D40 8006EFA4 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* D37D44 8006EFA8 21280000 */  addu       $a1, $zero, $zero
     /* D37D48 8006EFAC 11004490 */  lbu        $a0, 0x11($v0)
     /* D37D4C 8006EFB0 C841010C */  jal        func_80050720

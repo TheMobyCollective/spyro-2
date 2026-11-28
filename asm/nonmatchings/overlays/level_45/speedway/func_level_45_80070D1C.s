@@ -127,8 +127,8 @@ glabel func_level_45_80070D1C
     /* 33FB480 80070EE4 01000224 */  addiu      $v0, $zero, 0x1
     /* 33FB484 80070EE8 0780033C */  lui        $v1, %hi(D_800698F4)
     /* 33FB488 80070EEC F498638C */  lw         $v1, %lo(D_800698F4)($v1)
-    /* 33FB48C 80070EF0 0680043C */  lui        $a0, %hi(D_80067020)
-    /* 33FB490 80070EF4 2070848C */  lw         $a0, %lo(D_80067020)($a0)
+    /* 33FB48C 80070EF0 0680043C */  lui        $a0, %hi(g_SoundTablePtr)
+    /* 33FB490 80070EF4 2070848C */  lw         $a0, %lo(g_SoundTablePtr)($a0)
     /* 33FB494 80070EF8 23104300 */  subu       $v0, $v0, $v1
     /* 33FB498 80070EFC 0780013C */  lui        $at, %hi(D_800698F4)
     /* 33FB49C 80070F00 F49822AC */  sw         $v0, %lo(D_800698F4)($at)
@@ -286,8 +286,8 @@ glabel func_level_45_80070D1C
     /* 33FB6D8 8007113C 01000224 */  addiu      $v0, $zero, 0x1
     /* 33FB6DC 80071140 0780033C */  lui        $v1, %hi(D_800698F4)
     /* 33FB6E0 80071144 F498638C */  lw         $v1, %lo(D_800698F4)($v1)
-    /* 33FB6E4 80071148 0680043C */  lui        $a0, %hi(D_80067020)
-    /* 33FB6E8 8007114C 2070848C */  lw         $a0, %lo(D_80067020)($a0)
+    /* 33FB6E4 80071148 0680043C */  lui        $a0, %hi(g_SoundTablePtr)
+    /* 33FB6E8 8007114C 2070848C */  lw         $a0, %lo(g_SoundTablePtr)($a0)
     /* 33FB6EC 80071150 23104300 */  subu       $v0, $v0, $v1
     /* 33FB6F0 80071154 0780013C */  lui        $at, %hi(D_800698F4)
     /* 33FB6F4 80071158 F49822AC */  sw         $v0, %lo(D_800698F4)($at)
@@ -446,8 +446,8 @@ glabel func_level_45_80070D1C
     /* 33FB934 80071398 01000224 */  addiu      $v0, $zero, 0x1
     /* 33FB938 8007139C 0780033C */  lui        $v1, %hi(D_800698F4)
     /* 33FB93C 800713A0 F498638C */  lw         $v1, %lo(D_800698F4)($v1)
-    /* 33FB940 800713A4 0680043C */  lui        $a0, %hi(D_80067020)
-    /* 33FB944 800713A8 2070848C */  lw         $a0, %lo(D_80067020)($a0)
+    /* 33FB940 800713A4 0680043C */  lui        $a0, %hi(g_SoundTablePtr)
+    /* 33FB944 800713A8 2070848C */  lw         $a0, %lo(g_SoundTablePtr)($a0)
     /* 33FB948 800713AC 23104300 */  subu       $v0, $v0, $v1
     /* 33FB94C 800713B0 0780013C */  lui        $at, %hi(D_800698F4)
     /* 33FB950 800713B4 F49822AC */  sw         $v0, %lo(D_800698F4)($at)

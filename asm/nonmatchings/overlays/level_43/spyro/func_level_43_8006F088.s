@@ -69,8 +69,8 @@ glabel func_level_43_8006F088
     /* 2FC667C 8006F0E0 3D006214 */  bne        $v1, $v0, .Llevel_43_8006F1D8
     /* 2FC6680 8006F0E4 00000000 */   nop
   .Llevel_43_8006F0E8:
-    /* 2FC6684 8006F0E8 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 2FC6688 8006F0EC 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 2FC6684 8006F0E8 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 2FC6688 8006F0EC 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 2FC668C 8006F0F0 21280000 */  addu       $a1, $zero, $zero
     /* 2FC6690 8006F0F4 11004490 */  lbu        $a0, 0x11($v0)
     /* 2FC6694 8006F0F8 C841010C */  jal        func_80050720
@@ -95,8 +95,8 @@ glabel func_level_43_8006F088
     /* 2FC66DC 8006F140 25006214 */  bne        $v1, $v0, .Llevel_43_8006F1D8
     /* 2FC66E0 8006F144 00000000 */   nop
   .Llevel_43_8006F148:
-    /* 2FC66E4 8006F148 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 2FC66E8 8006F14C 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 2FC66E4 8006F148 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 2FC66E8 8006F14C 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 2FC66EC 8006F150 21280000 */  addu       $a1, $zero, $zero
     /* 2FC66F0 8006F154 11004490 */  lbu        $a0, 0x11($v0)
     /* 2FC66F4 8006F158 C841010C */  jal        func_80050720
@@ -124,8 +124,8 @@ glabel func_level_43_8006F088
     /* 2FC6744 8006F1A8 0D000224 */  addiu      $v0, $zero, 0xD
     /* 2FC6748 8006F1AC 0A006214 */  bne        $v1, $v0, .Llevel_43_8006F1D8
     /* 2FC674C 8006F1B0 21280000 */   addu      $a1, $zero, $zero
-    /* 2FC6750 8006F1B4 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 2FC6754 8006F1B8 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 2FC6750 8006F1B4 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 2FC6754 8006F1B8 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 2FC6758 8006F1BC 00000000 */  nop
     /* 2FC675C 8006F1C0 0D004490 */  lbu        $a0, 0xD($v0)
     /* 2FC6760 8006F1C4 C841010C */  jal        func_80050720

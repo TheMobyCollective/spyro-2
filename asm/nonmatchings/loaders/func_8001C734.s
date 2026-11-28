@@ -141,8 +141,8 @@ glabel func_8001C734
     /* D050 8001C850 FC6E20AC */  sw         $zero, %lo(D_80066EFC)($at)
     /* D054 8001C854 0680013C */  lui        $at, %hi(D_80066F50)
     /* D058 8001C858 506F20AC */  sw         $zero, %lo(D_80066F50)($at)
-    /* D05C 8001C85C 0680013C */  lui        $at, %hi(D_80067038)
-    /* D060 8001C860 387020A0 */  sb         $zero, %lo(D_80067038)($at)
+    /* D05C 8001C85C 0680013C */  lui        $at, %hi(g_SoundTablePtr + 0x18)
+    /* D060 8001C860 387020A0 */  sb         $zero, %lo(g_SoundTablePtr + 0x18)($at)
     /* D064 8001C864 0680013C */  lui        $at, %hi(D_800670F4)
     /* D068 8001C868 F47020A0 */  sb         $zero, %lo(D_800670F4)($at)
   .L8001C86C:
@@ -948,8 +948,8 @@ glabel func_8001C734
     /* DC18 8001D418 0680033C */  lui        $v1, %hi(D_80067024)
     /* DC1C 8001D41C 2470638C */  lw         $v1, %lo(D_80067024)($v1)
     /* DC20 8001D420 01000224 */  addiu      $v0, $zero, 0x1
-    /* DC24 8001D424 0680013C */  lui        $at, %hi(D_80067044)
-    /* DC28 8001D428 447022AC */  sw         $v0, %lo(D_80067044)($at)
+    /* DC24 8001D424 0680013C */  lui        $at, %hi(g_SoundTablePtr + 0x24)
+    /* DC28 8001D428 447022AC */  sw         $v0, %lo(g_SoundTablePtr + 0x24)($at)
     /* DC2C 8001D42C 09006214 */  bne        $v1, $v0, .L8001D454
     /* DC30 8001D430 6080033C */   lui       $v1, (0x80600004 >> 16)
     /* DC34 8001D434 0000028E */  lw         $v0, 0x0($s0)
@@ -984,13 +984,13 @@ glabel func_8001C734
     /* DCA0 8001D4A0 78000424 */   addiu     $a0, $zero, 0x78
     /* DCA4 8001D4A4 09F86000 */  jalr       $v1
     /* DCA8 8001D4A8 21280000 */   addu      $a1, $zero, $zero
-    /* DCAC 8001D4AC 0680013C */  lui        $at, %hi(D_80067028)
-    /* DCB0 8001D4B0 287022AC */  sw         $v0, %lo(D_80067028)($at)
+    /* DCAC 8001D4AC 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0x8))
+    /* DCB0 8001D4B0 287022AC */  sw         $v0, %lo((g_SoundTablePtr + 0x8))($at)
     /* DCB4 8001D4B4 31750008 */  j          .L8001D4C4
     /* DCB8 8001D4B8 00000000 */   nop
   .L8001D4BC:
-    /* DCBC 8001D4BC 0680013C */  lui        $at, %hi(D_80067028)
-    /* DCC0 8001D4C0 287020AC */  sw         $zero, %lo(D_80067028)($at)
+    /* DCBC 8001D4BC 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0x8))
+    /* DCC0 8001D4C0 287020AC */  sw         $zero, %lo((g_SoundTablePtr + 0x8))($at)
   .L8001D4C4:
     /* DCC4 8001D4C4 0780023C */  lui        $v0, %hi(D_80069894)
     /* DCC8 8001D4C8 9498428C */  lw         $v0, %lo(D_80069894)($v0)

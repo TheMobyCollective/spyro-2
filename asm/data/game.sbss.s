@@ -420,10 +420,9 @@ nonmatching D_8006701C, 0x4
 dlabel D_8006701C
     /* 8006701C */ .space 0x04
 
-nonmatching D_80067020, 0x4
+nonmatching g_SoundTablePtr, 0x4
 
 dlabel g_SoundTablePtr
-dlabel D_80067020
     /* 80067020 */ .space 0x04
 
 nonmatching D_80067024, 0x4
@@ -501,9 +500,9 @@ nonmatching D_80067064, 0x4
 dlabel D_80067064
     /* 80067064 */ .space 0x04
 
-nonmatching D_80067068, 0x4
+nonmatching g_SpuDefinitionsPtr, 0x4
 
-dlabel D_80067068
+dlabel g_SpuDefinitionsPtr
     /* 80067068 */ .space 0x04
 
 nonmatching D_8006706C, 0x4

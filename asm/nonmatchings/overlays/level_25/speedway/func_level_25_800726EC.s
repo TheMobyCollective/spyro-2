@@ -57,8 +57,8 @@ glabel func_level_25_800726EC
     /* 1BCAD4C 800727B0 21102202 */  addu       $v0, $s1, $v0
     /* 1BCAD50 800727B4 1800438E */  lw         $v1, 0x18($s2)
     /* 1BCAD54 800727B8 0000428C */  lw         $v0, 0x0($v0)
-    /* 1BCAD58 800727BC 0680043C */  lui        $a0, %hi(D_80067020)
-    /* 1BCAD5C 800727C0 2070848C */  lw         $a0, %lo(D_80067020)($a0)
+    /* 1BCAD58 800727BC 0680043C */  lui        $a0, %hi(g_SoundTablePtr)
+    /* 1BCAD5C 800727C0 2070848C */  lw         $a0, %lo(g_SoundTablePtr)($a0)
     /* 1BCAD60 800727C4 21186200 */  addu       $v1, $v1, $v0
     /* 1BCAD64 800727C8 180043AE */  sw         $v1, 0x18($s2)
     /* 1BCAD68 800727CC 1B008490 */  lbu        $a0, 0x1B($a0)

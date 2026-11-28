@@ -8,8 +8,8 @@ glabel func_titlescreen_and_loading_80079804
     /* 2F5A4 80079808 202A033C */  lui        $v1, (0x2A202020 >> 16)
     /* 2F5A8 8007980C 20206334 */  ori        $v1, $v1, (0x2A202020 & 0xFFFF)
     /* 2F5AC 80079810 1000B0AF */  sw         $s0, 0x10($sp)
-    /* 2F5B0 80079814 0680103C */  lui        $s0, %hi(D_80067030)
-    /* 2F5B4 80079818 3070108E */  lw         $s0, %lo(D_80067030)($s0)
+    /* 2F5B0 80079814 0680103C */  lui        $s0, %hi((g_SoundTablePtr + 0x10))
+    /* 2F5B4 80079818 3070108E */  lw         $s0, %lo((g_SoundTablePtr + 0x10))($s0)
     /* 2F5B8 8007981C 0005023C */  lui        $v0, (0x5000000 >> 16)
     /* 2F5BC 80079820 1400BFAF */  sw         $ra, 0x14($sp)
     /* 2F5C0 80079824 080004A6 */  sh         $a0, 0x8($s0)
@@ -26,9 +26,9 @@ glabel func_titlescreen_and_loading_80079804
     /* 2F5EC 80079850 D56C000C */  jal        func_8001B354
     /* 2F5F0 80079854 160007A6 */   sh        $a3, 0x16($s0)
     /* 2F5F4 80079858 18001026 */  addiu      $s0, $s0, 0x18
-    /* 2F5F8 8007985C 0680013C */  lui        $at, %hi(D_80067030)
+    /* 2F5F8 8007985C 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0x10))
   alabel D_titlescreen_and_loading_80079860
-    /* 2F5FC 80079860 307030AC */  sw         $s0, %lo(D_80067030)($at)
+    /* 2F5FC 80079860 307030AC */  sw         $s0, %lo((g_SoundTablePtr + 0x10))($at)
     /* 2F600 80079864 1400BF8F */  lw         $ra, 0x14($sp)
     /* 2F604 80079868 1000B08F */  lw         $s0, 0x10($sp)
     /* 2F608 8007986C 1800BD27 */  addiu      $sp, $sp, 0x18

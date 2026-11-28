@@ -19,8 +19,8 @@ glabel func_titlescreen_and_loading_80077BC8
     /* 2D994 80077BF8 50001624 */  addiu      $s6, $zero, 0x50
     /* 2D998 80077BFC 80000324 */  addiu      $v1, $zero, 0x80
     /* 2D99C 80077C00 1000B0AF */  sw         $s0, 0x10($sp)
-    /* 2D9A0 80077C04 0680103C */  lui        $s0, %hi(D_80067030)
-    /* 2D9A4 80077C08 3070108E */  lw         $s0, %lo(D_80067030)($s0)
+    /* 2D9A0 80077C04 0680103C */  lui        $s0, %hi((g_SoundTablePtr + 0x10))
+    /* 2D9A4 80077C08 3070108E */  lw         $s0, %lo((g_SoundTablePtr + 0x10))($s0)
     /* 2D9A8 80077C0C 4C000224 */  addiu      $v0, $zero, 0x4C
     /* 2D9AC 80077C10 1400B1AF */  sw         $s1, 0x14($sp)
     /* 2D9B0 80077C14 59001124 */  addiu      $s1, $zero, 0x59
@@ -47,8 +47,8 @@ glabel func_titlescreen_and_loading_80077BC8
     /* 2DA04 80077C68 0100B526 */  addiu      $s5, $s5, 0x1
     /* 2DA08 80077C6C 35000324 */  addiu      $v1, $zero, 0x35
     /* 2DA0C 80077C70 44000224 */  addiu      $v0, $zero, 0x44
-    /* 2DA10 80077C74 0680013C */  lui        $at, %hi(D_80067030)
-    /* 2DA14 80077C78 307030AC */  sw         $s0, %lo(D_80067030)($at)
+    /* 2DA10 80077C74 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0x10))
+    /* 2DA14 80077C78 307030AC */  sw         $s0, %lo((g_SoundTablePtr + 0x10))($at)
     /* 2DA18 80077C7C 000017AE */  sw         $s7, 0x0($s0)
     /* 2DA1C 80077C80 070016A2 */  sb         $s6, 0x7($s0)
     /* 2DA20 80077C84 080012A6 */  sh         $s2, 0x8($s0)
@@ -63,8 +63,8 @@ glabel func_titlescreen_and_loading_80077BC8
     /* 2DA44 80077CA8 E46C000C */  jal        func_8001B390
     /* 2DA48 80077CAC 0E0002A2 */   sb        $v0, 0xE($s0)
     /* 2DA4C 80077CB0 14001026 */  addiu      $s0, $s0, 0x14
-    /* 2DA50 80077CB4 0680013C */  lui        $at, %hi(D_80067030)
-    /* 2DA54 80077CB8 307030AC */  sw         $s0, %lo(D_80067030)($at)
+    /* 2DA50 80077CB4 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0x10))
+    /* 2DA54 80077CB8 307030AC */  sw         $s0, %lo((g_SoundTablePtr + 0x10))($at)
     /* 2DA58 80077CBC 3000BF8F */  lw         $ra, 0x30($sp)
     /* 2DA5C 80077CC0 2C00B78F */  lw         $s7, 0x2C($sp)
     /* 2DA60 80077CC4 2800B68F */  lw         $s6, 0x28($sp)

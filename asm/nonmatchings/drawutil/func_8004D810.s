@@ -56,8 +56,8 @@ glabel func_8004D810
     /* 3E0C4 8004D8C4 00104224 */  addiu      $v0, $v0, 0x1000
     /* 3E0C8 8004D8C8 0680013C */  lui        $at, %hi(D_80067168)
     /* 3E0CC 8004D8CC 687122AC */  sw         $v0, %lo(D_80067168)($at)
-    /* 3E0D0 8004D8D0 0680013C */  lui        $at, %hi(D_80067030)
-    /* 3E0D4 8004D8D4 307023AC */  sw         $v1, %lo(D_80067030)($at)
+    /* 3E0D0 8004D8D0 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0x10))
+    /* 3E0D4 8004D8D4 307023AC */  sw         $v1, %lo((g_SoundTablePtr + 0x10))($at)
     /* 3E0D8 8004D8D8 06000016 */  bnez       $s0, .L8004D8F4
     /* 3E0DC 8004D8DC 20000524 */   addiu     $a1, $zero, 0x20
     /* 3E0E0 8004D8E0 02000424 */  addiu      $a0, $zero, 0x2

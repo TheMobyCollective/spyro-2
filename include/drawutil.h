@@ -11,10 +11,14 @@ typedef struct
 
 void func_8001B3E4(int, int, short);                         /* extern */
 void func_80023BB4();                                  /* extern */
+
+// g_SoundTablePtr + 0x14
 extern int D_80067034;
 
 void func_8001B390(int);                               /* extern */
 void func_8005A01C(int, int, int, int, int);               /* extern */
+
+// g_SoundTablePtr + 0x10
 extern int D_80067030;
 
 void func_8004A374(int, int, int, int, int);               /* extern */

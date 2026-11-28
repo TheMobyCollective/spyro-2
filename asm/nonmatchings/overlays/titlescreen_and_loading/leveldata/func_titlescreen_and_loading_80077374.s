@@ -480,14 +480,14 @@ glabel func_titlescreen_and_loading_80077374
     /* 2D80C 80077A70 F26C000C */  jal        func_8001B3C8
     /* 2D810 80077A74 00100624 */   addiu     $a2, $zero, 0x1000
     /* 2D814 80077A78 38000426 */  addiu      $a0, $s0, 0x38
-    /* 2D818 80077A7C 0680053C */  lui        $a1, %hi(D_80067068)
-    /* 2D81C 80077A80 6870A58C */  lw         $a1, %lo(D_80067068)($a1)
+    /* 2D818 80077A7C 0680053C */  lui        $a1, %hi(g_SpuDefinitionsPtr)
+    /* 2D81C 80077A80 6870A58C */  lw         $a1, %lo(g_SpuDefinitionsPtr)($a1)
     /* 2D820 80077A84 036D000C */  jal        func_8001B40C
     /* 2D824 80077A88 14000624 */   addiu     $a2, $zero, 0x14
     /* 2D828 80077A8C 05006012 */  beqz       $s3, .Ltitlescreen_and_loading_80077AA4
     /* 2D82C 80077A90 0200033C */   lui       $v1, (0x21010 >> 16)
-    /* 2D830 80077A94 0680023C */  lui        $v0, %hi(D_80067068)
-    /* 2D834 80077A98 6870428C */  lw         $v0, %lo(D_80067068)($v0)
+    /* 2D830 80077A94 0680023C */  lui        $v0, %hi(g_SpuDefinitionsPtr)
+    /* 2D834 80077A98 6870428C */  lw         $v0, %lo(g_SpuDefinitionsPtr)($v0)
     /* 2D838 80077A9C B5DE0108 */  j          .Ltitlescreen_and_loading_80077AD4
     /* 2D83C 80077AA0 10106334 */   ori       $v1, $v1, (0x21010 & 0xFFFF)
   .Ltitlescreen_and_loading_80077AA4:
@@ -496,21 +496,21 @@ glabel func_titlescreen_and_loading_80077374
     /* 2D848 80077AAC 09000224 */  addiu      $v0, $zero, 0x9
     /* 2D84C 80077AB0 05006214 */  bne        $v1, $v0, .Ltitlescreen_and_loading_80077AC8
     /* 2D850 80077AB4 0400033C */   lui       $v1, (0x41EB0 >> 16)
-    /* 2D854 80077AB8 0680023C */  lui        $v0, %hi(D_80067068)
-    /* 2D858 80077ABC 6870428C */  lw         $v0, %lo(D_80067068)($v0)
+    /* 2D854 80077AB8 0680023C */  lui        $v0, %hi(g_SpuDefinitionsPtr)
+    /* 2D858 80077ABC 6870428C */  lw         $v0, %lo(g_SpuDefinitionsPtr)($v0)
     /* 2D85C 80077AC0 B5DE0108 */  j          .Ltitlescreen_and_loading_80077AD4
     /* 2D860 80077AC4 B01E6334 */   ori       $v1, $v1, (0x41EB0 & 0xFFFF)
   .Ltitlescreen_and_loading_80077AC8:
-    /* 2D864 80077AC8 0680023C */  lui        $v0, %hi(D_80067068)
-    /* 2D868 80077ACC 6870428C */  lw         $v0, %lo(D_80067068)($v0)
+    /* 2D864 80077AC8 0680023C */  lui        $v0, %hi(g_SpuDefinitionsPtr)
+    /* 2D868 80077ACC 6870428C */  lw         $v0, %lo(g_SpuDefinitionsPtr)($v0)
     /* 2D86C 80077AD0 B00C6334 */  ori        $v1, $v1, (0x40CB0 & 0xFFFF)
   .Ltitlescreen_and_loading_80077AD4:
     /* 2D870 80077AD4 000043AC */  sw         $v1, 0x0($v0)
     /* 2D874 80077AD8 21200000 */  addu       $a0, $zero, $zero
     /* 2D878 80077ADC 21280000 */  addu       $a1, $zero, $zero
     /* 2D87C 80077AE0 21300000 */  addu       $a2, $zero, $zero
-    /* 2D880 80077AE4 0680033C */  lui        $v1, %hi(D_80067068)
-    /* 2D884 80077AE8 6870638C */  lw         $v1, %lo(D_80067068)($v1)
+    /* 2D880 80077AE4 0680033C */  lui        $v1, %hi(g_SpuDefinitionsPtr)
+    /* 2D884 80077AE8 6870638C */  lw         $v1, %lo(g_SpuDefinitionsPtr)($v1)
     /* 2D888 80077AEC FF2F0224 */  addiu      $v0, $zero, 0x2FFF
     /* 2D88C 80077AF0 060062A4 */  sh         $v0, 0x6($v1)
     /* 2D890 80077AF4 00080224 */  addiu      $v0, $zero, 0x800

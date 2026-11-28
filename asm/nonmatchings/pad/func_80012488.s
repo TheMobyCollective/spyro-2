@@ -5,8 +5,8 @@ nonmatching func_80012488, 0x140
 
 glabel func_80012488
     /* 2C88 80012488 E0FFBD27 */  addiu      $sp, $sp, -0x20
-    /* 2C8C 8001248C 0680033C */  lui        $v1, %hi(D_80067024)
-    /* 2C90 80012490 2470638C */  lw         $v1, %lo(D_80067024)($v1)
+    /* 2C8C 8001248C 0680033C */  lui        $v1, %hi((g_SoundTablePtr + 0x4))
+    /* 2C90 80012490 2470638C */  lw         $v1, %lo((g_SoundTablePtr + 0x4))($v1)
     /* 2C94 80012494 02000224 */  addiu      $v0, $zero, 0x2
     /* 2C98 80012498 1800BFAF */  sw         $ra, 0x18($sp)
     /* 2C9C 8001249C 1400B1AF */  sw         $s1, 0x14($sp)
@@ -60,8 +60,8 @@ glabel func_80012488
     /* 2D54 80012554 0200022A */  slti       $v0, $s0, 0x2
     /* 2D58 80012558 F0FF4014 */  bnez       $v0, .L8001251C
     /* 2D5C 8001255C 02000224 */   addiu     $v0, $zero, 0x2
-    /* 2D60 80012560 0680033C */  lui        $v1, %hi(D_80067024)
-    /* 2D64 80012564 2470638C */  lw         $v1, %lo(D_80067024)($v1)
+    /* 2D60 80012560 0680033C */  lui        $v1, %hi((g_SoundTablePtr + 0x4))
+    /* 2D64 80012564 2470638C */  lw         $v1, %lo((g_SoundTablePtr + 0x4))($v1)
     /* 2D68 80012568 00000000 */  nop
     /* 2D6C 8001256C 04006214 */  bne        $v1, $v0, .L80012580
     /* 2D70 80012570 FFFF043C */   lui       $a0, (0xFFFF7300 >> 16)

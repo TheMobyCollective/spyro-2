@@ -5,8 +5,8 @@ nonmatching func_80054318, 0x90
 
 glabel func_80054318
     /* 44B18 80054318 E8FFBD27 */  addiu      $sp, $sp, -0x18
-    /* 44B1C 8005431C 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 44B20 80054320 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 44B1C 8005431C 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 44B20 80054320 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 44B24 80054324 21280000 */  addu       $a1, $zero, $zero
     /* 44B28 80054328 1400BFAF */  sw         $ra, 0x14($sp)
     /* 44B2C 8005432C 1000B0AF */  sw         $s0, 0x10($sp)

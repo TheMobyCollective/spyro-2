@@ -34,17 +34,17 @@ INCLUDE_ASM("asm/nonmatchings/loaders", func_8001C734);
 void func_8001D5FC(char* pData, int pPatchAddressesInTable) {
     int soundCount;
 
-    D_80067020 = (SoundTable *)pData; // sound table
+    g_SoundTablePtr = (SoundTable *)pData; // sound table
     pData += 0x100; // sizeof(SoundTable), but currently this is minimal
 
     soundCount = *(int*)pData;
     pData += sizeof(int);
 
-    D_80067068 = (SoundDefinition*)pData; // spu data
+    g_SpuDefinitionsPtr = (SoundDefinition*)pData; // spu data
 
     if (pPatchAddressesInTable) {
         while (--soundCount >= 0) {
-            D_80067068[soundCount].m_Addr += 0x1010;
+            g_SpuDefinitionsPtr[soundCount].m_Addr += 0x1010;
         }
     }
 }

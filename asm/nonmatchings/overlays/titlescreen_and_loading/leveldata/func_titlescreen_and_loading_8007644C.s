@@ -35,8 +35,8 @@ glabel func_titlescreen_and_loading_8007644C
     /* 2C258 800764BC 148322AC */  sw         $v0, %lo(D_80068314)($at)
     /* 2C25C 800764C0 0680013C */  lui        $at, %hi(D_80066D50)
     /* 2C260 800764C4 506D23AC */  sw         $v1, %lo(D_80066D50)($at)
-    /* 2C264 800764C8 0680013C */  lui        $at, %hi(D_8006702C)
-    /* 2C268 800764CC 2C7020AC */  sw         $zero, %lo(D_8006702C)($at)
+    /* 2C264 800764C8 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0xC))
+    /* 2C268 800764CC 2C7020AC */  sw         $zero, %lo((g_SoundTablePtr + 0xC))($at)
     /* 2C26C 800764D0 F26C000C */  jal        func_8001B3C8
     /* 2C270 800764D4 20000624 */   addiu     $a2, $zero, 0x20
     /* 2C274 800764D8 0780043C */  lui        $a0, %hi(D_8006B264)

@@ -51,14 +51,14 @@ glabel func_80048128
     /* 389BC 800481BC 00E0C048 */  ctc2       $zero, $28 /* handwritten instruction */
     /* 389C0 800481C0 00010120 */  addi       $at, $zero, 0x100 /* handwritten instruction */
     /* 389C4 800481C4 00D8C148 */  ctc2       $at, $27 /* handwritten instruction */
-    /* 389C8 800481C8 06800F3C */  lui        $t7, %hi(D_80067034)
-    /* 389CC 800481CC 3470EF25 */  addiu      $t7, $t7, %lo(D_80067034)
+    /* 389C8 800481C8 06800F3C */  lui        $t7, %hi(g_SoundTablePtr + 0x14)
+    /* 389CC 800481CC 3470EF25 */  addiu      $t7, $t7, %lo(g_SoundTablePtr + 0x14)
     /* 389D0 800481D0 0000EF8D */  lw         $t7, 0x0($t7)
     /* 389D4 800481D4 06801F3C */  lui        $ra, %hi(D_80066F18)
     /* 389D8 800481D8 186FFF27 */  addiu      $ra, $ra, %lo(D_80066F18)
     /* 389DC 800481DC 0000FF8F */  lw         $ra, 0x0($ra)
-    /* 389E0 800481E0 06801E3C */  lui        $fp, %hi(D_80067030)
-    /* 389E4 800481E4 3070DE27 */  addiu      $fp, $fp, %lo(D_80067030)
+    /* 389E0 800481E0 06801E3C */  lui        $fp, %hi((g_SoundTablePtr + 0x10))
+    /* 389E4 800481E4 3070DE27 */  addiu      $fp, $fp, %lo((g_SoundTablePtr + 0x10))
     /* 389E8 800481E8 0000DE8F */  lw         $fp, 0x0($fp)
     /* 389EC 800481EC 06801D3C */  lui        $sp, %hi(D_80066FFC)
     /* 389F0 800481F0 FC6FBD27 */  addiu      $sp, $sp, %lo(D_80066FFC)
@@ -774,8 +774,8 @@ glabel func_80048128
     /* 394C4 80048CC4 33230108 */  j          .L80048CCC
     /* 394C8 80048CC8 00000000 */   nop
   .L80048CCC:
-    /* 394CC 80048CCC 0680013C */  lui        $at, %hi(D_80067030)
-    /* 394D0 80048CD0 30702124 */  addiu      $at, $at, %lo(D_80067030)
+    /* 394CC 80048CCC 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0x10))
+    /* 394D0 80048CD0 30702124 */  addiu      $at, $at, %lo((g_SoundTablePtr + 0x10))
     /* 394D4 80048CD4 00003EAC */  sw         $fp, 0x0($at)
     /* 394D8 80048CD8 0780013C */  lui        $at, %hi(D_8006A9EC)
     /* 394DC 80048CDC ECA92124 */  addiu      $at, $at, %lo(D_8006A9EC)

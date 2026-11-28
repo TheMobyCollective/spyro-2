@@ -74,8 +74,8 @@ glabel func_800159C8
     /* 62C4 80015AC4 6A4E010C */  jal        func_800539A8
     /* 62C8 80015AC8 00000000 */   nop
   .L80015ACC:
-    /* 62CC 80015ACC 0680053C */  lui        $a1, %hi(D_80067024)
-    /* 62D0 80015AD0 2470A58C */  lw         $a1, %lo(D_80067024)($a1)
+    /* 62CC 80015ACC 0680053C */  lui        $a1, %hi((g_SoundTablePtr + 0x4))
+    /* 62D0 80015AD0 2470A58C */  lw         $a1, %lo((g_SoundTablePtr + 0x4))($a1)
     /* 62D4 80015AD4 01000224 */  addiu      $v0, $zero, 0x1
     /* 62D8 80015AD8 3D00A214 */  bne        $a1, $v0, .L80015BD0
     /* 62DC 80015ADC 00000000 */   nop

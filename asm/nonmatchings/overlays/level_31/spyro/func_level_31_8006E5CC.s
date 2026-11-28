@@ -210,8 +210,8 @@ glabel func_level_31_8006E5CC
     /* 2136DA4 8006E808 12000216 */  bne        $s0, $v0, .Llevel_31_8006E854
     /* 2136DA8 8006E80C 00000000 */   nop
   .Llevel_31_8006E810:
-    /* 2136DAC 8006E810 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 2136DB0 8006E814 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 2136DAC 8006E810 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 2136DB0 8006E814 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 2136DB4 8006E818 21280000 */  addu       $a1, $zero, $zero
     /* 2136DB8 8006E81C 0C004490 */  lbu        $a0, 0xC($v0)
     /* 2136DBC 8006E820 C841010C */  jal        func_80050720

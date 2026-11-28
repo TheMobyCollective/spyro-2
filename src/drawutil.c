@@ -20,7 +20,7 @@ void func_8004C484(void) {
 
 // https://decomp.me/scratch/GvRX1
 //INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004C4FC);
-
+// g_SoundTablePtr + 0x14
 void func_8004C4FC(void) {
     func_8001B3E4(D_80067034 - 0x3000, 0, 0x1C00);
     func_80023BB4();
@@ -36,6 +36,7 @@ INCLUDE_ASM("asm/nonmatchings/drawutil", func_8004C66C);
 void func_8004D104(int arg0) {
     int temp_s0;
 
+    // g_SoundTablePtr + 0x10
     temp_s0 = D_80067030;
     func_8005A01C(temp_s0, 1, 0, arg0, 0);
     func_8001B390(temp_s0);

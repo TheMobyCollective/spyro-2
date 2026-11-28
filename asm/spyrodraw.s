@@ -25,8 +25,8 @@ glabel func_80041DBC
     /* 325E8 80041DE8 24003DAC */  sw         $sp, 0x24($at)
     /* 325EC 80041DEC 28003EAC */  sw         $fp, 0x28($at)
     /* 325F0 80041DF0 2C003FAC */  sw         $ra, 0x2C($at)
-    /* 325F4 80041DF4 0680013C */  lui        $at, %hi(D_80067034)
-    /* 325F8 80041DF8 34702124 */  addiu      $at, $at, %lo(D_80067034)
+    /* 325F4 80041DF4 0680013C */  lui        $at, %hi(g_SoundTablePtr + 0x14)
+    /* 325F8 80041DF8 34702124 */  addiu      $at, $at, %lo(g_SoundTablePtr + 0x14)
     /* 325FC 80041DFC 0000218C */  lw         $at, 0x0($at)
     /* 32600 80041E00 07801F3C */  lui        $ra, %hi(g_Spyro)
     /* 32604 80041E04 F09FFF27 */  addiu      $ra, $ra, %lo(g_Spyro)
@@ -876,8 +876,8 @@ glabel func_80041DBC
     /* 3328C 80042A8C 20A08102 */  add        $s4, $s4, $at /* handwritten instruction */
     /* 33290 80042A90 000C9522 */  addi       $s5, $s4, 0xC00 /* handwritten instruction */
     /* 33294 80042A94 00009622 */  addi       $s6, $s4, 0x0 /* handwritten instruction */
-    /* 33298 80042A98 0680183C */  lui        $t8, %hi(D_80067030)
-    /* 3329C 80042A9C 30701827 */  addiu      $t8, $t8, %lo(D_80067030)
+    /* 33298 80042A98 0680183C */  lui        $t8, %hi((g_SoundTablePtr + 0x10))
+    /* 3329C 80042A9C 30701827 */  addiu      $t8, $t8, %lo((g_SoundTablePtr + 0x10))
     /* 332A0 80042AA0 0000188F */  lw         $t8, 0x0($t8)
     /* 332A4 80042AA4 2C00DD8F */  lw         $sp, 0x2C($fp)
     /* 332A8 80042AA8 10B80000 */  mfhi       $s7
@@ -1793,8 +1793,8 @@ glabel func_80041DBC
     /* 34004 80043804 E00D0108 */  j          .L80043780
     /* 34008 80043808 08002120 */   addi      $at, $at, 0x8 /* handwritten instruction */
   .L8004380C:
-    /* 3400C 8004380C 0680013C */  lui        $at, %hi(D_80067030)
-    /* 34010 80043810 30702124 */  addiu      $at, $at, %lo(D_80067030)
+    /* 3400C 8004380C 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0x10))
+    /* 34010 80043810 30702124 */  addiu      $at, $at, %lo((g_SoundTablePtr + 0x10))
     /* 34014 80043814 000038AC */  sw         $t8, 0x0($at)
   .L80043818:
     /* 34018 80043818 0780013C */  lui        $at, %hi(D_8006A9EC)

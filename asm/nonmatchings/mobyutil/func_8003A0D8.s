@@ -132,12 +132,12 @@ glabel func_8003A0D8
     /* 2AA64 8003A264 01001524 */   addiu     $s5, $zero, 0x1
     /* 2AA68 8003A268 25108500 */  or         $v0, $a0, $a1
     /* 2AA6C 8003A26C 000062A0 */  sb         $v0, 0x0($v1)
-    /* 2AA70 8003A270 0680023C */  lui        $v0, %hi(D_8006702C)
-    /* 2AA74 8003A274 2C70428C */  lw         $v0, %lo(D_8006702C)($v0)
+    /* 2AA70 8003A270 0680023C */  lui        $v0, %hi((g_SoundTablePtr + 0xC))
+    /* 2AA74 8003A274 2C70428C */  lw         $v0, %lo((g_SoundTablePtr + 0xC))($v0)
     /* 2AA78 8003A278 00000000 */  nop
     /* 2AA7C 8003A27C 01004224 */  addiu      $v0, $v0, 0x1
-    /* 2AA80 8003A280 0680013C */  lui        $at, %hi(D_8006702C)
-    /* 2AA84 8003A284 2C7022AC */  sw         $v0, %lo(D_8006702C)($at)
+    /* 2AA80 8003A280 0680013C */  lui        $at, %hi((g_SoundTablePtr + 0xC))
+    /* 2AA84 8003A284 2C7022AC */  sw         $v0, %lo((g_SoundTablePtr + 0xC))($at)
     /* 2AA88 8003A288 3EE90008 */  j          .L8003A4F8
     /* 2AA8C 8003A28C 02001026 */   addiu     $s0, $s0, 0x2
   .L8003A290:

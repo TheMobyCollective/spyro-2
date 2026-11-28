@@ -63,15 +63,15 @@ glabel func_titlescreen_and_loading_80070498
     /* 26274 800704D8 0780103C */  lui        $s0, %hi(D_8006ABD0)
     /* 26278 800704DC D0AB1026 */  addiu      $s0, $s0, %lo(D_8006ABD0)
     /* 2627C 800704E0 21200002 */  addu       $a0, $s0, $zero
-    /* 26280 800704E4 0680053C */  lui        $a1, %hi(D_80067068)
+    /* 26280 800704E4 0680053C */  lui        $a1, %hi(g_SpuDefinitionsPtr)
   alabel D_titlescreen_and_loading_800704E8
-    /* 26284 800704E8 6870A58C */  lw         $a1, %lo(D_80067068)($a1)
+    /* 26284 800704E8 6870A58C */  lw         $a1, %lo(g_SpuDefinitionsPtr)($a1)
     /* 26288 800704EC 036D000C */  jal        func_8001B40C
     /* 2628C 800704F0 28000624 */   addiu     $a2, $zero, 0x28
     /* 26290 800704F4 0680053C */  lui        $a1, %hi(D_80066F90)
     /* 26294 800704F8 906FA58C */  lw         $a1, %lo(D_80066F90)($a1)
-    /* 26298 800704FC 0680013C */  lui        $at, %hi(D_80067068)
-    /* 2629C 80070500 687030AC */  sw         $s0, %lo(D_80067068)($at)
+    /* 26298 800704FC 0680013C */  lui        $at, %hi(g_SpuDefinitionsPtr)
+    /* 2629C 80070500 687030AC */  sw         $s0, %lo(g_SpuDefinitionsPtr)($at)
     /* 262A0 80070504 0680013C */  lui        $at, %hi(D_80064940)
     /* 262A4 80070508 21082500 */  addu       $at, $at, $a1
     /* 262A8 8007050C 40492290 */  lbu        $v0, %lo(D_80064940)($at)

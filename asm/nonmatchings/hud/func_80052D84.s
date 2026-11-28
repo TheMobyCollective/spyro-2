@@ -148,8 +148,8 @@ glabel func_80052D84
     /* 43794 80052F94 07004010 */  beqz       $v0, .L80052FB4
     /* 43798 80052F98 00000000 */   nop
   .L80052F9C:
-    /* 4379C 80052F9C 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 437A0 80052FA0 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 4379C 80052F9C 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 437A0 80052FA0 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 437A4 80052FA4 21280000 */  addu       $a1, $zero, $zero
     /* 437A8 80052FA8 1D004490 */  lbu        $a0, 0x1D($v0)
     /* 437AC 80052FAC C841010C */  jal        func_80050720

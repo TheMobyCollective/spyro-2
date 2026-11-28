@@ -60,8 +60,8 @@ glabel func_level_23_8006F4A0
     /* 19AD288 8006F4EC 01000224 */  addiu      $v0, $zero, 0x1
     /* 19AD28C 8006F4F0 3F006214 */  bne        $v1, $v0, .Llevel_23_8006F5F0
     /* 19AD290 8006F4F4 21280000 */   addu      $a1, $zero, $zero
-    /* 19AD294 8006F4F8 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 19AD298 8006F4FC 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 19AD294 8006F4F8 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 19AD298 8006F4FC 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 19AD29C 8006F500 00000000 */  nop
     /* 19AD2A0 8006F504 0A004490 */  lbu        $a0, 0xA($v0)
     /* 19AD2A4 8006F508 C841010C */  jal        func_80050720
@@ -81,8 +81,8 @@ glabel func_level_23_8006F4A0
     /* 19AD2D8 8006F53C 2C006214 */  bne        $v1, $v0, .Llevel_23_8006F5F0
     /* 19AD2DC 8006F540 00000000 */   nop
   .Llevel_23_8006F544:
-    /* 19AD2E0 8006F544 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 19AD2E4 8006F548 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 19AD2E0 8006F544 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 19AD2E4 8006F548 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 19AD2E8 8006F54C 21280000 */  addu       $a1, $zero, $zero
     /* 19AD2EC 8006F550 11004490 */  lbu        $a0, 0x11($v0)
     /* 19AD2F0 8006F554 C841010C */  jal        func_80050720
@@ -107,8 +107,8 @@ glabel func_level_23_8006F4A0
     /* 19AD338 8006F59C 14006214 */  bne        $v1, $v0, .Llevel_23_8006F5F0
     /* 19AD33C 8006F5A0 00000000 */   nop
   .Llevel_23_8006F5A4:
-    /* 19AD340 8006F5A4 0680023C */  lui        $v0, %hi(D_80067020)
-    /* 19AD344 8006F5A8 2070428C */  lw         $v0, %lo(D_80067020)($v0)
+    /* 19AD340 8006F5A4 0680023C */  lui        $v0, %hi(g_SoundTablePtr)
+    /* 19AD344 8006F5A8 2070428C */  lw         $v0, %lo(g_SoundTablePtr)($v0)
     /* 19AD348 8006F5AC 21280000 */  addu       $a1, $zero, $zero
     /* 19AD34C 8006F5B0 11004490 */  lbu        $a0, 0x11($v0)
     /* 19AD350 8006F5B4 C841010C */  jal        func_80050720
