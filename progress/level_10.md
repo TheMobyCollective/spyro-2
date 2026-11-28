@@ -1,6 +1,6 @@
 <!-- camera.c -->
 - [ ] func_level_10_8006FEE0
-- [ ] func_level_10_8007022C
+- [x] func_level_10_8007022C
 - [ ] func_level_10_80070254
 - [ ] func_level_10_80070324
 
@@ -29,5 +29,5 @@
 
 <!-- parts_spawn.c -->
 - [ ] func_level_10_8007E100
-- [ ] func_level_10_8007F8BC
+- [x] func_level_10_8007F8BC
 

@@ -83,10 +83,9 @@ void func_80011D58(void) { //SsUtReverbOff
 //INCLUDE_ASM("asm/nonmatchings/init", func_80011D78);
 
 void func_80011D78(void) {
-    func_80054F1C(&g_PsyqPad, &D_8006AB4C);
+    func_80054F1C((int* ) &g_PsyqPad, &D_8006AB4C);
     func_80058408();
     func_80012B58();
-    // g_Pad + 0x4
     g_Pad.vibrationMode = 1;
     func_80054934(&func_800125C8);
 }

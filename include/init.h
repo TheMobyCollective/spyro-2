@@ -4,7 +4,7 @@
 extern void func_800518EC(); //func_800518EC InitSound
 
 extern void func_80013810(int, int, int, int); //func_80013810 fLoadFromDisc
-extern void func_8001B40C(Pad*, Pad*, int); //func_8001B40C fMemcpy
+extern void func_8001B40C(int*, int*, int); //func_8001B40C fMemcpy
 extern int func_800582A4(void*); //func_800582A4 CdReadCallback
 extern int func_800582B8(); //func_800582B8 CdInit
 extern int D_80011110; //ptrOverlayStart
@@ -41,7 +41,7 @@ extern void func_80057B20(); //func_80057B20 InitGeom
 
 extern void func_80012B58();                                  /* extern */
 extern void func_80054934(void*);                                /* extern */
-extern void func_80054F1C(PsyqPad*, char*);                            /* extern */
+extern void func_80054F1C(int*, char*);                            /* extern */
 extern void func_80058408();                                  /* extern */
 extern char D_8006AB4C;
 extern void func_800125C8();

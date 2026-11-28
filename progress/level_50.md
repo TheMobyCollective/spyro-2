@@ -1,7 +1,7 @@
 <!-- camera.c -->
 - [ ] func_level_50_8006FE18
 - [x] func_level_50_80070308
-- [ ] func_level_50_80070330
+- [x] func_level_50_80070330
 - [ ] func_level_50_80070408
 
 <!-- hud_render.c -->
@@ -22,7 +22,7 @@
 <!-- spyro.c -->
 - [ ] func_level_50_8006D898
 - [ ] func_level_50_8006EAD8
-- [ ] func_level_50_8006EE50
+- [x] func_level_50_8006EE50
 - [ ] func_level_50_8006EF30
 - [ ] func_level_50_8006EFAC
 - [ ] func_level_50_8006F748
