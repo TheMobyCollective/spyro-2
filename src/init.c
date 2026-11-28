@@ -1,5 +1,6 @@
 #include "common.h"
 #include "init.h"
+#include "pad.h"
 
 // https://decomp.me/scratch/JOKi3
 //INCLUDE_ASM("asm/nonmatchings/init", func_80011B1C); InitSpu()
@@ -82,11 +83,11 @@ void func_80011D58(void) { //SsUtReverbOff
 //INCLUDE_ASM("asm/nonmatchings/init", func_80011D78);
 
 void func_80011D78(void) {
-    func_80054F1C(&D_8006A95C, &D_8006AB4C);
+    func_80054F1C(&g_PsyqPad, &D_8006AB4C);
     func_80058408();
     func_80012B58();
     // g_Pad + 0x4
-    D_80068374 = 1;
+    g_Pad.vibrationMode = 1;
     func_80054934(&func_800125C8);
 }
 

@@ -1,5 +1,6 @@
 #include "common.h"
 #include "pad.h"
+#include "init.h"
 
 // https://decomp.me/scratch/wFrtz
 //INCLUDE_ASM("asm/nonmatchings/pad", func_80011F50);
@@ -78,22 +79,22 @@ void func_80012488(void) {
     g_Pad.unk3[1] = 0;
     g_Pad.unk3[2] = 0;
     if (D_80067024 == 2) {
-        *(int*)&D_80066F04->status = *(int*)&D_8006A95C.status;
+        *(int*)&D_80066F04->status = *(int*)&g_PsyqPad.status;
         x = ((int)D_80066F04 - (int)D_80066F28) >> 2;
-        *(int*)&D_80066F04->stick = *(int*)&D_8006A95C.stick;
+        *(int*)&D_80066F04->stick = *(int*)&g_PsyqPad.stick;
         *D_80066F28 = (x + 1) / 2;
     }
     for (i = 0; i < 2; i++) {
         D_8006700C++;
-        *(int*)&D_8006A95C.status = *(int*)&D_80066F04->status;
-        *(int*)&D_8006A95C.stick = *(int*)&D_80066F04->stick;
+        *(int*)&g_PsyqPad.status = *(int*)&D_80066F04->status;
+        *(int*)&g_PsyqPad.stick = *(int*)&D_80066F04->stick;
         func_800121B0();
     };
     if (D_80067024 == 2) {
         func_80058EDC(2);
     }
-    *(int*)&D_8006A95C.status = 0xFFFF7300;
-    *(int*)&D_8006A95C.stick = 0x7F7F7F7F;
+    *(int*)&g_PsyqPad.status = 0xFFFF7300;
+    *(int*)&g_PsyqPad.stick = 0x7F7F7F7F;
     D_80066F04++;
 }
 

@@ -99,8 +99,6 @@ typedef struct {
 // bss
 extern Pad g_Pad; // D_80068370
 
-extern void func_8001B40C(void*, void*, int);                         /* extern */
-
 // (g_SoundTablePtr + 0x4)
 extern int D_80067024; // isDemoMode
 
@@ -113,6 +111,6 @@ void func_80058EDC(int);                                 /* extern */
 // sdata
 extern PsyqPad* D_80066F04;
 extern int* D_80066F28;
-extern PsyqPad D_8006A95C;
+extern PsyqPad g_PsyqPad; // 0x8006A95C
 
 #endif
