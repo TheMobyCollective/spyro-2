@@ -5,8 +5,8 @@ nonmatching func_800121B0, 0x2D8
 
 glabel func_800121B0
     /* 29B0 800121B0 E0FFBD27 */  addiu      $sp, $sp, -0x20
-    /* 29B4 800121B4 0780023C */  lui        $v0, %hi(D_8006A95C)
-    /* 29B8 800121B8 5CA94290 */  lbu        $v0, %lo(D_8006A95C)($v0)
+    /* 29B4 800121B4 0780023C */  lui        $v0, %hi(g_PsyqPad)
+    /* 29B8 800121B8 5CA94290 */  lbu        $v0, %lo(g_PsyqPad)($v0)
     /* 29BC 800121BC 0780043C */  lui        $a0, %hi(g_Pad)
     /* 29C0 800121C0 70838424 */  addiu      $a0, $a0, %lo(g_Pad)
     /* 29C4 800121C4 1C00BFAF */  sw         $ra, 0x1C($sp)

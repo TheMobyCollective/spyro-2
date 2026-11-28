@@ -1689,10 +1689,9 @@ nonmatching D_8006A958, 0x4
 dlabel D_8006A958
     /* 8006A958 */ .space 0x04
 
-nonmatching D_8006A95C, 0x1
+nonmatching g_PsyqPad, 0x1
 
 dlabel g_PsyqPad
-dlabel D_8006A95C
     /* 8006A95C */ .space 0x01
 
 nonmatching D_8006A95D, 0x1
